@@ -1,0 +1,89 @@
+{
+  "total_races": 242,
+  "agf1_win_pct": 31.5,
+  "agf1_top2_pct": 48.2,
+  "agf1_top4_pct": 72.5,
+  "weight_strike_rates": {
+    "light_lte_54kg": 5.4,
+    "mid_55_58kg": 10.6,
+    "heavy_gte_59kg": 11.7
+  },
+  "gear_strike_rates": {
+    "KG": {
+      "win_pct": 8.8,
+      "starts": 1520
+    },
+    "K": {
+      "win_pct": 9.3,
+      "starts": 1843
+    },
+    "DB": {
+      "win_pct": 9.4,
+      "starts": 1442
+    },
+    "SK": {
+      "win_pct": 9.3,
+      "starts": 1526
+    },
+    "GKR": {
+      "win_pct": 5.9,
+      "starts": 85
+    },
+    "SKG": {
+      "win_pct": 8.2,
+      "starts": 306
+    }
+  },
+  "top_jockeys": [
+    {
+      "jockey": "v.abi̇ş",
+      "win_pct": 32.8,
+      "starts": 61
+    },
+    {
+      "jockey": "m.m.bi̇lgi̇n",
+      "win_pct": 25.0,
+      "starts": 48
+    },
+    {
+      "jockey": "a.kurşun",
+      "win_pct": 23.1,
+      "starts": 52
+    },
+    {
+      "jockey": "m.s.çeli̇k",
+      "win_pct": 19.0,
+      "starts": 63
+    },
+    {
+      "jockey": "er.cankiliç",
+      "win_pct": 25.0,
+      "starts": 44
+    },
+    {
+      "jockey": "sal.çeli̇k",
+      "win_pct": 10.0,
+      "starts": 90
+    },
+    {
+      "jockey": "g.kocakaya",
+      "win_pct": 16.7,
+      "starts": 48
+    },
+    {
+      "jockey": "o.yildiz",
+      "win_pct": 23.3,
+      "starts": 30
+    },
+    {
+      "jockey": "e.çankaya",
+      "win_pct": 13.5,
+      "starts": 52
+    },
+    {
+      "jockey": "h.çi̇zi̇k",
+      "win_pct": 14.3,
+      "starts": 49
+    }
+  ]
+}
