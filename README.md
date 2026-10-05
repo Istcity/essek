@@ -44,11 +44,12 @@
 
 ---
 
-## 🚀 Kurulum ve Çalıştırma
+## 📦 Taşınabilir Tek Dosya Uygulama (.EXE)
 
-### Gereksinimler
-- Python 3.9+ (veya modern bir Python sürümü)
-- Tarayıcı (Chrome, Safari, Edge, Firefox)
+Uygulama hiçbir kuruluma (Python, Node.js vb.) ihtiyaç duymadan **tek başına çalıştırılabilir `essek.exe`** dosyası olarak derlenmiştir:
+- **Tek Dosya EXE:** `dist/essek.exe` (8.7 MB - doğrudan başka bir bilgisayara gönderip çalıştırabilirsiniz).
+- **Masaüstü Kısayolu:** Masaüstünüze **`essek`** adında kısayol oluşturulmuştur.
+- **Otomatik Başlatma:** Çift tıklandığında dahili tahmin sunucusunu ayağa kaldırır ve **varsayılan web tarayıcınızı otomatik açarak** uygulamayı anında ekrana getirir.
 
 ### 1. Depoyu İndirin / Klonlayın
 ```bash
