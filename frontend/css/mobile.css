@@ -1,0 +1,86 @@
+/* ==========================================================================
+   MOBILE & IOS OPTIMIZATIONS (iPhone, iPad & Android)
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  .banner-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .coupon-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .runner-metrics-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 680px) {
+  .app-header {
+    padding: 0.65rem 1rem;
+  }
+
+  .brand-title {
+    font-size: 1.1rem;
+  }
+
+  .brand-logo-badge {
+    width: 36px;
+    height: 36px;
+    font-size: 1.1rem;
+  }
+
+  .live-indicator span:last-child {
+    display: none;
+  }
+
+  .main-content {
+    padding: 1rem 0.75rem;
+  }
+
+  .runner-card {
+    padding: 1rem;
+  }
+
+  .runner-metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
+    padding: 0.65rem;
+  }
+
+  .runner-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .runner-prob-block {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 0.5rem;
+  }
+
+  #raceCanvas {
+    height: 340px;
+  }
+
+  .simulator-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .sim-buttons {
+    justify-content: center;
+  }
+
+  /* iOS Safe Area Insets for iPhone notch & Home indicator */
+  body {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+}
