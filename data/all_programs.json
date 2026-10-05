@@ -1699,6 +1699,172 @@
             "partner": 3,
             "recommendation": "1. Koşuda 2 (veya 3) safkan ile sonraki koşunun favorisi bağlanmalıdır."
           }
+        },
+        "is_finished": true,
+        "results": {
+          "race_number": 1,
+          "standings": [
+            {
+              "order": 1,
+              "name": "GÜLNARLI KG",
+              "jockey": "MER.ÇELİK",
+              "weight": "60",
+              "time": "1:34.01",
+              "ganyan": "2,70",
+              "margin": "1 Boy",
+              "gate": "5",
+              "horse_number": 2
+            },
+            {
+              "order": 2,
+              "name": "GÜZEL ELAM KG K",
+              "jockey": "U.TEMUR",
+              "weight": "57",
+              "time": "1:34.12",
+              "ganyan": "5,50",
+              "margin": "4 Boy",
+              "gate": "8",
+              "horse_number": 8
+            },
+            {
+              "order": 3,
+              "name": "İZOTOP KG K",
+              "jockey": "M.KAYA",
+              "weight": "60 +0.20",
+              "time": "1:34.75",
+              "ganyan": "7,20",
+              "margin": "Yarım Boy",
+              "gate": "12",
+              "horse_number": 3
+            },
+            {
+              "order": 4,
+              "name": "NARENKA KG K",
+              "jockey": "O.YILDIZ",
+              "weight": "57 +0.30",
+              "time": "1:34.84",
+              "ganyan": "15,65",
+              "margin": "2 Boy",
+              "gate": "3",
+              "horse_number": 10
+            },
+            {
+              "order": 5,
+              "name": "AŞAN SİMAY KG K DB",
+              "jockey": "M.M.BİLGİN",
+              "weight": "57",
+              "time": "1:35.15",
+              "ganyan": "32,10",
+              "margin": "",
+              "gate": "10",
+              "horse_number": 4
+            },
+            {
+              "order": 6,
+              "name": "BALKIZIM KG K DB",
+              "jockey": "N.AVCİ",
+              "weight": "57",
+              "time": "1:35.54",
+              "ganyan": "2,85",
+              "margin": "",
+              "gate": "1",
+              "horse_number": 6
+            },
+            {
+              "order": 7,
+              "name": "SEKLAVİ KIZI KG K",
+              "jockey": "İ.KATI",
+              "weight": "57 +0.60",
+              "time": "1:35.79",
+              "ganyan": "15,10",
+              "margin": "",
+              "gate": "11",
+              "horse_number": 12
+            },
+            {
+              "order": 8,
+              "name": "ÇİLDUTAY KG DB SK",
+              "jockey": "MAH.TURAN",
+              "weight": "62",
+              "time": "1:36.46",
+              "ganyan": "10,40",
+              "margin": "",
+              "gate": "7",
+              "horse_number": 1
+            },
+            {
+              "order": 9,
+              "name": "ATAK KIZ KG K DB",
+              "jockey": "E.KADİRLER AP",
+              "weight": "54",
+              "time": "1:38.58",
+              "ganyan": "20,35",
+              "margin": "",
+              "gate": "2",
+              "horse_number": 5
+            },
+            {
+              "order": 10,
+              "name": "BATMAN KIZI KG K",
+              "jockey": "A.MEH.ALTIN",
+              "weight": "57",
+              "time": "1:39.17",
+              "ganyan": "25,25",
+              "margin": "",
+              "gate": "9",
+              "horse_number": 7
+            },
+            {
+              "order": 11,
+              "name": "ÖZGÜNDEN KG DB SK GKR",
+              "jockey": "M.KEÇECİ",
+              "weight": "57",
+              "time": "1:39.72",
+              "ganyan": "34,30",
+              "margin": "",
+              "gate": "13",
+              "horse_number": 11
+            },
+            {
+              "order": 12,
+              "name": "TOMBİK KG DB SK",
+              "jockey": "T.ALICI",
+              "weight": "57 +0.40",
+              "time": "1:42.17",
+              "ganyan": "63,40",
+              "margin": "",
+              "gate": "6",
+              "horse_number": 13
+            },
+            {
+              "order": 13,
+              "name": "KAYANİLİM GKR (Koşmaz)",
+              "jockey": "R.KETME AP",
+              "weight": "54",
+              "time": "Koşmaz",
+              "ganyan": "",
+              "margin": "",
+              "gate": "4",
+              "horse_number": 9
+            }
+          ],
+          "dividends": {
+            "GANYAN(2)": "2,70 TL",
+            "İKİLİ(2/8)": "11,70 TL",
+            "SIRALI İKİLİ(2/8)": "20,60 TL"
+          }
+        },
+        "accuracy_report": {
+          "banko_hit": true,
+          "ikili_hit": false,
+          "tabela_hit": true,
+          "winner_name": "GÜLNARLI KG",
+          "winner_number": 2,
+          "winner_ganyan": "2,70",
+          "badges": [
+            "🥇 1. BANKO TAHMİNİMİZ KAZANDI (2,70 TL)",
+            "🔥 4'LÜ TABELA KUPONU TUTTU"
+          ]
         }
       },
       {

@@ -1,13 +1,14 @@
 import os, json, sys, glob
 sys.path.insert(0, '.')
 from backend.prediction_engine import predict_race
+from backend.tjk_scraper import fetch_tjk_race_results, evaluate_race_prediction_accuracy, clean_name_match
 
 data_dir = 'data'
 frontend_data_dir = 'frontend/data'
 os.makedirs(frontend_data_dir, exist_ok=True)
 
 files = glob.glob(os.path.join(data_dir, 'program_*.json'))
-print(f"Repredicting {len(files)} program files...")
+print(f"Repredicting and updating results for {len(files)} program files...")
 
 all_programs = {}
 
@@ -17,10 +18,25 @@ for fpath in files:
     with open(fpath, 'r', encoding='utf-8') as f:
         prog = json.load(f)
         
+    date_str = prog.get('date', '05.10.2026')
     races = prog.get('races', [])
     updated_races = []
+    
+    # Try fetching official results
+    official_results = fetch_tjk_race_results(city_name, date_str)
+
     for race in races:
         updated = predict_race(race)
+        r_num = updated.get("race_number")
+        if r_num in official_results:
+            r_res = official_results[r_num]
+            updated["is_finished"] = True
+            runners_map = {clean_name_match(rn.get("name", "")): rn.get("number") for rn in updated.get("runners", [])}
+            for s in r_res.get("standings", []):
+                clean_s = clean_name_match(s.get("name", ""))
+                s["horse_number"] = runners_map.get(clean_s, s.get("order"))
+            updated["results"] = r_res
+            updated["accuracy_report"] = evaluate_race_prediction_accuracy(updated, r_res)
         updated_races.append(updated)
         
     prog['races'] = updated_races

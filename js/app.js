@@ -220,7 +220,7 @@ class TJKApp {
 
     // 1. Try local/cloud backend server
     try {
-      const res = await fetch(`/api/program?city=${encodeURIComponent(cityName)}&date=${this.currentDateStr}`);
+      const res = await fetch(`/api/program?city=${encodeURIComponent(cityName)}&date=${this.currentDateStr}&t=${Date.now()}`);
       if (res.ok) {
         const json = await res.json();
         if (json.success && json.data) {
@@ -403,21 +403,27 @@ class TJKApp {
     if (!this.raceRibbon || !this.currentProgram) return;
     const races = this.currentProgram.races || [];
 
-    this.raceRibbon.innerHTML = races.map((r, idx) => `
-      <div class="race-pill ${idx === this.activeRaceIndex ? 'active' : ''}" onclick="window.app.selectRace(${idx})">
-        <div class="race-pill-header">
-          <span class="race-pill-title">${r.name}</span>
-          <span class="race-pill-time">${r.time}</span>
+    this.raceRibbon.innerHTML = races.map((r, idx) => {
+      const isFin = r.is_finished;
+      const bankoHit = r.accuracy_report && r.accuracy_report.banko_hit;
+      return `
+        <div class="race-pill ${idx === this.activeRaceIndex ? 'active' : ''}" onclick="window.app.selectRace(${idx})">
+          <div class="race-pill-header">
+            <span class="race-pill-title">${r.name}</span>
+            <span class="race-pill-time">${r.time}</span>
+            ${isFin ? '<span class="pill-finished-badge">🏁 Bitti</span>' : ''}
+            ${bankoHit ? '<span class="pill-banko-hit" title="1. Banko Tahmin Kazandı!">🥇 Banko</span>' : ''}
+          </div>
+          <div class="race-pill-meta">
+            <span>${r.distance}m</span>
+            <span>•</span>
+            <span>${r.surface}</span>
+            <span>•</span>
+            <span>${(r.runners || []).length} At</span>
+          </div>
         </div>
-        <div class="race-pill-meta">
-          <span>${r.distance}m</span>
-          <span>•</span>
-          <span>${r.surface}</span>
-          <span>•</span>
-          <span>${(r.runners || []).length} At</span>
-        </div>
-      </div>
-    `).join('');
+      `;
+    }).join('');
 
     setTimeout(() => {
       const activePill = this.raceRibbon?.querySelector(".race-pill.active");
@@ -1003,45 +1009,150 @@ class TJKApp {
      VIEW 7: RACE RESULTS
      ---------------------------------------------------------------------- */
   renderResultsView(race, container) {
-    if (!race.results) {
+    if (!race.results || (!race.results.standings && Object.keys(race.results).length === 0)) {
       container.innerHTML = `
-        <div style="padding: 2rem; text-align: center; color: var(--text-secondary);">
-          <h3 style="margin-bottom:0.5rem; font-family:var(--font-heading); color:var(--text-main);">🏁 Bu koşunun resmi sonuçları henüz açıklanmadı.</h3>
-          <p>Yarış bittikten sonra sonuçlar ve kazanç miktarları burada yer alacaktır.</p>
+        <div style="padding: 3rem 1.5rem; text-align: center; color: var(--text-secondary); background: var(--bg-surface-elevated); border-radius: var(--radius-lg); border: 1px solid var(--border-subtle);">
+          <div style="font-size: 2.5rem; margin-bottom: 0.8rem;">🏁</div>
+          <h3 style="margin-bottom:0.5rem; font-family:var(--font-heading); color:var(--text-main);">Bu Koşunun Resmi Sonuçları Henüz Açıklanmadı</h3>
+          <p style="max-width: 500px; margin: 0 auto 1.5rem auto; font-size: 0.88rem;">Yarış tamamlandığında TJK resmi sonuçları, bitiriş dereceleri, ganyan oranları ve ikramiyeler anlık olarak burada görüntülenecektir.</p>
+          <button class="btn-primary" onclick="window.app.refreshRaceResults()" style="display:inline-flex; align-items:center; gap:0.4rem; padding:0.6rem 1.4rem;">
+            🔄 Sonuçları TJK'dan Şimdi Sorgula
+          </button>
         </div>
       `;
       return;
     }
-    
-    let html = `
-      <div style="padding: 1.5rem; color: var(--text-main); background: var(--bg-surface-elevated); border-radius: var(--radius-lg); border: 1px solid var(--border-subtle);">
-        <h3 style="color:var(--emerald-400); margin-bottom:1.5rem; font-family:var(--font-heading);">🏁 Resmi Sonuçlar - ${race.name}</h3>
-        <table class="matrix-table" style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-          <thead>
-            <tr>
-              <th style="text-align:left; border-bottom:1px solid var(--border-subtle); padding:0.5rem;">Bahis Türü</th>
-              <th style="text-align:left; border-bottom:1px solid var(--border-subtle); padding:0.5rem;">Kazanan Kombinasyon</th>
-              <th style="text-align:right; border-bottom:1px solid var(--border-subtle); padding:0.5rem;">Ganyan/Tutar</th>
-            </tr>
-          </thead>
-          <tbody>
-    `;
 
-    Object.entries(race.results).forEach(([betType, res]) => {
+    const res = race.results;
+    const standings = res.standings || [];
+    const dividends = res.dividends || {};
+    const acc = race.accuracy_report || {};
+
+    let html = `<div class="results-container">`;
+
+    // 1. AI Accuracy & Performance Report
+    if (acc.badges && acc.badges.length > 0) {
       html += `
-        <tr>
-          <td style="padding:0.75rem 0.5rem; border-bottom:1px solid rgba(255,255,255,0.05); font-weight:bold; color:var(--gold-400); text-transform:capitalize;">${betType.replace(/_/g, ' ')}</td>
-          <td style="padding:0.75rem 0.5rem; border-bottom:1px solid rgba(255,255,255,0.05); letter-spacing:1px;">${res.combo || '-'}</td>
-          <td style="padding:0.75rem 0.5rem; border-bottom:1px solid rgba(255,255,255,0.05); text-align:right; font-weight:bold; color:var(--emerald-400);">${res.prize || '-'} ₺</td>
-        </tr>
+        <div class="accuracy-banner">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">
+            <div style="display:flex; align-items:center; gap:0.5rem;">
+              <span style="font-size:1.4rem;">🎯</span>
+              <strong style="font-family:var(--font-heading); color:#fff; font-size:1rem;">Yapay Zeka Tahmin Başarı Karnesi - ${race.name}</strong>
+            </div>
+            <button class="btn-glass" onclick="window.app.refreshRaceResults()" style="padding:0.25rem 0.65rem; font-size:0.75rem;">
+              🔄 Yenile
+            </button>
+          </div>
+          <div class="accuracy-badges-row">
+            ${acc.badges.map(b => `<span class="accuracy-badge-item">${b}</span>`).join('')}
+          </div>
+        </div>
       `;
-    });
+    }
 
-    html += `
-          </tbody>
-        </table>
-      </div>
-    `;
+    // 2. Official Standings Table (Finish Order)
+    if (standings.length > 0) {
+      // Create quick lookup for predicted rank
+      const predRankMap = {};
+      (race.runners || []).forEach(rn => {
+        predRankMap[rn.number] = rn.rank;
+      });
+
+      html += `
+        <div class="standings-table-wrapper">
+          <div style="padding:1rem 1.2rem; background:rgba(14,21,38,0.9); border-bottom:1px solid var(--border-subtle); display:flex; justify-content:space-between; align-items:center;">
+            <h4 style="margin:0; font-family:var(--font-heading); color:var(--emerald-400); font-size:0.95rem;">
+              🏆 Resmi Varış Sıralaması & Dereceler (${race.distance}m ${race.surface})
+            </h4>
+            <span style="font-size:0.78rem; color:var(--text-muted);">${standings.length} At Koştu</span>
+          </div>
+          <div style="overflow-x:auto;">
+            <table class="standings-table">
+              <thead>
+                <tr>
+                  <th style="width:70px; text-align:center;">Sıra</th>
+                  <th>At No & İsmi</th>
+                  <th>Jokey</th>
+                  <th style="text-align:center;">Kilo</th>
+                  <th style="text-align:center;">Derece</th>
+                  <th style="text-align:right;">Ganyan</th>
+                  <th style="text-align:center;">Fark</th>
+                  <th style="text-align:center;">Yapay Zeka Tahmini</th>
+                </tr>
+              </thead>
+              <tbody>
+      `;
+
+      standings.forEach(s => {
+        let orderBadgeClass = "order-badge-standard";
+        if (s.order === 1) orderBadgeClass = "order-badge-gold";
+        else if (s.order === 2) orderBadgeClass = "order-badge-silver";
+        else if (s.order === 3) orderBadgeClass = "order-badge-bronze";
+
+        const hNo = s.horse_number || s.gate || s.order;
+        const predRank = predRankMap[hNo];
+        let predBadge = `<span style="color:var(--text-muted); font-size:0.78rem;">#${predRank || '-'}</span>`;
+        if (predRank === 1) {
+          predBadge = `<span style="background:rgba(245,158,11,0.2); color:var(--gold-400); padding:0.15rem 0.5rem; border-radius:4px; font-weight:800; font-size:0.75rem; border:1px solid var(--gold-400);">1. Banko</span>`;
+        } else if (predRank <= 3) {
+          predBadge = `<span style="background:rgba(16,185,129,0.15); color:var(--emerald-400); padding:0.15rem 0.5rem; border-radius:4px; font-weight:700; font-size:0.75rem;">${predRank}. Plase</span>`;
+        }
+
+        html += `
+          <tr>
+            <td style="text-align:center;">
+              <span class="${orderBadgeClass}">${s.order}.</span>
+            </td>
+            <td>
+              <div style="display:flex; align-items:center; gap:0.5rem;">
+                <span class="horse-pill-num">${hNo}</span>
+                <strong style="color:#fff;">${s.name}</strong>
+              </div>
+            </td>
+            <td style="color:var(--text-secondary); font-size:0.82rem;">${s.jockey}</td>
+            <td style="text-align:center; color:var(--text-muted); font-size:0.82rem;">${s.weight} kg</td>
+            <td style="text-align:center; font-family:var(--font-mono); font-weight:700; color:var(--gold-400);">${s.time || '-'}</td>
+            <td style="text-align:right; font-weight:800; color:var(--emerald-400);">${s.ganyan ? s.ganyan + ' TL' : '-'}</td>
+            <td style="text-align:center; color:var(--text-muted); font-size:0.8rem;">${s.margin || '-'}</td>
+            <td style="text-align:center;">${predBadge}</td>
+          </tr>
+        `;
+      });
+
+      html += `
+              </tbody>
+            </table>
+          </div>
+        </div>
+      `;
+    }
+
+    // 3. Official Payout Dividends
+    if (Object.keys(dividends).length > 0) {
+      html += `
+        <div style="background:var(--bg-surface-elevated); border:1px solid var(--border-subtle); border-radius:var(--radius-lg); padding:1.2rem 1.5rem;">
+          <h4 style="margin:0 0 0.8rem 0; font-family:var(--font-heading); color:var(--gold-400); font-size:0.95rem;">
+            💰 Resmi Bahis İkramiyeleri & Kazanç Dağılımı
+          </h4>
+          <div class="dividends-grid">
+      `;
+
+      Object.entries(dividends).forEach(([betName, prize]) => {
+        html += `
+          <div class="dividend-card">
+            <span class="dividend-name">${betName}</span>
+            <span class="dividend-val">${prize}</span>
+          </div>
+        `;
+      });
+
+      html += `
+          </div>
+        </div>
+      `;
+    }
+
+    html += `</div>`;
     container.innerHTML = html;
   }
 
@@ -1141,6 +1252,9 @@ class TJKApp {
   /* ----------------------------------------------------------------------
      TJK / TAY TV LIVE STREAM & PIP CONTROLLER
      ---------------------------------------------------------------------- */
+  /* ----------------------------------------------------------------------
+     TAY TV & E-BAYİ LIVE STREAM & PIP CONTROLLER
+     ---------------------------------------------------------------------- */
   initTjkTv() {
     this.tjkTvPip = document.getElementById("tjkTvPip");
     this.tjkTvFrame = document.getElementById("tjkTvFrame");
@@ -1148,24 +1262,24 @@ class TJKApp {
     this.raceAlertToast = document.getElementById("raceAlertToast");
     this.isTvPipOpen = false;
     this.isTvMinimized = false;
-    this.currentTvSourceIdx = 0; // 0 = TAY TV HLS, 1 = YouTube Embed, 2 = YouTube Alternate
+    this.currentTvSourceIdx = 0; // 0 = TAY TV, 1 = e-Bayi, 2 = YouTube
     this.hlsInstance = null;
 
     this.tvSources = [
       {
-        name: "TAY TV Resmi Canlı Akışı (HLS)",
+        name: "TAY TV (TJK Resmi HLS)",
         type: "hls",
         url: "https://tjktv-live.tjk.org/taytv/taytv.m3u8"
+      },
+      {
+        name: "e-Bayi Canlı (ebayi.org HLS)",
+        type: "hls",
+        url: "https://tjktv.ercdn.net/tjktvmobil.m3u8"
       },
       {
         name: "YouTube Canlı Aktif Yayın",
         type: "iframe",
         url: "https://www.youtube.com/embed/hnZK5wXzQDk?autoplay=1&mute=0"
-      },
-      {
-        name: "YouTube Kanal Canlısı (NoCookie)",
-        type: "iframe",
-        url: "https://www.youtube-nocookie.com/embed/live_stream?channel=UCNLO4lpteIloZ4IKb9L2DoA&autoplay=1&mute=0"
       }
     ];
 
@@ -1173,7 +1287,26 @@ class TJKApp {
     this.resolveLiveVideo();
   }
 
-  playTayTvHls() {
+  selectStreamSource(idx) {
+    this.currentTvSourceIdx = idx % this.tvSources.length;
+    this.applyCurrentTvSource();
+
+    const btns = [
+      document.getElementById("btnStreamTayTv"),
+      document.getElementById("btnStreamEbayi"),
+      document.getElementById("btnStreamYoutube")
+    ];
+    btns.forEach((b, i) => {
+      if (b) b.classList.toggle("active", i === this.currentTvSourceIdx);
+    });
+
+    const title = document.getElementById("pipStreamTitle");
+    if (title) {
+      title.textContent = idx === 0 ? "🏇 TAY TV Canlı" : (idx === 1 ? "🐎 e-Bayi Canlı" : "🔴 YouTube Canlı");
+    }
+  }
+
+  playHlsStream(hlsUrl) {
     const video = this.tayTvVideo || document.getElementById("tayTvVideo");
     const iframe = this.tjkTvFrame || document.getElementById("tjkTvFrame");
     if (!video) return;
@@ -1181,44 +1314,38 @@ class TJKApp {
     if (iframe) iframe.classList.add("hidden");
     video.classList.remove("hidden");
 
-    const hlsUrl = "https://tjktv-live.tjk.org/taytv/taytv.m3u8";
+    if (this.hlsInstance) {
+      this.hlsInstance.destroy();
+      this.hlsInstance = null;
+    }
 
     if (window.Hls && window.Hls.isSupported()) {
-      if (!this.hlsInstance) {
-        this.hlsInstance = new window.Hls({
-          enableWorker: true,
-          lowLatencyMode: true,
-          backBufferLength: 60
+      this.hlsInstance = new window.Hls({
+        enableWorker: true,
+        lowLatencyMode: true,
+        backBufferLength: 60
+      });
+      this.hlsInstance.attachMedia(video);
+      this.hlsInstance.on(window.Hls.Events.MEDIA_ATTACHED, () => {
+        this.hlsInstance.loadSource(hlsUrl);
+      });
+      this.hlsInstance.on(window.Hls.Events.MANIFEST_PARSED, () => {
+        video.play().catch(() => {
+          video.muted = true;
+          video.play().catch(() => {});
         });
-        this.hlsInstance.attachMedia(video);
-        this.hlsInstance.on(window.Hls.Events.MEDIA_ATTACHED, () => {
-          this.hlsInstance.loadSource(hlsUrl);
-        });
-        this.hlsInstance.on(window.Hls.Events.MANIFEST_PARSED, () => {
-          video.play().catch(() => {
-            // Autoplay with sound restricted, mute & retry
-            video.muted = true;
-            video.play().catch(() => {});
-          });
-        });
-        this.hlsInstance.on(window.Hls.Events.ERROR, (event, data) => {
-          if (data && data.fatal) {
-            console.warn("TAY TV HLS error, switching to YouTube fallback:", data);
-            this.switchTvSource(1);
-          }
-        });
-      } else {
-        video.play().catch(() => {});
-      }
+      });
+      this.hlsInstance.on(window.Hls.Events.ERROR, (event, data) => {
+        if (data && data.fatal) {
+          console.warn("HLS stream fatal error:", data);
+        }
+      });
     } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
-      // Native Safari / iOS HLS
       video.src = hlsUrl;
       video.play().catch(() => {
         video.muted = true;
         video.play().catch(() => {});
       });
-    } else {
-      this.switchTvSource(1);
     }
   }
 
@@ -1228,7 +1355,7 @@ class TJKApp {
       if (res.ok) {
         const json = await res.json();
         if (json.success && json.video_id) {
-          this.tvSources[1].url = `https://www.youtube.com/embed/${json.video_id}?autoplay=1&mute=0`;
+          this.tvSources[2].url = `https://www.youtube.com/embed/${json.video_id}?autoplay=1&mute=0`;
         }
       }
     } catch (e) {
@@ -1240,7 +1367,7 @@ class TJKApp {
     if (!this.tjkTvPip) return;
     const isCurrentlyHidden = this.tjkTvPip.classList.contains("hidden");
     const shouldOpen = forceOpen !== undefined ? forceOpen : isCurrentlyHidden;
-    
+
     if (shouldOpen) {
       this.tjkTvPip.classList.remove("hidden");
       this.isTvPipOpen = true;
@@ -1267,7 +1394,7 @@ class TJKApp {
     const iframe = this.tjkTvFrame || document.getElementById("tjkTvFrame");
 
     if (src.type === "hls") {
-      this.playTayTvHls();
+      this.playHlsStream(src.url);
     } else {
       if (video) {
         video.pause();
@@ -1284,27 +1411,58 @@ class TJKApp {
     }
   }
 
-  switchTvSource(newIdx) {
-    this.currentTvSourceIdx = newIdx % this.tvSources.length;
-    this.applyCurrentTvSource();
-    const btn = document.getElementById("btnPipSource");
-    if (btn) {
-      const name = this.currentTvSourceIdx === 0 ? "TAY TV" : "YouTube";
-      btn.textContent = `🔄 ${name}`;
-      setTimeout(() => { if (btn) btn.textContent = "🔄 Kaynak"; }, 2500);
-    }
-  }
-
-  toggleTjkTvSource() {
-    this.switchTvSource(this.currentTvSourceIdx + 1);
-  }
-
   toggleTjkTvMinimize() {
     if (!this.tjkTvPip) return;
     this.isTvMinimized = !this.isTvMinimized;
     this.tjkTvPip.classList.toggle("minimized", this.isTvMinimized);
     const minBtn = document.getElementById("btnPipMin");
     if (minBtn) minBtn.textContent = this.isTvMinimized ? "◻" : "_";
+  }
+
+  togglePipMute() {
+    const video = this.tayTvVideo || document.getElementById("tayTvVideo");
+    const btn = document.getElementById("btnPipMute");
+    if (!video) return;
+    video.muted = !video.muted;
+    if (btn) btn.textContent = video.muted ? "🔇" : "🔊";
+  }
+
+  requestNativePip() {
+    const video = this.tayTvVideo || document.getElementById("tayTvVideo");
+    if (video && document.pictureInPictureEnabled) {
+      if (document.pictureInPictureElement) {
+        document.exitPictureInPicture();
+      } else {
+        video.requestPictureInPicture().catch(err => {
+          console.warn("Native PiP error:", err);
+        });
+      }
+    }
+  }
+
+  requestFullscreenVideo() {
+    const pip = this.tjkTvPip || document.getElementById("tjkTvPip");
+    const video = this.tayTvVideo || document.getElementById("tayTvVideo");
+    const target = video && !video.classList.contains("hidden") ? video : pip;
+    if (target) {
+      if (!document.fullscreenElement) {
+        target.requestFullscreen().catch(err => {
+          console.warn("Fullscreen error:", err);
+        });
+      } else {
+        document.exitFullscreen();
+      }
+    }
+  }
+
+  cyclePipSize() {
+    if (!this.tjkTvPip) return;
+    const sizes = ["pip-compact", "pip-standard", "pip-wide"];
+    let curr = sizes.findIndex(s => this.tjkTvPip.classList.contains(s));
+    if (curr === -1) curr = 1;
+    const next = (curr + 1) % sizes.length;
+    sizes.forEach(s => this.tjkTvPip.classList.remove(s));
+    this.tjkTvPip.classList.add(sizes[next]);
   }
 
   openTayTvOfficial() {
@@ -1316,8 +1474,40 @@ class TJKApp {
     if (popout) popout.focus();
   }
 
+  openEbayiOfficial() {
+    const popout = window.open(
+      "https://ebayi.org/canli-yayin", 
+      "EbayiOfficialWindow", 
+      "width=1040,height=680,menubar=no,toolbar=no,location=no,status=no,resizable=yes"
+    );
+    if (popout) popout.focus();
+  }
+
   openTjkTvExternal() {
     this.openTayTvOfficial();
+  }
+
+  async refreshRaceResults() {
+    if (!this.currentCity) return;
+    try {
+      const res = await fetch(`/api/program?city=${encodeURIComponent(this.currentCity)}&t=${Date.now()}`);
+      if (res.ok) {
+        const json = await res.json();
+        if (json.success && json.data) {
+          this.currentProgram = json.data;
+          this.renderRaceRibbon();
+          this.renderCurrentRace();
+          const refreshBtn = document.getElementById("btnRefresh");
+          if (refreshBtn) {
+            refreshBtn.textContent = "✓ Güncellendi";
+            setTimeout(() => { if (refreshBtn) refreshBtn.textContent = "🔄 Yenile"; }, 2000);
+          }
+          return;
+        }
+      }
+    } catch (e) {
+      console.warn("Live results refresh error:", e);
+    }
   }
 
   showRaceAlert(race, minsLeft) {

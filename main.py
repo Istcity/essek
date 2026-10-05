@@ -34,7 +34,7 @@ else:
 if BASE_DIR not in sys.path:
     sys.path.insert(0, BASE_DIR)
 
-from backend.tjk_scraper import get_available_cities, fetch_and_predict_city_program
+from backend.tjk_scraper import get_available_cities, fetch_and_predict_city_program, fetch_tjk_race_results
 from backend.gallop_engine import analyze_gallops
 
 class ThreadedHTTPServer(ThreadingMixIn, HTTPServer):
@@ -68,6 +68,12 @@ class TJKAppHandler(SimpleHTTPRequestHandler):
                 date_str = query.get("date", [None])[0]
                 data = fetch_and_predict_city_program(city, date_str)
                 self.send_json_response({"success": True, "data": data})
+
+            elif path == "/api/results":
+                city = query.get("city", ["Bursa"])[0]
+                date_str = query.get("date", [None])[0]
+                results = fetch_tjk_race_results(city, date_str)
+                self.send_json_response({"success": True, "city": city, "results": results})
 
             elif path == "/api/gallops":
                 horse = query.get("horse", ["Şampiyon"])[0]

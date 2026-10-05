@@ -20,7 +20,7 @@ class CouponBuilder {
     this.activeLegRaces = [];
     this.selectedHorses = {}; // { [raceNumber]: [horseNumber, ...] }
     this.bankos = {}; // { [raceNumber]: horseNumber }
-    this.unitPrice = 0.40;
+    this.unitPrice = 1.25; // TJK Birim Fiyat: 1.25 TL
     this.savedCoupons = this.loadSavedFromStorage();
 
     // Floating bar elements
@@ -35,15 +35,8 @@ class CouponBuilder {
     this.programData = programData;
     this.allRaces = programData.races;
 
-    // Detect unit price from city
-    const cityName = (programData.city || "").toLowerCase();
-    if (cityName.includes("istanbul") || cityName.includes("ankara") || cityName.includes("izmir")) {
-      this.unitPrice = 0.50;
-    } else if (cityName.includes("urfa") || cityName.includes("elazig") || cityName.includes("diyar")) {
-      this.unitPrice = 0.30;
-    } else {
-      this.unitPrice = 0.40;
-    }
+    // Default unit price set to 1.25 TL
+    this.unitPrice = 1.25;
 
     // Determine default starting race for 6'lı Ganyan
     // In TJK, if there are 8 races, 6'lı usually starts from race 3 (races 3..8)
@@ -324,6 +317,15 @@ class CouponBuilder {
     return (this.calculateTotalCombos() * this.unitPrice).toFixed(2);
   }
 
+  setUnitPrice(val) {
+    const num = parseFloat(val);
+    if (!isNaN(num) && num > 0) {
+      this.unitPrice = num;
+      this.renderSummary();
+      this.updateFloatingBar();
+    }
+  }
+
   calculateWinProbability() {
     // Joint probability of winning all legs with the selected sets
     let prob = 1.0;
@@ -485,7 +487,14 @@ class CouponBuilder {
           </div>
           <div class="tjk-ticket-footer">
             <div>Kombinasyon: <strong>${combos.toLocaleString()}</strong></div>
-            <div>Birim Fiyat: <strong>${this.unitPrice.toFixed(2)} TL</strong></div>
+            <div style="display:inline-flex; align-items:center; gap:5px;">
+              <span>Birim:</span>
+              <input type="number" step="0.05" min="0.05" max="20.0" value="${this.unitPrice.toFixed(2)}" 
+                style="width:58px; background:rgba(0,0,0,0.5); border:1px solid rgba(255,215,0,0.4); color:var(--gold-400, #fbbf24); border-radius:4px; padding:2px 4px; text-align:center; font-weight:800; font-size:0.82rem;" 
+                title="Birim Fiyatı Değiştir (Varsayılan: 1.25 TL)"
+                onchange="window.couponApp.setUnitPrice(this.value)">
+              <strong>TL</strong>
+            </div>
             <div class="tjk-ticket-price-total">TUTAR: ${cost} TL</div>
           </div>
         </div>

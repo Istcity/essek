@@ -231,6 +231,28 @@ def fetch_and_predict_city_program(city_name, date_str=None):
         pred_race = predict_race(race)
         predicted_races.append(pred_race)
 
+    # Fetch live official race results if available
+    try:
+        results_by_race = fetch_tjk_race_results(city_name, date_str)
+        for pr in predicted_races:
+            r_num = pr.get("race_number")
+            if r_num in results_by_race:
+                r_res = results_by_race[r_num]
+                pr["is_finished"] = True
+                
+                # Match horse numbers to standings
+                runners_map = {clean_name_match(rn.get("name", "")): rn.get("number") for rn in pr.get("runners", [])}
+                for s in r_res.get("standings", []):
+                    clean_s_name = clean_name_match(s.get("name", ""))
+                    s["horse_number"] = runners_map.get(clean_s_name, s.get("order"))
+                    
+                pr["results"] = r_res
+                
+                # Evaluate AI prediction accuracy for this finished race
+                pr["accuracy_report"] = evaluate_race_prediction_accuracy(pr, r_res)
+    except Exception as e:
+        print(f"Results merging error for {city_name}: {e}")
+
     result = {
         "city": city_name,
         "date": date_str,
@@ -241,6 +263,142 @@ def fetch_and_predict_city_program(city_name, date_str=None):
 
     CACHE[cache_key] = {"data": result, "time": time.time()}
     return result
+
+def clean_name_match(name):
+    """Normalize horse name for fuzzy matching."""
+    if not name:
+        return ""
+    n = str(name).replace('İ', 'i').replace('I', 'i').replace('ı', 'i').lower()
+    n = n.replace('ğ', 'g').replace('ü', 'u').replace('ş', 's').replace('ö', 'o').replace('ç', 'c')
+    return re.sub(r'[^a-z0-9]', '', n)
+
+def fetch_tjk_race_results(city_name, date_str=None):
+    """
+    Fetches official race results CSV from TJK CDN for completed races.
+    """
+    if not date_str:
+        date_str = get_current_date_str()
+
+    parts = date_str.split('.')
+    if len(parts) == 3:
+        year, month, day = parts[2], parts[1], parts[0]
+        formatted_date = f"{year}-{month}-{day}"
+    else:
+        now = datetime.now()
+        year, month, day = now.strftime("%Y"), now.strftime("%m"), now.strftime("%d")
+        formatted_date = f"{year}-{month}-{day}"
+        date_str = f"{day}.{month}.{year}"
+
+    quoted_city = urllib.parse.quote(city_name)
+    csv_url = f"https://medya-cdn.tjk.org/raporftp/TJKPDF/{year}/{formatted_date}/CSV/GunlukYarisSonuclari/{date_str}-{quoted_city}-GunlukYarisSonuclari-TR.csv"
+
+    headers = {'User-Agent': 'Mozilla/5.0'}
+    try:
+        req = urllib.request.Request(csv_url, headers=headers)
+        with urllib.request.urlopen(req, timeout=10) as resp:
+            text = resp.read().decode('utf-8', 'ignore')
+    except Exception as e:
+        return {}
+
+    lines = [l.strip() for l in text.splitlines() if l.strip()]
+    results_by_race = {}
+    current_race_num = None
+
+    for line in lines:
+        cols = [c.strip() for c in line.split(';')]
+        if len(cols) >= 2 and ('Kosu :' in cols[0] or 'Koşu :' in cols[0]):
+            m = re.search(r'(\d+)\.\s*Ko[sş]u', cols[0])
+            if m:
+                current_race_num = int(m.group(1))
+                results_by_race[current_race_num] = {
+                    "race_number": current_race_num,
+                    "standings": [],
+                    "dividends": {}
+                }
+        elif current_race_num is not None:
+            if len(cols) >= 14 and cols[0].isdigit():
+                finish_order = int(cols[0])
+                horse_name = cols[1]
+                weight = cols[5]
+                jockey = cols[6]
+                gate = cols[9]
+                time_str = cols[12] if len(cols) > 12 else ""
+                ganyan = cols[13] if len(cols) > 13 else ""
+                margin = cols[14] if len(cols) > 14 else ""
+
+                results_by_race[current_race_num]["standings"].append({
+                    "order": finish_order,
+                    "name": horse_name,
+                    "jockey": jockey,
+                    "weight": weight,
+                    "time": time_str,
+                    "ganyan": ganyan,
+                    "margin": margin,
+                    "gate": gate
+                })
+            elif len(cols) >= 1 and any(k in cols[0] for k in ["GANYAN", "İKİLİ", "PLASE", "TABELA", "ÇİFTE", "SIRALI"]):
+                payout_text = "; ".join(cols)
+                payout_items = re.findall(r'([^,:]+)\s*:\s*([\d,]+)\s*TL', payout_text)
+                for bet_name, prize in payout_items:
+                    results_by_race[current_race_num]["dividends"][bet_name.strip()] = prize.strip() + " TL"
+
+    return results_by_race
+
+def evaluate_race_prediction_accuracy(race, results):
+    """
+    Evaluates AI prediction accuracy against official race results.
+    """
+    standings = results.get("standings", [])
+    if not standings:
+        return {}
+
+    winner = standings[0]
+    winner_name = winner.get("name", "")
+    winner_no = winner.get("horse_number", 0)
+    winner_ganyan = winner.get("ganyan", "")
+
+    # Top prediction
+    top_pick = race.get("runners", [])[0] if race.get("runners") else {}
+    top_pick_no = top_pick.get("number", -1)
+    
+    banko_hit = (winner_no == top_pick_no) or (clean_name_match(winner_name) == clean_name_match(top_pick.get("name", "")))
+    
+    # Check top 4 (Tabela)
+    top4_actual = [s.get("horse_number") for s in standings[:4] if s.get("horse_number")]
+    tabela_box = race.get("bet_recommendations", {}).get("tabela_bahis", {}).get("box_5_horses", [])
+    tabela_hit = len(top4_actual) == 4 and all(num in tabela_box for num in top4_actual)
+    
+    # Check İkili
+    actual_1_2 = [standings[0].get("horse_number"), standings[1].get("horse_number")] if len(standings) >= 2 else []
+    ikili_recs = race.get("bet_recommendations", {}).get("ikili", [])
+    ikili_hit = False
+    for rec in ikili_recs:
+        combo = rec.get("combo", "")
+        parts = [int(p.strip()) for p in combo.split("-") if p.strip().isdigit()]
+        if len(parts) == 2 and set(parts) == set(actual_1_2):
+            ikili_hit = True
+            break
+
+    badges = []
+    if banko_hit:
+        badges.append(f"🥇 1. BANKO TAHMİNİMİZ KAZANDI ({winner_ganyan} TL)")
+    if ikili_hit:
+        badges.append("🎯 İKİLİ BAHİS TAM İSABET")
+    if tabela_hit:
+        badges.append("🔥 4'LÜ TABELA KUPONU TUTTU")
+
+    if not badges:
+        badges.append("🏁 Koşu Tamamlandı")
+
+    return {
+        "banko_hit": banko_hit,
+        "ikili_hit": ikili_hit,
+        "tabela_hit": tabela_hit,
+        "winner_name": winner_name,
+        "winner_number": winner_no,
+        "winner_ganyan": winner_ganyan,
+        "badges": badges
+    }
 
 def generate_fallback_races(city_name, date_str):
     """

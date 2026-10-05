@@ -254,40 +254,49 @@
     </div>
   </div>
 
-  <!-- Floating Picture-in-Picture TJK / TAY TV Live Stream Widget -->
-  <div class="tjk-tv-pip hidden" id="tjkTvPip" aria-label="TAY TV Canlı Yayın Penceresi">
+  <!-- Floating Picture-in-Picture TAY TV / e-Bayi Live Stream Widget -->
+  <div class="tjk-tv-pip hidden" id="tjkTvPip" aria-label="Canlı Yarış Yayını Penceresi">
     <div class="tjk-tv-header" id="tjkTvHeader">
       <div class="tjk-tv-title">
         <span class="live-badge-glow">CANLI</span>
-        <span>🏇 TAY TV / TJK Canlı Yayın</span>
+        <span id="pipStreamTitle">🏇 TAY TV / e-Bayi Canlı</span>
       </div>
       <div class="tjk-tv-controls">
-        <button class="tjk-tv-btn" id="btnPipSource" title="Yayın Kaynağını Değiştir (TAY TV HLS / YouTube)" onclick="window.app.toggleTjkTvSource()">🔄 Kaynak</button>
-        <button class="tjk-tv-btn" id="btnPipExternal" title="TJK Resmi Sayfasında Aç" onclick="window.app.openTayTvOfficial()">↗️</button>
+        <button class="tjk-tv-btn" id="btnPipMute" title="Sesi Aç / Kapat" onclick="window.app.togglePipMute()">🔊</button>
+        <button class="tjk-tv-btn" id="btnPipNative" title="Tarayıcı Ekran İçi Ekran (Native PiP)" onclick="window.app.requestNativePip()">⧉ PiP</button>
+        <button class="tjk-tv-btn" id="btnPipFullscreen" title="Tam Ekran" onclick="window.app.requestFullscreenVideo()">⛶</button>
+        <button class="tjk-tv-btn" id="btnPipSize" title="Pencere Boyutunu Değiştir (Kompakt / Standart / Geniş)" onclick="window.app.cyclePipSize()">📐</button>
         <button class="tjk-tv-btn" id="btnPipMin" title="Küçült / Büyüt" onclick="window.app.toggleTjkTvMinimize()">_</button>
         <button class="tjk-tv-btn" id="btnPipClose" title="Kapat" onclick="window.app.toggleTjkTv(false)">✕</button>
       </div>
     </div>
     <div class="tjk-tv-body" id="tjkTvBody">
-      <div class="tjk-tv-quick-bar">
-        <button class="btn-popout-live" onclick="window.app.openTayTvOfficial()">
-          🔴 TJK Resmi TAY TV Canlı Yayını (Static/Canli) Aç
+      <!-- Quick Stream Switcher Bar -->
+      <div class="tjk-tv-stream-bar">
+        <button class="stream-tab-btn active" id="btnStreamTayTv" onclick="window.app.selectStreamSource(0)">
+          🏇 TAY TV (TJK HLS)
+        </button>
+        <button class="stream-tab-btn" id="btnStreamEbayi" onclick="window.app.selectStreamSource(1)">
+          🐎 e-Bayi Canlı
+        </button>
+        <button class="stream-tab-btn" id="btnStreamYoutube" onclick="window.app.selectStreamSource(2)">
+          🔴 YouTube HD
         </button>
       </div>
-      <!-- TAY TV HTML5 HLS Video Player -->
-      <video id="tayTvVideo" class="tjk-tv-video" controls autoplay playsinline muted></video>
-      <!-- Official Fallback Iframe -->
+      <!-- HTML5 HLS Video Player (16:9 widescreen, edge-to-edge full broadcast) -->
+      <video id="tayTvVideo" class="tjk-tv-video" controls autoplay playsinline></video>
+      <!-- Fallback Iframe -->
       <iframe class="tjk-tv-iframe hidden" id="tjkTvFrame" 
               src="about:blank" 
-              title="TJK TV Canlı Yayın"
+              title="Canlı Yarış Yayını"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
               allowfullscreen>
       </iframe>
       <div class="tjk-tv-fallback-bar">
-        <span>Resmi Akışlar:</span>
+        <span>Resmi Siteler:</span>
         <div style="display:flex; gap:0.4rem; flex-wrap:wrap;">
-          <a href="https://www.tjk.org/TR/YarisSever/Static/Canli" target="_blank" rel="noopener noreferrer" class="tv-fallback-link">🏇 TAY TV Resmi Sayfa</a>
-          <a href="https://www.youtube.com/@TJKTVCANLIYAYIN/live" target="_blank" rel="noopener noreferrer" class="tv-fallback-link">🔴 YouTube Canlı</a>
+          <button class="tv-fallback-link-btn" onclick="window.app.openTayTvOfficial()">🏇 TJK Static/Canli</button>
+          <button class="tv-fallback-link-btn" onclick="window.app.openEbayiOfficial()">🐎 e-Bayi Canlı Sayfa</button>
         </div>
       </div>
     </div>
