@@ -83,4 +83,46 @@
     padding-left: env(safe-area-inset-left);
     padding-right: env(safe-area-inset-right);
   }
+
+  .track-bar {
+    padding: 0.5rem 0.65rem;
+  }
+
+  .track-bar-inner {
+    gap: 0.5rem;
+  }
+
+  .track-label-badge {
+    font-size: 0.7rem;
+    padding: 0.25rem 0.45rem;
+  }
+
+  .race-ribbon-wrapper {
+    gap: 0.5rem;
+    padding: 0.4rem 0.5rem;
+  }
+
+  .race-ribbon-label {
+    font-size: 0.7rem;
+    padding: 0.25rem 0.45rem;
+  }
+
+  .tjk-tv-pip {
+    bottom: 72px;
+    right: 10px;
+    left: 10px;
+    width: auto;
+    max-width: none;
+  }
+
+  .tjk-tv-iframe {
+    height: 200px;
+  }
+
+  .race-alert-toast {
+    top: 65px;
+    right: 12px;
+    left: 12px;
+    max-width: none;
+  }
 }

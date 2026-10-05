@@ -41,7 +41,8 @@ class TJKApp {
       this.dateDisplay.textContent = this.currentDateStr;
     }
 
-    this.pipAutoTriggered = false;
+    this.notifiedRaces = {};
+    this.initTjkTv();
     this.initCountdownTimer();
   }
 
@@ -51,7 +52,7 @@ class TJKApp {
       if (!race) return;
       
       const now = new Date();
-      const [rHour, rMin] = race.time.split(':').map(Number);
+      const [rHour, rMin] = (race.time || "14:00").split(':').map(Number);
       
       const raceTime = new Date();
       raceTime.setHours(rHour, rMin, 0, 0);
@@ -61,22 +62,30 @@ class TJKApp {
       const cText = document.getElementById("countdownText");
       if(!cBox || !cText) return;
       
-      if (diffMs > 0 && diffMs <= 180000) { // 3 minutes
+      const raceKey = `${this.currentCity}_${race.number || this.activeRaceIndex}`;
+
+      if (diffMs > 0 && diffMs <= 180000) { // 3 minutes or less before race
         const mins = Math.floor(diffMs / 60000);
         const secs = Math.floor((diffMs % 60000) / 1000);
         cText.textContent = `${race.time} Koşusuna ${mins}:${secs.toString().padStart(2, '0')}`;
         cBox.classList.add("alert-glow");
         cBox.style.color = "var(--rose-500)";
         
-        // Auto open PiP 3 mins before
-        if (!this.pipAutoTriggered) {
-          this.pipAutoTriggered = true;
+        // Auto alert & open TJK TV PiP if not yet notified for this race
+        if (!this.notifiedRaces[raceKey]) {
+          this.notifiedRaces[raceKey] = true;
+          this.showRaceAlert(race, mins + 1);
           this.toggleTjkTv(true);
         }
       } else if (diffMs <= 0 && diffMs > -300000) { // Up to 5 mins after start
         cText.textContent = `${race.time} Koşusu Başladı!`;
         cBox.classList.add("alert-glow");
         cBox.style.color = "var(--emerald-400)";
+        if (!this.notifiedRaces[raceKey]) {
+          this.notifiedRaces[raceKey] = true;
+          this.showRaceAlert(race, 0);
+          this.toggleTjkTv(true);
+        }
       } else {
         cText.textContent = `${race.time} Koşusu Bekleniyor`;
         cBox.classList.remove("alert-glow");
@@ -195,6 +204,13 @@ class TJKApp {
         ${c.is_foreign ? '<span class="foreign-tag">Yabancı</span>' : ''}
       </button>
     `).join('');
+
+    setTimeout(() => {
+      const activeTab = this.trackContainer?.querySelector(".track-tab.active");
+      if (activeTab) {
+        activeTab.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+      }
+    }, 60);
   }
 
   async selectCity(cityName) {
@@ -402,6 +418,13 @@ class TJKApp {
         </div>
       </div>
     `).join('');
+
+    setTimeout(() => {
+      const activePill = this.raceRibbon?.querySelector(".race-pill.active");
+      if (activePill) {
+        activePill.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+      }
+    }, 60);
   }
 
   selectRace(idx) {
@@ -1113,6 +1136,163 @@ class TJKApp {
 
   refreshData() {
     this.selectCity(this.currentCity);
+  }
+
+  /* ----------------------------------------------------------------------
+     TJK TV LIVE STREAM & PIP CONTROLLER
+     ---------------------------------------------------------------------- */
+  initTjkTv() {
+    this.tjkTvPip = document.getElementById("tjkTvPip");
+    this.tjkTvFrame = document.getElementById("tjkTvFrame");
+    this.raceAlertToast = document.getElementById("raceAlertToast");
+    this.isTvPipOpen = false;
+    this.isTvMinimized = false;
+    this.currentTvSourceIdx = 0;
+
+    this.tvSources = [
+      {
+        name: "YouTube Canlı (NoCookie)",
+        url: "https://www.youtube-nocookie.com/embed/live_stream?channel=UCNLO4lpteIloZ4IKb9L2DoA&autoplay=1&mute=0"
+      },
+      {
+        name: "YouTube Canlı (Standart)",
+        url: "https://www.youtube.com/embed/live_stream?channel=UCNLO4lpteIloZ4IKb9L2DoA&autoplay=1&mute=0"
+      },
+      {
+        name: "TJK TV Video Akışı",
+        url: "https://www.youtube-nocookie.com/embed/videoseries?list=UUv_bV32qF_tH8_s4_XnBf2A&autoplay=1"
+      }
+    ];
+
+    this.makePipDraggable();
+  }
+
+  toggleTjkTv(forceOpen) {
+    if (!this.tjkTvPip) return;
+    const isCurrentlyHidden = this.tjkTvPip.classList.contains("hidden");
+    const shouldOpen = forceOpen !== undefined ? forceOpen : isCurrentlyHidden;
+    
+    if (shouldOpen) {
+      this.tjkTvPip.classList.remove("hidden");
+      this.isTvPipOpen = true;
+      if (this.tjkTvFrame && (!this.tjkTvFrame.src || this.tjkTvFrame.src === "about:blank" || this.tjkTvFrame.src.includes("UCv_bV32qF_tH8_s4_XnBf2A"))) {
+        this.tjkTvFrame.src = this.tvSources[this.currentTvSourceIdx].url;
+      }
+    } else {
+      this.tjkTvPip.classList.add("hidden");
+      this.isTvPipOpen = false;
+    }
+  }
+
+  toggleTjkTvMinimize() {
+    if (!this.tjkTvPip) return;
+    this.isTvMinimized = !this.isTvMinimized;
+    this.tjkTvPip.classList.toggle("minimized", this.isTvMinimized);
+    const minBtn = document.getElementById("btnPipMin");
+    if (minBtn) minBtn.textContent = this.isTvMinimized ? "◻" : "_";
+  }
+
+  toggleTjkTvSource() {
+    this.currentTvSourceIdx = (this.currentTvSourceIdx + 1) % this.tvSources.length;
+    const src = this.tvSources[this.currentTvSourceIdx];
+    if (this.tjkTvFrame) {
+      this.tjkTvFrame.src = src.url;
+    }
+    const btn = document.getElementById("btnPipSource");
+    if (btn) {
+      btn.textContent = `🔄 Kynk ${this.currentTvSourceIdx + 1}`;
+      setTimeout(() => { if (btn) btn.textContent = "🔄 Kaynak"; }, 2000);
+    }
+  }
+
+  openTjkTvExternal() {
+    window.open("https://www.youtube.com/@TJKTVCANLIYAYIN/live", "_blank");
+  }
+
+  showRaceAlert(race, minsLeft) {
+    if (!this.raceAlertToast) return;
+    const title = document.getElementById("raceAlertTitle");
+    const desc = document.getElementById("raceAlertDesc");
+    if (title) title.textContent = `🏇 ${race.name || 'Koşu'} Başlamak Üzere! (${race.time || ''})`;
+    if (desc) {
+      desc.textContent = minsLeft > 0 
+        ? `${race.distance}m ${race.surface} koşusuna yaklaşık ${minsLeft} dakika kaldı. TJK TV canlı yayını açıldı.`
+        : `${race.distance}m ${race.surface} koşusu başladı! TJK TV canlı yayını bağlandı.`;
+    }
+
+    this.raceAlertToast.classList.remove("hidden");
+    this.playRaceChime();
+
+    clearTimeout(this._alertToastTimer);
+    this._alertToastTimer = setTimeout(() => {
+      this.closeRaceAlert();
+    }, 8500);
+  }
+
+  closeRaceAlert() {
+    if (this.raceAlertToast) this.raceAlertToast.classList.add("hidden");
+  }
+
+  playRaceChime() {
+    try {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (!AudioCtx) return;
+      const ctx = new AudioCtx();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(587.33, ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.18);
+      gain.gain.setValueAtTime(0.12, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.5);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start();
+      osc.stop(ctx.currentTime + 0.5);
+    } catch (e) {
+      // Audio autoplay restrictions
+    }
+  }
+
+  makePipDraggable() {
+    const pip = this.tjkTvPip;
+    const header = document.getElementById("tjkTvHeader");
+    if (!pip || !header) return;
+
+    let isDragging = false;
+    let startX, startY, origLeft, origTop;
+
+    const onPointerDown = (e) => {
+      if (e.target.closest(".tjk-tv-btn")) return;
+      isDragging = true;
+      startX = e.clientX;
+      startY = e.clientY;
+      const rect = pip.getBoundingClientRect();
+      origLeft = rect.left;
+      origTop = rect.top;
+      pip.style.bottom = "auto";
+      pip.style.right = "auto";
+      pip.style.left = `${origLeft}px`;
+      pip.style.top = `${origTop}px`;
+      document.addEventListener("pointermove", onPointerMove);
+      document.addEventListener("pointerup", onPointerUp);
+    };
+
+    const onPointerMove = (e) => {
+      if (!isDragging) return;
+      const dx = e.clientX - startX;
+      const dy = e.clientY - startY;
+      pip.style.left = `${Math.max(10, Math.min(window.innerWidth - pip.offsetWidth - 10, origLeft + dx))}px`;
+      pip.style.top = `${Math.max(10, Math.min(window.innerHeight - 50, origTop + dy))}px`;
+    };
+
+    const onPointerUp = () => {
+      isDragging = false;
+      document.removeEventListener("pointermove", onPointerMove);
+      document.removeEventListener("pointerup", onPointerUp);
+    };
+
+    header.addEventListener("pointerdown", onPointerDown);
   }
 }
 

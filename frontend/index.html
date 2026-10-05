@@ -87,8 +87,11 @@
 
   <!-- Track / City Selector Ribbon -->
   <nav class="track-bar" aria-label="Hipodrom ve Şehir Seçimi">
-    <div class="track-container" id="trackContainer">
-      <div class="spinner" style="margin:0 auto; width:24px; height:24px;"></div>
+    <div class="track-bar-inner">
+      <div class="track-label-badge">📍 Hipodromlar</div>
+      <div class="track-container" id="trackContainer">
+        <div class="spinner" style="margin:0 auto; width:24px; height:24px;"></div>
+      </div>
     </div>
   </nav>
 
@@ -96,9 +99,12 @@
   <main class="main-content">
     
     <!-- Race Pills Ribbon (1. Koşu, 2. Koşu...) -->
-    <section class="race-ribbon" id="raceRibbon" aria-label="Koşu Listesi">
-      <!-- Injected dynamically by JS -->
-    </section>
+    <div class="race-ribbon-wrapper">
+      <div class="race-ribbon-label">🏁 Koşular</div>
+      <section class="race-ribbon" id="raceRibbon" aria-label="Koşu Listesi">
+        <!-- Injected dynamically by JS -->
+      </section>
+    </div>
 
     <!-- Race Summary Hero Banner -->
     <section class="race-banner" id="raceBanner">
@@ -272,19 +278,38 @@
         <span>🏇 TJK TV Canlı Yayın</span>
       </div>
       <div class="tjk-tv-controls">
+        <button class="tjk-tv-btn" id="btnPipSource" title="Yayın Kaynağını Değiştir (YouTube / Web)" onclick="window.app.toggleTjkTvSource()">🔄 Kaynak</button>
+        <button class="tjk-tv-btn" id="btnPipExternal" title="Yeni Sekmede / YouTube'da Aç" onclick="window.app.openTjkTvExternal()">↗️</button>
         <button class="tjk-tv-btn" id="btnPipMin" title="Küçült / Büyüt" onclick="window.app.toggleTjkTvMinimize()">_</button>
         <button class="tjk-tv-btn" id="btnPipClose" title="Kapat" onclick="window.app.toggleTjkTv(false)">✕</button>
       </div>
     </div>
-    <div class="tjk-tv-body">
-      <!-- Official TJK TV / YouTube Live Player Embed -->
+    <div class="tjk-tv-body" id="tjkTvBody">
+      <!-- Official TJK TV Channel (UCNLO4lpteIloZ4IKb9L2DoA) Embed -->
       <iframe class="tjk-tv-iframe" id="tjkTvFrame" 
-              src="https://www.youtube.com/embed/live_stream?channel=UCv_bV32qF_tH8_s4_XnBf2A&autoplay=1&mute=0" 
+              src="https://www.youtube-nocookie.com/embed/live_stream?channel=UCNLO4lpteIloZ4IKb9L2DoA&autoplay=1&mute=0" 
               title="TJK TV Canlı Yayın"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
               allowfullscreen>
       </iframe>
+      <div class="tjk-tv-fallback-bar">
+        <span>Yayın oynatılmazsa:</span>
+        <div style="display:flex; gap:0.4rem;">
+          <a href="https://www.youtube.com/@TJKTVCANLIYAYIN/live" target="_blank" rel="noopener noreferrer" class="tv-fallback-link">🔴 YouTube</a>
+          <a href="https://www.tjk.org/TR/YarisSever/CanliYayin/TjkTv" target="_blank" rel="noopener noreferrer" class="tv-fallback-link">🏇 TJK.org Web</a>
+        </div>
+      </div>
     </div>
+  </div>
+
+  <!-- Race Alert Floating Toast Notification -->
+  <div class="race-alert-toast hidden" id="raceAlertToast" role="alert">
+    <div class="race-alert-icon">🏇</div>
+    <div class="race-alert-content">
+      <div class="race-alert-title" id="raceAlertTitle">1. Koşu Başlamak Üzere!</div>
+      <div class="race-alert-desc" id="raceAlertDesc">Koşunun başlamasına az bir süre kaldı. TJK TV canlı yayını açılıyor.</div>
+    </div>
+    <button class="race-alert-close" onclick="window.app.closeRaceAlert()">&times;</button>
   </div>
 
   <!-- Scripts -->
