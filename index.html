@@ -2,14 +2,214 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="refresh" content="0; url=./frontend/">
-  <title>TJK AI At Yarışı Tahmin & Kupon Platformu</title>
-  <script>
-    window.location.replace("./frontend/");
-  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>TJK AI At Yarışı Tahmin & Analiz Platformu | Canlı Derece ve Galop Modellemesi</title>
+  
+  <!-- SEO & Social Meta -->
+  <meta name="description" content="TJK günlük yarış bültenlerini, koşu mesafelerini, pist uyumunu ve galop istatistiklerini yapay zeka ile analiz eden, dalgalanmaları filtreleyen gelişmiş at yarışı tahmin uygulaması.">
+  <meta name="keywords" content="tjk, at yarışı, tahmin, yapay zeka, galop analizi, beyer hız endeksi, altılı ganyan, bursa, şanlıurfa, istanbul">
+  <meta name="author" content="Istcity / AGY AI Racing">
+
+  <!-- iOS & Mobile Web App Meta -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="TJK AI Tahmin">
+  <meta name="theme-color" content="#080c14">
+  <link rel="apple-touch-icon" href="./icons/icon-192.png">
+  <link rel="manifest" href="./manifest.json">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/mobile.css">
 </head>
-<body style="background:#080c14; color:#fff; font-family:sans-serif; text-align:center; padding-top:20vh;">
-  <h2>🏇 TJK AI Tahmin Platformu Yükleniyor...</h2>
-  <p><a href="./frontend/" style="color:#10b981;">Otomatik yönlendirilmezseniz buraya tıklayın.</a></p>
+<body>
+
+  <!-- Sticky Luxury App Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand-section" onclick="window.location.reload()">
+        <div class="brand-logo-badge">🏇</div>
+        <div>
+          <span class="brand-title">TJK RACING AI <span class="brand-badge">PRO v2.0</span></span>
+          <div style="font-size:0.7rem; color:var(--text-secondary); margin-top:-2px;">
+            Yapay Zeka Destekli Derece & Galop Tahmin Motoru
+          </div>
+        </div>
+      </div>
+
+      <div class="header-controls">
+        <div class="live-indicator">
+          <div class="pulse-dot"></div>
+          <span id="connectionStatusText">Canlı TJK Bağlantısı</span>
+        </div>
+
+        <div class="btn-glass" style="font-family:var(--font-heading); font-weight:700;">
+          📅 <span id="currentDateDisplay">05.10.2026</span>
+        </div>
+
+        <button class="btn-primary" id="btnHeaderKupon" onclick="window.app.switchView('coupon')" style="background: linear-gradient(135deg, var(--gold-500), var(--gold-600)); color: #000; font-weight: 800; box-shadow: 0 0 15px rgba(245, 158, 11, 0.4);" title="Aktif Kuponu Aç">
+          🎫 Kupon Yap (<span id="headerComboCount">0</span>)
+        </button>
+
+        <button class="btn-glass" id="btnRefresh" title="Bülteni Yenile">
+          🔄 Yenile
+        </button>
+
+        <button class="btn-primary" id="btnPwaInstall">
+          📱 iOS / Mobil Yükle
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Track / City Selector Ribbon -->
+  <nav class="track-bar" aria-label="Hipodrom ve Şehir Seçimi">
+    <div class="track-container" id="trackContainer">
+      <div class="spinner" style="margin:0 auto; width:24px; height:24px;"></div>
+    </div>
+  </nav>
+
+  <!-- Main Application Wrapper -->
+  <main class="main-content">
+    
+    <!-- Race Pills Ribbon (1. Koşu, 2. Koşu...) -->
+    <section class="race-ribbon" id="raceRibbon" aria-label="Koşu Listesi">
+      <!-- Injected dynamically by JS -->
+    </section>
+
+    <!-- Race Summary Hero Banner -->
+    <section class="race-banner" id="raceBanner">
+      <div class="spinner"></div>
+    </section>
+
+    <!-- Interactive View Navigation Tabs -->
+    <nav class="view-tabs" aria-label="Analiz Modları">
+      <button class="view-tab active" data-view="predictions">
+        🏆 AI Sıralama & Tahmin Listesi
+      </button>
+      <button class="view-tab" data-view="coupon">
+        🎫 Kupon Yap & Kupon Sihirbazı
+      </button>
+      <button class="view-tab" data-view="matrix">
+        ⏱️ Mesafe & Derece Kıyaslama Matrisi
+      </button>
+      <button class="view-tab" data-view="gallops">
+        🏇 Galop ve İdman Laboratuvarı (Outlier Filtreli)
+      </button>
+      <button class="view-tab" data-view="simulator">
+        🎮 2D Canlı Koşu Simülatörü
+      </button>
+    </nav>
+
+    <!-- Main Dynamic View Container -->
+    <div id="viewsContainer">
+      <div class="spinner"></div>
+    </div>
+
+  </main>
+
+  <!-- Floating Persistent Bet Slip Bottom Bar -->
+  <aside class="floating-slip-bar" id="floatingSlipBar" aria-label="Canlı Kupon Barı">
+    <div class="slip-bar-inner">
+      <div class="slip-bar-info" onclick="window.app.switchView('coupon')" title="Kupon Stüdyosunu Aç">
+        <span class="slip-bar-badge">🎫 KUPONUM</span>
+        <div>
+          <strong id="barLegCount" style="color:#fff;">0/6 Ayak</strong> • 
+          <span id="barComboCount" style="color:var(--text-secondary);">0 Kombinasyon</span>
+        </div>
+      </div>
+      <div class="slip-bar-total">
+        <small>Tahmini Kupon Tutarı</small>
+        <strong id="barTotalCost">0.00 TL</strong>
+      </div>
+      <div class="slip-bar-actions">
+        <button class="btn-primary" onclick="window.app.switchView('coupon')" style="background:linear-gradient(135deg, var(--gold-500), var(--gold-600)); color:#000; font-weight:800; padding:0.45rem 1rem;">
+          Kuponu Aç / Düzenle ➔
+        </button>
+        <button class="btn-glass" onclick="window.couponApp.clearAll()" title="Kuponu Temizle" style="color:var(--rose-500);">
+          🗑️
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ========================================================================
+       MODALS
+       ======================================================================== -->
+
+  <!-- 1. Gallop Detail Modal -->
+  <div class="modal-overlay" id="gallopModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">📋 Detaylı İdman & Galop Raporu</h3>
+        <button class="btn-close" onclick="window.app.closeGallopModal()">&times;</button>
+      </div>
+      <div id="gallopModalBody">
+        <div class="spinner"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Head-to-Head Comparison Modal -->
+  <div class="modal-overlay" id="h2hModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">⚔️ Kafa Kafaya (Head-to-Head) Karşılaştırma</h3>
+        <button class="btn-close" onclick="window.app.closeH2HModal()">&times;</button>
+      </div>
+      <div id="h2hModalBody">
+        <div class="spinner"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. iOS & Mobile PWA Installation Guide Modal -->
+  <div class="modal-overlay" id="pwaModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">📱 iOS & iPhone Uygulaması Olarak Yükleme</h3>
+        <button class="btn-close" onclick="window.app.closePwaModal()">&times;</button>
+      </div>
+      <div style="font-size:0.9rem; line-height:1.6; color:var(--text-secondary);">
+        <p style="margin-bottom:1rem;">
+          Bu web uygulamasını iPhone veya iPad ana ekranınıza ekleyerek App Store uygulaması gibi tam ekran ve anlık bildirimlerle kullanabilirsiniz:
+        </p>
+        <div style="display:flex; flex-direction:column; gap:0.85rem; margin-bottom:1.5rem;">
+          <div style="display:flex; gap:0.8rem; align-items:flex-start;">
+            <div style="width:28px; height:28px; border-radius:50%; background:var(--emerald-500); color:#000; font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0;">1</div>
+            <div>Safari tarayıcısında ekranın alt kısmındaki <strong>Paylaş (Share)</strong> simgesine dokunun.</div>
+          </div>
+          <div style="display:flex; gap:0.8rem; align-items:flex-start;">
+            <div style="width:28px; height:28px; border-radius:50%; background:var(--emerald-500); color:#000; font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0;">2</div>
+            <div>Açılan menüyü aşağı kaydırarak <strong>"Ana Ekrana Ekle" (Add to Home Screen)</strong> seçeneğini seçin.</div>
+          </div>
+          <div style="display:flex; gap:0.8rem; align-items:flex-start;">
+            <div style="width:28px; height:28px; border-radius:50%; background:var(--emerald-500); color:#000; font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0;">3</div>
+            <div>Sağ üst köşedeki <strong>"Ekle"</strong> butonuna basın. Uygulama logonuz iPhone ana ekranınızda hazır!</div>
+          </div>
+        </div>
+        <button class="btn-primary" style="width:100%; justify-content:center;" onclick="window.app.closePwaModal()">
+          Tamam, Anladım
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="./js/race-simulator.js"></script>
+  <script src="./js/coupon-builder.js"></script>
+  <script src="./js/h2h-compare.js"></script>
+  <script src="./js/app.js"></script>
+
+  <!-- PWA Service Worker Registration -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch(err => {
+          console.log('SW registration error:', err);
+        });
+      });
+    }
+  </script>
 </body>
 </html>

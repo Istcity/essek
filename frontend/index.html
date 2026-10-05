@@ -15,12 +15,12 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="TJK AI Tahmin">
   <meta name="theme-color" content="#080c14">
-  <link rel="apple-touch-icon" href="/icons/icon-192.png">
-  <link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" href="./icons/icon-192.png">
+  <link rel="manifest" href="./manifest.json">
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="/css/style.css">
-  <link rel="stylesheet" href="/css/mobile.css">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/mobile.css">
 </head>
 <body>
 
@@ -196,16 +196,16 @@
   </div>
 
   <!-- Scripts -->
-  <script src="/js/race-simulator.js"></script>
-  <script src="/js/coupon-builder.js"></script>
-  <script src="/js/h2h-compare.js"></script>
-  <script src="/js/app.js"></script>
+  <script src="./js/race-simulator.js"></script>
+  <script src="./js/coupon-builder.js"></script>
+  <script src="./js/h2h-compare.js"></script>
+  <script src="./js/app.js"></script>
 
   <!-- PWA Service Worker Registration -->
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js').catch(err => {
+        navigator.serviceWorker.register('./sw.js').catch(err => {
           console.log('SW registration error:', err);
         });
       });

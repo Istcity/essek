@@ -1,0 +1,1584 @@
+/* ==========================================================================
+   TJK AI HORSE RACING PREDICTION PLATFORM - LUXURY THEME SYSTEM
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg-deep: #080c14;
+  --bg-surface: #0e1526;
+  --bg-surface-elevated: #162038;
+  --bg-card: rgba(22, 32, 56, 0.65);
+  --bg-card-hover: rgba(30, 43, 75, 0.85);
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-accent: rgba(16, 185, 129, 0.35);
+  --border-gold: rgba(245, 158, 11, 0.4);
+
+  /* Brand Accents */
+  --emerald-500: #10b981;
+  --emerald-400: #34d399;
+  --emerald-600: #059669;
+  --gold-500: #f59e0b;
+  --gold-400: #fbbf24;
+  --gold-600: #d97706;
+  --cyan-500: #06b6d4;
+  --blue-500: #3b82f6;
+  --purple-500: #8b5cf6;
+  --rose-500: #f43f5e;
+  --amber-500: #f59e0b;
+
+  /* Text colors */
+  --text-main: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --text-accent: #34d399;
+
+  /* Typography */
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Elevation */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.6);
+  --shadow-glow: 0 0 25px rgba(16, 185, 129, 0.25);
+  --shadow-gold-glow: 0 0 25px rgba(245, 158, 11, 0.3);
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-full: 9999px;
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-deep);
+  color: var(--text-main);
+  min-height: 100vh;
+  line-height: 1.5;
+  overflow-x: hidden;
+  background-image: 
+    radial-gradient(circle at 15% 10%, rgba(16, 185, 129, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 85% 20%, rgba(245, 158, 11, 0.06) 0%, transparent 40%),
+    radial-gradient(circle at 50% 80%, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
+  background-attachment: fixed;
+}
+
+/* ==========================================================================
+   HEADER & NAVBAR
+   ========================================================================== */
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(8, 12, 20, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 0.85rem 1.5rem;
+}
+
+.header-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.brand-section {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  cursor: pointer;
+}
+
+.brand-logo-badge {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, var(--emerald-500), #065f46);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.brand-title {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.3rem;
+  letter-spacing: -0.02em;
+  background: linear-gradient(to right, #ffffff, #94a3b8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.brand-badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.15rem 0.45rem;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(135deg, var(--gold-500), var(--gold-600));
+  color: #000;
+  text-transform: uppercase;
+  margin-left: 0.4rem;
+  letter-spacing: 0.05em;
+  vertical-align: middle;
+}
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.live-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  padding: 0.35rem 0.8rem;
+  border-radius: var(--radius-full);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--emerald-400);
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--emerald-400);
+  box-shadow: 0 0 10px var(--emerald-400);
+  animation: pulseLive 1.8s infinite;
+}
+
+@keyframes pulseLive {
+  0% { transform: scale(0.95); opacity: 0.7; }
+  50% { transform: scale(1.3); opacity: 1; }
+  100% { transform: scale(0.95); opacity: 0.7; }
+}
+
+.btn-glass {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-main);
+  padding: 0.45rem 0.9rem;
+  border-radius: var(--radius-md);
+  font-size: 0.82rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.btn-glass:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--emerald-500), var(--emerald-600));
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  padding: 0.45rem 1.1rem;
+  border-radius: var(--radius-md);
+  font-size: 0.82rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+  transition: var(--transition-fast);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, var(--emerald-400), var(--emerald-500));
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4);
+}
+
+/* ==========================================================================
+   CITY / TRACK SELECTOR BAR
+   ========================================================================== */
+.track-bar {
+  background: rgba(14, 21, 38, 0.6);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 0.75rem 1.5rem;
+}
+
+.track-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.track-container::-webkit-scrollbar {
+  display: none;
+}
+
+.track-tab {
+  padding: 0.5rem 1.1rem;
+  border-radius: var(--radius-full);
+  background: rgba(22, 32, 56, 0.5);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  font-family: var(--font-heading);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  transition: var(--transition-fast);
+}
+
+.track-tab:hover {
+  background: rgba(30, 43, 75, 0.8);
+  color: var(--text-main);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.track-tab.active {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(6, 95, 70, 0.4));
+  border-color: var(--emerald-400);
+  color: #fff;
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.2);
+}
+
+.track-tab .city-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--text-muted);
+}
+
+.track-tab.active .city-dot {
+  background: var(--emerald-400);
+  box-shadow: 0 0 6px var(--emerald-400);
+}
+
+.foreign-tag {
+  font-size: 0.65rem;
+  background: rgba(139, 92, 246, 0.2);
+  color: #c4b5fd;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+}
+
+/* ==========================================================================
+   MAIN WRAPPER & RACE STRIP
+   ========================================================================== */
+.main-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+/* Race Ribbon */
+.race-ribbon {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  overflow-x: auto;
+  padding-bottom: 0.75rem;
+  scrollbar-width: thin;
+}
+
+.race-ribbon::-webkit-scrollbar {
+  height: 4px;
+}
+
+.race-ribbon::-webkit-scrollbar-thumb {
+  background: var(--border-subtle);
+  border-radius: 2px;
+}
+
+.race-pill {
+  padding: 0.75rem 1.25rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  min-width: 140px;
+  transition: var(--transition-smooth);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.race-pill:hover {
+  background: var(--bg-surface-elevated);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.race-pill.active {
+  background: linear-gradient(145deg, #162444, #0f1a30);
+  border-color: var(--emerald-500);
+  box-shadow: 0 4px 18px rgba(16, 185, 129, 0.25);
+}
+
+.race-pill-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.race-pill-title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text-main);
+}
+
+.race-pill-time {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--emerald-400);
+}
+
+.race-pill-meta {
+  font-size: 0.74rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* ==========================================================================
+   RACE BANNER & PACE HERO
+   ========================================================================== */
+.race-banner {
+  background: linear-gradient(135deg, rgba(22, 32, 56, 0.8), rgba(14, 21, 38, 0.95));
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  backdrop-filter: blur(12px);
+  position: relative;
+  overflow: hidden;
+}
+
+.race-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 100%;
+  background: radial-gradient(circle at top right, rgba(16, 185, 129, 0.12), transparent 70%);
+  pointer-events: none;
+}
+
+.banner-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.banner-info-section h1 {
+  font-family: var(--font-heading);
+  font-size: 1.7rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.35rem;
+}
+
+.banner-meta-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.75rem;
+}
+
+.meta-chip {
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-subtle);
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+}
+
+.meta-chip strong {
+  color: var(--text-main);
+}
+
+.meta-chip.surface-cim {
+  border-color: rgba(16, 185, 129, 0.4);
+  color: var(--emerald-400);
+  background: rgba(16, 185, 129, 0.08);
+}
+
+.meta-chip.surface-kum {
+  border-color: rgba(245, 158, 11, 0.4);
+  color: var(--gold-400);
+  background: rgba(245, 158, 11, 0.08);
+}
+
+.meta-chip.surface-sentetik {
+  border-color: rgba(6, 182, 212, 0.4);
+  color: var(--cyan-500);
+  background: rgba(6, 182, 212, 0.08);
+}
+
+/* Pace & Tactics Box */
+.pace-box {
+  background: rgba(8, 12, 20, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.25rem;
+  position: relative;
+}
+
+.pace-box-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.4rem;
+}
+
+.pace-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+.pace-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-full);
+  background: rgba(16, 185, 129, 0.15);
+  color: var(--emerald-400);
+  border: 1px solid var(--emerald-500);
+}
+
+.pace-desc {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.pace-runners-row {
+  margin-top: 0.6rem;
+  display: flex;
+  gap: 0.8rem;
+  font-size: 0.75rem;
+}
+
+.pace-tag {
+  color: var(--text-muted);
+}
+
+.pace-tag span {
+  color: var(--gold-400);
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   VIEW NAVIGATION TABS
+   ========================================================================== */
+.view-tabs {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: 1.5rem;
+  overflow-x: auto;
+}
+
+.view-tab {
+  padding: 0.75rem 1.25rem;
+  font-family: var(--font-heading);
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: var(--transition-fast);
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.view-tab:hover {
+  color: var(--text-main);
+}
+
+.view-tab.active {
+  color: var(--emerald-400);
+  border-bottom-color: var(--emerald-400);
+}
+
+/* ==========================================================================
+   VIEW 1: RANKED PREDICTIONS FEED
+   ========================================================================== */
+.predictions-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.runner-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.5rem;
+  transition: var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+}
+
+.runner-card:hover {
+  background: var(--bg-card-hover);
+  border-color: rgba(255, 255, 255, 0.18);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Gold / Top 3 Highlight borders */
+.runner-card.rank-1 {
+  border-color: var(--gold-500);
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.08), rgba(22, 32, 56, 0.7));
+  box-shadow: 0 4px 20px rgba(245, 158, 11, 0.15);
+}
+
+.runner-card.rank-2 {
+  border-color: rgba(203, 213, 225, 0.4);
+}
+
+.runner-card.rank-3 {
+  border-color: rgba(217, 119, 6, 0.4);
+}
+
+.runner-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.runner-id-block {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.rank-badge {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--text-secondary);
+}
+
+.rank-1 .rank-badge {
+  background: linear-gradient(135deg, var(--gold-400), var(--gold-600));
+  color: #000;
+  border: none;
+  box-shadow: 0 0 15px rgba(245, 158, 11, 0.5);
+}
+
+.rank-2 .rank-badge {
+  background: linear-gradient(135deg, #e2e8f0, #94a3b8);
+  color: #000;
+  border: none;
+}
+
+.rank-3 .rank-badge {
+  background: linear-gradient(135deg, #fb923c, #c2410c);
+  color: #fff;
+  border: none;
+}
+
+.runner-number-gate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  background: #1e293b;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: var(--text-main);
+}
+
+.runner-gate-sub {
+  font-size: 0.58rem;
+  color: var(--text-muted);
+  line-height: 1;
+}
+
+.runner-title-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.runner-name-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.runner-name {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+
+.horse-equipment {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-secondary);
+}
+
+.runner-subline {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  display: flex;
+  gap: 0.8rem;
+  margin-top: 0.2rem;
+}
+
+.runner-subline span strong {
+  color: var(--text-main);
+}
+
+/* Win Prob & Value Right Block */
+.runner-prob-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.35rem;
+}
+
+.prob-score-pill {
+  display: flex;
+  align-items: baseline;
+  gap: 0.2rem;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.4rem;
+  color: var(--emerald-400);
+}
+
+.prob-score-pill small {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.prob-tag-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-full);
+  background: rgba(16, 185, 129, 0.15);
+  color: var(--emerald-400);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.prob-tag-badge.value-bet {
+  background: rgba(245, 158, 11, 0.15);
+  color: var(--gold-400);
+  border-color: var(--gold-500);
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.2);
+}
+
+/* Metrics Grid Inside Runner Card */
+.runner-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.85rem;
+  background: rgba(8, 12, 20, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1.1rem;
+  margin-bottom: 0.85rem;
+}
+
+.metric-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.metric-label {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+}
+
+.metric-value {
+  font-family: var(--font-heading);
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.metric-sub {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+}
+
+.metric-badge-ok {
+  color: var(--emerald-400);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.metric-badge-warn {
+  color: var(--gold-400);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+/* Explainable AI Rationale Section */
+.rationale-box {
+  background: rgba(14, 21, 38, 0.7);
+  border-left: 3px solid var(--emerald-500);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 0.75rem 1rem;
+  margin-top: 0.5rem;
+  font-size: 0.84rem;
+  line-height: 1.5;
+  color: #cbd5e1;
+}
+
+.rationale-title {
+  font-weight: 700;
+  color: var(--emerald-400);
+  margin-bottom: 0.2rem;
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.runner-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.6rem;
+  margin-top: 0.85rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ==========================================================================
+   VIEW 2: DISTANCE & TIME COMPARISON MATRIX
+   ========================================================================== */
+.matrix-container {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  overflow-x: auto;
+}
+
+.matrix-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.88rem;
+}
+
+.matrix-table th {
+  padding: 0.85rem 1rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.matrix-table td {
+  padding: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.matrix-table tr:hover td {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.time-bar-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.time-bar-bg {
+  flex: 1;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.time-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--emerald-500), var(--cyan-500));
+}
+
+/* ==========================================================================
+   VIEW 3: GALLOP & WORKOUT LAB
+   ========================================================================== */
+.gallop-lab-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.gallop-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+}
+
+.gallop-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.outlier-alert-banner {
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  font-size: 0.82rem;
+  color: var(--gold-400);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.gallop-log-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.gallop-log-table th {
+  padding: 0.6rem 0.8rem;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: 0.75rem;
+}
+
+.gallop-log-table td {
+  padding: 0.75rem 0.8rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.gallop-row-outlier td {
+  background: rgba(244, 63, 94, 0.08);
+  color: #fda4af;
+  text-decoration: line-through;
+}
+
+.gallop-row-outlier .badge-outlier {
+  text-decoration: none;
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  background: rgba(244, 63, 94, 0.2);
+  color: #f43f5e;
+}
+
+/* ==========================================================================
+   VIEW 4: 2D INTERACTIVE CANVAS RACE SIMULATOR
+   ========================================================================== */
+.simulator-container {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.simulator-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.sim-buttons {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.sim-canvas-wrapper {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: #061118;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.8);
+}
+
+#raceCanvas {
+  display: block;
+  width: 100%;
+  height: 480px;
+}
+
+.sim-ticker {
+  background: rgba(8, 12, 20, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1.25rem;
+  font-size: 0.85rem;
+  color: var(--emerald-400);
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+/* ==========================================================================
+   VIEW 5: BET TICKET & KUPON YAP STUDIO
+   ========================================================================== */
+.coupon-container {
+  display: grid;
+  grid-template-columns: 2.1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 5rem; /* space for floating bar */
+}
+
+.coupon-races-card, .coupon-summary-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+}
+
+.coupon-studio-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.game-types-pills {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  overflow-x: auto;
+}
+
+.game-type-pill {
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: var(--transition-fast);
+}
+
+.game-type-pill:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.game-type-pill.active {
+  background: linear-gradient(135deg, var(--gold-500), var(--gold-600));
+  color: #000;
+  border-color: var(--gold-400);
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.35);
+}
+
+.start-race-select {
+  background: #1e293b;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 0.4rem 0.75rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  font-weight: 600;
+  outline: none;
+}
+
+.coupon-strategy-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  background: rgba(8, 12, 20, 0.4);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.budget-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.budget-input {
+  width: 75px;
+  background: #0f172a;
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  border-radius: var(--radius-sm);
+  color: var(--gold-400);
+  font-weight: 800;
+  font-size: 0.9rem;
+  padding: 0.35rem 0.5rem;
+  text-align: center;
+  outline: none;
+}
+
+.coupon-leg-row {
+  padding: 1rem 1.2rem;
+  background: rgba(8, 12, 20, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-md);
+  margin-bottom: 1rem;
+  transition: var(--transition-fast);
+}
+
+.coupon-leg-row.leg-has-banko {
+  border-color: rgba(245, 158, 11, 0.5);
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.06), rgba(8, 12, 20, 0.65));
+}
+
+.coupon-leg-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.leg-badge {
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-sm);
+  background: rgba(16, 185, 129, 0.2);
+  color: var(--emerald-400);
+  border: 1px solid var(--emerald-500);
+  letter-spacing: 0.04em;
+}
+
+.banko-indicator {
+  font-size: 0.74rem;
+  font-weight: 800;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(135deg, var(--gold-500), var(--gold-600));
+  color: #000;
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.35);
+}
+
+.leg-quick-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.btn-leg-quick {
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.btn-leg-quick:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+.btn-leg-clear {
+  color: var(--rose-500);
+}
+
+.leg-horse-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 0.6rem;
+}
+
+.coupon-horse-chip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-sm);
+  padding: 0.45rem 0.65rem;
+  transition: var(--transition-fast);
+}
+
+.coupon-horse-chip:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.coupon-horse-chip.selected {
+  background: rgba(16, 185, 129, 0.18);
+  border-color: var(--emerald-400);
+}
+
+.coupon-horse-chip.is-banko {
+  background: rgba(245, 158, 11, 0.2);
+  border-color: var(--gold-400);
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.25);
+}
+
+.chip-main-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  flex: 1;
+}
+
+.chip-number {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--text-main);
+  min-width: 24px;
+}
+
+.chip-names {
+  display: flex;
+  flex-direction: column;
+}
+
+.chip-name {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 90px;
+}
+
+.chip-jockey {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+}
+
+.chip-stats {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-left: auto;
+  margin-right: 0.35rem;
+}
+
+.chip-prob {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--emerald-400);
+}
+
+.chip-rank {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+}
+
+.chip-rank-crown {
+  font-size: 0.75rem;
+}
+
+.chip-banko-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-muted);
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.chip-banko-btn:hover {
+  background: rgba(245, 158, 11, 0.2);
+  color: var(--gold-400);
+}
+
+.chip-banko-btn.active {
+  background: var(--gold-500);
+  color: #000;
+  border-color: var(--gold-400);
+}
+
+/* TJK Visual Ticket Slip Box */
+.tjk-ticket-preview-box {
+  background: #fefce8;
+  border: 2px dashed #ca8a04;
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  color: #1c1917;
+  font-family: 'Courier New', Courier, monospace;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+.tjk-ticket-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-bottom: 1px solid #eab308;
+  padding-bottom: 0.4rem;
+  margin-bottom: 0.6rem;
+  color: #854d0e;
+}
+
+.tjk-ticket-title {
+  text-align: center;
+  font-weight: 900;
+  font-size: 1.1rem;
+  color: #713f12;
+  margin-bottom: 0.6rem;
+  letter-spacing: 0.05em;
+}
+
+.tjk-ticket-legs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  border-top: 1px dashed #ca8a04;
+  border-bottom: 1px dashed #ca8a04;
+  padding: 0.6rem 0;
+  margin-bottom: 0.6rem;
+}
+
+.tjk-ticket-leg-line {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.tjk-ticket-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.8rem;
+  text-align: right;
+}
+
+.tjk-ticket-price-total {
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: #15803d;
+  margin-top: 0.35rem;
+}
+
+.coupon-metrics-box {
+  background: rgba(8, 12, 20, 0.75);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Saved Coupons list */
+.saved-coupon-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 0.5rem 0.75rem;
+}
+
+.saved-coupon-card:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.btn-saved-delete {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0.2rem 0.4rem;
+  font-size: 0.8rem;
+}
+
+.btn-saved-delete:hover {
+  color: var(--rose-500);
+}
+
+/* Floating Bet Slip Bottom Bar */
+.floating-slip-bar {
+  position: fixed;
+  bottom: 1.2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 3rem);
+  max-width: 1000px;
+  background: rgba(14, 21, 38, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-accent);
+  border-radius: var(--radius-full);
+  padding: 0.65rem 1.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 20px rgba(16, 185, 129, 0.2);
+  z-index: 900;
+  transition: var(--transition-fast);
+}
+
+.slip-bar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.slip-bar-info {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  cursor: pointer;
+}
+
+.slip-bar-badge {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 0.78rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, var(--gold-500), var(--gold-600));
+  color: #000;
+  letter-spacing: 0.04em;
+}
+
+.slip-bar-total {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.slip-bar-total small {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+}
+
+.slip-bar-total strong {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  color: var(--emerald-400);
+}
+
+.slip-bar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+/* Quick Select Button on Runner Cards */
+.btn-runner-select {
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: var(--transition-fast);
+}
+
+.btn-runner-select:hover {
+  background: rgba(16, 185, 129, 0.15);
+  border-color: var(--emerald-400);
+  color: #fff;
+}
+
+.btn-runner-select.selected {
+  background: var(--emerald-500);
+  color: #fff;
+  border-color: var(--emerald-400);
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
+}
+
+.btn-runner-select.is-banko {
+  background: linear-gradient(135deg, var(--gold-500), var(--gold-600));
+  color: #000;
+  border-color: var(--gold-400);
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.4);
+}
+
+/* ==========================================================================
+   MODALS
+   ========================================================================== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.modal-overlay.open {
+  display: flex;
+}
+
+.modal-card {
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  max-width: 750px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 1.75rem;
+  box-shadow: var(--shadow-lg);
+  animation: modalEnter 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalEnter {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.modal-title {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.btn-close {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.btn-close:hover {
+  color: #fff;
+}
+
+/* Spinner */
+.spinner {
+  width: 38px;
+  height: 38px;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-top-color: var(--emerald-400);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 2rem auto;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
