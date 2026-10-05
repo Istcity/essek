@@ -60,6 +60,7 @@ class RaceSimulator {
         earlySpeed: isFrontRunner ? 1.25 : (isCloser ? 0.85 : 1.05),
         lateKick: isCloser ? 1.35 : (isFrontRunner ? 0.90 : 1.1),
         currentDist: 0,
+        phase: Math.random() * 6,
         laneY: 0,
         targetLaneY: 0,
         speed: 0
@@ -113,6 +114,7 @@ class RaceSimulator {
       this.onFinish();
     } else {
       this.updatePhysics();
+      this.horsePositions.forEach(h => { h.phase += dt * (10 + h.speed * 8) * Math.min(2, this.speedMultiplier); });
     }
 
     this.draw();
@@ -255,38 +257,37 @@ class RaceSimulator {
       const progressFraction = Math.min(1.02, hItem.currentDist / (this.raceData?.distance || 1400));
       const horseX = startX + progressFraction * runSpan;
 
-      // Horse Shadow
-      ctx.fillStyle = 'rgba(0,0,0,0.45)';
-      ctx.beginPath();
-      ctx.ellipse(horseX, laneY + 10, 14, 4, 0, 0, Math.PI * 2);
-      ctx.fill();
-
-      // Horse Body / Silk Badge Circle
-      ctx.fillStyle = hItem.color;
-      ctx.beginPath();
-      ctx.arc(horseX, laneY, 11, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.strokeStyle = '#ffffff';
-      ctx.lineWidth = 1.5;
-      ctx.stroke();
-
-      // Runner Number
-      ctx.fillStyle = '#ffffff';
-      ctx.font = 'bold 10px Outfit, sans-serif';
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.fillText(hItem.number, horseX, laneY);
+      if (window.HorseArt) {
+        // Animated galloping horse with jockey silks
+        const sc = Math.max(0.42, Math.min(0.8, laneHeight / 46));
+        const phase = this.isRunning || this.progress > 0 ? hItem.phase : 0.4;
+        window.HorseArt.drawHorse(ctx, horseX - 6, laneY - 2, sc, phase, {
+          silk: hItem.color, cap: '#ffffff', number: hItem.number,
+          coat: ['#3b2314', '#5a3520', '#1c1512', '#7a4a2a'][idx % 4]
+        });
+        ctx.textBaseline = 'middle';
+      } else {
+        ctx.fillStyle = hItem.color;
+        ctx.beginPath();
+        ctx.arc(horseX, laneY, 11, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 10px Outfit, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(hItem.number, horseX, laneY);
+      }
 
       // Horse & Jockey Name Label
       ctx.textAlign = 'left';
       ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
       ctx.font = '600 11px Inter, sans-serif';
-      ctx.fillText(`${hItem.name}`, horseX + 16, laneY - 2);
+      ctx.fillText(`${hItem.name}`, horseX + 24, laneY - 2);
 
       // Mini speed indicator
       ctx.fillStyle = 'rgba(148, 163, 184, 0.8)';
       ctx.font = '9px Inter, sans-serif';
-      ctx.fillText(`J: ${hItem.jockey || '-'}`, horseX + 16, laneY + 9);
+      ctx.fillText(`J: ${hItem.jockey || '-'}`, horseX + 24, laneY + 9);
     });
   }
 }

@@ -40,6 +40,49 @@ class TJKApp {
     if (this.dateDisplay) {
       this.dateDisplay.textContent = this.currentDateStr;
     }
+
+    this.pipAutoTriggered = false;
+    this.initCountdownTimer();
+  }
+
+  initCountdownTimer() {
+    setInterval(() => {
+      const race = this.getCurrentRace();
+      if (!race) return;
+      
+      const now = new Date();
+      const [rHour, rMin] = race.time.split(':').map(Number);
+      
+      const raceTime = new Date();
+      raceTime.setHours(rHour, rMin, 0, 0);
+      
+      const diffMs = raceTime - now;
+      const cBox = document.getElementById("raceCountdownBox");
+      const cText = document.getElementById("countdownText");
+      if(!cBox || !cText) return;
+      
+      if (diffMs > 0 && diffMs <= 180000) { // 3 minutes
+        const mins = Math.floor(diffMs / 60000);
+        const secs = Math.floor((diffMs % 60000) / 1000);
+        cText.textContent = `${race.time} Koşusuna ${mins}:${secs.toString().padStart(2, '0')}`;
+        cBox.classList.add("alert-glow");
+        cBox.style.color = "var(--rose-500)";
+        
+        // Auto open PiP 3 mins before
+        if (!this.pipAutoTriggered) {
+          this.pipAutoTriggered = true;
+          this.toggleTjkTv(true);
+        }
+      } else if (diffMs <= 0 && diffMs > -300000) { // Up to 5 mins after start
+        cText.textContent = `${race.time} Koşusu Başladı!`;
+        cBox.classList.add("alert-glow");
+        cBox.style.color = "var(--emerald-400)";
+      } else {
+        cText.textContent = `${race.time} Koşusu Bekleniyor`;
+        cBox.classList.remove("alert-glow");
+        cBox.style.color = "";
+      }
+    }, 1000);
   }
 
   initSubModules() {
@@ -58,6 +101,9 @@ class TJKApp {
         this.switchView(view);
       });
     });
+
+    // TJK TV PiP Button in Header
+    document.getElementById("btnToggleTjkTv")?.addEventListener("click", () => this.toggleTjkTv());
 
     // PWA Install guide modal
     const btnPwa = document.getElementById("btnPwaInstall");
@@ -421,12 +467,58 @@ class TJKApp {
   }
 
   switchView(viewName) {
+    const changed = this.activeView !== viewName;
     this.activeView = viewName;
     document.querySelectorAll(".view-tab").forEach(tab => {
       tab.classList.toggle("active", tab.getAttribute("data-view") === viewName);
     });
+    this.moveTabIndicator();
     const race = this.getCurrentRace();
-    if (race) this.renderActiveView(race);
+    const container = this.viewsContainer;
+    if (!race) return;
+    if (!changed || !container || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      this.renderActiveView(race);
+      this.playViewEnter();
+      return;
+    }
+    clearTimeout(this._viewTimer);
+    container.classList.remove("view-enter");
+    container.classList.add("view-exit");
+    this._viewTimer = setTimeout(() => {
+      this.renderActiveView(race);
+      container.classList.remove("view-exit");
+      this.playViewEnter();
+    }, 220);
+  }
+
+  playViewEnter() {
+    const container = this.viewsContainer;
+    if (!container) return;
+    container.classList.remove("view-enter");
+    void container.offsetWidth; // restart animation
+    container.classList.add("view-enter");
+    // Stagger direct children for a cascading reveal
+    Array.from(container.querySelectorAll(":scope > *, :scope > * > .card, :scope .runner-card")).slice(0, 24)
+      .forEach((el, i) => el.style.setProperty("--stagger", `${i * 45}ms`));
+  }
+
+  moveTabIndicator() {
+    const nav = document.querySelector(".view-tabs");
+    const active = nav && nav.querySelector(".view-tab.active");
+    if (!nav || !active) return;
+    let ind = nav.querySelector(".tab-indicator");
+    if (!ind) {
+      ind = document.createElement("span");
+      ind.className = "tab-indicator";
+      nav.appendChild(ind);
+      window.addEventListener("resize", () => this.moveTabIndicator());
+    }
+    ind.style.width = `${active.offsetWidth}px`;
+    ind.style.height = `${active.offsetHeight}px`;
+    ind.style.transform = `translate(${active.offsetLeft}px, ${active.offsetTop}px)`;
+    if (nav.scrollWidth > nav.clientWidth) {
+      nav.scrollTo({ left: active.offsetLeft - (nav.clientWidth - active.offsetWidth) / 2, behavior: "smooth" });
+    }
   }
 
   renderActiveView(race) {
@@ -435,6 +527,8 @@ class TJKApp {
 
     if (this.activeView === "predictions") {
       this.renderPredictionsView(race, container);
+    } else if (this.activeView === "allbets") {
+      this.renderAllBetsView(race, container);
     } else if (this.activeView === "matrix") {
       this.renderMatrixView(race, container);
     } else if (this.activeView === "gallops") {
@@ -443,6 +537,8 @@ class TJKApp {
       this.renderSimulatorView(race, container);
     } else if (this.activeView === "coupon") {
       this.renderCouponView(container);
+    } else if (this.activeView === "results") {
+      this.renderResultsView(race, container);
     }
   }
 
@@ -458,6 +554,10 @@ class TJKApp {
       const ta = r.time_analysis || {};
       const ga = r.gallop_analysis || {};
       const sa = r.surface_affinity || {};
+      const pa = r.pedigree_analysis || {};
+      const ca = r.condition_analysis || {};
+      const syn = r.synergy_analysis || {};
+      const mat = r.maturity_analysis || {};
       const rankClass = `rank-${r.rank}`;
 
       html += `
@@ -502,6 +602,22 @@ class TJKApp {
                 </span>
                 ${r.agf > 0 ? `<span style="font-size:0.72rem; color:var(--text-muted);">AGF: %${r.agf}</span>` : ''}
               </div>
+            </div>
+          </div>
+
+          <!-- Advanced Breeding, Wet/Dry & Jockey Synergy Badges -->
+          <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin:0.75rem 0 0.5rem 0;">
+            <div class="meta-chip" style="font-size:0.75rem; background:rgba(212,175,55,0.1); border-color:var(--border-gold); color:var(--gold-400);">
+              🧬 <strong>Orijin (${r.sire || 'Baba'}):</strong> ${pa.surface_match || 'Dengeli'} (%${pa.score || 75})
+            </div>
+            <div class="meta-chip" style="font-size:0.75rem; background:rgba(6,182,212,0.1); border-color:rgba(6,182,212,0.3); color:var(--cyan-400);">
+              🌧️ <strong>Pist/Zemin:</strong> ${ca.condition || 'Normal Zemin'}
+            </div>
+            <div class="meta-chip" style="font-size:0.75rem; background:rgba(139,92,246,0.1); border-color:rgba(139,92,246,0.3); color:var(--purple-400);">
+              🏆 <strong>Kariyer Eğrisi:</strong> ${mat.stage || 'Form Zirvesi'}
+            </div>
+            <div class="meta-chip" style="font-size:0.75rem; background:rgba(16,185,129,0.1); border-color:rgba(16,185,129,0.3); color:var(--emerald-400);">
+              ⭐ <strong>Jokey Sinerjisi:</strong> ${syn.is_master ? 'Usta Jokey' : 'Dengeli Biniş'} (%${syn.jockey_score || 80})
             </div>
           </div>
 
@@ -812,6 +928,122 @@ class TJKApp {
     } else {
       this.couponBuilder.render();
       this.couponBuilder.updateFloatingBar();
+    }
+  }
+
+  /* ----------------------------------------------------------------------
+     VIEW 6: ALL BET TYPES & ANALYSIS (2li, 3lü, Tabela, vs.)
+     ---------------------------------------------------------------------- */
+  renderAllBetsView(race, container) {
+    if (!race.all_bets) {
+      container.innerHTML = `
+        <div style="padding: 2rem; text-align: center; color: var(--text-secondary);">
+          <h3>📊 Bu koşu için detaylı bahis analizleri (ikili, tabela vb.) hesaplanıyor...</h3>
+        </div>
+      `;
+      return;
+    }
+    
+    let html = `
+      <div class="all-bets-container" style="display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+        <div style="grid-column: 1 / -1;">
+          <h3 style="font-family:var(--font-heading); font-size:1.3rem; font-weight:700; color:var(--emerald-400);">🎯 ${race.name} TJK Bahis Türleri Analizi</h3>
+          <p style="color:var(--text-secondary); font-size:0.9rem;">Yapay zeka modelimizin İkili, 3'lü, Tabela ve 5'li bahis kombinasyonları için ürettiği potansiyel sonuçlar.</p>
+        </div>
+    `;
+
+    Object.entries(race.all_bets).forEach(([betType, analysis]) => {
+      html += `
+        <div class="bet-card" style="background: var(--bg-surface-elevated); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-subtle);">
+          <div style="display:flex; justify-content:space-between; align-items:center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.75rem; margin-bottom: 0.75rem;">
+            <h4 style="font-size:1.1rem; color:var(--gold-400); margin:0; text-transform:uppercase;">${betType.replace(/_/g, ' ')}</h4>
+            <span class="badge" style="background:rgba(245,158,11,0.2); color:var(--gold-400); padding: 0.2rem 0.5rem; border-radius:4px; font-size:0.75rem; font-weight:bold;">Güven: %${analysis.confidence || 75}</span>
+          </div>
+          <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;">${analysis.description || 'Yapay zeka değerlendirmesi'}</p>
+          <div style="display:flex; flex-direction:column; gap:0.5rem;">
+            ${(analysis.combinations || []).map((combo, idx) => `
+              <div style="display:flex; justify-content:space-between; align-items:center; background:rgba(0,0,0,0.2); padding: 0.5rem; border-radius: 4px;">
+                <span style="font-weight:bold; font-size: 0.95rem; letter-spacing: 1px; color:var(--text-main);">${combo.combo}</span>
+                <span style="font-size:0.75rem; color: ${idx === 0 ? 'var(--emerald-400)' : 'var(--text-muted)'};">${idx === 0 ? 'Öncelikli' : 'Alternatif'}</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    });
+
+    html += `</div>`;
+    container.innerHTML = html;
+  }
+
+  /* ----------------------------------------------------------------------
+     VIEW 7: RACE RESULTS
+     ---------------------------------------------------------------------- */
+  renderResultsView(race, container) {
+    if (!race.results) {
+      container.innerHTML = `
+        <div style="padding: 2rem; text-align: center; color: var(--text-secondary);">
+          <h3 style="margin-bottom:0.5rem; font-family:var(--font-heading); color:var(--text-main);">🏁 Bu koşunun resmi sonuçları henüz açıklanmadı.</h3>
+          <p>Yarış bittikten sonra sonuçlar ve kazanç miktarları burada yer alacaktır.</p>
+        </div>
+      `;
+      return;
+    }
+    
+    let html = `
+      <div style="padding: 1.5rem; color: var(--text-main); background: var(--bg-surface-elevated); border-radius: var(--radius-lg); border: 1px solid var(--border-subtle);">
+        <h3 style="color:var(--emerald-400); margin-bottom:1.5rem; font-family:var(--font-heading);">🏁 Resmi Sonuçlar - ${race.name}</h3>
+        <table class="matrix-table" style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
+          <thead>
+            <tr>
+              <th style="text-align:left; border-bottom:1px solid var(--border-subtle); padding:0.5rem;">Bahis Türü</th>
+              <th style="text-align:left; border-bottom:1px solid var(--border-subtle); padding:0.5rem;">Kazanan Kombinasyon</th>
+              <th style="text-align:right; border-bottom:1px solid var(--border-subtle); padding:0.5rem;">Ganyan/Tutar</th>
+            </tr>
+          </thead>
+          <tbody>
+    `;
+
+    Object.entries(race.results).forEach(([betType, res]) => {
+      html += `
+        <tr>
+          <td style="padding:0.75rem 0.5rem; border-bottom:1px solid rgba(255,255,255,0.05); font-weight:bold; color:var(--gold-400); text-transform:capitalize;">${betType.replace(/_/g, ' ')}</td>
+          <td style="padding:0.75rem 0.5rem; border-bottom:1px solid rgba(255,255,255,0.05); letter-spacing:1px;">${res.combo || '-'}</td>
+          <td style="padding:0.75rem 0.5rem; border-bottom:1px solid rgba(255,255,255,0.05); text-align:right; font-weight:bold; color:var(--emerald-400);">${res.prize || '-'} ₺</td>
+        </tr>
+      `;
+    });
+
+    html += `
+          </tbody>
+        </table>
+      </div>
+    `;
+    container.innerHTML = html;
+  }
+
+  /* ----------------------------------------------------------------------
+     TJK TV PIP CONTROLS
+     ---------------------------------------------------------------------- */
+  toggleTjkTv(forceState = null) {
+    const pip = document.getElementById("tjkTvPip");
+    if (!pip) return;
+    
+    const isHidden = pip.classList.contains("hidden");
+    const willShow = forceState !== null ? forceState : isHidden;
+    
+    if (willShow) {
+      pip.classList.remove("hidden");
+      pip.classList.remove("minimized");
+    } else {
+      pip.classList.add("hidden");
+    }
+  }
+
+  toggleTjkTvMinimize() {
+    const pip = document.getElementById("tjkTvPip");
+    if (pip) {
+      pip.classList.toggle("minimized");
     }
   }
 

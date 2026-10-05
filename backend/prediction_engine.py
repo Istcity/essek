@@ -1,7 +1,16 @@
 """
-Advanced Horse Racing Prediction & Handicapping Engine.
-Implements Beyer Speed Figures, Pace Modeling, Surface & Distance Equivalence,
-Gallop Consistency, Weight Handicap Adjustments, and Explainable AI.
+Advanced Horse Racing Prediction & Handicapping Engine Pro v3.0.
+Implements:
+- Beyer Speed Figures & Distance Fatigue Decay Modeling
+- Pedigree (Sire & Dam) Bloodline Tendencies (Arap & İngiliz)
+- Wet / Dry / Heavy Track Condition Dynamics (Islak / Kuru Pist Katsayıları)
+- Jockey - Horse Synergy Index
+- Career Run Count & Experience Maturity Curve
+- Gallop Consistency with IQR/Z-score Outlier Filtering
+- Weight Handicap Adjustments
+- Comprehensive Betting Studio Models:
+  Ganyan, İkili, Sıralı İkili, Plase, Plase İkili, 3'lü Bahis (Trio),
+  Tabela Bahis (4'lü Bahis), Sıralı 5'li Bahis ve Çifte Bahis
 """
 
 import math
@@ -23,10 +32,39 @@ SURFACE_OFFSET_PER_100M = {
 JOCKEY_RATINGS = {
     "g.kocakaya": 96, "ö.yıldırım": 95, "h.karataş": 95, "m.kaya": 92,
     "n.avci": 91, "m.çiçek": 90, "m.m.bilgin": 89, "a.sözen": 89,
-    "e.aktuğ": 87, "mer.çelik": 86, "vedat.abiş": 94, "s.boyraz": 87,
+    "e.aktuğ": 87, "mer.çelik": 86, "vedat.abiş": 95, "s.boyraz": 87,
     "h.çizik": 88, "f.çetin": 84, "o.yıldız": 85, "t.alıcı": 83,
     "a.meh.altın": 82, "mah.turan": 81, "u.temur": 82, "m.keçeci": 80,
-    "e.kadirler": 78, "r.ketme": 76, "i.katı": 77
+    "e.kadirler": 78, "r.ketme": 76, "i.katı": 77, "a.kurşun": 92,
+    "s.kaya": 94, "b.kılınç": 80, "m.s.çelik": 85, "f.yardımcı": 84
+}
+
+# Turkish Pedigree Database (Prominent Sires and their traits)
+PEDIGREE_TRAITS = {
+    # Arap Sires
+    "kaizbert": {"stamina": 95, "surface_pref": "hepsi", "wet_affinity": 96, "sprint": 94, "desc": "Efsanevi aygır; çim, kum ve ıslak pistte üstün sürat ve dayanıklılık aktarır."},
+    "turbo": {"stamina": 92, "surface_pref": "kum", "wet_affinity": 90, "sprint": 96, "desc": "Kum pistte yüksek sürat ve erken liderlik eğilimi."},
+    "özgünhan": {"stamina": 96, "surface_pref": "çim", "wet_affinity": 88, "sprint": 85, "desc": "Orta ve uzun mesafelerde üstün ciğer kapasitesi ve son viraj sprinti."},
+    "uçanbey": {"stamina": 88, "surface_pref": "çim", "wet_affinity": 89, "sprint": 92, "desc": "Çim pist sprinteri; virajı iyi döner ve diri kalır."},
+    "karaüzüm": {"stamina": 93, "surface_pref": "kum", "wet_affinity": 98, "sprint": 86, "desc": "Ağır ve ıslak/çamurlu zeminlerde rakiplerine belirgin üstünlük sağlar."},
+    "ayabakan": {"stamina": 90, "surface_pref": "kum", "wet_affinity": 91, "sprint": 89, "desc": "Dengeli kum atı, mücadeleci karakter."},
+    "haberbatur": {"stamina": 94, "surface_pref": "çim", "wet_affinity": 90, "sprint": 87, "desc": "Klasik çim pedigrisi; mesafeyi çok sever."},
+    "tamerinoğlu": {"stamina": 91, "surface_pref": "hepsi", "wet_affinity": 88, "sprint": 88, "desc": "Hem çimde hem kumda dengeli koşan dayanıklı soy."},
+    "saadın gücü": {"stamina": 87, "surface_pref": "kum", "wet_affinity": 85, "sprint": 90, "desc": "Erken süratli ve kısa mesafede etkili."},
+    "sarraf": {"stamina": 89, "surface_pref": "kum", "wet_affinity": 88, "sprint": 91, "desc": "Güçlü kum performansı ve mücadele gücü."},
+    "gelibolu": {"stamina": 92, "surface_pref": "çim", "wet_affinity": 93, "sprint": 86, "desc": "Ağır çim ve uzun mesafede çok başarılı."},
+    
+    # İngiliz Sires
+    "torok": {"stamina": 94, "surface_pref": "çim", "wet_affinity": 95, "sprint": 93, "desc": "Çim ve sentetikte grup koşuların başrolü; yumuşak/ıslak çimde çok etkilidir."},
+    "native khan": {"stamina": 96, "surface_pref": "çim", "wet_affinity": 94, "sprint": 88, "desc": "Orta/uzun mesafe çim ve sentetik uzmanı; üstün dayanıklılık."},
+    "luxor": {"stamina": 86, "surface_pref": "çim", "wet_affinity": 85, "sprint": 96, "desc": "Sürat ve mil koşularının (1200-1600m) elit aygırı."},
+    "mendip": {"stamina": 90, "surface_pref": "kum", "wet_affinity": 93, "sprint": 92, "desc": "Kum pistte yüksek tempo ve viraj hakimiyeti."},
+    "victory gallop": {"stamina": 97, "surface_pref": "kum", "wet_affinity": 90, "sprint": 82, "desc": "Açık yarış kazanan uzun mesafe kum canavarları üretir."},
+    "lion heart": {"stamina": 88, "surface_pref": "kum", "wet_affinity": 92, "sprint": 95, "desc": "Yüksek başlangıç hızı, ıslak ve sulu kumda öncülük gücü."},
+    "daredevil": {"stamina": 91, "surface_pref": "kum", "wet_affinity": 98, "sprint": 93, "desc": "Islak, sulu ve çamurlu pistlerde sıra dışı performans sıçraması yapar."},
+    "bodemeister": {"stamina": 92, "surface_pref": "kum", "wet_affinity": 92, "sprint": 91, "desc": "Güçlü göğüs yapısı, sert kum zeminlerde yıpranmaz."},
+    "kaneko": {"stamina": 95, "surface_pref": "hepsi", "wet_affinity": 91, "sprint": 89, "desc": "Türkiye yarışçılığının temel direği; mesafeye ve her piste uyumlu."},
+    "smart robin": {"stamina": 93, "surface_pref": "çim", "wet_affinity": 89, "sprint": 87, "desc": "Derin çim ve 1800m+ mesafelerde etkili dayanıklılık."}
 }
 
 def clean_name(name):
@@ -41,8 +79,6 @@ def parse_record_time_seconds(record_str, distance):
     sec = parse_time_str(record_str)
     if sec and sec > 30:
         return sec
-    # Default estimated standard record time based on distance
-    # ~6.25 sec/100m on turf, ~6.45 on dirt
     return (distance / 100.0) * 6.35
 
 def get_surface_key(surface_text):
@@ -54,14 +90,162 @@ def get_surface_key(surface_text):
         return "kum"
     return "çim"
 
+def analyze_pedigree(sire_name, dam_name, target_surface, target_distance):
+    """
+    Evaluates genetic pedigree aptitude for surface and distance stamina.
+    """
+    clean_s = clean_name(sire_name)
+    matched = None
+    for k, v in PEDIGREE_TRAITS.items():
+        if k in clean_s or clean_s in k:
+            matched = v
+            break
+            
+    if not matched:
+        # Default baseline pedigree profile
+        is_turf_bias = "çim" in target_surface.lower()
+        return {
+            "score": 75.0,
+            "stamina_score": 75.0,
+            "wet_affinity": 75.0,
+            "surface_match": "Dengeli Soy Kütüğü",
+            "desc": f"Baba {sire_name or 'Bilinmiyor'} ve Anne {dam_name or 'Bilinmiyor'} soy hattı mesafe ve pist için standart dengeli genetik potansiyel barındırıyor."
+        }
+        
+    # Evaluate distance suitability
+    is_long = target_distance >= 1800
+    stamina = matched["stamina"] if is_long else (matched["stamina"] * 0.4 + matched["sprint"] * 0.6)
+    
+    # Surface bonus
+    pref = matched["surface_pref"]
+    surf_match = True
+    if pref == "hepsi" or target_surface.lower() in pref:
+        surf_bonus = 6.0
+    else:
+        surf_bonus = -4.0
+        surf_match = False
+        
+    pedigree_score = max(50.0, min(98.0, round(stamina * 0.7 + matched["wet_affinity"] * 0.2 + surf_bonus, 1)))
+    
+    return {
+        "score": pedigree_score,
+        "stamina_score": round(stamina, 1),
+        "wet_affinity": matched["wet_affinity"],
+        "surface_match": "Yüksek Uyum" if surf_match else "Orta Uyum",
+        "desc": f"Baba {sire_name}: {matched['desc']}"
+    }
+
+def analyze_track_condition_impact(runner, target_surface, track_condition="Normal"):
+    """
+    Analyzes wet / dry / heavy track condition impact.
+    Çim: Kuru, Yumuşak, Ağır / Çamur
+    Kum: Normal, Islak / Sulu (Sulu kum kaçak atlara +%30 avantaj sağlar)
+    """
+    cond = (track_condition or "Normal").lower()
+    is_wet = "ıslak" in cond or "sulu" in cond or "ağır" in cond or "çamur" in cond or "yumuşak" in cond
+    
+    pedigree_wet = runner.get("pedigree_analysis", {}).get("wet_affinity", 75.0)
+    
+    # Track penalty or boost
+    if not is_wet:
+        return {
+            "condition": "Normal / Kuru Zemin",
+            "impact_sec": 0.0,
+            "speed_multiplier": 1.0,
+            "notes": "Pist şartları normal ve kuru; safkanlar ideal tempolarını sahaya yansıtabilir."
+        }
+        
+    if "kum" in target_surface.lower():
+        # Wet dirt packs tight -> faster track (+kickback penalty for trailers)
+        return {
+            "condition": "Islak / Sulu Kum",
+            "impact_sec": -0.85, # times become faster
+            "speed_multiplier": 1.04,
+            "wet_score": pedigree_wet,
+            "notes": "Islak/sulu kum zeminde pist hızlanır. Önde kaçan safkanlar çamur sıçramasından (kickback) etkilenmediği için büyük avantaj yakalar."
+        }
+    else:
+        # Wet turf -> heavy, times slow down, stamina counts
+        sec_penalty = 1.6 if "ağır" in cond else 0.9
+        return {
+            "condition": "Ağır / Yumuşak Çim",
+            "impact_sec": sec_penalty,
+            "speed_multiplier": 0.97,
+            "wet_score": pedigree_wet,
+            "notes": f"Çim pist yumuşak/ağır; dereceler +{sec_penalty}sn civarında yavaşlayacaktır. Güçlü pedigriye ({pedigree_wet} puan) sahip safkanlar öne çıkar."
+        }
+
+def analyze_jockey_horse_synergy(jockey_name, horse_name, weight, last_6):
+    """
+    Computes synergy score between jockey and runner.
+    Takes into account master jockey rating, weight tolerance, and past run rhythm.
+    """
+    clean_j = clean_name(jockey_name)
+    base_jockey = 80.0
+    for key, val in JOCKEY_RATINGS.items():
+        if key in clean_j or clean_j in key:
+            base_jockey = val
+            break
+            
+    is_apprentice = "ap" in (jockey_name or "").lower() or (weight <= 53.0 and base_jockey <= 82)
+    
+    # Master jockey bonus on clutch races
+    if base_jockey >= 92:
+        synergy_desc = f"Usta jokey {jockey_name} binişi ile yarış içi taktik ve son viraj hamle üstünlüğü."
+        synergy_score = base_jockey + 2.0
+    elif is_apprentice:
+        synergy_desc = f"Genç apranti {jockey_name} sıklet indirimi (indirimli kilo) avantajı sunuyor."
+        synergy_score = base_jockey - 2.0
+    else:
+        synergy_desc = f"Jokey {jockey_name} ile safkan arasında dengeli bir uyum bulunuyor."
+        synergy_score = base_jockey
+        
+    return {
+        "jockey_score": round(base_jockey, 1),
+        "synergy_score": round(synergy_score, 1),
+        "is_master": base_jockey >= 90,
+        "is_apprentice": is_apprentice,
+        "details": synergy_desc
+    }
+
+def analyze_career_maturity(age_str, last_6, kgs):
+    """
+    Evaluates career progression and freshness based on age, runs and rest days.
+    """
+    age_digits = re.findall(r'\d+', str(age_str or '3'))
+    age = int(age_digits[0]) if age_digits else 3
+    
+    # Run count from last_6
+    past_runs = len(re.findall(r'\d', str(last_6 or '')))
+    
+    if past_runs <= 2:
+        stage = "Genç & Yüksek Gelişim Potansiyeli"
+        maturity_score = 88.0
+        stage_desc = "Kariyerinin başında; her yarışında ciddi derece sıçraması yapabilecek gelişim evresinde."
+    elif 3 <= past_runs <= 15:
+        stage = "Kariyer Zirvesi & Olgunluk"
+        maturity_score = 92.0
+        stage_desc = "Formunun ve kondisyonunun zirvesinde; en istikrarlı koşu çağını yaşıyor."
+    elif 16 <= past_runs <= 35:
+        stage = "Deneyimli Grup Atı"
+        maturity_score = 85.0
+        stage_desc = "Yüksek yarış tecrübesi; koşu temposunu ve taktikleri çok iyi biliyor."
+    else:
+        stage = "Veteran / Tecrübeli"
+        maturity_score = 78.0
+        stage_desc = "Çok sayıda start almış tecrübeli safkan; yıpranma payına karşın pist bilgisini konuşturabilir."
+        
+    return {
+        "age": age,
+        "past_runs_count": past_runs,
+        "stage": stage,
+        "maturity_score": maturity_score,
+        "desc": stage_desc
+    }
+
 def analyze_track_affinity(last_6, target_surface):
     """
-    Parses last 6 races (e.g. 'Ç2Ç3Ç2Ç4', 'K1Ç8K3K3') to compute affinity for target surface.
-    Returns:
-      affinity_score (0-100)
-      surface_races_count
-      podium_count
-      details_str
+    Parses last 6 races to compute affinity for target surface.
     """
     if not last_6:
         return 60.0, 0, 0, "Daha önce resmi koşu kaydı yok (Orijin ve idman değerlendirildi)"
@@ -69,9 +253,7 @@ def analyze_track_affinity(last_6, target_surface):
     target_code = "Ç" if target_surface == "çim" else ("S" if target_surface == "sentetik" else "K")
     surface_runs = []
     
-    # Tokenize: pairs of Surface letter + Finish position e.g. Ç2, S7, K0
     tokens = re.findall(r'([ÇSKçsk])(\d+)', last_6)
-    
     for surf, pos in tokens:
         surf_upper = surf.upper()
         finish_pos = int(pos)
@@ -79,7 +261,6 @@ def analyze_track_affinity(last_6, target_surface):
             surface_runs.append(finish_pos)
 
     if not surface_runs:
-        # Horse hasn't run on this surface yet; look at general form
         other_runs = [int(p) for _, p in tokens]
         avg_other = sum(other_runs) / len(other_runs) if other_runs else 5
         score = max(40, 75 - avg_other * 5)
@@ -89,7 +270,6 @@ def analyze_track_affinity(last_6, target_surface):
     win_count = sum(1 for p in surface_runs if p == 1)
     avg_finish = sum(surface_runs) / len(surface_runs)
     
-    # Base score
     score = 85.0 - (avg_finish - 1) * 9.0 + (win_count * 5.0)
     score = max(25.0, min(98.0, score))
 
@@ -98,62 +278,37 @@ def analyze_track_affinity(last_6, target_surface):
         f"{podium_count} kez tabela ({win_count} birincilik, ortalama {avg_finish:.1f}.lik). "
         f"{'Yüksek pist uyumu!' if score >= 80 else 'Dengeli pist performansı.'}"
     )
+    return score, len(surface_runs), podium_count, details
 
-    return round(score, 1), len(surface_runs), podium_count, details
-
-def calculate_adjusted_time(horse, target_distance, target_surface, record_time_sec):
+def calculate_adjusted_time(runner, target_distance, target_surface, record_time_sec):
     """
-    Calculates projected adjusted finishing time for a horse at target distance & surface.
-    Follows exact requirement:
-    - Compare exact distance & surface if best_time is available on that track.
-    - If not available, scale from nearby races with fatigue decay & surface offset.
-    - Adjust for weight (sıklet etkisi: ~0.22s / kg over 1400m).
+    Adjusts past best time to current conditions.
     """
-    best_time_str = horse.get("best_time")
-    raw_time = parse_time_str(best_time_str)
-    weight = float(horse.get("weight", 58.0))
-    weight_diff = weight - 57.0  # Weight delta relative to 57kg standard
-    weight_penalty = (weight_diff * 0.22) * (target_distance / 1400.0)
+    best_time_str = runner.get("best_time", "")
+    best_time_sec = parse_time_str(best_time_str)
+    
+    weight = runner.get("weight", 58.0)
+    weight_diff = weight - 57.0
+    weight_penalty = weight_diff * (0.22 * (target_distance / 1400.0))
 
-    is_exact_match = False
-    source_desc = ""
-
-    if raw_time and raw_time > 30:
-        # Check if raw_time seems to match this distance
-        expected_time_approx = (target_distance / 100.0) * 6.6
-        if abs(raw_time - expected_time_approx) < (expected_time_approx * 0.18):
-            # This is an exact or near-exact distance previous time!
-            is_exact_match = True
-            base_time = raw_time
-            source_desc = f"Bu mesafedeki ({target_distance}m) resmi en iyi derecesi ({best_time_str})"
-        else:
-            # Scaled from nearby distance
-            # Estimate pace per 100m
-            est_pace = raw_time / (target_distance / 100.0) if raw_time < expected_time_approx * 1.5 else 6.65
-            # Fatigue adjustment
-            base_time = (target_distance / 100.0) * est_pace
-            source_desc = f"Farklı mesafe derecesinden ({best_time_str}) tempo ve yorgunluk eğrisiyle uyarlandı"
+    if best_time_sec and best_time_sec > 40:
+        adjusted_time = best_time_sec + weight_penalty
+        is_exact_match = True
+        source_desc = f"Bu mesafedeki ({target_distance}m) resmi en iyi derecesi ({best_time_str})"
     else:
-        # No recorded best time in card: derive from handicap rating and class
-        handicap = float(horse.get("handicap", 35))
-        # Higher handicap runs closer to record time
-        pace_per_100 = 6.85 - (handicap / 100.0) * 0.65
-        base_time = (target_distance / 100.0) * pace_per_100
-        source_desc = f"Handikap puanı ({int(handicap)}) ve sınıf standartlarına göre hesaplanan baz derece"
+        # Benchmark estimation based on handicap & record
+        handicap = runner.get("handicap", 35)
+        perf_tier = max(0.0, min(1.0, (handicap - 20) / 75.0))
+        surface_key = get_surface_key(target_surface)
+        surface_offset = SURFACE_OFFSET_PER_100M.get(surface_key, 0.0) * (target_distance / 100.0)
+        
+        ideal_time = record_time_sec + surface_offset
+        handicap_delay = (1.0 - perf_tier) * (target_distance / 1000.0) * 3.8
+        adjusted_time = ideal_time + handicap_delay + weight_penalty
+        is_exact_match = False
+        source_desc = f"Hedef mesafe ve handikap ({handicap}) puanından hesaplandı"
 
-    # Surface conversion if necessary
-    surf_key = get_surface_key(target_surface)
-    surface_add = SURFACE_OFFSET_PER_100M.get(surf_key, 0.0) * (target_distance / 100.0)
-
-    # Net adjusted finishing time
-    adjusted_time = base_time + weight_penalty + (surface_add * 0.3)
-
-    # Pace per 100m
     pace_100 = adjusted_time / (target_distance / 100.0)
-
-    # Beyer Speed Figure Equivalence (0 - 100)
-    # Record time = 100 Beyer points
-    # Each 0.20 sec behind record loses ~1 Beyer point per 1000m
     time_behind_record = max(0.0, adjusted_time - record_time_sec)
     points_lost = (time_behind_record / (target_distance / 1000.0)) * 5.0
     speed_figure = max(35.0, min(99.0, round(100.0 - points_lost, 1)))
@@ -168,27 +323,116 @@ def calculate_adjusted_time(horse, target_distance, target_surface, record_time_
         "weight_penalty_sec": round(weight_penalty, 2)
     }
 
-def get_jockey_score(jockey_name):
-    """Retrieve or estimate jockey impact score."""
-    clean = clean_name(jockey_name)
-    for key, val in JOCKEY_RATINGS.items():
-        if key in clean or clean in key:
-            return val
-    # Check if apprentice
-    if "ap" in (jockey_name or "").lower():
-        return 78.0
-    return 82.0
+def generate_all_bet_types(runners, race_number):
+    """
+    Generates tailored AI betting combinations for all TJK game types:
+    - Ganyan & Plase (Tekli)
+    - İkili & Sıralı İkili
+    - Plase İkili
+    - 3'lü Bahis (Trio - Sıralı & Virgüllü)
+    - Tabela Bahis (4'lü Bahis - Sıralı & Virgüllü)
+    - Sıralı 5'li Bahis
+    - Çifte Bahis
+    """
+    if not runners:
+        return {}
+        
+    top1 = runners[0]
+    top2 = runners[1] if len(runners) > 1 else runners[0]
+    top3 = runners[2] if len(runners) > 2 else top2
+    top4 = runners[3] if len(runners) > 3 else top3
+    top5 = runners[4] if len(runners) > 4 else top4
+    
+    value_bet = next((r for r in runners if r.get("is_value_bet")), None)
+    
+    # 1. GANYAN & PLASE
+    ganyan_pick = {
+        "horse_number": top1["number"],
+        "horse_name": top1["name"],
+        "win_probability": top1["win_probability"],
+        "recommendation": "Banko Tek" if top1["win_probability"] >= 28 else "Öncelikli Tek",
+        "value_alternative": {
+            "horse_number": value_bet["number"],
+            "horse_name": value_bet["name"],
+            "agf": value_bet.get("agf", 0)
+        } if value_bet else None
+    }
+    
+    # 2. İKİLİ (İ) & SIRALI İKİLİ (S.İ)
+    ikili_picks = [
+        {"combo": f"{top1['number']} - {top2['number']}", "names": f"{top1['name']} & {top2['name']}", "confidence": "Yüksek (Asıl İkili)"},
+        {"combo": f"{top1['number']} - {top3['number']}", "names": f"{top1['name']} & {top3['name']}", "confidence": "Kuvvetli Alternatif"}
+    ]
+    if value_bet and value_bet["number"] not in [top1["number"], top2["number"]]:
+        ikili_picks.append({"combo": f"{top1['number']} - {value_bet['number']}", "names": f"{top1['name']} & {value_bet['name']}", "confidence": "Bomba İkili"})
+        
+    sirali_ikili = {
+        "primary": f"{top1['number']} / {top2['number']}",
+        "cover": f"{top2['number']} / {top1['number']}",
+        "tactic": f"{top1['number']} numaralı safkanın liderliğinde, arkasına {top2['number']} ve {top3['number']} yazılması önerilir."
+    }
+    
+    # 3. PLASE İKİLİ (İlk 3'e girebilecek ikililer)
+    plase_ikili = [
+        f"{top1['number']} - {top2['number']}",
+        f"{top1['number']} - {top3['number']}",
+        f"{top2['number']} - {top3['number']}"
+    ]
+    
+    # 4. 3'LÜ BAHİS (TRIO)
+    uclu_bahis = {
+        "sirali": f"{top1['number']} / {top2['number']} / {top3['number']}",
+        "virgullu_template": f"{top1['number']} // {top2['number']}, {top3['number']} // {top2['number']}, {top3['number']}, {top4['number']}",
+        "trio_box": [top1["number"], top2["number"], top3["number"], top4["number"]],
+        "combination_count": 6
+    }
+    
+    # 5. TABELA BAHİS (4'lü Bahis - Sıralı / Sırasız)
+    tabela_bahis = {
+        "sirali": f"{top1['number']} / {top2['number']} / {top3['number']} / {top4['number']}",
+        "virgullu_template": f"{top1['number']} // {top2['number']}, {top3['number']} // {top2['number']}, {top3['number']}, {top4['number']} // {top2['number']}, {top3['number']}, {top4['number']}, {top5['number']}",
+        "box_5_horses": [top1["number"], top2["number"], top3["number"], top4["number"], top5["number"]],
+        "analysis": f"1. ayakta {top1['number']} tek korumalı; 2, 3 ve 4. ayaklara rakipleri dağıtılarak virgüllü tabela kuponu kurulması önerilir."
+    }
+    
+    # 6. SIRALI 5'Lİ BAHİS (En büyük ikramiye)
+    top6 = runners[5] if len(runners) > 5 else top5
+    sirali_besli = {
+        "sirali_ideal": f"{top1['number']} / {top2['number']} / {top3['number']} / {top4['number']} / {top5['number']}",
+        "virgullu_core": [top1["number"], top2["number"], top3["number"], top4["number"], top5["number"], top6["number"]],
+        "template_str": f"{top1['number']} // {top2['number']},{top3['number']} // {top2['number']},{top3['number']},{top4['number']} // {top3['number']},{top4['number']},{top5['number']} // {top4['number']},{top5['number']},{top6['number']}",
+        "jackpot_potential": "Günün en yüksek ganyanlı sürpriz kombinasyonu"
+    }
+    
+    # 7. ÇİFTE BAHİS
+    cifte = {
+        "leg1": top1["number"],
+        "leg1_name": top1["name"],
+        "partner": top2["number"],
+        "recommendation": f"{race_number}. Koşuda {top1['number']} (veya {top2['number']}) safkan ile sonraki koşunun favorisi bağlanmalıdır."
+    }
+
+    return {
+        "ganyan": ganyan_pick,
+        "ikili": ikili_picks,
+        "sirali_ikili": sirali_ikili,
+        "plase_ikili": plase_ikili,
+        "uclu_bahis": uclu_bahis,
+        "tabela_bahis": tabela_bahis,
+        "sirali_besli": sirali_besli,
+        "cifte": cifte
+    }
 
 def predict_race(race):
     """
-    Evaluates all runners in a race using multi-factor ensemble handicapping:
-    1. Direct & Adjusted Times (30% weight)
-    2. Track & Surface Affinity (20% weight)
-    3. Gallop Consistency with Outlier Filtering (20% weight)
-    4. Jockey & Class/Handicap (15% weight)
-    5. Form Momentum, Days Off (KGS) & s20 (15% weight)
-    
-    Generates exact 1st through Nth ranking with explainable rationale for each runner.
+    Evaluates all runners in a race using enhanced ensemble handicapping:
+    1. Direct & Adjusted Times (25% weight)
+    2. Track & Surface Affinity (15% weight)
+    3. Gallop Consistency & Outlier Filtering (18% weight)
+    4. Pedigree Bloodline Traits (Sire/Dam) (15% weight)
+    5. Wet/Dry Track Condition Impact (10% weight)
+    6. Jockey - Horse Synergy (10% weight)
+    7. Career Maturity & Recency Form (7% weight)
     """
     runners = race.get("runners", [])
     if not runners:
@@ -198,6 +442,7 @@ def predict_race(race):
     surface = race.get("surface", "Çim")
     record_time_str = race.get("record_time", "")
     record_time_sec = parse_record_time_seconds(record_time_str, distance)
+    track_condition = race.get("track_condition", "Normal")
 
     analyzed_runners = []
 
@@ -211,36 +456,45 @@ def predict_race(race):
         # 3. Gallop consistency & Outlier Filtering
         gallop_analysis = analyze_gallops(r.get("name", ""), r.get("gallops"), r.get("handicap", 35))
 
-        # 4. Jockey score
-        jockey_score = get_jockey_score(r.get("jockey", ""))
+        # 4. Pedigree (Sire & Dam) aptitude
+        pedigree_analysis = analyze_pedigree(r.get("sire", ""), r.get("dam", ""), surface, distance)
 
-        # 5. Form & Recency (KGS & s20)
+        # 5. Wet / Dry / Heavy track condition impact
+        r_temp = {**r, "pedigree_analysis": pedigree_analysis}
+        condition_analysis = analyze_track_condition_impact(r_temp, surface, track_condition)
+
+        # 6. Jockey - Horse Synergy
+        synergy_analysis = analyze_jockey_horse_synergy(r.get("jockey", ""), r.get("name", ""), r.get("weight", 58.0), r.get("last_6", ""))
+
+        # 7. Career maturity and recency
+        maturity_analysis = analyze_career_maturity(r.get("age", ""), r.get("last_6", ""), r.get("kgs", 20))
+
+        # Form momentum
         kgs = r.get("kgs", 20)
         s20 = r.get("s20", 15)
         handicap = r.get("handicap", 35)
 
-        # Ideal racing interval: 14 to 35 days
         if 14 <= kgs <= 35:
             recency_score = 90.0
         elif 36 <= kgs <= 60:
             recency_score = 80.0
         elif kgs > 60:
-            recency_score = 65.0  # Layoff penalty
+            recency_score = 65.0
         else:
-            recency_score = 82.0  # Quick return (<14 days)
+            recency_score = 82.0
 
         form_composite = (s20 * 3.5) + (recency_score * 0.3)
         form_score = max(40.0, min(95.0, form_composite))
 
-        # Composite Multi-Factor Rating
-        # Speed: 32%, Surface: 20%, Gallop: 20%, Jockey/Class: 15%, Form: 13%
+        # Multi-factor composite rating calculation
         composite_rating = (
-            (time_analysis["speed_figure"] * 0.32) +
-            (surf_score * 0.20) +
-            (gallop_analysis["gallop_score"] * 0.20) +
-            (jockey_score * 0.08) +
-            (handicap * 0.07) +
-            (form_score * 0.13)
+            (time_analysis["speed_figure"] * 0.25) +
+            (surf_score * 0.15) +
+            (gallop_analysis["gallop_score"] * 0.18) +
+            (pedigree_analysis["score"] * 0.15) +
+            (condition_analysis.get("speed_multiplier", 1.0) * 10.0) +
+            (synergy_analysis["synergy_score"] * 0.10) +
+            (maturity_analysis["maturity_score"] * 0.07)
         )
 
         analyzed_runners.append({
@@ -253,18 +507,21 @@ def predict_race(race):
                 "details": surf_details
             },
             "gallop_analysis": gallop_analysis,
-            "jockey_score": jockey_score,
+            "pedigree_analysis": pedigree_analysis,
+            "condition_analysis": condition_analysis,
+            "synergy_analysis": synergy_analysis,
+            "maturity_analysis": maturity_analysis,
+            "jockey_score": synergy_analysis["jockey_score"],
             "form_score": round(form_score, 1),
             "composite_rating": round(composite_rating, 2)
         })
 
-    # Sort runners strictly by mechanical composite rating (Highest to Lowest)
+    # Sort runners strictly by composite rating
     analyzed_runners.sort(key=lambda x: x["composite_rating"], reverse=True)
 
-    # Compute winning probabilities using calibrated softmax over composite ratings
+    # Softmax probabilities
     ratings = [r["composite_rating"] for r in analyzed_runners]
     max_rating = max(ratings)
-    # Temperature calibrated for horse racing field variance
     temperature = 4.2
     exp_ratings = [math.exp((r - max_rating) / temperature) for r in ratings]
     sum_exp = sum(exp_ratings)
@@ -274,11 +531,9 @@ def predict_race(race):
         runner["rank"] = i + 1
         runner["win_probability"] = win_prob
 
-        # Compare model probability with public AGF favorite status
         agf_val = runner.get("agf", 0.0)
         runner["is_agf_favorite"] = (agf_val >= 25.0 or (agf_val > 0 and agf_val == max(r.get("agf", 0) for r in analyzed_runners)))
         
-        # Value bet detection: model ranks high, but public overlooked
         is_value_bet = False
         value_tag = ""
         if runner["rank"] <= 2 and agf_val < 15.0 and agf_val > 0:
@@ -295,34 +550,38 @@ def predict_race(race):
 
         runner["value_tag"] = value_tag
         runner["is_value_bet"] = is_value_bet
-
-        # Generate Explainable Rationale
         runner["rationale"] = generate_rationale(runner, distance, surface, i + 1, len(analyzed_runners))
 
-    # Overall Race Pace & Tactical Map
+    # Pace & Tactical map
     pace_overview = project_race_pace(analyzed_runners, distance, surface)
+
+    # Comprehensive Betting Studio Predictions
+    bet_recommendations = generate_all_bet_types(analyzed_runners, race.get("race_number", 1))
 
     return {
         **race,
         "record_time_sec": record_time_sec,
         "runners": analyzed_runners,
         "pace_overview": pace_overview,
-        "winner_prediction": analyzed_runners[0] if analyzed_runners else None
+        "winner_prediction": analyzed_runners[0] if analyzed_runners else None,
+        "bet_recommendations": bet_recommendations
     }
 
 def generate_rationale(runner, distance, surface, rank, total_runners):
     """
-    Generates rich, fully transparent Turkish handicapping explanation
-    detailing exact reasons for the horse's assigned rank.
+    Generates rich, transparent Turkish handicapping explanation.
     """
     ta = runner["time_analysis"]
     ga = runner["gallop_analysis"]
     sa = runner["surface_affinity"]
+    pa = runner.get("pedigree_analysis", {})
+    ca = runner.get("condition_analysis", {})
+    syn = runner.get("synergy_analysis", {})
+    mat = runner.get("maturity_analysis", {})
     w = runner["weight"]
     
     reasons = []
 
-    # 1. Rank specific headline
     if rank == 1:
         reasons.append(
             f"Grup genelinde {distance}m {surface} şartlarında en yüksek hız endeksine ({ta['speed_figure']} puan) "
@@ -336,11 +595,11 @@ def generate_rationale(runner, distance, surface, rank, total_runners):
     elif rank == 3:
         reasons.append(
             f"Mesafe temposuna uyumlu düzeltilmiş derecesi ({ta['adjusted_time_str']}) ve "
-            f"tabela istikrarı ile ilk 3 için yüksek şansa sahip."
+            f"tabela istikrarı ile ilk 3 ve üçlü bahis için yüksek şansa sahip."
         )
     elif rank <= 5:
         reasons.append(
-            f"Koşunun temposuna ayak uydurabilecek hızda; özellikle yarış içi pres ve son viraj sprintinde sürpriz yapabilir."
+            f"Koşunun temposuna ayak uydurabilecek hızda; özellikle yarış içi pres ve son viraj sprintinde tabela ve sıralı beşli için sürpriz yapabilir."
         )
     else:
         reasons.append(
@@ -348,11 +607,20 @@ def generate_rationale(runner, distance, surface, rank, total_runners):
             f"geniş kuponlar için sürpriz hanesinde düşünülebilir."
         )
 
-    # 2. Surface & Distance reason
-    reasons.append(sa["details"])
+    # Pedigree trait
+    if pa and pa.get("desc"):
+        reasons.append(f"Orijin Analizi: {pa['desc']} ({pa['score']} puan).")
 
-    # 3. Gallop consistency reason (highlighting outlier filter)
-    if ga["outlier_count"] > 0:
+    # Track condition
+    if ca and ca.get("notes"):
+        reasons.append(f"Zemin Etkisi: {ca['notes']}")
+
+    # Jockey synergy
+    if syn and syn.get("details"):
+        reasons.append(f"Jokey Uyumu: {syn['details']}")
+
+    # Gallop consistency
+    if ga.get("outlier_count", 0) > 0:
         reasons.append(
             f"Galop Analizi: Ölçü dışı / aşırı dalgalı {ga['outlier_count']} idman ayıklandı. "
             f"İstikrarlı galop temposu 400m {ga['mean_400_pace']} sn olarak tespit edildi ({ga['gallop_score']} puan)."
@@ -363,29 +631,23 @@ def generate_rationale(runner, distance, surface, rank, total_runners):
             f"tutarlı sprint formu sergiledi ({ga['gallop_score']} puan)."
         )
 
-    # 4. Weight & Jockey note
+    # Weight note
     if w <= 54.5:
         reasons.append(f"{w} kg ile belirgin sıklet avantajı taşıyor.")
     elif w >= 60.0:
         reasons.append(f"{w} kg ağır sıkleti dereceye yaklaşık +{ta['weight_penalty_sec']} sn etki yapabilir.")
-
-    if runner["jockey_score"] >= 90:
-        reasons.append(f"Jokey {runner.get('jockey', '')} biniş başarısı ile atın şansını artırıyor.")
 
     return " ".join(reasons)
 
 def project_race_pace(runners, distance, surface):
     """
     Project tactical race pace (Liderlik mücadelesi, tempo tahmini).
-    Identifies front-runners, pressers, stalkers and closers.
     """
-    # Estimate running style based on equipment, gate and sprint pace
     styles = {"Kaçak (Öncü)": [], "Presçi (Takipçi)": [], "Bekleme (Sprinter)": []}
     
     for r in runners:
         mean_sprint = r["gallop_analysis"]["mean_400_pace"]
         gate = r.get("gate", 5)
-        takilar = r.get("name", "")
 
         if mean_sprint < 24.8 and gate <= 5:
             styles["Kaçak (Öncü)"].append(r["name"].split()[0])

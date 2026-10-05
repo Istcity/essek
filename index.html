@@ -21,8 +21,19 @@
   <!-- Stylesheets -->
   <link rel="stylesheet" href="./css/style.css">
   <link rel="stylesheet" href="./css/mobile.css">
+  <link rel="stylesheet" href="./css/premium.css">
 </head>
 <body>
+
+  <!-- Luxury Splash Screen with Galloping Horse -->
+  <div id="premiumSplash" class="premium-splash" aria-label="Uygulama Yükleniyor">
+    <div class="splash-card">
+      <canvas id="splashHorse" width="260" height="110"></canvas>
+      <div class="splash-title">TJK RACING AI <span class="splash-badge">PRO v2.0</span></div>
+      <div class="splash-subtitle">Bülten, Derece & Canlı Galop Analizleri Yükleniyor...</div>
+      <div class="splash-bar"><div class="splash-bar-fill"></div></div>
+    </div>
+  </div>
 
   <!-- Sticky Luxury App Header -->
   <header class="app-header">
@@ -47,16 +58,28 @@
           📅 <span id="currentDateDisplay">05.10.2026</span>
         </div>
 
-        <button class="btn-primary" id="btnHeaderKupon" onclick="window.app.switchView('coupon')" style="background: linear-gradient(135deg, var(--gold-500), var(--gold-600)); color: #000; font-weight: 800; box-shadow: 0 0 15px rgba(245, 158, 11, 0.4);" title="Aktif Kuponu Aç">
-          🎫 Kupon Yap (<span id="headerComboCount">0</span>)
+        <div class="countdown-box" id="raceCountdownBox" title="Aktif Koşunun Başlamasına Kalan Süre">
+          ⏳ <span id="countdownText">14:30 Koşusu</span>
+        </div>
+
+        <button class="btn-lux btn-crimson" id="btnToggleTjkTv" title="TJK TV Canlı Yayınını Aç / Kapat">
+          <span class="live-badge-glow">CANLI</span> 📺 TJK TV (PiP)
+        </button>
+
+        <button class="btn-lux btn-gold" id="btnHeaderKupon" onclick="window.app.switchView('coupon')" title="Aktif Kuponu Aç">
+          🎫 Kupon Yap <span class="btn-count" id="headerComboCount">0</span>
         </button>
 
         <button class="btn-glass" id="btnRefresh" title="Bülteni Yenile">
           🔄 Yenile
         </button>
 
-        <button class="btn-primary" id="btnPwaInstall">
+        <button class="btn-lux btn-primary" id="btnPwaInstall">
           📱 iOS / Mobil Yükle
+        </button>
+
+        <button class="btn-lux btn-sapphire" onclick="document.getElementById('winModal').classList.add('open')" title="Masaüstü Uygulamasını İndir">
+          💻 Windows İndir
         </button>
       </div>
     </div>
@@ -82,10 +105,22 @@
       <div class="spinner"></div>
     </section>
 
+    <!-- Parallax Galloping Horses Animation Strip -->
+    <div class="gallop-strip-wrap" title="Canlı Hipodrom Hız & Galop Şeridi">
+      <canvas id="gallopStrip" height="84"></canvas>
+      <div class="gallop-strip-overlay">
+        <span class="strip-live-badge"><span class="strip-live-dot"></span> CANLI TEMPO RADARI</span>
+        <span class="strip-sub">Gerçek Zamanlı Beyer Hız & Adım Modellemesi</span>
+      </div>
+    </div>
+
     <!-- Interactive View Navigation Tabs -->
     <nav class="view-tabs" aria-label="Analiz Modları">
       <button class="view-tab active" data-view="predictions">
         🏆 AI Sıralama & Tahmin Listesi
+      </button>
+      <button class="view-tab" data-view="allbets">
+        🎯 Tüm Bahisler Analizi (İkili / 3'lü / Tabela / 5'li)
       </button>
       <button class="view-tab" data-view="coupon">
         🎫 Kupon Yap & Kupon Sihirbazı
@@ -98,6 +133,9 @@
       </button>
       <button class="view-tab" data-view="simulator">
         🎮 2D Canlı Koşu Simülatörü
+      </button>
+      <button class="view-tab" data-view="results">
+        🏁 Koşu Sonuçları & Neticeler
       </button>
     </nav>
 
@@ -195,7 +233,62 @@
     </div>
   </div>
 
+  <!-- 4. Windows Download Info Modal -->
+  <div class="modal-overlay" id="winModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">💻 Windows Uygulaması Kurulum Rehberi</h3>
+        <button class="btn-close" onclick="document.getElementById('winModal').classList.remove('open')">&times;</button>
+      </div>
+      <div style="font-size:0.9rem; line-height:1.6; color:var(--text-secondary);">
+        <p style="margin-bottom:1rem; color:var(--gold-400); font-weight:bold;">
+          Microsoft Defender SmartScreen Uyarısı Hakkında:
+        </p>
+        <p style="margin-bottom:1rem;">
+          Uygulamamız henüz kurumsal kod imzalama sertifikasına sahip olmadığı için Windows ilk açılışta "Windows Kişisel Bilgisayarınızı Korudu" uyarısı verebilir. Bu tamamen normaldir ve virüs değildir.
+        </p>
+        <div style="display:flex; flex-direction:column; gap:0.85rem; margin-bottom:1.5rem;">
+          <div style="display:flex; gap:0.8rem; align-items:flex-start;">
+            <div style="width:28px; height:28px; border-radius:50%; background:var(--emerald-500); color:#000; font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0;">1</div>
+            <div>Uyarı ekranında sol ortadaki <strong>Ek Bilgi (More info)</strong> yazısına tıklayın.</div>
+          </div>
+          <div style="display:flex; gap:0.8rem; align-items:flex-start;">
+            <div style="width:28px; height:28px; border-radius:50%; background:var(--emerald-500); color:#000; font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0;">2</div>
+            <div>Aşağıda beliren <strong>Yine de Çalıştır (Run anyway)</strong> butonuna tıklayarak uygulamaya güvenli şekilde giriş yapın.</div>
+          </div>
+        </div>
+        <a href="TJK_RACING_AI_PRO_v2.zip" class="btn-primary" style="width:100%; justify-content:center; text-decoration:none;" download onclick="document.getElementById('winModal').classList.remove('open')">
+          ⬇️ Dosyayı İndir (ZIP)
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Picture-in-Picture TJK TV Live Stream Widget -->
+  <div class="tjk-tv-pip hidden" id="tjkTvPip" aria-label="TJK TV Canlı Yayın Penceresi">
+    <div class="tjk-tv-header" id="tjkTvHeader">
+      <div class="tjk-tv-title">
+        <span class="live-badge-glow">CANLI</span>
+        <span>🏇 TJK TV Canlı Yayın</span>
+      </div>
+      <div class="tjk-tv-controls">
+        <button class="tjk-tv-btn" id="btnPipMin" title="Küçült / Büyüt" onclick="window.app.toggleTjkTvMinimize()">_</button>
+        <button class="tjk-tv-btn" id="btnPipClose" title="Kapat" onclick="window.app.toggleTjkTv(false)">✕</button>
+      </div>
+    </div>
+    <div class="tjk-tv-body">
+      <!-- Official TJK TV / YouTube Live Player Embed -->
+      <iframe class="tjk-tv-iframe" id="tjkTvFrame" 
+              src="https://www.youtube.com/embed/live_stream?channel=UCv_bV32qF_tH8_s4_XnBf2A&autoplay=1&mute=0" 
+              title="TJK TV Canlı Yayın"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+
   <!-- Scripts -->
+  <script src="./js/horse-art.js"></script>
   <script src="./js/race-simulator.js"></script>
   <script src="./js/coupon-builder.js"></script>
   <script src="./js/h2h-compare.js"></script>
