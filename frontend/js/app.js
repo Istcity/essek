@@ -81,25 +81,55 @@ class TJKApp {
   }
 
   async loadCities() {
+    if (this.statusText) this.statusText.textContent = "TJK Şehirleri Yükleniyor...";
+    
+    // 1. Try backend server if available
     try {
-      if (this.statusText) this.statusText.textContent = "TJK Şehirleri Yükleniyor...";
       const res = await fetch(`/api/cities?date=${this.currentDateStr}`);
-      if (!res.ok) throw new Error("Static host / GitHub Pages");
-      const json = await res.json();
-      if (json.success && json.cities.length) {
-        this.cities = json.cities;
-        this.renderCities();
-        const defaultCity = this.cities.find(c => !c.is_foreign) || this.cities[0];
-        this.selectCity(defaultCity.name);
-        return;
+      if (res.ok) {
+        const json = await res.json();
+        if (json.success && json.cities && json.cities.length) {
+          this.cities = json.cities;
+          this.renderCities();
+          const defaultCity = this.cities.find(c => !c.is_foreign) || this.cities[0];
+          this.selectCity(defaultCity.name);
+          return;
+        }
       }
     } catch (err) {
-      console.log("GitHub Pages / Statik mod: Dahili şehirler yükleniyor");
+      // Backend not running
     }
 
+    // 2. Try pre-scraped live TJK data from GitHub Pages / static directory
+    const cityPaths = [
+      'data/today_cities.json',
+      './data/today_cities.json',
+      'frontend/data/today_cities.json',
+      './frontend/data/today_cities.json'
+    ];
+
+    for (const path of cityPaths) {
+      try {
+        const res = await fetch(path);
+        if (res.ok) {
+          const list = await res.json();
+          if (Array.isArray(list) && list.length > 0) {
+            this.cities = list;
+            this.renderCities();
+            const defaultCity = this.cities.find(c => !c.is_foreign) || this.cities[0];
+            this.selectCity(defaultCity.name);
+            return;
+          }
+        }
+      } catch (e) {
+        // try next path
+      }
+    }
+
+    // 3. Fallback default list
     this.cities = [
-      { id: "4", name: "Bursa", display_name: "Bursa (51. Y.G.)", is_foreign: false },
-      { id: "6", name: "Şanlıurfa", display_name: "Şanlıurfa (14. Y.G.)", is_foreign: false },
+      { id: "4", name: "Bursa", display_name: "Bursa (Gündüz)", is_foreign: false },
+      { id: "6", name: "Şanlıurfa", display_name: "Şanlıurfa (Gece)", is_foreign: false },
       { id: "3", name: "İstanbul", display_name: "İstanbul (Veliefendi)", is_foreign: false },
       { id: "1", name: "Adana", display_name: "Adana (Yeşiloba)", is_foreign: false },
       { id: "2", name: "İzmir", display_name: "İzmir (Şirinyer)", is_foreign: false },
@@ -124,31 +154,74 @@ class TJKApp {
   async selectCity(cityName) {
     this.currentCity = cityName;
     this.renderCities();
-    if (this.statusText) this.statusText.textContent = `${cityName} Bülteni Çekiliyor...`;
+    if (this.statusText) this.statusText.textContent = `${cityName} Canlı Bülteni Çekiliyor...`;
 
+    // 1. Try local/cloud backend server
     try {
       const res = await fetch(`/api/program?city=${encodeURIComponent(cityName)}&date=${this.currentDateStr}`);
-      if (!res.ok) throw new Error("Static host / GitHub Pages");
-      const json = await res.json();
-      if (json.success && json.data) {
-        this.currentProgram = json.data;
-        this.activeRaceIndex = 0;
-        if (this.statusText) this.statusText.textContent = `Canlı TJK: ${cityName} (${this.currentProgram.races.length} Koşu)`;
-        this.renderRaceRibbon();
-        this.renderCurrentRace();
-        this.couponBuilder.loadProgram(this.currentProgram);
-        return;
+      if (res.ok) {
+        const json = await res.json();
+        if (json.success && json.data) {
+          this.applyProgram(json.data, `🟢 Canlı TJK API: ${cityName}`);
+          return;
+        }
       }
     } catch (err) {
-      console.log("GitHub Pages / Statik mod: İstemci tarafı tahmin motoru devrede");
+      // Backend not running
     }
 
-    this.currentProgram = this.generateClientFallbackProgram(cityName, this.currentDateStr);
+    // 2. Try pre-scraped live TJK data for this city
+    const programPaths = [
+      `data/program_${cityName}.json`,
+      `./data/program_${cityName}.json`,
+      `data/program_${encodeURIComponent(cityName)}.json`,
+      `./data/program_${encodeURIComponent(cityName)}.json`,
+      `data/all_programs.json`,
+      `./data/all_programs.json`,
+      `frontend/data/program_${cityName}.json`,
+      `./frontend/data/program_${cityName}.json`
+    ];
+
+    for (const path of programPaths) {
+      try {
+        const res = await fetch(path);
+        if (res.ok) {
+          const json = await res.json();
+          let prog = null;
+          if (path.includes('all_programs')) {
+            prog = json[cityName] || json[Object.keys(json)[0]];
+          } else if (json.races) {
+            prog = json;
+          }
+          if (prog && prog.races && prog.races.length > 0) {
+            this.applyProgram(prog, `🟢 Canlı TJK Bülteni: ${cityName}`);
+            return;
+          }
+        }
+      } catch (e) {
+        // try next
+      }
+    }
+
+    // 3. Fallback client synthesis
+    const fallback = this.generateClientFallbackProgram(cityName, this.currentDateStr);
+    this.applyProgram(fallback, `🟡 Simüle Veri: ${cityName}`);
+  }
+
+  applyProgram(program, statusText) {
+    this.currentProgram = program;
     this.activeRaceIndex = 0;
-    if (this.statusText) this.statusText.textContent = `Web Tahmin Motoru: ${cityName} (${this.currentProgram.races.length} Koşu)`;
+    if (this.statusText) {
+      this.statusText.textContent = `${statusText} (${program.races.length} Koşu)`;
+    }
     this.renderRaceRibbon();
     this.renderCurrentRace();
     this.couponBuilder.loadProgram(this.currentProgram);
+  }
+
+  async refreshData() {
+    if (this.statusText) this.statusText.textContent = "🔄 Veriler güncelleniyor...";
+    await this.loadCities();
   }
 
   generateClientFallbackProgram(cityName, dateStr) {

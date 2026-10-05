@@ -1,0 +1,72 @@
+[
+  {
+    "id": "4",
+    "name": "Bursa",
+    "display_name": "Bursa  (51. Y.G.)",
+    "is_foreign": false,
+    "href": "/TR/YarisSever/Info/Sehir/GunlukYarisProgrami?SehirId=4&amp;QueryParameter_Tarih=05%2F10%2F2026&amp;SehirAdi=Bursa&amp;Era=today"
+  },
+  {
+    "id": "6",
+    "name": "Şanlıurfa",
+    "display_name": "Şanlıurfa  (14. Y.G.)",
+    "is_foreign": false,
+    "href": "/TR/YarisSever/Info/Sehir/GunlukYarisProgrami?SehirId=6&amp;QueryParameter_Tarih=05%2F10%2F2026&amp;SehirAdi=%C5%9Eanl%C4%B1urfa&amp;Era=today"
+  },
+  {
+    "id": "17",
+    "name": "Karma",
+    "display_name": "Karma",
+    "is_foreign": false,
+    "href": "/TR/YarisSever/Info/Sehir/GunlukYarisProgrami?SehirId=17&amp;QueryParameter_Tarih=05%2F10%2F2026&amp;SehirAdi=Karma&amp;Era=today"
+  },
+  {
+    "id": "541",
+    "name": "Le Mans Fransa",
+    "display_name": "Le Mans Fransa (YD 1)",
+    "is_foreign": true,
+    "href": "/TR/YarisSever/Info/Sehir/GunlukYarisProgrami?SehirId=541&amp;QueryParameter_Tarih=05%2F10%2F2026&amp;SehirAdi=Le%20Mans%20Fransa&amp;Era=today"
+  },
+  {
+    "id": "57",
+    "name": "Pontefract Birleşik Krallık",
+    "display_name": "Pontefract Birleşik Krallık (YD 2)",
+    "is_foreign": true,
+    "href": "/TR/YarisSever/Info/Sehir/GunlukYarisProgrami?SehirId=57&amp;QueryParameter_Tarih=05%2F10%2F2026&amp;SehirAdi=Pontefract%20Birle%C5%9Fik%20Krall%C4%B1k&amp;Era=today"
+  },
+  {
+    "id": "26",
+    "name": "Deauville Fransa",
+    "display_name": "Deauville Fransa (YD 3)",
+    "is_foreign": true,
+    "href": "/TR/YarisSever/Info/Sehir/GunlukYarisProgrami?SehirId=26&amp;QueryParameter_Tarih=05%2F10%2F2026&amp;SehirAdi=Deauville%20Fransa&amp;Era=today"
+  },
+  {
+    "id": "59",
+    "name": "Philadelphia ABD",
+    "display_name": "Philadelphia ABD (YD 4)",
+    "is_foreign": true,
+    "href": "/TR/YarisSever/Info/Sehir/GunlukYarisProgrami?SehirId=59&amp;QueryParameter_Tarih=05%2F10%2F2026&amp;SehirAdi=Philadelphia%20ABD&amp;Era=today"
+  },
+  {
+    "id": "74",
+    "name": "Finger Lakes ABD",
+    "display_name": "Finger Lakes ABD (YD 5)",
+    "is_foreign": true,
+    "href": "/TR/YarisSever/Info/Sehir/GunlukYarisProgrami?SehirId=74&amp;QueryParameter_Tarih=05%2F10%2F2026&amp;SehirAdi=Finger%20Lakes%20ABD&amp;Era=today"
+  },
+  {
+    "id": "529",
+    "name": "Horseshoe Indianapolis ABD",
+    "display_name": "Horseshoe Indianapolis ABD (YD 6)",
+    "is_foreign": true,
+    "href": "/TR/YarisSever/Info/Sehir/GunlukYarisProgrami?SehirId=529&amp;QueryParameter_Tarih=05%2F10%2F2026&amp;SehirAdi=Horseshoe%20Indianapolis%20ABD&amp;Era=today"
+  },
+  {
+    "id": "86",
+    "name": "ClubHipico Santiago Şili",
+    "display_name": "ClubHipico Santiago Şili (YD 7)",
+    "is_foreign": true,
+    "href": "/TR/YarisSever/Info/Sehir/GunlukYarisProgrami?SehirId=86&amp;QueryParameter_Tarih=05%2F10%2F2026&amp;SehirAdi=ClubHipico%20Santiago%20%C5%9Eili&amp;Era=today"
+  }
+]

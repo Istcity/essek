@@ -18,6 +18,28 @@ CACHE_TTL = 900  # 15 minutes
 def get_current_date_str():
     return datetime.now().strftime("%d.%m.%Y")
 
+def parse_clean_float(val, default=0.0):
+    if not val or val == '-':
+        return default
+    m = re.search(r'[-+]?\d+(?:[.,]\d+)?', str(val))
+    if m:
+        try:
+            return float(m.group(0).replace(',', '.'))
+        except:
+            return default
+    return default
+
+def parse_clean_int(val, default=0):
+    if not val or val == '-':
+        return default
+    m = re.search(r'[-+]?\d+', str(val))
+    if m:
+        try:
+            return int(m.group(0))
+        except:
+            return default
+    return default
+
 def get_available_cities(date_str=None):
     """
     Fetches the list of active race cities / tracks for the given day from TJK.
@@ -177,22 +199,23 @@ def fetch_and_predict_city_program(city_name, date_str=None):
                     s20 = cols[14] if len(cols) > 14 else ""
                     best_time = cols[15] if len(cols) > 15 else ""
 
+
                     current_race["runners"].append({
-                        "number": int(horse_no),
+                        "number": parse_clean_int(horse_no, len(current_race["runners"]) + 1),
                         "name": horse_name,
                         "age": age,
                         "sire": sire,
                         "dam": dam,
-                        "weight": float(weight.replace(',', '.')) if weight else 58.0,
+                        "weight": parse_clean_float(weight, 58.0),
                         "jockey": jockey,
                         "owner": owner,
                         "trainer": trainer,
-                        "gate": int(gate.split('-')[0].strip()) if gate and gate.split('-')[0].strip().isdigit() else int(horse_no),
-                        "agf": float(agf.replace('%', '').replace(',', '.').strip()) if agf and agf != '-' else 0.0,
-                        "handicap": int(handicap) if handicap.isdigit() else 35,
+                        "gate": parse_clean_int(gate, int(horse_no) if horse_no.isdigit() else 1),
+                        "agf": parse_clean_float(agf, 0.0),
+                        "handicap": parse_clean_int(handicap, 35),
                         "last_6": last_6,
-                        "kgs": int(kgs) if kgs.isdigit() else 20,
-                        "s20": int(s20) if s20.isdigit() else 15,
+                        "kgs": parse_clean_int(kgs, 20),
+                        "s20": parse_clean_int(s20, 15),
                         "best_time": best_time
                     })
     except Exception as e:

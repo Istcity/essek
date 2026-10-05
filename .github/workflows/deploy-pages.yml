@@ -1,12 +1,16 @@
-name: Deploy TJK AI App to GitHub Pages
+name: Deploy TJK AI App to GitHub Pages with Live Daily Data
 
 on:
   push:
     branches: ["main"]
+  schedule:
+    # 06:00 UTC (09:00 TR) and 09:30 UTC (12:30 TR) for midday updates
+    - cron: '0 6 * * *'
+    - cron: '30 9 * * *'
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -15,7 +19,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  deploy:
+  build-and-deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -24,7 +28,21 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Pages
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Scrape Live TJK Program and Generate AI Predictions
+        run: |
+          python scripts/build_daily_data.py
+
+      - name: Setup GitHub Pages
         uses: actions/configure-pages@v4
 
       - name: Upload artifact (frontend)
