@@ -34,9 +34,15 @@
 - HTML5 Canvas üzerinde atların start boxlarından çıkışını, öncü/kaçak ve sprinter taktiklerini, son viraj atağını ve fotofinişi gerçek zamanlı simüle eder.
 - Spiker anlatım şeridi, hız kontrolleri (1x, 2x, 4x) ve canlı lider tablosu içerir.
 
-### 6. 🎫 Akıllı Altılı Ganyan Kupon Sihirbazı
-- **Ekonomik, İdeal ve Bomba/Sürpriz** olmak üzere 3 farklı otomatik şablon stratejisi sunar.
-- TJK birim fiyatına göre toplam kombinasyon ve kupon tutarını anlık hesaplar. Tek tıkla kupon kodunu panoya kopyalama imkanı verir.
+### 6. 🎫 Gelişmiş "Kupon Yap" Stüdyosu & Canlı Kupon Barı
+- **Her Sayfadan Tek Tıkla Kupona Ekleme:** Bülten veya sıralama listesinde gezinirken her at kartındaki `+ Kupona Ekle` ve `⭐ Tek Banko Yap` butonlarıyla kupon anında güncellenir.
+- **Canlı Yüzen Kupon Barı (Floating Slip Bar):** Ekranın alt kısmında sürekli aktif kalan kupon barı, seçili ayak sayısını, toplam kombinasyonu ve tahmini tutarı anlık gösterir.
+- **Tüm Oyun Türleri:** 6'lı Ganyan, 5'li Ganyan, 4'lü Ganyan, 3'lü Ganyan, Çifte Bahis, Sıralı İkili ve Tekli Ganyan seçenekleri.
+- **Akıllı Bütçe Sihirbazı:** Bütçenizi girin (örn. 150 TL), algoritma kazanma ihtimali en yüksek matematiksel optimal kuponu (en güvenilir ayaklara tek banko, zorlu ayaklara çoklu at) otomatik oluştursun.
+- **Hızlı Ayak Aksiyonları:** Her ayak için tek tıkla `İlk 2 Atı Al`, `İlk 3 Atı Al`, `💣 Bomba Ekle`, `Hepsi (H)` ve `Banko Kilitle`.
+- **Kupon Simülatörü:** 100x Monte Carlo simülasyonu ile kuponun başarı yüzdesini ve tahmini ikramiye getirisini test edin.
+- **Kayıtlı Kuponlarım:** Kuponlarınızı başlık vererek tarayıcınıza kaydedebilir, dilediğiniz zaman tekrar yükleyebilirsiniz.
+- **TJK e-Bayi Kupon Formatı:** Tek tıkla resmi TJK e-Bayi veya WhatsApp formatında metin olarak kopyalama.
 
 ### 7. 📱 iOS & Mobil PWA Desteği
 - iPhone ve iPad için tam ekran **Standalone Web Clip / PWA** desteği.

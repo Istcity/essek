@@ -47,6 +47,10 @@
           📅 <span id="currentDateDisplay">05.10.2026</span>
         </div>
 
+        <button class="btn-primary" id="btnHeaderKupon" onclick="window.app.switchView('coupon')" style="background: linear-gradient(135deg, var(--gold-500), var(--gold-600)); color: #000; font-weight: 800; box-shadow: 0 0 15px rgba(245, 158, 11, 0.4);" title="Aktif Kuponu Aç">
+          🎫 Kupon Yap (<span id="headerComboCount">0</span>)
+        </button>
+
         <button class="btn-glass" id="btnRefresh" title="Bülteni Yenile">
           🔄 Yenile
         </button>
@@ -83,6 +87,9 @@
       <button class="view-tab active" data-view="predictions">
         🏆 AI Sıralama & Tahmin Listesi
       </button>
+      <button class="view-tab" data-view="coupon">
+        🎫 Kupon Yap & Kupon Sihirbazı
+      </button>
       <button class="view-tab" data-view="matrix">
         ⏱️ Mesafe & Derece Kıyaslama Matrisi
       </button>
@@ -92,9 +99,6 @@
       <button class="view-tab" data-view="simulator">
         🎮 2D Canlı Koşu Simülatörü
       </button>
-      <button class="view-tab" data-view="coupon">
-        🎫 Akıllı Altılı Ganyan Kupon Sihirbazı
-      </button>
     </nav>
 
     <!-- Main Dynamic View Container -->
@@ -103,6 +107,31 @@
     </div>
 
   </main>
+
+  <!-- Floating Persistent Bet Slip Bottom Bar -->
+  <aside class="floating-slip-bar" id="floatingSlipBar" aria-label="Canlı Kupon Barı">
+    <div class="slip-bar-inner">
+      <div class="slip-bar-info" onclick="window.app.switchView('coupon')" title="Kupon Stüdyosunu Aç">
+        <span class="slip-bar-badge">🎫 KUPONUM</span>
+        <div>
+          <strong id="barLegCount" style="color:#fff;">0/6 Ayak</strong> • 
+          <span id="barComboCount" style="color:var(--text-secondary);">0 Kombinasyon</span>
+        </div>
+      </div>
+      <div class="slip-bar-total">
+        <small>Tahmini Kupon Tutarı</small>
+        <strong id="barTotalCost">0.00 TL</strong>
+      </div>
+      <div class="slip-bar-actions">
+        <button class="btn-primary" onclick="window.app.switchView('coupon')" style="background:linear-gradient(135deg, var(--gold-500), var(--gold-600)); color:#000; font-weight:800; padding:0.45rem 1rem;">
+          Kuponu Aç / Düzenle ➔
+        </button>
+        <button class="btn-glass" onclick="window.couponApp.clearAll()" title="Kuponu Temizle" style="color:var(--rose-500);">
+          🗑️
+        </button>
+      </div>
+    </div>
+  </aside>
 
   <!-- ========================================================================
        MODALS

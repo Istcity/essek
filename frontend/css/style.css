@@ -1003,12 +1003,13 @@ body {
 }
 
 /* ==========================================================================
-   VIEW 5: BET TICKET & COUPON BUILDER
+   VIEW 5: BET TICKET & KUPON YAP STUDIO
    ========================================================================== */
 .coupon-container {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 2.1fr 1fr;
   gap: 1.5rem;
+  margin-bottom: 5rem; /* space for floating bar */
 }
 
 .coupon-races-card, .coupon-summary-card {
@@ -1018,72 +1019,488 @@ body {
   padding: 1.5rem;
 }
 
+.coupon-studio-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.game-types-pills {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  overflow-x: auto;
+}
+
+.game-type-pill {
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: var(--transition-fast);
+}
+
+.game-type-pill:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.game-type-pill.active {
+  background: linear-gradient(135deg, var(--gold-500), var(--gold-600));
+  color: #000;
+  border-color: var(--gold-400);
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.35);
+}
+
+.start-race-select {
+  background: #1e293b;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 0.4rem 0.75rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  font-weight: 600;
+  outline: none;
+}
+
+.coupon-strategy-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  background: rgba(8, 12, 20, 0.4);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.budget-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.budget-input {
+  width: 75px;
+  background: #0f172a;
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  border-radius: var(--radius-sm);
+  color: var(--gold-400);
+  font-weight: 800;
+  font-size: 0.9rem;
+  padding: 0.35rem 0.5rem;
+  text-align: center;
+  outline: none;
+}
+
 .coupon-leg-row {
-  padding: 1rem;
-  background: rgba(8, 12, 20, 0.5);
+  padding: 1rem 1.2rem;
+  background: rgba(8, 12, 20, 0.55);
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: var(--radius-md);
-  margin-bottom: 0.85rem;
+  margin-bottom: 1rem;
+  transition: var(--transition-fast);
+}
+
+.coupon-leg-row.leg-has-banko {
+  border-color: rgba(245, 158, 11, 0.5);
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.06), rgba(8, 12, 20, 0.65));
 }
 
 .coupon-leg-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 0.6rem;
-}
-
-.leg-horse-pills {
-  display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.6rem;
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
 }
 
-.coupon-horse-btn {
-  padding: 0.35rem 0.75rem;
+.leg-badge {
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-sm);
+  background: rgba(16, 185, 129, 0.2);
+  color: var(--emerald-400);
+  border: 1px solid var(--emerald-500);
+  letter-spacing: 0.04em;
+}
+
+.banko-indicator {
+  font-size: 0.74rem;
+  font-weight: 800;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(135deg, var(--gold-500), var(--gold-600));
+  color: #000;
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.35);
+}
+
+.leg-quick-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.btn-leg-quick {
+  padding: 0.2rem 0.5rem;
   border-radius: var(--radius-sm);
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid var(--border-subtle);
   color: var(--text-secondary);
-  font-size: 0.8rem;
+  font-size: 0.72rem;
   font-weight: 600;
   cursor: pointer;
   transition: var(--transition-fast);
 }
 
-.coupon-horse-btn.selected {
-  background: var(--emerald-500);
+.btn-leg-quick:hover {
+  background: rgba(255, 255, 255, 0.15);
   color: #fff;
-  border-color: var(--emerald-400);
-  box-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
 }
 
-.coupon-horse-btn.banko {
-  background: linear-gradient(135deg, var(--gold-500), var(--gold-600));
+.btn-leg-clear {
+  color: var(--rose-500);
+}
+
+.leg-horse-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 0.6rem;
+}
+
+.coupon-horse-chip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-sm);
+  padding: 0.45rem 0.65rem;
+  transition: var(--transition-fast);
+}
+
+.coupon-horse-chip:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.coupon-horse-chip.selected {
+  background: rgba(16, 185, 129, 0.18);
+  border-color: var(--emerald-400);
+}
+
+.coupon-horse-chip.is-banko {
+  background: rgba(245, 158, 11, 0.2);
+  border-color: var(--gold-400);
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.25);
+}
+
+.chip-main-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  flex: 1;
+}
+
+.chip-number {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--text-main);
+  min-width: 24px;
+}
+
+.chip-names {
+  display: flex;
+  flex-direction: column;
+}
+
+.chip-name {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 90px;
+}
+
+.chip-jockey {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+}
+
+.chip-stats {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-left: auto;
+  margin-right: 0.35rem;
+}
+
+.chip-prob {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--emerald-400);
+}
+
+.chip-rank {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+}
+
+.chip-rank-crown {
+  font-size: 0.75rem;
+}
+
+.chip-banko-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-muted);
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.chip-banko-btn:hover {
+  background: rgba(245, 158, 11, 0.2);
+  color: var(--gold-400);
+}
+
+.chip-banko-btn.active {
+  background: var(--gold-500);
   color: #000;
   border-color: var(--gold-400);
 }
 
-.coupon-summary-sticky {
-  position: sticky;
-  top: 90px;
-}
-
-.summary-cost-box {
-  background: rgba(8, 12, 20, 0.8);
-  border: 1px solid var(--border-accent);
+/* TJK Visual Ticket Slip Box */
+.tjk-ticket-preview-box {
+  background: #fefce8;
+  border: 2px dashed #ca8a04;
   border-radius: var(--radius-md);
   padding: 1.25rem;
-  margin-top: 1rem;
-  text-align: center;
+  color: #1c1917;
+  font-family: 'Courier New', Courier, monospace;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
 }
 
-.summary-cost-value {
+.tjk-ticket-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-bottom: 1px solid #eab308;
+  padding-bottom: 0.4rem;
+  margin-bottom: 0.6rem;
+  color: #854d0e;
+}
+
+.tjk-ticket-title {
+  text-align: center;
+  font-weight: 900;
+  font-size: 1.1rem;
+  color: #713f12;
+  margin-bottom: 0.6rem;
+  letter-spacing: 0.05em;
+}
+
+.tjk-ticket-legs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  border-top: 1px dashed #ca8a04;
+  border-bottom: 1px dashed #ca8a04;
+  padding: 0.6rem 0;
+  margin-bottom: 0.6rem;
+}
+
+.tjk-ticket-leg-line {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.tjk-ticket-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.8rem;
+  text-align: right;
+}
+
+.tjk-ticket-price-total {
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: #15803d;
+  margin-top: 0.35rem;
+}
+
+.coupon-metrics-box {
+  background: rgba(8, 12, 20, 0.75);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Saved Coupons list */
+.saved-coupon-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 0.5rem 0.75rem;
+}
+
+.saved-coupon-card:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.btn-saved-delete {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0.2rem 0.4rem;
+  font-size: 0.8rem;
+}
+
+.btn-saved-delete:hover {
+  color: var(--rose-500);
+}
+
+/* Floating Bet Slip Bottom Bar */
+.floating-slip-bar {
+  position: fixed;
+  bottom: 1.2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 3rem);
+  max-width: 1000px;
+  background: rgba(14, 21, 38, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-accent);
+  border-radius: var(--radius-full);
+  padding: 0.65rem 1.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 20px rgba(16, 185, 129, 0.2);
+  z-index: 900;
+  transition: var(--transition-fast);
+}
+
+.slip-bar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.slip-bar-info {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  cursor: pointer;
+}
+
+.slip-bar-badge {
   font-family: var(--font-heading);
-  font-size: 2rem;
   font-weight: 800;
+  font-size: 0.78rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, var(--gold-500), var(--gold-600));
+  color: #000;
+  letter-spacing: 0.04em;
+}
+
+.slip-bar-total {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.slip-bar-total small {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+}
+
+.slip-bar-total strong {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
   color: var(--emerald-400);
-  margin-top: 0.3rem;
+}
+
+.slip-bar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+/* Quick Select Button on Runner Cards */
+.btn-runner-select {
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: var(--transition-fast);
+}
+
+.btn-runner-select:hover {
+  background: rgba(16, 185, 129, 0.15);
+  border-color: var(--emerald-400);
+  color: #fff;
+}
+
+.btn-runner-select.selected {
+  background: var(--emerald-500);
+  color: #fff;
+  border-color: var(--emerald-400);
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
+}
+
+.btn-runner-select.is-banko {
+  background: linear-gradient(135deg, var(--gold-500), var(--gold-600));
+  color: #000;
+  border-color: var(--gold-400);
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.4);
 }
 
 /* ==========================================================================

@@ -280,14 +280,23 @@ class TJKApp {
             </div>
 
             <div class="runner-prob-block">
-              <div class="prob-score-pill">
-                <span>%${r.win_probability}</span>
-                <small>Kazanma İhtimali</small>
+              <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
+                <button class="btn-runner-select ${window.couponApp?.isHorseBanko(race.race_number, r.number) ? 'is-banko' : (window.couponApp?.isHorseSelected(race.race_number, r.number) ? 'selected' : '')}" 
+                        onclick="window.couponApp.toggleHorseCurrentRace(${r.number})"
+                        title="Bu atı kupona ekle / çıkar">
+                  ${window.couponApp?.isHorseBanko(race.race_number, r.number) ? '⭐ Bankonuz' : (window.couponApp?.isHorseSelected(race.race_number, r.number) ? '✓ Kuponda' : '➕ Kupona Ekle')}
+                </button>
+                <div class="prob-score-pill">
+                  <span>%${r.win_probability}</span>
+                  <small>Kazanma İhtimali</small>
+                </div>
               </div>
-              <span class="prob-tag-badge ${r.is_value_bet ? 'value-bet' : ''}">
-                ${r.value_tag || (r.rank === 1 ? 'Favori' : 'Plase')}
-              </span>
-              ${r.agf > 0 ? `<span style="font-size:0.72rem; color:var(--text-muted);">AGF: %${r.agf}</span>` : ''}
+              <div style="display:flex; align-items:center; gap:0.4rem;">
+                <span class="prob-tag-badge ${r.is_value_bet ? 'value-bet' : ''}">
+                  ${r.value_tag || (r.rank === 1 ? 'Favori' : 'Plase')}
+                </span>
+                ${r.agf > 0 ? `<span style="font-size:0.72rem; color:var(--text-muted);">AGF: %${r.agf}</span>` : ''}
+              </div>
             </div>
           </div>
 
@@ -352,8 +361,11 @@ class TJKApp {
             <button class="btn-glass" onclick="window.app.openH2HModal(${r.number})">
               ⚔️ Başka Atla Kıyasla (H2H)
             </button>
-            <button class="btn-primary" onclick="window.couponApp.toggleHorse(${window.app.activeRaceIndex}, ${r.number}); window.app.switchView('coupon');">
-              ➕ Kupona Ekle
+            <button class="btn-glass" style="color:var(--gold-400); font-weight:700;" onclick="window.couponApp.setBanko(${race.race_number}, ${r.number})">
+              ⭐ Tek Banko Yap
+            </button>
+            <button class="btn-primary" onclick="window.couponApp.toggleHorseCurrentRace(${r.number})">
+              ${window.couponApp?.isHorseSelected(race.race_number, r.number) ? '✓ Kupondan Çıkar' : '➕ Kupona Ekle'}
             </button>
           </div>
         </div>
@@ -590,7 +602,12 @@ class TJKApp {
     container.innerHTML = html;
     this.couponBuilder.container = document.getElementById("couponRacesContainer");
     this.couponBuilder.summary = document.getElementById("couponSummaryContainer");
-    this.couponBuilder.loadProgram(this.currentProgram);
+    if (!this.couponBuilder.programData) {
+      this.couponBuilder.loadProgram(this.currentProgram);
+    } else {
+      this.couponBuilder.render();
+      this.couponBuilder.updateFloatingBar();
+    }
   }
 
   /* ----------------------------------------------------------------------
