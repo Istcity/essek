@@ -85,11 +85,16 @@
   }
 
   .track-bar {
-    padding: 0.5rem 0.65rem;
+    padding: 0.4rem 0.5rem;
+    width: 100%;
+    overflow: hidden;
   }
 
   .track-bar-inner {
     gap: 0.5rem;
+    width: 100%;
+    min-width: 0;
+    overflow: hidden;
   }
 
   .track-label-badge {
@@ -99,7 +104,10 @@
 
   .race-ribbon-wrapper {
     gap: 0.5rem;
-    padding: 0.4rem 0.5rem;
+    padding: 0.35rem 0.5rem;
+    width: 100%;
+    min-width: 0;
+    overflow: hidden;
   }
 
   .race-ribbon-label {

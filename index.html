@@ -25,16 +25,6 @@
 </head>
 <body>
 
-  <!-- Luxury Splash Screen with Galloping Horse -->
-  <div id="premiumSplash" class="premium-splash" aria-label="Uygulama Yükleniyor">
-    <div class="splash-card">
-      <canvas id="splashHorse" width="260" height="110"></canvas>
-      <div class="splash-title">TJK RACING AI <span class="splash-badge">PRO v2.0</span></div>
-      <div class="splash-subtitle">Bülten, Derece & Canlı Galop Analizleri Yükleniyor...</div>
-      <div class="splash-bar"><div class="splash-bar-fill"></div></div>
-    </div>
-  </div>
-
   <!-- Sticky Luxury App Header -->
   <header class="app-header">
     <div class="header-container">
@@ -110,15 +100,6 @@
     <section class="race-banner" id="raceBanner">
       <div class="spinner"></div>
     </section>
-
-    <!-- Parallax Galloping Horses Animation Strip -->
-    <div class="gallop-strip-wrap" title="Canlı Hipodrom Hız & Galop Şeridi">
-      <canvas id="gallopStrip" height="84"></canvas>
-      <div class="gallop-strip-overlay">
-        <span class="strip-live-badge"><span class="strip-live-dot"></span> CANLI TEMPO RADARI</span>
-        <span class="strip-sub">Gerçek Zamanlı Beyer Hız & Adım Modellemesi</span>
-      </div>
-    </div>
 
     <!-- Interactive View Navigation Tabs -->
     <nav class="view-tabs" aria-label="Analiz Modları">
@@ -285,18 +266,23 @@
       </div>
     </div>
     <div class="tjk-tv-body" id="tjkTvBody">
-      <!-- Official TJK TV Channel (UCNLO4lpteIloZ4IKb9L2DoA) Embed -->
+      <div class="tjk-tv-quick-bar">
+        <button class="btn-popout-live" onclick="window.app.openTjkTvExternal()">
+          🔴 Ayrı Pencerede Canlı İzle (Kesintisiz HD)
+        </button>
+      </div>
+      <!-- Official TJK TV Active Live Embed -->
       <iframe class="tjk-tv-iframe" id="tjkTvFrame" 
-              src="https://www.youtube-nocookie.com/embed/live_stream?channel=UCNLO4lpteIloZ4IKb9L2DoA&autoplay=1&mute=0" 
+              src="https://www.youtube.com/embed/hnZK5wXzQDk?autoplay=1&mute=0" 
               title="TJK TV Canlı Yayın"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
               allowfullscreen>
       </iframe>
       <div class="tjk-tv-fallback-bar">
-        <span>Yayın oynatılmazsa:</span>
+        <span>Alternatif Bağlantılar:</span>
         <div style="display:flex; gap:0.4rem;">
-          <a href="https://www.youtube.com/@TJKTVCANLIYAYIN/live" target="_blank" rel="noopener noreferrer" class="tv-fallback-link">🔴 YouTube</a>
-          <a href="https://www.tjk.org/TR/YarisSever/CanliYayin/TjkTv" target="_blank" rel="noopener noreferrer" class="tv-fallback-link">🏇 TJK.org Web</a>
+          <a href="https://www.youtube.com/@TJKTVCANLIYAYIN/live" target="_blank" rel="noopener noreferrer" class="tv-fallback-link">🔴 YouTube Canlı</a>
+          <a href="https://www.tjk.org/TR/YarisSever/CanliYayin/TjkTv" target="_blank" rel="noopener noreferrer" class="tv-fallback-link">🏇 TJK Resmi Web</a>
         </div>
       </div>
     </div>

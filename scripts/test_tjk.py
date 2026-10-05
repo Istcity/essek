@@ -1,19 +1,32 @@
-import urllib.request, re
+import urllib.request
+import re
 
-headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/120.0.0.0 Safari/537.36'}
-req = urllib.request.Request('https://www.youtube.com/@TJKTVCANLIYAYIN', headers=headers)
-html = urllib.request.urlopen(req, timeout=10).read().decode('utf-8', 'ignore')
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+    'Accept-Language': 'tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7'
+}
 
-cid = re.search(r'"externalId":"(UC[a-zA-Z0-9_-]{22})"', html)
-if cid:
-    print('Found Channel ID:', cid.group(1))
-
-# Also search for live streams or videos on channel
-live_vids = re.findall(r'"videoId":"([a-zA-Z0-9_-]{11})"', html)
-print('Videos:', list(dict.fromkeys(live_vids))[:10])
-
-# Check what iframe embed URLs work for YouTube live stream
-# 1: https://www.youtube-nocookie.com/embed/live_stream?channel=CHANNEL_ID
-# 2: https://www.youtube.com/embed/live_stream?channel=CHANNEL_ID
-# 3: Direct video ID embed: https://www.youtube.com/embed/VIDEO_ID?autoplay=1
-print('Live embed URL:', f'https://www.youtube.com/embed/live_stream?channel={cid.group(1)}' if cid else 'N/A')
+req = urllib.request.Request('https://www.youtube.com/@TJKTVCANLIYAYIN/live', headers=headers)
+with urllib.request.urlopen(req, timeout=10) as resp:
+    html = resp.read().decode('utf-8', 'ignore')
+    final_url = resp.geturl()
+    print("Final URL:", final_url)
+    
+    # 1. Check if redirected to watch?v=VIDEO_ID
+    watch_match = re.search(r'watch\?v=([a-zA-Z0-9_-]{11})', final_url)
+    if watch_match:
+        print("Redirected to video ID:", watch_match.group(1))
+    
+    # 2. Check canonical
+    can = re.search(r'<link rel="canonical" href="([^"]+)"', html)
+    if can:
+        print("Canonical:", can.group(1))
+        
+    # 3. Check liveStreamabilityRenderer
+    m = re.search(r'"liveStreamabilityRenderer":\{"videoId":"([a-zA-Z0-9_-]{11})"', html)
+    if m:
+        print("liveStreamabilityRenderer videoId:", m.group(1))
+        
+    # 4. Check videoId
+    vids = re.findall(r'"videoId":"([a-zA-Z0-9_-]{11})"', html)
+    print("Top video IDs found:", list(dict.fromkeys(vids))[:5])

@@ -1151,12 +1151,12 @@ class TJKApp {
 
     this.tvSources = [
       {
-        name: "YouTube Canlı (NoCookie)",
-        url: "https://www.youtube-nocookie.com/embed/live_stream?channel=UCNLO4lpteIloZ4IKb9L2DoA&autoplay=1&mute=0"
+        name: "YouTube Canlı Aktif Yayın",
+        url: "https://www.youtube.com/embed/hnZK5wXzQDk?autoplay=1&mute=0"
       },
       {
-        name: "YouTube Canlı (Standart)",
-        url: "https://www.youtube.com/embed/live_stream?channel=UCNLO4lpteIloZ4IKb9L2DoA&autoplay=1&mute=0"
+        name: "YouTube Kanal Canlısı (NoCookie)",
+        url: "https://www.youtube-nocookie.com/embed/live_stream?channel=UCNLO4lpteIloZ4IKb9L2DoA&autoplay=1&mute=0"
       },
       {
         name: "TJK TV Video Akışı",
@@ -1165,6 +1165,24 @@ class TJKApp {
     ];
 
     this.makePipDraggable();
+    this.resolveLiveVideo();
+  }
+
+  async resolveLiveVideo() {
+    try {
+      const res = await fetch("/api/tjktv");
+      if (res.ok) {
+        const json = await res.json();
+        if (json.success && json.video_id) {
+          this.tvSources[0].url = `https://www.youtube.com/embed/${json.video_id}?autoplay=1&mute=0`;
+          if (this.tjkTvFrame && this.isTvPipOpen) {
+            this.tjkTvFrame.src = this.tvSources[0].url;
+          }
+        }
+      }
+    } catch (e) {
+      // offline / static fallback
+    }
   }
 
   toggleTjkTv(forceOpen) {
@@ -1206,7 +1224,12 @@ class TJKApp {
   }
 
   openTjkTvExternal() {
-    window.open("https://www.youtube.com/@TJKTVCANLIYAYIN/live", "_blank");
+    const popout = window.open(
+      "https://www.youtube.com/@TJKTVCANLIYAYIN/live", 
+      "TjkTvPopout", 
+      "width=980,height=580,menubar=no,toolbar=no,location=no,status=no,resizable=yes"
+    );
+    if (popout) popout.focus();
   }
 
   showRaceAlert(race, minsLeft) {

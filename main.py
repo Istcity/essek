@@ -81,6 +81,27 @@ class TJKAppHandler(SimpleHTTPRequestHandler):
                     "version": "2.0.0-PRO",
                     "app": "essek - TJK At Yarışı Tahmin Platformu"
                 })
+
+            elif path == "/api/tjktv":
+                vid = "hnZK5wXzQDk"
+                try:
+                    import urllib.request, re
+                    h = {'User-Agent': 'Mozilla/5.0'}
+                    r = urllib.request.Request('https://www.youtube.com/@TJKTVCANLIYAYIN/live', headers=h)
+                    with urllib.request.urlopen(r, timeout=4) as resp:
+                        m = re.search(r'"liveStreamabilityRenderer":\{"videoId":"([a-zA-Z0-9_-]{11})"', resp.read().decode('utf-8', 'ignore'))
+                        if m:
+                            vid = m.group(1)
+                except Exception:
+                    pass
+
+                self.send_json_response({
+                    "success": True,
+                    "video_id": vid,
+                    "embed_url": f"https://www.youtube.com/embed/{vid}?autoplay=1",
+                    "live_url": "https://www.youtube.com/@TJKTVCANLIYAYIN/live",
+                    "tjk_web_url": "https://www.tjk.org/TR/YarisSever/CanliYayin/TjkTv"
+                })
             else:
                 self.send_error(404, "Endpoint bulunamadı")
         except Exception as e:
