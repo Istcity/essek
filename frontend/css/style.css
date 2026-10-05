@@ -2342,6 +2342,14 @@ body {
   transform: scale(0.98);
 }
 
+.tjk-tv-video {
+  width: 100%;
+  height: 248px;
+  background: #000;
+  display: block;
+  object-fit: contain;
+}
+
 .tjk-tv-iframe {
   width: 100%;
   height: 248px;

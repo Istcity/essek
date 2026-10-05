@@ -30,11 +30,11 @@ SURFACE_OFFSET_PER_100M = {
 
 # Elite Jockey ratings in Turkey (win & place strike rates)
 JOCKEY_RATINGS = {
-    "g.kocakaya": 96, "ö.yıldırım": 95, "h.karataş": 95, "m.kaya": 92,
+    "g.kocakaya": 96, "ö.yıldırım": 95, "h.karataş": 95, "m.kaya": 93,
     "n.avci": 91, "m.çiçek": 90, "m.m.bilgin": 89, "a.sözen": 89,
-    "e.aktuğ": 87, "mer.çelik": 86, "vedat.abiş": 95, "s.boyraz": 87,
+    "e.aktuğ": 87, "mer.çelik": 88, "vedat.abiş": 95, "s.boyraz": 87,
     "h.çizik": 88, "f.çetin": 84, "o.yıldız": 85, "t.alıcı": 83,
-    "a.meh.altın": 82, "mah.turan": 81, "u.temur": 82, "m.keçeci": 80,
+    "a.meh.altın": 82, "mah.turan": 81, "u.temur": 83, "m.keçeci": 80,
     "e.kadirler": 78, "r.ketme": 76, "i.katı": 77, "a.kurşun": 92,
     "s.kaya": 94, "b.kılınç": 80, "m.s.çelik": 85, "f.yardımcı": 84
 }
@@ -71,8 +71,11 @@ def clean_name(name):
     """Normalize jockey or horse name for dictionary lookup."""
     if not name:
         return ""
-    n = name.lower().replace('ı', 'i').replace('ğ', 'g').replace('ü', 'u').replace('ş', 's').replace('ö', 'o').replace('ç', 'c')
+    n = str(name).replace('İ', 'i').replace('I', 'i').replace('ı', 'i').lower()
+    n = n.replace('ğ', 'g').replace('ü', 'u').replace('ş', 's').replace('ö', 'o').replace('ç', 'c')
     return re.sub(r'[^a-z0-9]', '', n)
+
+CLEANED_JOCKEY_RATINGS = {clean_name(k): v for k, v in JOCKEY_RATINGS.items()}
 
 def parse_record_time_seconds(record_str, distance):
     """Parse track record time like '1.29.33' or '1:29.33'."""
@@ -84,9 +87,9 @@ def parse_record_time_seconds(record_str, distance):
 def get_surface_key(surface_text):
     """Detect surface type: çim, kum, sentetik."""
     s = (surface_text or "").lower()
-    if "sentetik" in s:
+    if "sentetik" in s or "synthetic" in s:
         return "sentetik"
-    elif "kum" in s:
+    elif "kum" in s or "dirt" in s:
         return "kum"
     return "çim"
 
@@ -175,24 +178,24 @@ def analyze_track_condition_impact(runner, target_surface, track_condition="Norm
             "notes": f"Çim pist yumuşak/ağır; dereceler +{sec_penalty}sn civarında yavaşlayacaktır. Güçlü pedigriye ({pedigree_wet} puan) sahip safkanlar öne çıkar."
         }
 
-def analyze_jockey_horse_synergy(jockey_name, horse_name, weight, last_6):
+def analyze_jockey_horse_synergy(jockey_name, horse_name, weight, last_6, is_maiden=False):
     """
     Computes synergy score between jockey and runner.
     Takes into account master jockey rating, weight tolerance, and past run rhythm.
     """
     clean_j = clean_name(jockey_name)
     base_jockey = 80.0
-    for key, val in JOCKEY_RATINGS.items():
+    for key, val in CLEANED_JOCKEY_RATINGS.items():
         if key in clean_j or clean_j in key:
-            base_jockey = val
+            base_jockey = float(val)
             break
             
     is_apprentice = "ap" in (jockey_name or "").lower() or (weight <= 53.0 and base_jockey <= 82)
     
-    # Master jockey bonus on clutch races
-    if base_jockey >= 92:
+    # Master jockey bonus on clutch/maiden races
+    if base_jockey >= 88:
         synergy_desc = f"Usta jokey {jockey_name} binişi ile yarış içi taktik ve son viraj hamle üstünlüğü."
-        synergy_score = base_jockey + 2.0
+        synergy_score = base_jockey + (4.0 if is_maiden else 2.0)
     elif is_apprentice:
         synergy_desc = f"Genç apranti {jockey_name} sıklet indirimi (indirimli kilo) avantajı sunuyor."
         synergy_score = base_jockey - 2.0
@@ -203,7 +206,7 @@ def analyze_jockey_horse_synergy(jockey_name, horse_name, weight, last_6):
     return {
         "jockey_score": round(base_jockey, 1),
         "synergy_score": round(synergy_score, 1),
-        "is_master": base_jockey >= 90,
+        "is_master": base_jockey >= 88,
         "is_apprentice": is_apprentice,
         "details": synergy_desc
     }
@@ -246,50 +249,120 @@ def analyze_career_maturity(age_str, last_6, kgs):
 def analyze_track_affinity(last_6, target_surface):
     """
     Parses last 6 races to compute affinity for target surface.
+    Normalizes Turkish characters and handles '0' as 10th+ (unplaced).
     """
     if not last_6:
-        return 60.0, 0, 0, "Daha önce resmi koşu kaydı yok (Orijin ve idman değerlendirildi)"
+        return 58.0, 0, 0, "Daha önce resmi koşu kaydı yok (Orijin ve idman değerlendirildi)"
 
-    target_code = "Ç" if target_surface == "çim" else ("S" if target_surface == "sentetik" else "K")
-    surface_runs = []
+    surf_key = get_surface_key(target_surface)
+    target_code = "Ç" if surf_key == "çim" else ("S" if surf_key == "sentetik" else "K")
     
-    tokens = re.findall(r'([ÇSKçsk])(\d+)', last_6)
+    tokens = re.findall(r'([ÇSKçskC])(\d+)', str(last_6))
+    if not tokens:
+        return 58.0, 0, 0, "Koşu detayı ayrıştırılamadı"
+
+    surface_runs = []
+    all_runs = []
     for surf, pos in tokens:
-        surf_upper = surf.upper()
-        finish_pos = int(pos)
-        if surf_upper == target_code:
+        surf_char = "Ç" if surf.upper() in ["Ç", "C"] else ("S" if surf.upper() == "S" else "K")
+        raw_pos = int(pos)
+        # In TJK, '0' signifies 10th or worse (unplaced / tabelaya giremedi)
+        finish_pos = 10 if raw_pos == 0 else raw_pos
+        all_runs.append((surf_char, finish_pos))
+        if surf_char == target_code:
             surface_runs.append(finish_pos)
 
     if not surface_runs:
-        other_runs = [int(p) for _, p in tokens]
-        avg_other = sum(other_runs) / len(other_runs) if other_runs else 5
-        score = max(40, 75 - avg_other * 5)
+        other_finishes = [p for _, p in all_runs]
+        avg_other = sum(other_finishes) / len(other_finishes) if other_finishes else 6.0
+        score = max(40.0, 68.0 - avg_other * 3.0)
         return score, 0, 0, f"Hedef pistte ({target_surface.capitalize()}) henüz start almadı; farklı pist tecrübesi bulunuyor."
 
     podium_count = sum(1 for p in surface_runs if 1 <= p <= 4)
     win_count = sum(1 for p in surface_runs if p == 1)
+    second_count = sum(1 for p in surface_runs if p == 2)
     avg_finish = sum(surface_runs) / len(surface_runs)
     
-    score = 85.0 - (avg_finish - 1) * 9.0 + (win_count * 5.0)
-    score = max(25.0, min(98.0, score))
+    podium_rate = podium_count / len(surface_runs)
+    top2_rate = sum(1 for p in surface_runs if p <= 2) / len(surface_runs)
+    
+    # Recent finish on target surface
+    recent_finish = surface_runs[-1]
+    recent_bonus = 8.0 if recent_finish <= 2 else (4.0 if recent_finish <= 4 else 0.0)
+    
+    # Consecutive top-2 finishes bonus (e.g. Ç2 Ç2 Ç2)
+    streak_bonus = 0.0
+    if len(surface_runs) >= 2 and all(p <= 2 for p in surface_runs[-3:]):
+        streak_bonus = 8.0
+    elif len(surface_runs) >= 2 and all(p <= 4 for p in surface_runs[-3:]):
+        streak_bonus = 4.0
+
+    base_score = 88.0 - (avg_finish - 1.0) * 5.0
+    score = base_score + (podium_rate * 6.0) + (top2_rate * 5.0) + recent_bonus + streak_bonus + (win_count * 5.0)
+    score = max(30.0, min(99.0, round(score, 1)))
 
     details = (
         f"{target_surface.capitalize()} pistte {len(surface_runs)} yarışta "
-        f"{podium_count} kez tabela ({win_count} birincilik, ortalama {avg_finish:.1f}.lik). "
-        f"{'Yüksek pist uyumu!' if score >= 80 else 'Dengeli pist performansı.'}"
+        f"{podium_count} kez tabela ({win_count} birincilik, {second_count} ikincilik, ortalama {avg_finish:.1f}.lik). "
+        f"{'Üstün pist istikrarı!' if score >= 85 else ('Yüksek pist uyumu.' if score >= 75 else 'Dengeli pist performansı.')}"
     )
     return score, len(surface_runs), podium_count, details
 
-def calculate_adjusted_time(runner, target_distance, target_surface, record_time_sec):
+def compute_surface_form(last_6, target_surface):
+    """
+    Computes current form prioritizing recent performance on the target surface.
+    """
+    if not last_6:
+        return 65.0
+    surf_key = get_surface_key(target_surface)
+    target_code = "Ç" if surf_key == "çim" else ("S" if surf_key == "sentetik" else "K")
+    tokens = re.findall(r'([ÇSKçskC])(\d+)', str(last_6))
+    if not tokens:
+        return 65.0
+    
+    surface_finishes = []
+    all_finishes = []
+    for s, p in tokens:
+        sc = "Ç" if s.upper() in ["Ç", "C"] else ("S" if s.upper() == "S" else "K")
+        raw_p = int(p)
+        pos = 10 if raw_p == 0 else raw_p
+        all_finishes.append(pos)
+        if sc == target_code:
+            surface_finishes.append(pos)
+
+    if surface_finishes:
+        recent = surface_finishes[-3:]
+        avg_rec = sum(recent) / len(recent)
+        form = 92.0 - (avg_rec - 1.0) * 5.0
+        if surface_finishes[-1] <= 2:
+            form += 7.0
+        elif surface_finishes[-1] <= 4:
+            form += 3.5
+        if len(surface_finishes) >= 2 and all(p <= 2 for p in recent):
+            form += 5.0
+        return max(40.0, min(99.0, round(form, 1)))
+    else:
+        avg_all = sum(all_finishes) / len(all_finishes) if all_finishes else 6.0
+        return max(40.0, 70.0 - avg_all * 3.0)
+
+def calculate_adjusted_time(runner, target_distance, target_surface, record_time_sec, is_maiden=False):
     """
     Adjusts past best time to current conditions.
+    Takes into account maiden class weight dynamics and track records.
     """
     best_time_str = runner.get("best_time", "")
     best_time_sec = parse_time_str(best_time_str)
     
     weight = runner.get("weight", 58.0)
     weight_diff = weight - 57.0
-    weight_penalty = weight_diff * (0.22 * (target_distance / 1400.0))
+
+    if is_maiden:
+        # In Maiden races, 60kg is an earned badge of superior placed form (class indicator)
+        weight_penalty = 0.0
+        class_bonus = 2.5 if weight >= 59.0 else 0.0
+    else:
+        weight_penalty = weight_diff * (0.20 * (target_distance / 1400.0))
+        class_bonus = 0.0
 
     if best_time_sec and best_time_sec > 40:
         adjusted_time = best_time_sec + weight_penalty
@@ -298,12 +371,16 @@ def calculate_adjusted_time(runner, target_distance, target_surface, record_time
     else:
         # Benchmark estimation based on handicap & record
         handicap = runner.get("handicap", 35)
-        perf_tier = max(0.0, min(1.0, (handicap - 20) / 75.0))
+        if is_maiden:
+            perf_tier = max(0.0, min(1.0, (handicap - 18) / 20.0))
+        else:
+            perf_tier = max(0.0, min(1.0, (handicap - 20) / 75.0))
+            
         surface_key = get_surface_key(target_surface)
         surface_offset = SURFACE_OFFSET_PER_100M.get(surface_key, 0.0) * (target_distance / 100.0)
         
         ideal_time = record_time_sec + surface_offset
-        handicap_delay = (1.0 - perf_tier) * (target_distance / 1000.0) * 3.8
+        handicap_delay = (1.0 - perf_tier) * (target_distance / 1000.0) * (2.0 if is_maiden else 3.8)
         adjusted_time = ideal_time + handicap_delay + weight_penalty
         is_exact_match = False
         source_desc = f"Hedef mesafe ve handikap ({handicap}) puanından hesaplandı"
@@ -311,7 +388,7 @@ def calculate_adjusted_time(runner, target_distance, target_surface, record_time
     pace_100 = adjusted_time / (target_distance / 100.0)
     time_behind_record = max(0.0, adjusted_time - record_time_sec)
     points_lost = (time_behind_record / (target_distance / 1000.0)) * 5.0
-    speed_figure = max(35.0, min(99.0, round(100.0 - points_lost, 1)))
+    speed_figure = max(35.0, min(99.0, round(100.0 - points_lost + class_bonus, 1)))
 
     return {
         "adjusted_time_sec": round(adjusted_time, 2),
@@ -426,13 +503,12 @@ def generate_all_bet_types(runners, race_number):
 def predict_race(race):
     """
     Evaluates all runners in a race using enhanced ensemble handicapping:
-    1. Direct & Adjusted Times (25% weight)
-    2. Track & Surface Affinity (15% weight)
-    3. Gallop Consistency & Outlier Filtering (18% weight)
-    4. Pedigree Bloodline Traits (Sire/Dam) (15% weight)
-    5. Wet/Dry Track Condition Impact (10% weight)
-    6. Jockey - Horse Synergy (10% weight)
-    7. Career Maturity & Recency Form (7% weight)
+    1. Track & Surface Affinity (25% weight)
+    2. Surface-Specific Recent Form & Streak (22% weight)
+    3. Master Jockey & Runner Synergy (18% weight)
+    4. Beyer Speed Figure & Class-adjusted Time (15% weight)
+    5. Gallop Consistency & Outlier Filtering (12% weight)
+    6. Pedigree Bloodline Traits (8% weight)
     """
     runners = race.get("runners", [])
     if not runners:
@@ -440,6 +516,10 @@ def predict_race(race):
 
     distance = race.get("distance", 1400)
     surface = race.get("surface", "Çim")
+    race_type = race.get("race_type", "")
+    race_name = race.get("name", "")
+    is_maiden = "maiden" in (race_type + " " + race_name).lower()
+    
     record_time_str = race.get("record_time", "")
     record_time_sec = parse_record_time_seconds(record_time_str, distance)
     track_condition = race.get("track_condition", "Normal")
@@ -447,54 +527,39 @@ def predict_race(race):
     analyzed_runners = []
 
     for r in runners:
-        # 1. Adjusted Finishing Time & Speed Figure
-        time_analysis = calculate_adjusted_time(r, distance, surface, record_time_sec)
+        # 1. Adjusted Finishing Time & Speed Figure (Maiden aware)
+        time_analysis = calculate_adjusted_time(r, distance, surface, record_time_sec, is_maiden=is_maiden)
 
         # 2. Track & Surface Affinity
         surf_score, surf_runs, podium_runs, surf_details = analyze_track_affinity(r.get("last_6", ""), surface)
 
-        # 3. Gallop consistency & Outlier Filtering
+        # 3. Surface-specific form momentum
+        surface_form = compute_surface_form(r.get("last_6", ""), surface)
+
+        # 4. Gallop consistency & Outlier Filtering
         gallop_analysis = analyze_gallops(r.get("name", ""), r.get("gallops"), r.get("handicap", 35))
 
-        # 4. Pedigree (Sire & Dam) aptitude
+        # 5. Pedigree (Sire & Dam) aptitude
         pedigree_analysis = analyze_pedigree(r.get("sire", ""), r.get("dam", ""), surface, distance)
 
-        # 5. Wet / Dry / Heavy track condition impact
+        # 6. Wet / Dry / Heavy track condition impact
         r_temp = {**r, "pedigree_analysis": pedigree_analysis}
         condition_analysis = analyze_track_condition_impact(r_temp, surface, track_condition)
 
-        # 6. Jockey - Horse Synergy
-        synergy_analysis = analyze_jockey_horse_synergy(r.get("jockey", ""), r.get("name", ""), r.get("weight", 58.0), r.get("last_6", ""))
+        # 7. Jockey - Horse Synergy (Master jockey edge in Maiden)
+        synergy_analysis = analyze_jockey_horse_synergy(r.get("jockey", ""), r.get("name", ""), r.get("weight", 58.0), r.get("last_6", ""), is_maiden=is_maiden)
 
-        # 7. Career maturity and recency
+        # 8. Career maturity and recency
         maturity_analysis = analyze_career_maturity(r.get("age", ""), r.get("last_6", ""), r.get("kgs", 20))
-
-        # Form momentum
-        kgs = r.get("kgs", 20)
-        s20 = r.get("s20", 15)
-        handicap = r.get("handicap", 35)
-
-        if 14 <= kgs <= 35:
-            recency_score = 90.0
-        elif 36 <= kgs <= 60:
-            recency_score = 80.0
-        elif kgs > 60:
-            recency_score = 65.0
-        else:
-            recency_score = 82.0
-
-        form_composite = (s20 * 3.5) + (recency_score * 0.3)
-        form_score = max(40.0, min(95.0, form_composite))
 
         # Multi-factor composite rating calculation
         composite_rating = (
-            (time_analysis["speed_figure"] * 0.25) +
-            (surf_score * 0.15) +
-            (gallop_analysis["gallop_score"] * 0.18) +
-            (pedigree_analysis["score"] * 0.15) +
-            (condition_analysis.get("speed_multiplier", 1.0) * 10.0) +
-            (synergy_analysis["synergy_score"] * 0.10) +
-            (maturity_analysis["maturity_score"] * 0.07)
+            (surf_score * 0.25) +
+            (surface_form * 0.22) +
+            (synergy_analysis["synergy_score"] * 0.18) +
+            (time_analysis["speed_figure"] * 0.15) +
+            (gallop_analysis["gallop_score"] * 0.12) +
+            (pedigree_analysis["score"] * 0.08)
         )
 
         analyzed_runners.append({
@@ -512,7 +577,7 @@ def predict_race(race):
             "synergy_analysis": synergy_analysis,
             "maturity_analysis": maturity_analysis,
             "jockey_score": synergy_analysis["jockey_score"],
-            "form_score": round(form_score, 1),
+            "form_score": round(surface_form, 1),
             "composite_rating": round(composite_rating, 2)
         })
 
@@ -522,7 +587,7 @@ def predict_race(race):
     # Softmax probabilities
     ratings = [r["composite_rating"] for r in analyzed_runners]
     max_rating = max(ratings)
-    temperature = 4.2
+    temperature = 3.5
     exp_ratings = [math.exp((r - max_rating) / temperature) for r in ratings]
     sum_exp = sum(exp_ratings)
 

@@ -22,6 +22,9 @@
   <link rel="stylesheet" href="./css/style.css">
   <link rel="stylesheet" href="./css/mobile.css">
   <link rel="stylesheet" href="./css/premium.css">
+
+  <!-- HLS.js for TAY TV Official Stream -->
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 </head>
 <body>
 
@@ -251,38 +254,40 @@
     </div>
   </div>
 
-  <!-- Floating Picture-in-Picture TJK TV Live Stream Widget -->
-  <div class="tjk-tv-pip hidden" id="tjkTvPip" aria-label="TJK TV Canlı Yayın Penceresi">
+  <!-- Floating Picture-in-Picture TJK / TAY TV Live Stream Widget -->
+  <div class="tjk-tv-pip hidden" id="tjkTvPip" aria-label="TAY TV Canlı Yayın Penceresi">
     <div class="tjk-tv-header" id="tjkTvHeader">
       <div class="tjk-tv-title">
         <span class="live-badge-glow">CANLI</span>
-        <span>🏇 TJK TV Canlı Yayın</span>
+        <span>🏇 TAY TV / TJK Canlı Yayın</span>
       </div>
       <div class="tjk-tv-controls">
-        <button class="tjk-tv-btn" id="btnPipSource" title="Yayın Kaynağını Değiştir (YouTube / Web)" onclick="window.app.toggleTjkTvSource()">🔄 Kaynak</button>
-        <button class="tjk-tv-btn" id="btnPipExternal" title="Yeni Sekmede / YouTube'da Aç" onclick="window.app.openTjkTvExternal()">↗️</button>
+        <button class="tjk-tv-btn" id="btnPipSource" title="Yayın Kaynağını Değiştir (TAY TV HLS / YouTube)" onclick="window.app.toggleTjkTvSource()">🔄 Kaynak</button>
+        <button class="tjk-tv-btn" id="btnPipExternal" title="TJK Resmi Sayfasında Aç" onclick="window.app.openTayTvOfficial()">↗️</button>
         <button class="tjk-tv-btn" id="btnPipMin" title="Küçült / Büyüt" onclick="window.app.toggleTjkTvMinimize()">_</button>
         <button class="tjk-tv-btn" id="btnPipClose" title="Kapat" onclick="window.app.toggleTjkTv(false)">✕</button>
       </div>
     </div>
     <div class="tjk-tv-body" id="tjkTvBody">
       <div class="tjk-tv-quick-bar">
-        <button class="btn-popout-live" onclick="window.app.openTjkTvExternal()">
-          🔴 Ayrı Pencerede Canlı İzle (Kesintisiz HD)
+        <button class="btn-popout-live" onclick="window.app.openTayTvOfficial()">
+          🔴 TJK Resmi TAY TV Canlı Yayını (Static/Canli) Aç
         </button>
       </div>
-      <!-- Official TJK TV Active Live Embed -->
-      <iframe class="tjk-tv-iframe" id="tjkTvFrame" 
-              src="https://www.youtube.com/embed/hnZK5wXzQDk?autoplay=1&mute=0" 
+      <!-- TAY TV HTML5 HLS Video Player -->
+      <video id="tayTvVideo" class="tjk-tv-video" controls autoplay playsinline muted></video>
+      <!-- Official Fallback Iframe -->
+      <iframe class="tjk-tv-iframe hidden" id="tjkTvFrame" 
+              src="about:blank" 
               title="TJK TV Canlı Yayın"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
               allowfullscreen>
       </iframe>
       <div class="tjk-tv-fallback-bar">
-        <span>Alternatif Bağlantılar:</span>
-        <div style="display:flex; gap:0.4rem;">
+        <span>Resmi Akışlar:</span>
+        <div style="display:flex; gap:0.4rem; flex-wrap:wrap;">
+          <a href="https://www.tjk.org/TR/YarisSever/Static/Canli" target="_blank" rel="noopener noreferrer" class="tv-fallback-link">🏇 TAY TV Resmi Sayfa</a>
           <a href="https://www.youtube.com/@TJKTVCANLIYAYIN/live" target="_blank" rel="noopener noreferrer" class="tv-fallback-link">🔴 YouTube Canlı</a>
-          <a href="https://www.tjk.org/TR/YarisSever/CanliYayin/TjkTv" target="_blank" rel="noopener noreferrer" class="tv-fallback-link">🏇 TJK Resmi Web</a>
         </div>
       </div>
     </div>

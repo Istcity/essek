@@ -1139,33 +1139,87 @@ class TJKApp {
   }
 
   /* ----------------------------------------------------------------------
-     TJK TV LIVE STREAM & PIP CONTROLLER
+     TJK / TAY TV LIVE STREAM & PIP CONTROLLER
      ---------------------------------------------------------------------- */
   initTjkTv() {
     this.tjkTvPip = document.getElementById("tjkTvPip");
     this.tjkTvFrame = document.getElementById("tjkTvFrame");
+    this.tayTvVideo = document.getElementById("tayTvVideo");
     this.raceAlertToast = document.getElementById("raceAlertToast");
     this.isTvPipOpen = false;
     this.isTvMinimized = false;
-    this.currentTvSourceIdx = 0;
+    this.currentTvSourceIdx = 0; // 0 = TAY TV HLS, 1 = YouTube Embed, 2 = YouTube Alternate
+    this.hlsInstance = null;
 
     this.tvSources = [
       {
+        name: "TAY TV Resmi Canlı Akışı (HLS)",
+        type: "hls",
+        url: "https://tjktv-live.tjk.org/taytv/taytv.m3u8"
+      },
+      {
         name: "YouTube Canlı Aktif Yayın",
+        type: "iframe",
         url: "https://www.youtube.com/embed/hnZK5wXzQDk?autoplay=1&mute=0"
       },
       {
         name: "YouTube Kanal Canlısı (NoCookie)",
+        type: "iframe",
         url: "https://www.youtube-nocookie.com/embed/live_stream?channel=UCNLO4lpteIloZ4IKb9L2DoA&autoplay=1&mute=0"
-      },
-      {
-        name: "TJK TV Video Akışı",
-        url: "https://www.youtube-nocookie.com/embed/videoseries?list=UUv_bV32qF_tH8_s4_XnBf2A&autoplay=1"
       }
     ];
 
     this.makePipDraggable();
     this.resolveLiveVideo();
+  }
+
+  playTayTvHls() {
+    const video = this.tayTvVideo || document.getElementById("tayTvVideo");
+    const iframe = this.tjkTvFrame || document.getElementById("tjkTvFrame");
+    if (!video) return;
+
+    if (iframe) iframe.classList.add("hidden");
+    video.classList.remove("hidden");
+
+    const hlsUrl = "https://tjktv-live.tjk.org/taytv/taytv.m3u8";
+
+    if (window.Hls && window.Hls.isSupported()) {
+      if (!this.hlsInstance) {
+        this.hlsInstance = new window.Hls({
+          enableWorker: true,
+          lowLatencyMode: true,
+          backBufferLength: 60
+        });
+        this.hlsInstance.attachMedia(video);
+        this.hlsInstance.on(window.Hls.Events.MEDIA_ATTACHED, () => {
+          this.hlsInstance.loadSource(hlsUrl);
+        });
+        this.hlsInstance.on(window.Hls.Events.MANIFEST_PARSED, () => {
+          video.play().catch(() => {
+            // Autoplay with sound restricted, mute & retry
+            video.muted = true;
+            video.play().catch(() => {});
+          });
+        });
+        this.hlsInstance.on(window.Hls.Events.ERROR, (event, data) => {
+          if (data && data.fatal) {
+            console.warn("TAY TV HLS error, switching to YouTube fallback:", data);
+            this.switchTvSource(1);
+          }
+        });
+      } else {
+        video.play().catch(() => {});
+      }
+    } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+      // Native Safari / iOS HLS
+      video.src = hlsUrl;
+      video.play().catch(() => {
+        video.muted = true;
+        video.play().catch(() => {});
+      });
+    } else {
+      this.switchTvSource(1);
+    }
   }
 
   async resolveLiveVideo() {
@@ -1174,10 +1228,7 @@ class TJKApp {
       if (res.ok) {
         const json = await res.json();
         if (json.success && json.video_id) {
-          this.tvSources[0].url = `https://www.youtube.com/embed/${json.video_id}?autoplay=1&mute=0`;
-          if (this.tjkTvFrame && this.isTvPipOpen) {
-            this.tjkTvFrame.src = this.tvSources[0].url;
-          }
+          this.tvSources[1].url = `https://www.youtube.com/embed/${json.video_id}?autoplay=1&mute=0`;
         }
       }
     } catch (e) {
@@ -1193,13 +1244,59 @@ class TJKApp {
     if (shouldOpen) {
       this.tjkTvPip.classList.remove("hidden");
       this.isTvPipOpen = true;
-      if (this.tjkTvFrame && (!this.tjkTvFrame.src || this.tjkTvFrame.src === "about:blank" || this.tjkTvFrame.src.includes("UCv_bV32qF_tH8_s4_XnBf2A"))) {
-        this.tjkTvFrame.src = this.tvSources[this.currentTvSourceIdx].url;
-      }
+      this.applyCurrentTvSource();
     } else {
       this.tjkTvPip.classList.add("hidden");
       this.isTvPipOpen = false;
+      if (this.tayTvVideo) {
+        this.tayTvVideo.pause();
+      }
+      if (this.hlsInstance) {
+        this.hlsInstance.destroy();
+        this.hlsInstance = null;
+      }
+      if (this.tjkTvFrame) {
+        this.tjkTvFrame.src = "about:blank";
+      }
     }
+  }
+
+  applyCurrentTvSource() {
+    const src = this.tvSources[this.currentTvSourceIdx];
+    const video = this.tayTvVideo || document.getElementById("tayTvVideo");
+    const iframe = this.tjkTvFrame || document.getElementById("tjkTvFrame");
+
+    if (src.type === "hls") {
+      this.playTayTvHls();
+    } else {
+      if (video) {
+        video.pause();
+        video.classList.add("hidden");
+      }
+      if (this.hlsInstance) {
+        this.hlsInstance.destroy();
+        this.hlsInstance = null;
+      }
+      if (iframe) {
+        iframe.classList.remove("hidden");
+        iframe.src = src.url;
+      }
+    }
+  }
+
+  switchTvSource(newIdx) {
+    this.currentTvSourceIdx = newIdx % this.tvSources.length;
+    this.applyCurrentTvSource();
+    const btn = document.getElementById("btnPipSource");
+    if (btn) {
+      const name = this.currentTvSourceIdx === 0 ? "TAY TV" : "YouTube";
+      btn.textContent = `🔄 ${name}`;
+      setTimeout(() => { if (btn) btn.textContent = "🔄 Kaynak"; }, 2500);
+    }
+  }
+
+  toggleTjkTvSource() {
+    this.switchTvSource(this.currentTvSourceIdx + 1);
   }
 
   toggleTjkTvMinimize() {
@@ -1210,26 +1307,17 @@ class TJKApp {
     if (minBtn) minBtn.textContent = this.isTvMinimized ? "◻" : "_";
   }
 
-  toggleTjkTvSource() {
-    this.currentTvSourceIdx = (this.currentTvSourceIdx + 1) % this.tvSources.length;
-    const src = this.tvSources[this.currentTvSourceIdx];
-    if (this.tjkTvFrame) {
-      this.tjkTvFrame.src = src.url;
-    }
-    const btn = document.getElementById("btnPipSource");
-    if (btn) {
-      btn.textContent = `🔄 Kynk ${this.currentTvSourceIdx + 1}`;
-      setTimeout(() => { if (btn) btn.textContent = "🔄 Kaynak"; }, 2000);
-    }
+  openTayTvOfficial() {
+    const popout = window.open(
+      "https://www.tjk.org/TR/YarisSever/Static/Canli", 
+      "TayTvOfficialWindow", 
+      "width=1040,height=680,menubar=no,toolbar=no,location=no,status=no,resizable=yes"
+    );
+    if (popout) popout.focus();
   }
 
   openTjkTvExternal() {
-    const popout = window.open(
-      "https://www.youtube.com/@TJKTVCANLIYAYIN/live", 
-      "TjkTvPopout", 
-      "width=980,height=580,menubar=no,toolbar=no,location=no,status=no,resizable=yes"
-    );
-    if (popout) popout.focus();
+    this.openTayTvOfficial();
   }
 
   showRaceAlert(race, minsLeft) {
