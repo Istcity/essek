@@ -1291,6 +1291,17 @@ class TJKApp {
 
     this.makePipDraggable();
     this.resolveLiveVideo();
+
+    // Start stream immediately on page load
+    if (this.tjkTvPip && !this.tjkTvPip.classList.contains("hidden")) {
+      this.isTvPipOpen = true;
+      setTimeout(() => this.applyCurrentTvSource(), 300);
+      const toggleBtn = document.getElementById("btnToggleTjkTv");
+      if (toggleBtn) {
+        toggleBtn.innerHTML = `<span class="live-badge-glow" style="background:#10b981; box-shadow:0 0 10px #10b981;">YAYINDA</span> 📺 TJK TV Açık`;
+        toggleBtn.style.borderColor = "var(--emerald-500)";
+      }
+    }
   }
 
   selectStreamSource(idx) {
@@ -1317,7 +1328,10 @@ class TJKApp {
     const iframe = this.tjkTvFrame || document.getElementById("tjkTvFrame");
     if (!video) return;
 
-    if (iframe) iframe.classList.add("hidden");
+    if (iframe) {
+      iframe.classList.add("hidden");
+      iframe.src = "about:blank";
+    }
     video.classList.remove("hidden");
 
     if (this.hlsInstance) {
@@ -1329,29 +1343,50 @@ class TJKApp {
       this.hlsInstance = new window.Hls({
         enableWorker: true,
         lowLatencyMode: true,
-        backBufferLength: 60
+        backBufferLength: 60,
+        maxBufferLength: 30,
+        liveSyncDurationCount: 3
       });
       this.hlsInstance.attachMedia(video);
       this.hlsInstance.on(window.Hls.Events.MEDIA_ATTACHED, () => {
         this.hlsInstance.loadSource(hlsUrl);
       });
       this.hlsInstance.on(window.Hls.Events.MANIFEST_PARSED, () => {
-        video.play().catch(() => {
-          video.muted = true;
-          video.play().catch(() => {});
-        });
+        video.muted = true;
+        video.play().then(() => {
+          const muteBtn = document.getElementById("btnPipMute");
+          if (muteBtn) muteBtn.textContent = "🔇";
+        }).catch(() => {});
       });
       this.hlsInstance.on(window.Hls.Events.ERROR, (event, data) => {
         if (data && data.fatal) {
-          console.warn("HLS stream fatal error:", data);
+          console.warn("HLS fatal error:", data.type, data.details);
+          switch (data.type) {
+            case window.Hls.ErrorTypes.NETWORK_ERROR:
+              try { this.hlsInstance.startLoad(); } catch (e) {}
+              break;
+            case window.Hls.ErrorTypes.MEDIA_ERROR:
+              try { this.hlsInstance.recoverMediaError(); } catch (e) {}
+              break;
+            default:
+              try { this.hlsInstance.destroy(); } catch (e) {}
+              this.hlsInstance = null;
+              if (this.currentTvSourceIdx === 0) {
+                this.selectStreamSource(1);
+              } else if (this.currentTvSourceIdx === 1) {
+                this.selectStreamSource(2);
+              }
+              break;
+          }
         }
       });
     } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
       video.src = hlsUrl;
-      video.play().catch(() => {
-        video.muted = true;
-        video.play().catch(() => {});
-      });
+      video.muted = true;
+      video.play().catch(() => {});
+    } else {
+      console.warn("HLS not supported in this browser, switching to YouTube");
+      this.selectStreamSource(2);
     }
   }
 
@@ -1390,6 +1425,17 @@ class TJKApp {
       }
       if (this.tjkTvFrame) {
         this.tjkTvFrame.src = "about:blank";
+      }
+    }
+
+    const toggleBtn = document.getElementById("btnToggleTjkTv");
+    if (toggleBtn) {
+      if (this.isTvPipOpen) {
+        toggleBtn.innerHTML = `<span class="live-badge-glow" style="background:#10b981; box-shadow:0 0 10px #10b981;">YAYINDA</span> 📺 TJK TV Açık`;
+        toggleBtn.style.borderColor = "var(--emerald-500)";
+      } else {
+        toggleBtn.innerHTML = `<span class="live-badge-glow">CANLI</span> 📺 TJK TV (PiP)`;
+        toggleBtn.style.borderColor = "";
       }
     }
   }
