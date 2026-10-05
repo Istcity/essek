@@ -1,4 +1,4 @@
-$targetExe = "C:\Users\sinan.nergiz\.gemini\antigravity-ide\scratch\essek\dist\essek.exe"
+$targetExe = "C:\Users\sinan.nergiz\.gemini\antigravity-ide\scratch\essek\dist\TJK_RACING_AI_PRO_v2.exe"
 $workingDir = "C:\Users\sinan.nergiz\.gemini\antigravity-ide\scratch\essek\dist"
 
 $desktop1 = [System.Environment]::GetFolderPath('Desktop')
