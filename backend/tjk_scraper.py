@@ -15,6 +15,8 @@ from backend.prediction_engine import predict_race
 CACHE = {}
 CACHE_TTL = 900  # 15 minutes
 
+GEAR_CODES = {"KG", "K", "DB", "SK", "SKG", "GKR", "ÖG", "BB", "YP", "TG", "KÖG", "OG", "KOG"}
+
 def get_current_date_str():
     return datetime.now().strftime("%d.%m.%Y")
 
@@ -39,6 +41,81 @@ def parse_clean_int(val, default=0):
         except:
             return default
     return default
+
+def parse_weight_overweight(val):
+    """
+    Parses weight and overweight accurately.
+    E.g. '56 +0.70' -> 56.70, '56,5' -> 56.5
+    """
+    if not val or val == '-':
+        return 58.0
+    val_str = str(val).replace(',', '.')
+    m_plus = re.match(r'^\s*(\d+(?:\.\d+)?)\s*\+\s*(\d+(?:\.\d+)?)', val_str)
+    if m_plus:
+        try:
+            return float(m_plus.group(1)) + float(m_plus.group(2))
+        except:
+            pass
+    m = re.search(r'[-+]?\d+(?:\.\d+)?', val_str)
+    if m:
+        try:
+            return float(m.group(0))
+        except:
+            return 58.0
+    return 58.0
+
+def parse_horse_and_equipment(raw_name):
+    """
+    Extracts clean horse name, equipment tokens, and scratched status.
+    Examples:
+      'ÇİLDUTAY KG DB SK' -> ('ÇİLDUTAY', 'KG DB SK', False)
+      'KAYANİLİM GKR (Koşmaz)' -> ('KAYANİLİM', 'GKR', True)
+      'MAMBA FOREVER KG K ÖG' -> ('MAMBA FOREVER', 'KG K ÖG', False)
+      'STAIN FREE' -> ('STAIN FREE', '', False)
+    """
+    name_clean = (raw_name or "").strip()
+    is_scratched = bool(re.search(r'\(?\s*ko[sş]maz\s*\)?', name_clean, re.IGNORECASE))
+    name_clean = re.sub(r'\(?\s*ko[sş]maz\s*\)?', '', name_clean, flags=re.IGNORECASE).strip()
+
+    tokens = name_clean.split()
+    gear_tokens = []
+    horse_tokens = []
+
+    found_horse = False
+    for tok in reversed(tokens):
+        u_tok = tok.upper()
+        if not found_horse and (u_tok in GEAR_CODES or u_tok in ["AP", "DS"]):
+            if u_tok in GEAR_CODES:
+                gear_tokens.insert(0, u_tok)
+        else:
+            found_horse = True
+            horse_tokens.insert(0, tok)
+
+    clean_horse_name = " ".join(horse_tokens).strip() if horse_tokens else name_clean
+    equipment_str = " ".join(gear_tokens)
+
+    return clean_horse_name, equipment_str, is_scratched
+
+def parse_agf_and_rank(agf_raw):
+    """Parses '%53.83(1) %45.9(1)' -> (53.83, 1)"""
+    if not agf_raw:
+        return 0.0, None
+    m = re.search(r'%?\s*(\d+(?:[.,]\d+)?)(?:\s*\(\s*(\d+)\s*\))?', str(agf_raw))
+    if m:
+        agf_val = float(m.group(1).replace(',', '.'))
+        rank_val = int(m.group(2)) if m.group(2) else None
+        return agf_val, rank_val
+    return 0.0, None
+
+def parse_gate_and_ds(gate_raw, default_val=1):
+    """Parses '14 - DS' -> (14, True)"""
+    if not gate_raw:
+        return default_val, False
+    val_str = str(gate_raw).strip()
+    outside_stall = "DS" in val_str.upper()
+    m = re.search(r'\d+', val_str)
+    gate = int(m.group(0)) if m else default_val
+    return gate, outside_stall
 
 def get_available_cities(date_str=None):
     """
@@ -97,7 +174,7 @@ def get_available_cities(date_str=None):
 
 def fetch_and_predict_city_program(city_name, date_str=None):
     """
-    Fetches the race program for a city, parses all runners,
+    Fetches the race program for a city, parses all runners with official bulletin fields,
     and runs the full prediction engine on each race.
     """
     if not date_str:
@@ -131,7 +208,7 @@ def fetch_and_predict_city_program(city_name, date_str=None):
         req = urllib.request.Request(csv_url, headers=headers)
         with urllib.request.urlopen(req, timeout=12) as resp:
             raw_data = resp.read()
-            text = raw_data.decode("utf-8", errors="replace")
+            text = raw_data.decode("utf-8-sig", errors="replace")
             lines = [l.strip() for l in text.splitlines() if l.strip()]
 
             current_race = None
@@ -143,20 +220,50 @@ def fetch_and_predict_city_program(city_name, date_str=None):
                     race_time = m.group(2) if m else ""
 
                     race_type = cols[1] if len(cols) > 1 else ""
-                    age_condition = cols[2] if len(cols) > 2 else ""
-                    base_weight = cols[3] if len(cols) > 3 else "57.00kg"
-                    distance_str = cols[4] if len(cols) > 4 else "1400m"
-                    surface = cols[5] if len(cols) > 5 else "Çim"
 
-                    dist_match = re.search(r'(\d+)\s*m', distance_str)
-                    distance = int(dist_match.group(1)) if dist_match else 1400
+                    # Robust Distance extraction: scan ALL columns for (\d{3,4})m
+                    distance = 1400
+                    for col in cols:
+                        dm = re.search(r'\b(\d{3,4})\s*m\b', col, re.IGNORECASE)
+                        if dm:
+                            distance = int(dm.group(1))
+                            break
 
+                    # Robust Surface extraction: scan ALL columns for Çim, Kum, Sentetik
+                    surface = None
+                    for col in cols:
+                        c_low = col.lower()
+                        if "sentetik" in c_low or "synthetic" in c_low:
+                            surface = "Sentetik"
+                            break
+                        elif "çim" in c_low or "cim" in c_low or "turf" in c_low:
+                            surface = "Çim"
+                            break
+                        elif "kum" in c_low or "dirt" in c_low:
+                            surface = "Kum"
+                            break
+
+                    if not surface:
+                        if any(k in city_name.lower() for k in ["urfa", "şanlıurfa", "elazığ", "diyarbakır"]):
+                            surface = "Kum"
+                        else:
+                            surface = "Çim"
+
+                    # Age condition
+                    age_condition = ""
+                    for col in cols:
+                        if any(k in col.lower() for k in ["yaşlı", "araplar", "ingilizler", "yaş"]):
+                            age_condition = col
+                            break
+
+                    # Record time
                     record_time = ""
                     for col in cols:
-                        if 'Rekor Derece' in col:
+                        if "Rekor Derece" in col:
                             rm = re.search(r'Rekor Derece\s*:\s*([\d.:]+)', col)
                             if rm:
                                 record_time = rm.group(1)
+                            break
 
                     current_race = {
                         "race_number": race_num,
@@ -164,7 +271,6 @@ def fetch_and_predict_city_program(city_name, date_str=None):
                         "name": f"{race_num}. Koşu",
                         "race_type": race_type,
                         "age_group": age_condition,
-                        "base_weight": base_weight,
                         "distance": distance,
                         "surface": surface,
                         "record_time": record_time,
@@ -177,45 +283,50 @@ def fetch_and_predict_city_program(city_name, date_str=None):
                     if cols[0] in ['At No', 'No'] or 'İkramiye' in cols[0] or "GANYAN" in cols[0]:
                         continue
 
-                    horse_no = cols[0]
-                    if not horse_no.isdigit():
+                    horse_no_str = cols[0].strip()
+                    if not horse_no_str.isdigit():
                         continue
 
-                    name_col = cols[1]
-                    # Parse equipment from name if present
-                    horse_name = name_col
+                    horse_no = int(horse_no_str)
+                    raw_name = cols[1]
+                    clean_name, equipment, is_scratched = parse_horse_and_equipment(raw_name)
+
                     age = cols[2] if len(cols) > 2 else ""
                     sire = cols[3] if len(cols) > 3 else ""
                     dam = cols[4] if len(cols) > 4 else ""
-                    weight = cols[5] if len(cols) > 5 else "58"
+                    weight = parse_weight_overweight(cols[5]) if len(cols) > 5 else 58.0
                     jockey = cols[6] if len(cols) > 6 else ""
                     owner = cols[7] if len(cols) > 7 else ""
                     trainer = cols[8] if len(cols) > 8 else ""
-                    gate = cols[9] if len(cols) > 9 else "1"
-                    agf = cols[10] if len(cols) > 10 else ""
-                    handicap = cols[11] if len(cols) > 11 else ""
+                    gate, outside_stall = parse_gate_and_ds(cols[9] if len(cols) > 9 else str(horse_no), default_val=horse_no)
+                    agf_pct, agf_rank = parse_agf_and_rank(cols[10] if len(cols) > 10 else "")
+                    handicap_val = int(cols[11]) if len(cols) > 11 and cols[11].isdigit() else 35
                     last_6 = cols[12] if len(cols) > 12 else ""
-                    kgs = cols[13] if len(cols) > 13 else ""
-                    s20 = cols[14] if len(cols) > 14 else ""
+                    kgs_val = int(cols[13]) if len(cols) > 13 and cols[13].isdigit() else 20
+                    s20_val = int(cols[14]) if len(cols) > 14 and cols[14].isdigit() else 15
                     best_time = cols[15] if len(cols) > 15 else ""
 
-
                     current_race["runners"].append({
-                        "number": parse_clean_int(horse_no, len(current_race["runners"]) + 1),
-                        "name": horse_name,
+                        "number": horse_no,
+                        "name": clean_name,
+                        "raw_name": raw_name,
+                        "equipment": equipment,
+                        "is_scratched": is_scratched,
                         "age": age,
                         "sire": sire,
                         "dam": dam,
-                        "weight": parse_clean_float(weight, 58.0),
+                        "weight": weight,
                         "jockey": jockey,
                         "owner": owner,
                         "trainer": trainer,
-                        "gate": parse_clean_int(gate, int(horse_no) if horse_no.isdigit() else 1),
-                        "agf": parse_clean_float(agf, 0.0),
-                        "handicap": parse_clean_int(handicap, 35),
+                        "gate": gate,
+                        "outside_stall": outside_stall,
+                        "agf": agf_pct,
+                        "agf_rank": agf_rank,
+                        "handicap": handicap_val,
                         "last_6": last_6,
-                        "kgs": parse_clean_int(kgs, 20),
-                        "s20": parse_clean_int(s20, 15),
+                        "kgs": kgs_val,
+                        "s20": s20_val,
                         "best_time": best_time
                     })
     except Exception as e:

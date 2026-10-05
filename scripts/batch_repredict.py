@@ -1,63 +1,41 @@
-import os, json, sys, glob
+import os, json, sys
 sys.path.insert(0, '.')
-from backend.prediction_engine import predict_race
-from backend.tjk_scraper import fetch_tjk_race_results, evaluate_race_prediction_accuracy, clean_name_match
+from backend.tjk_scraper import fetch_and_predict_city_program, get_available_cities
 
 data_dir = 'data'
 frontend_data_dir = 'frontend/data'
+os.makedirs(data_dir, exist_ok=True)
 os.makedirs(frontend_data_dir, exist_ok=True)
 
-files = glob.glob(os.path.join(data_dir, 'program_*.json'))
-print(f"Repredicting and updating results for {len(files)} program files...")
+cities = ["Bursa", "Şanlıurfa"]
+date_str = '05.10.2026'
 
+print(f"Fetching fresh bulletin data and predicting for cities: {cities}...")
 all_programs = {}
 
-for fpath in files:
-    fname = os.path.basename(fpath)
-    city_name = fname.replace('program_', '').replace('.json', '')
-    with open(fpath, 'r', encoding='utf-8') as f:
-        prog = json.load(f)
-        
-    date_str = prog.get('date', '05.10.2026')
-    races = prog.get('races', [])
-    updated_races = []
-    
-    # Try fetching official results
-    official_results = fetch_tjk_race_results(city_name, date_str)
+for city in cities:
+    try:
+        prog = fetch_and_predict_city_program(city, date_str)
+        if prog and prog.get("races"):
+            fname = f"program_{city}.json"
+            fpath = os.path.join(data_dir, fname)
+            frontend_path = os.path.join(frontend_data_dir, fname)
+            
+            with open(fpath, 'w', encoding='utf-8') as f:
+                json.dump(prog, f, ensure_ascii=False, indent=2)
+            with open(frontend_path, 'w', encoding='utf-8') as f:
+                json.dump(prog, f, ensure_ascii=False, indent=2)
+                
+            all_programs[city] = prog
+            print(f"Successfully processed {city}: {len(prog['races'])} races")
+    except Exception as e:
+        print(f"Error fetching {city}: {e}")
 
-    for race in races:
-        updated = predict_race(race)
-        r_num = updated.get("race_number")
-        if r_num in official_results:
-            r_res = official_results[r_num]
-            updated["is_finished"] = True
-            runners_map = {clean_name_match(rn.get("name", "")): rn.get("number") for rn in updated.get("runners", [])}
-            for s in r_res.get("standings", []):
-                clean_s = clean_name_match(s.get("name", ""))
-                s["horse_number"] = runners_map.get(clean_s, s.get("order"))
-            updated["results"] = r_res
-            updated["accuracy_report"] = evaluate_race_prediction_accuracy(updated, r_res)
-        updated_races.append(updated)
-        
-    prog['races'] = updated_races
-    
-    # Save back to data/
-    with open(fpath, 'w', encoding='utf-8') as f:
-        json.dump(prog, f, ensure_ascii=False, indent=2)
-        
-    # Save to frontend/data/
-    frontend_path = os.path.join(frontend_data_dir, fname)
-    with open(frontend_path, 'w', encoding='utf-8') as f:
-        json.dump(prog, f, ensure_ascii=False, indent=2)
-        
-    all_programs[city_name] = prog
-    print(f"Updated {fname}: {len(updated_races)} races")
-
-# Save all_programs.json
+# Save consolidated all_programs.json
 with open(os.path.join(data_dir, 'all_programs.json'), 'w', encoding='utf-8') as f:
     json.dump(all_programs, f, ensure_ascii=False, indent=2)
 
 with open(os.path.join(frontend_data_dir, 'all_programs.json'), 'w', encoding='utf-8') as f:
     json.dump(all_programs, f, ensure_ascii=False, indent=2)
 
-print("All programs repredicted and synchronized successfully!")
+print("Batch repredict and fresh bulletin sync completed successfully!")

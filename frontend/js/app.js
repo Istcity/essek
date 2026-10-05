@@ -599,8 +599,10 @@ class TJKApp {
                 <span class="runner-gate-sub">St:${r.gate || r.number}</span>
               </div>
               <div class="runner-title-group">
-                <div class="runner-name-row">
+                <div class="runner-name-row" style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
                   <h3 class="runner-name">${r.name}</h3>
+                  ${r.equipment ? `<span class="equipment-badge" style="background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.22); border-radius:4px; padding:1px 6px; font-size:0.75rem; color:#f8fafc; font-weight:700;" title="Resmi Teçhizat / Aksesuar">${r.equipment}</span>` : ''}
+                  ${r.is_scratched ? `<span style="background:rgba(239,68,68,0.25); border:1px solid #ef4444; border-radius:4px; padding:1px 6px; font-size:0.75rem; color:#ef4444; font-weight:800;">🚫 KOŞMAZ</span>` : ''}
                   <span class="horse-equipment">${r.age || '3y'} • ${r.sire || 'Baba'} / ${r.dam || 'Anne'}</span>
                 </div>
                 <div class="runner-subline">
@@ -615,12 +617,16 @@ class TJKApp {
 
             <div class="runner-prob-block">
               <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
-                <button class="btn-runner-select ${window.couponApp?.isHorseBanko(race.race_number, r.number) ? 'is-banko' : (window.couponApp?.isHorseSelected(race.race_number, r.number) ? 'selected' : '')}" 
-                        onclick="window.couponApp.toggleHorseCurrentRace(${r.number})"
-                        title="Bu atı kupona ekle / çıkar">
-                  ${window.couponApp?.isHorseBanko(race.race_number, r.number) ? '⭐ Bankonuz' : (window.couponApp?.isHorseSelected(race.race_number, r.number) ? '✓ Kuponda' : '➕ Kupona Ekle')}
-                </button>
-                <div class="prob-score-pill">
+                ${r.is_scratched ? `
+                  <span style="color:#ef4444; font-weight:700; font-size:0.8rem; padding:6px 10px; background:rgba(239,68,68,0.1); border-radius:6px; border:1px dashed #ef4444;">🚫 Yarış Dışı</span>
+                ` : `
+                  <button class="btn-runner-select ${window.couponApp?.isHorseBanko(race.race_number, r.number) ? 'is-banko' : (window.couponApp?.isHorseSelected(race.race_number, r.number) ? 'selected' : '')}" 
+                          onclick="window.couponApp.toggleHorseCurrentRace(${r.number})"
+                          title="Bu atı kupona ekle / çıkar">
+                    ${window.couponApp?.isHorseBanko(race.race_number, r.number) ? '⭐ Bankonuz' : (window.couponApp?.isHorseSelected(race.race_number, r.number) ? '✓ Kuponda' : '➕ Kupona Ekle')}
+                  </button>
+                `}
+                <div class="prob-score-pill" style="${r.is_scratched ? 'opacity:0.4;' : ''}">
                   <span>%${r.win_probability}</span>
                   <small>Kazanma İhtimali</small>
                 </div>

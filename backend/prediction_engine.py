@@ -486,11 +486,15 @@ def generate_all_bet_types(runners, race_number):
     
     # 1. GANYAN & PLASE
     ganyan_pick = {
+        "number": top1["number"],
+        "name": top1["name"],
         "horse_number": top1["number"],
         "horse_name": top1["name"],
         "win_probability": top1["win_probability"],
         "recommendation": "Banko Tek" if top1["win_probability"] >= 28 else "Öncelikli Tek",
         "value_alternative": {
+            "number": value_bet["number"],
+            "name": value_bet["name"],
             "horse_number": value_bet["number"],
             "horse_name": value_bet["name"],
             "agf": value_bet.get("agf", 0)
@@ -649,13 +653,20 @@ def predict_race(race):
     record_time_sec = parse_record_time_seconds(record_time_str, distance)
     track_condition = race.get("track_condition", "Normal")
 
-    # Pre-compute group-level statistics for relative signals
-    all_agf_pcts = [float(r.get("agf", 0.0)) for r in runners]
-    all_weights = [float(r.get("weight", 58.0)) for r in runners]
+    # Separate active contenders from scratched/non-runners
+    active_runners = [r for r in runners if not r.get("is_scratched")]
+    scratched_runners = [r for r in runners if r.get("is_scratched")]
+    if not active_runners:
+        active_runners = runners
+        scratched_runners = []
+
+    # Pre-compute group-level statistics for relative signals from active runners
+    all_agf_pcts = [float(r.get("agf", 0.0)) for r in active_runners]
+    all_weights = [float(r.get("weight", 58.0)) for r in active_runners]
 
     analyzed_runners = []
 
-    for r in runners:
+    for r in active_runners:
         # Factor 1: AGF Signal (NEW - Empirically validated)
         agf_pct = float(r.get("agf", 0.0))
         agf_score = compute_agf_signal(agf_pct, all_agf_pcts)
@@ -749,10 +760,10 @@ def predict_race(race):
             "composite_rating": round(composite_rating, 2)
         })
 
-    # Sort runners strictly by composite rating
+    # Sort active runners strictly by composite rating
     analyzed_runners.sort(key=lambda x: x["composite_rating"], reverse=True)
 
-    # Softmax probabilities
+    # Softmax probabilities over active runners
     ratings = [r["composite_rating"] for r in analyzed_runners]
     max_rating = max(ratings)
     temperature = 3.5
@@ -785,11 +796,37 @@ def predict_race(race):
         runner["is_value_bet"] = is_value_bet
         runner["rationale"] = generate_rationale(runner, distance, surface, i + 1, len(analyzed_runners))
 
-    # Pace & Tactical map
-    pace_overview = project_race_pace(analyzed_runners, distance, surface)
+    # Append scratched runners with 0 probability at the bottom
+    for idx, sr in enumerate(scratched_runners):
+        scratched_analyzed = {
+            **sr,
+            "rank": len(analyzed_runners) + idx + 1,
+            "win_probability": 0.0,
+            "composite_rating": 0.0,
+            "is_agf_favorite": False,
+            "is_value_bet": False,
+            "value_tag": "KOŞMAZ (Yarış Dışı)",
+            "rationale": "Bu safkan resmi TJK bülteninde KOŞMAZ olarak bildirilmiş olup yarış değerlendirmesinden çıkarılmıştır.",
+            "time_analysis": {"speed_figure": 0, "adjusted_seconds": 0, "expected_time_str": "-"},
+            "surface_affinity": {"score": 0, "runs_count": 0, "podium_count": 0, "details": "Koşmaz"},
+            "gallop_analysis": {"gallop_score": 0},
+            "pedigree_analysis": {"score": 0},
+            "condition_analysis": {"condition": "Yarış Dışı"},
+            "synergy_analysis": {"synergy_score": 0, "jockey_score": 0, "is_master": False, "is_apprentice": False, "details": "Koşmaz"},
+            "maturity_analysis": {"maturity_score": 0, "stage": "Yarış Dışı"},
+            "jockey_score": 0,
+            "form_score": 0,
+            "class_weight_score": 0,
+            "gate_bonus": 0,
+            "gear_mod": 0
+        }
+        analyzed_runners.append(scratched_analyzed)
 
-    # Comprehensive Betting Studio Predictions
-    bet_recommendations = generate_all_bet_types(analyzed_runners, race.get("race_number", 1))
+    # Pace & Tactical map (computed on active runners)
+    pace_overview = project_race_pace(analyzed_runners[:len(active_runners)], distance, surface)
+
+    # Comprehensive Betting Studio Predictions (computed strictly on active runners)
+    bet_recommendations = generate_all_bet_types(analyzed_runners[:len(active_runners)], race.get("race_number", 1))
 
     return {
         **race,
