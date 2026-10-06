@@ -36,9 +36,11 @@ if BASE_DIR not in sys.path:
 
 from backend.tjk_scraper import get_available_cities, fetch_and_predict_city_program, fetch_tjk_race_results
 from backend.gallop_engine import analyze_gallops
+from backend.live_odds_service import get_live_odds_for_race
 
 class ThreadedHTTPServer(ThreadingMixIn, HTTPServer):
     daemon_threads = True
+    allow_reuse_address = True
 
 class TJKAppHandler(SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
@@ -51,6 +53,15 @@ class TJKAppHandler(SimpleHTTPRequestHandler):
 
         if path.startswith("/api/"):
             self.handle_api(path, query)
+        elif path.endswith(".zip") and os.path.exists(os.path.join(BASE_DIR, os.path.basename(path))):
+            zip_path = os.path.join(BASE_DIR, os.path.basename(path))
+            self.send_response(200)
+            self.send_header("Content-Type", "application/zip")
+            self.send_header("Content-Length", str(os.path.getsize(zip_path)))
+            self.send_header("Content-Disposition", f'attachment; filename="{os.path.basename(zip_path)}"')
+            self.end_headers()
+            with open(zip_path, "rb") as f:
+                self.copyfile(f, self.wfile)
         else:
             if path == "/" or path == "":
                 self.path = "/index.html"
@@ -80,6 +91,20 @@ class TJKAppHandler(SimpleHTTPRequestHandler):
                 rating = int(query.get("rating", [40])[0])
                 analysis = analyze_gallops(horse, None, rating)
                 self.send_json_response({"success": True, "horse": horse, "analysis": analysis})
+
+            elif path == "/api/live-odds":
+                city = query.get("city", ["Bursa"])[0]
+                race_num = int(query.get("race", [1])[0])
+                runners = None
+                try:
+                    prog = fetch_and_predict_city_program(city)
+                    if prog and "races" in prog and len(prog["races"]) >= race_num:
+                        runners = prog["races"][race_num - 1].get("runners", [])
+                except Exception:
+                    pass
+
+                odds = get_live_odds_for_race(city, race_num, runners)
+                self.send_json_response(odds)
 
             elif path == "/api/status":
                 self.send_json_response({
@@ -132,38 +157,44 @@ class TJKAppHandler(SimpleHTTPRequestHandler):
         self.end_headers()
 
     def log_message(self, format, *args):
-        # Suppress noisy HTTP request logging in terminal
         pass
 
 def find_available_port(start_port=8080, max_attempts=20):
-    """Finds an open port starting from start_port."""
     for port in range(start_port, start_port + max_attempts):
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+            s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
             if s.connect_ex(('127.0.0.1', port)) != 0:
                 return port
     return start_port
 
-def open_browser_delayed(url, delay=1.2):
+def open_browser_delayed(url, delay=1.0):
     time.sleep(delay)
     try:
-        webbrowser.open(url)
+        if sys.platform == "win32":
+            os.startfile(url)
+        else:
+            webbrowser.open(url)
     except Exception:
-        pass
+        try:
+            webbrowser.open(url)
+        except Exception:
+            pass
 
 def main():
     port = find_available_port(8080)
     server_address = ("127.0.0.1", port)
     app_url = f"http://localhost:{port}"
 
-    print("=" * 65)
-    print("  🏇 ESSEK - TJK AT YARIŞI YAPAY ZEKA TAHMİN PLATFORMU v2.0")
-    print("=" * 65)
-    print(f"[*] Sunucu başlatıldı: {app_url}")
-    print(f"[*] Tarayıcı otomatik açılıyor...")
-    print(f"[*] Uygulamayı kapatmak için bu pencereyi kapatabilirsiniz.")
-    print("=" * 65)
+    print("=" * 68)
+    print("  🏇 TJK AT YARIŞI YAPAY ZEKA TAHMİN & ANALİZ PLATFORMU v2.0-PRO")
+    print("=" * 68)
+    print(f"[*] Sunucu adresi: {app_url}")
+    print("[*] İnternet tarayıcınız (Chrome/Edge) otomatik açılıyor...")
+    print("[*] Tarayıcı açılmazsa yukarıdaki adresi tarayıcınıza yapıştırabilirsiniz.")
+    print("[*] Uygulamayı kapatmak istediğinizde bu pencereyi kapatmanız yeterlidir.")
+    print("=" * 68)
 
-    # Launch browser automatically in a separate daemon thread
+    # Launch browser automatically
     browser_thread = threading.Thread(target=open_browser_delayed, args=(app_url,), daemon=True)
     browser_thread.start()
 
