@@ -18,15 +18,25 @@
   <link rel="apple-touch-icon" href="./icons/icon-192.png">
   <link rel="manifest" href="./manifest.json">
 
-  <!-- Stylesheets -->
-  <link rel="stylesheet" href="./css/style.css">
-  <link rel="stylesheet" href="./css/mobile.css">
-  <link rel="stylesheet" href="./css/premium.css">
+  <!-- Stylesheets with Cache Buster -->
+  <link rel="stylesheet" href="./css/style.css?v=20261006_1250">
+  <link rel="stylesheet" href="./css/mobile.css?v=20261006_1250">
+  <link rel="stylesheet" href="./css/premium.css?v=20261006_1250">
 
   <!-- HLS.js for TAY TV Official Stream -->
-  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <script src="./js/hls.min.js?v=20261006_1250"></script>
 </head>
 <body>
+
+  <!-- Premium Splash Screen -->
+  <div id="premiumSplash" aria-hidden="true">
+    <div class="splash-inner">
+      <canvas id="splashHorse"></canvas>
+      <div class="splash-title">TJK RACING AI</div>
+      <div class="splash-sub">Yapay Zeka Tahmin Motoru</div>
+      <div class="splash-track"><span></span></div>
+    </div>
+  </div>
 
   <!-- Sticky Luxury App Header -->
   <header class="app-header">
@@ -88,6 +98,12 @@
     </div>
   </nav>
 
+  <!-- Running Horses Hero Strip -->
+  <div class="gallop-hero" aria-hidden="true">
+    <div class="gallop-hero-caption">◆ Canlı Analiz • AI Tahmin • TJK ◆</div>
+    <canvas id="gallopStrip"></canvas>
+  </div>
+
   <!-- Main Application Wrapper -->
   <main class="main-content">
     
@@ -127,6 +143,9 @@
       <button class="view-tab" data-view="results">
         🏁 Koşu Sonuçları & Neticeler
       </button>
+      <button class="view-tab" data-view="liveTv" id="tabLiveTv">
+        📺 TJK TV Canlı Yayın Stüdyosu
+      </button>
     </nav>
 
     <!-- Main Dynamic View Container -->
@@ -151,7 +170,7 @@
         <strong id="barTotalCost">0.00 TL</strong>
       </div>
       <div class="slip-bar-actions">
-        <button class="btn-primary" onclick="window.app.switchView('coupon')" style="background:linear-gradient(135deg, var(--gold-500), var(--gold-600)); color:#000; font-weight:800; padding:0.45rem 1rem;">
+        <button class="btn-primary btn-gold" onclick="window.app.switchView('coupon')" style="padding:0.45rem 1rem;">
           Kuponu Aç / Düzenle ➔
         </button>
         <button class="btn-glass" onclick="window.couponApp.clearAll()" title="Kuponu Temizle" style="color:var(--rose-500);">
@@ -295,14 +314,19 @@
         </button>
       </div>
       <!-- HTML5 HLS Video Player (16:9 widescreen, edge-to-edge full broadcast) -->
-      <video id="tayTvVideo" class="tjk-tv-video" controls autoplay playsinline></video>
-      <!-- Fallback Iframe -->
-      <iframe class="tjk-tv-iframe hidden" id="tjkTvFrame" 
-              src="about:blank" 
-              title="Canlı Yarış Yayını"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-              allowfullscreen>
-      </iframe>
+      <div style="position:relative; width:100%; aspect-ratio:16/9; background:#000; overflow:hidden;">
+        <video id="tayTvVideo" class="tjk-tv-video" controls autoplay playsinline muted></video>
+        <div id="videoPlayOverlay" class="video-play-overlay hidden" onclick="window.app.startVideoManual()">
+          <button class="btn-play-stream">▶ Canlı Yayını Başlat</button>
+        </div>
+        <!-- Fallback Iframe -->
+        <iframe class="tjk-tv-iframe hidden" id="tjkTvFrame" 
+                src="about:blank" 
+                title="Canlı Yarış Yayını"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                allowfullscreen>
+        </iframe>
+      </div>
       <div class="tjk-tv-fallback-bar">
         <span>Resmi Siteler:</span>
         <div style="display:flex; gap:0.4rem; flex-wrap:wrap;">
@@ -323,21 +347,38 @@
     <button class="race-alert-close" onclick="window.app.closeRaceAlert()">&times;</button>
   </div>
 
-  <!-- Scripts -->
-  <script src="./js/hls.min.js"></script>
-  <script src="./js/horse-art.js"></script>
-  <script src="./js/race-simulator.js"></script>
-  <script src="./js/coupon-builder.js"></script>
-  <script src="./js/h2h-compare.js"></script>
-  <script src="./js/app.js"></script>
+  <!-- Scripts with Cache Buster -->
+  <script src="./js/hls.min.js?v=20261006_1250"></script>
+  <script src="./js/horse-art.js?v=20261006_1250"></script>
+  <script src="./js/race-simulator.js?v=20261006_1250"></script>
+  <script src="./js/coupon-builder.js?v=20261006_1250"></script>
+  <script src="./js/h2h-compare.js?v=20261006_1250"></script>
+  <script src="./js/app.js?v=20261006_1250"></script>
 
-  <!-- PWA Service Worker Registration -->
+  <!-- Premium interactions: initial tab indicator -->
+  <script>
+    window.addEventListener('load', () => {
+      const place = () => window.app && window.app.moveTabIndicator && window.app.moveTabIndicator();
+      setTimeout(place, 300);
+      setTimeout(place, 1500);
+      if (document.fonts) document.fonts.ready.then(place);
+    });
+  </script>
+
+  <!-- Auto-purge all stale Service Worker caches and unregister to prevent caching issues -->
   <script>
     if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js').catch(err => {
-          console.log('SW registration error:', err);
-        });
+      navigator.serviceWorker.getRegistrations().then(function(registrations) {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+      });
+    }
+    if ('caches' in window) {
+      caches.keys().then(function(names) {
+        for (let name of names) {
+          caches.delete(name);
+        }
       });
     }
   </script>

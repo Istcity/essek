@@ -456,6 +456,7 @@ class CouponBuilder {
                     </div>
                     <div class="chip-stats">
                       <span class="chip-prob">%${r.win_probability}</span>
+                      <span class="chip-ganyan" style="color:var(--gold-400); font-weight:800; font-size:0.76rem;" title="O Anki Ganyan">💰 ${Number(r.live_ganyan || r.ganyan || (r.agf > 0 ? (0.84/(r.agf/100)) : 3.50)).toFixed(2)} ₺</span>
                       ${isTop ? '<span class="chip-rank-crown">🏆</span>' : `<span class="chip-rank">${r.rank}.</span>`}
                     </div>
                   </div>

@@ -18,13 +18,13 @@
   <link rel="apple-touch-icon" href="./icons/icon-192.png">
   <link rel="manifest" href="./manifest.json">
 
-  <!-- Stylesheets -->
-  <link rel="stylesheet" href="./css/style.css">
-  <link rel="stylesheet" href="./css/mobile.css">
-  <link rel="stylesheet" href="./css/premium.css">
+  <!-- Stylesheets with Cache Buster -->
+  <link rel="stylesheet" href="./css/style.css?v=20261006_1250">
+  <link rel="stylesheet" href="./css/mobile.css?v=20261006_1250">
+  <link rel="stylesheet" href="./css/premium.css?v=20261006_1250">
 
   <!-- HLS.js for TAY TV Official Stream -->
-  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <script src="./js/hls.min.js?v=20261006_1250"></script>
 </head>
 <body>
 
@@ -142,6 +142,9 @@
       </button>
       <button class="view-tab" data-view="results">
         🏁 Koşu Sonuçları & Neticeler
+      </button>
+      <button class="view-tab" data-view="liveTv" id="tabLiveTv">
+        📺 TJK TV Canlı Yayın Stüdyosu
       </button>
     </nav>
 
@@ -311,14 +314,19 @@
         </button>
       </div>
       <!-- HTML5 HLS Video Player (16:9 widescreen, edge-to-edge full broadcast) -->
-      <video id="tayTvVideo" class="tjk-tv-video" controls autoplay playsinline></video>
-      <!-- Fallback Iframe -->
-      <iframe class="tjk-tv-iframe hidden" id="tjkTvFrame" 
-              src="about:blank" 
-              title="Canlı Yarış Yayını"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-              allowfullscreen>
-      </iframe>
+      <div style="position:relative; width:100%; aspect-ratio:16/9; background:#000; overflow:hidden;">
+        <video id="tayTvVideo" class="tjk-tv-video" controls autoplay playsinline muted></video>
+        <div id="videoPlayOverlay" class="video-play-overlay hidden" onclick="window.app.startVideoManual()">
+          <button class="btn-play-stream">▶ Canlı Yayını Başlat</button>
+        </div>
+        <!-- Fallback Iframe -->
+        <iframe class="tjk-tv-iframe hidden" id="tjkTvFrame" 
+                src="about:blank" 
+                title="Canlı Yarış Yayını"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                allowfullscreen>
+        </iframe>
+      </div>
       <div class="tjk-tv-fallback-bar">
         <span>Resmi Siteler:</span>
         <div style="display:flex; gap:0.4rem; flex-wrap:wrap;">
@@ -339,13 +347,13 @@
     <button class="race-alert-close" onclick="window.app.closeRaceAlert()">&times;</button>
   </div>
 
-  <!-- Scripts -->
-  <script src="./js/hls.min.js"></script>
-  <script src="./js/horse-art.js"></script>
-  <script src="./js/race-simulator.js"></script>
-  <script src="./js/coupon-builder.js"></script>
-  <script src="./js/h2h-compare.js"></script>
-  <script src="./js/app.js"></script>
+  <!-- Scripts with Cache Buster -->
+  <script src="./js/hls.min.js?v=20261006_1250"></script>
+  <script src="./js/horse-art.js?v=20261006_1250"></script>
+  <script src="./js/race-simulator.js?v=20261006_1250"></script>
+  <script src="./js/coupon-builder.js?v=20261006_1250"></script>
+  <script src="./js/h2h-compare.js?v=20261006_1250"></script>
+  <script src="./js/app.js?v=20261006_1250"></script>
 
   <!-- Premium interactions: initial tab indicator -->
   <script>
@@ -357,13 +365,20 @@
     });
   </script>
 
-  <!-- PWA Service Worker Registration -->
+  <!-- Auto-purge all stale Service Worker caches and unregister to prevent caching issues -->
   <script>
     if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js').catch(err => {
-          console.log('SW registration error:', err);
-        });
+      navigator.serviceWorker.getRegistrations().then(function(registrations) {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+      });
+    }
+    if ('caches' in window) {
+      caches.keys().then(function(names) {
+        for (let name of names) {
+          caches.delete(name);
+        }
       });
     }
   </script>

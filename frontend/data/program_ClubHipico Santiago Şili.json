@@ -186,7 +186,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "AGF #1 (%30.0) ile yarışseverlerin en güvendiği safkan. 1:18.73 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Çim pistte 2 yarışta 2 kez tabela (0 birincilik, 2 ikincilik, ortalama 2.0.lik)."
-          }
+          },
+          "ganyan": 2.83,
+          "live_ganyan": 2.83
         },
         {
           "number": 4,
@@ -352,7 +354,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Deneyimli jokey M.ÇİÇEK ile dengeli ve istikrarlı uyum. Çim pistte 2 yarışta 2 kez tabela (1 birincilik, 1 ikincilik, ortalama 1.5.lik). Son koşularında hedef pistte istikrarlı tabela/galibiyet performansı sergiledi."
-          }
+          },
+          "ganyan": 11.33,
+          "live_ganyan": 11.33
         },
         {
           "number": 3,
@@ -512,7 +516,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Usta jokey N.AVCİ ampirik %20.6 galibiyet, %60.5 tabela ile elit avantaj sağlıyor. Çim pistte 2 yarışta 2 kez tabela (1 birincilik, 0 ikincilik, ortalama 2.5.lik). Son koşularında hedef pistte istikrarlı tabela/galibiyet performansı sergiledi."
-          }
+          },
+          "ganyan": 8.5,
+          "live_ganyan": 8.5
         },
         {
           "number": 2,
@@ -672,7 +678,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Deneyimli jokey M.KAYA ile dengeli ve istikrarlı uyum. Çim pistte 2 yarışta 2 kez tabela (0 birincilik, 0 ikincilik, ortalama 3.0.lik). Son koşularında hedef pistte istikrarlı tabela/galibiyet performansı sergiledi."
-          }
+          },
+          "ganyan": 5.67,
+          "live_ganyan": 5.67
         },
         {
           "number": 7,
@@ -826,7 +834,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Usta jokey G.KOCAKAYA ampirik %21.6 galibiyet, %63.8 tabela ile elit avantaj sağlıyor. Çim pistte 2 yarışta 2 kez tabela (0 birincilik, 1 ikincilik, ortalama 3.0.lik). Son koşularında hedef pistte istikrarlı tabela/galibiyet performansı sergiledi."
-          }
+          },
+          "ganyan": 19.77,
+          "live_ganyan": 19.77
         },
         {
           "number": 6,
@@ -980,7 +990,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Çim pistte 2 yarışta 2 kez tabela (1 birincilik, 0 ikincilik, ortalama 2.0.lik). Son koşularında hedef pistte istikrarlı tabela/galibiyet performansı sergiledi. Son 400m derecesi 25.02 sn ile idmanlarında canlı ve istekli."
-          }
+          },
+          "ganyan": 17.0,
+          "live_ganyan": 17.0
         },
         {
           "number": 9,
@@ -1134,7 +1146,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Deneyimli jokey M.KAYA ile dengeli ve istikrarlı uyum. Çim pistte 2 yarışta 2 kez tabela (1 birincilik, 1 ikincilik, ortalama 1.5.lik). Son koşularında hedef pistte istikrarlı tabela/galibiyet performansı sergiledi."
-          }
+          },
+          "ganyan": 25.76,
+          "live_ganyan": 25.76
         },
         {
           "number": 8,
@@ -1288,7 +1302,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "1:18.92 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Çim pistte 2 yarışta 2 kez tabela (1 birincilik, 0 ikincilik, ortalama 2.0.lik). Son koşularında hedef pistte istikrarlı tabela/galibiyet performansı sergiledi."
-          }
+          },
+          "ganyan": 22.37,
+          "live_ganyan": 22.37
         },
         {
           "number": 5,
@@ -1442,7 +1458,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Usta jokey M.M.BİLGİN ampirik %20.7 galibiyet, %63.5 tabela ile elit avantaj sağlıyor. Çim pistte 2 yarışta 2 kez tabela (0 birincilik, 1 ikincilik, ortalama 2.5.lik). Son koşularında hedef pistte istikrarlı tabela/galibiyet performansı sergiledi."
-          }
+          },
+          "ganyan": 14.17,
+          "live_ganyan": 14.17
         }
       ],
       "record_time_sec": 75.6,
@@ -1716,7 +1734,179 @@
           "partner": 4,
           "recommendation": "1. Koşuda 1 (veya 4) safkan ile sonraki koşunun favorisi bağlanmalıdır."
         }
-      }
+      },
+      "ikili_ganyanlar": [
+        {
+          "combo": "1 - 2",
+          "horse1_no": 1,
+          "horse2_no": 2,
+          "horse1_name": "AT A1 KG DB",
+          "horse2_name": "AT A2 KG DB",
+          "ganyan": 6.65
+        },
+        {
+          "combo": "1 - 3",
+          "horse1_no": 1,
+          "horse2_no": 3,
+          "horse1_name": "AT A1 KG DB",
+          "horse2_name": "AT A3 KG DB",
+          "ganyan": 10.24
+        },
+        {
+          "combo": "1 - 4",
+          "horse1_no": 1,
+          "horse2_no": 4,
+          "horse1_name": "AT A1 KG DB",
+          "horse2_name": "AT A4 KG DB",
+          "ganyan": 13.81
+        },
+        {
+          "combo": "1 - 5",
+          "horse1_no": 1,
+          "horse2_no": 5,
+          "horse1_name": "AT A1 KG DB",
+          "horse2_name": "AT A5 KG DB",
+          "ganyan": 17.39
+        },
+        {
+          "combo": "1 - 6",
+          "horse1_no": 1,
+          "horse2_no": 6,
+          "horse1_name": "AT A1 KG DB",
+          "horse2_name": "AT A6 KG DB",
+          "ganyan": 20.96
+        },
+        {
+          "combo": "2 - 3",
+          "horse1_no": 2,
+          "horse2_no": 3,
+          "horse1_name": "AT A2 KG DB",
+          "horse2_name": "AT A3 KG DB",
+          "ganyan": 22.73
+        },
+        {
+          "combo": "1 - 7",
+          "horse1_no": 1,
+          "horse2_no": 7,
+          "horse1_name": "AT A1 KG DB",
+          "horse2_name": "AT A7 KG DB",
+          "ganyan": 24.45
+        },
+        {
+          "combo": "2 - 4",
+          "horse1_no": 2,
+          "horse2_no": 4,
+          "horse1_name": "AT A2 KG DB",
+          "horse2_name": "AT A4 KG DB",
+          "ganyan": 30.71
+        },
+        {
+          "combo": "2 - 5",
+          "horse1_no": 2,
+          "horse2_no": 5,
+          "horse1_name": "AT A2 KG DB",
+          "horse2_name": "AT A5 KG DB",
+          "ganyan": 38.69
+        },
+        {
+          "combo": "2 - 6",
+          "horse1_no": 2,
+          "horse2_no": 6,
+          "horse1_name": "AT A2 KG DB",
+          "horse2_name": "AT A6 KG DB",
+          "ganyan": 46.66
+        },
+        {
+          "combo": "3 - 4",
+          "horse1_no": 3,
+          "horse2_no": 4,
+          "horse1_name": "AT A3 KG DB",
+          "horse2_name": "AT A4 KG DB",
+          "ganyan": 47.44
+        },
+        {
+          "combo": "2 - 7",
+          "horse1_no": 2,
+          "horse2_no": 7,
+          "horse1_name": "AT A2 KG DB",
+          "horse2_name": "AT A7 KG DB",
+          "ganyan": 54.44
+        },
+        {
+          "combo": "3 - 5",
+          "horse1_no": 3,
+          "horse2_no": 5,
+          "horse1_name": "AT A3 KG DB",
+          "horse2_name": "AT A5 KG DB",
+          "ganyan": 59.77
+        },
+        {
+          "combo": "3 - 6",
+          "horse1_no": 3,
+          "horse2_no": 6,
+          "horse1_name": "AT A3 KG DB",
+          "horse2_name": "AT A6 KG DB",
+          "ganyan": 72.1
+        },
+        {
+          "combo": "4 - 5",
+          "horse1_no": 4,
+          "horse2_no": 5,
+          "horse1_name": "AT A4 KG DB",
+          "horse2_name": "AT A5 KG DB",
+          "ganyan": 80.81
+        },
+        {
+          "combo": "3 - 7",
+          "horse1_no": 3,
+          "horse2_no": 7,
+          "horse1_name": "AT A3 KG DB",
+          "horse2_name": "AT A7 KG DB",
+          "ganyan": 84.13
+        },
+        {
+          "combo": "4 - 6",
+          "horse1_no": 4,
+          "horse2_no": 6,
+          "horse1_name": "AT A4 KG DB",
+          "horse2_name": "AT A6 KG DB",
+          "ganyan": 97.48
+        },
+        {
+          "combo": "4 - 7",
+          "horse1_no": 4,
+          "horse2_no": 7,
+          "horse1_name": "AT A4 KG DB",
+          "horse2_name": "AT A7 KG DB",
+          "ganyan": 113.76
+        },
+        {
+          "combo": "5 - 6",
+          "horse1_no": 5,
+          "horse2_no": 6,
+          "horse1_name": "AT A5 KG DB",
+          "horse2_name": "AT A6 KG DB",
+          "ganyan": 122.85
+        },
+        {
+          "combo": "5 - 7",
+          "horse1_no": 5,
+          "horse2_no": 7,
+          "horse1_name": "AT A5 KG DB",
+          "horse2_name": "AT A7 KG DB",
+          "ganyan": 143.37
+        },
+        {
+          "combo": "6 - 7",
+          "horse1_no": 6,
+          "horse2_no": 7,
+          "horse1_name": "AT A6 KG DB",
+          "horse2_name": "AT A7 KG DB",
+          "ganyan": 172.96
+        }
+      ],
+      "is_live_odds": false,
+      "live_odds_source": "TJK Resmi AGF Muhtemel Projeksiyonu"
     },
     {
       "race_number": 2,
@@ -1889,7 +2079,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "AGF #1 (%30.0) ile yarışseverlerin en güvendiği safkan. Kum pistte 1 yarışta 1 kez tabela (0 birincilik, 1 ikincilik, ortalama 2.0.lik). Son koşularında hedef pistte istikrarlı tabela/galibiyet performansı sergiledi."
-          }
+          },
+          "ganyan": 2.83,
+          "live_ganyan": 2.83
         },
         {
           "number": 5,
@@ -2043,7 +2235,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Usta jokey M.M.BİLGİN ampirik %20.7 galibiyet, %63.5 tabela ile elit avantaj sağlıyor. Kum pistte 1 yarışta 1 kez tabela (1 birincilik, 0 ikincilik, ortalama 1.0.lik). Son koşularında hedef pistte istikrarlı tabela/galibiyet performansı sergiledi."
-          }
+          },
+          "ganyan": 14.17,
+          "live_ganyan": 14.17
         },
         {
           "number": 2,
@@ -2215,7 +2409,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Deneyimli jokey M.KAYA ile dengeli ve istikrarlı uyum. 1:35.88 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Kum pistte 1 yarışta 1 kez tabela (0 birincilik, 0 ikincilik, ortalama 3.0.lik)."
-          }
+          },
+          "ganyan": 5.67,
+          "live_ganyan": 5.67
         },
         {
           "number": 3,
@@ -2363,7 +2559,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Usta jokey N.AVCİ ampirik %20.6 galibiyet, %60.5 tabela ile elit avantaj sağlıyor. 3. iç kulvardan viraja avantajlı girme pozisyonu. İdeal dinlenme döngüsü (14-35 gün form zirvesi)"
-          }
+          },
+          "ganyan": 8.5,
+          "live_ganyan": 8.5
         },
         {
           "number": 7,
@@ -2529,7 +2727,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Usta jokey G.KOCAKAYA ampirik %21.6 galibiyet, %63.8 tabela ile elit avantaj sağlıyor. 1:36.38 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Kum pistte 1 yarışta 1 kez tabela (0 birincilik, 0 ikincilik, ortalama 3.0.lik)."
-          }
+          },
+          "ganyan": 19.77,
+          "live_ganyan": 19.77
         },
         {
           "number": 6,
@@ -2677,7 +2877,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Kum pistte 1 yarışta 1 kez tabela (0 birincilik, 1 ikincilik, ortalama 2.0.lik). Son koşularında hedef pistte istikrarlı tabela/galibiyet performansı sergiledi. İdeal dinlenme döngüsü (14-35 gün form zirvesi)"
-          }
+          },
+          "ganyan": 17.0,
+          "live_ganyan": 17.0
         },
         {
           "number": 8,
@@ -2806,7 +3008,9 @@
             "dominant_factors": [],
             "risk_factors": [],
             "factor_summary": "Dengeli kriter profili ile koşuda mücadele edecek."
-          }
+          },
+          "ganyan": 22.37,
+          "live_ganyan": 22.37
         },
         {
           "number": 9,
@@ -2960,7 +3164,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Deneyimli jokey M.KAYA ile dengeli ve istikrarlı uyum. 1:36.14 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Son 400m derecesi 24.98 sn ile idmanlarında canlı ve istekli."
-          }
+          },
+          "ganyan": 25.76,
+          "live_ganyan": 25.76
         },
         {
           "number": 4,
@@ -3108,7 +3314,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Deneyimli jokey M.ÇİÇEK ile dengeli ve istikrarlı uyum. 4. iç kulvardan viraja avantajlı girme pozisyonu. İdeal dinlenme döngüsü (14-35 gün form zirvesi)"
-          }
+          },
+          "ganyan": 11.33,
+          "live_ganyan": 11.33
         }
       ],
       "record_time_sec": 92.4,
@@ -3370,7 +3578,179 @@
           "partner": 5,
           "recommendation": "2. Koşuda 1 (veya 5) safkan ile sonraki koşunun favorisi bağlanmalıdır."
         }
-      }
+      },
+      "ikili_ganyanlar": [
+        {
+          "combo": "1 - 2",
+          "horse1_no": 1,
+          "horse2_no": 2,
+          "horse1_name": "AT B1 KG DB",
+          "horse2_name": "AT B2 KG DB",
+          "ganyan": 6.65
+        },
+        {
+          "combo": "1 - 3",
+          "horse1_no": 1,
+          "horse2_no": 3,
+          "horse1_name": "AT B1 KG DB",
+          "horse2_name": "AT B3 KG DB",
+          "ganyan": 10.24
+        },
+        {
+          "combo": "1 - 4",
+          "horse1_no": 1,
+          "horse2_no": 4,
+          "horse1_name": "AT B1 KG DB",
+          "horse2_name": "AT B4 KG DB",
+          "ganyan": 13.81
+        },
+        {
+          "combo": "1 - 5",
+          "horse1_no": 1,
+          "horse2_no": 5,
+          "horse1_name": "AT B1 KG DB",
+          "horse2_name": "AT B5 KG DB",
+          "ganyan": 17.39
+        },
+        {
+          "combo": "1 - 6",
+          "horse1_no": 1,
+          "horse2_no": 6,
+          "horse1_name": "AT B1 KG DB",
+          "horse2_name": "AT B6 KG DB",
+          "ganyan": 20.96
+        },
+        {
+          "combo": "2 - 3",
+          "horse1_no": 2,
+          "horse2_no": 3,
+          "horse1_name": "AT B2 KG DB",
+          "horse2_name": "AT B3 KG DB",
+          "ganyan": 22.73
+        },
+        {
+          "combo": "1 - 7",
+          "horse1_no": 1,
+          "horse2_no": 7,
+          "horse1_name": "AT B1 KG DB",
+          "horse2_name": "AT B7 KG DB",
+          "ganyan": 24.45
+        },
+        {
+          "combo": "2 - 4",
+          "horse1_no": 2,
+          "horse2_no": 4,
+          "horse1_name": "AT B2 KG DB",
+          "horse2_name": "AT B4 KG DB",
+          "ganyan": 30.71
+        },
+        {
+          "combo": "2 - 5",
+          "horse1_no": 2,
+          "horse2_no": 5,
+          "horse1_name": "AT B2 KG DB",
+          "horse2_name": "AT B5 KG DB",
+          "ganyan": 38.69
+        },
+        {
+          "combo": "2 - 6",
+          "horse1_no": 2,
+          "horse2_no": 6,
+          "horse1_name": "AT B2 KG DB",
+          "horse2_name": "AT B6 KG DB",
+          "ganyan": 46.66
+        },
+        {
+          "combo": "3 - 4",
+          "horse1_no": 3,
+          "horse2_no": 4,
+          "horse1_name": "AT B3 KG DB",
+          "horse2_name": "AT B4 KG DB",
+          "ganyan": 47.44
+        },
+        {
+          "combo": "2 - 7",
+          "horse1_no": 2,
+          "horse2_no": 7,
+          "horse1_name": "AT B2 KG DB",
+          "horse2_name": "AT B7 KG DB",
+          "ganyan": 54.44
+        },
+        {
+          "combo": "3 - 5",
+          "horse1_no": 3,
+          "horse2_no": 5,
+          "horse1_name": "AT B3 KG DB",
+          "horse2_name": "AT B5 KG DB",
+          "ganyan": 59.77
+        },
+        {
+          "combo": "3 - 6",
+          "horse1_no": 3,
+          "horse2_no": 6,
+          "horse1_name": "AT B3 KG DB",
+          "horse2_name": "AT B6 KG DB",
+          "ganyan": 72.1
+        },
+        {
+          "combo": "4 - 5",
+          "horse1_no": 4,
+          "horse2_no": 5,
+          "horse1_name": "AT B4 KG DB",
+          "horse2_name": "AT B5 KG DB",
+          "ganyan": 80.81
+        },
+        {
+          "combo": "3 - 7",
+          "horse1_no": 3,
+          "horse2_no": 7,
+          "horse1_name": "AT B3 KG DB",
+          "horse2_name": "AT B7 KG DB",
+          "ganyan": 84.13
+        },
+        {
+          "combo": "4 - 6",
+          "horse1_no": 4,
+          "horse2_no": 6,
+          "horse1_name": "AT B4 KG DB",
+          "horse2_name": "AT B6 KG DB",
+          "ganyan": 97.48
+        },
+        {
+          "combo": "4 - 7",
+          "horse1_no": 4,
+          "horse2_no": 7,
+          "horse1_name": "AT B4 KG DB",
+          "horse2_name": "AT B7 KG DB",
+          "ganyan": 113.76
+        },
+        {
+          "combo": "5 - 6",
+          "horse1_no": 5,
+          "horse2_no": 6,
+          "horse1_name": "AT B5 KG DB",
+          "horse2_name": "AT B6 KG DB",
+          "ganyan": 122.85
+        },
+        {
+          "combo": "5 - 7",
+          "horse1_no": 5,
+          "horse2_no": 7,
+          "horse1_name": "AT B5 KG DB",
+          "horse2_name": "AT B7 KG DB",
+          "ganyan": 143.37
+        },
+        {
+          "combo": "6 - 7",
+          "horse1_no": 6,
+          "horse2_no": 7,
+          "horse1_name": "AT B6 KG DB",
+          "horse2_name": "AT B7 KG DB",
+          "ganyan": 172.96
+        }
+      ],
+      "is_live_odds": false,
+      "live_odds_source": "TJK Resmi AGF Muhtemel Projeksiyonu"
     },
     {
       "race_number": 3,
@@ -3525,7 +3905,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "AGF #1 (%30.0) ile yarışseverlerin en güvendiği safkan. İdeal dinlenme döngüsü (14-35 gün form zirvesi)"
-          }
+          },
+          "ganyan": 2.83,
+          "live_ganyan": 2.83
         },
         {
           "number": 3,
@@ -3685,7 +4067,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Usta jokey N.AVCİ ampirik %20.6 galibiyet, %60.5 tabela ile elit avantaj sağlıyor. 1:49.80 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Son 400m derecesi 24.98 sn ile idmanlarında canlı ve istekli."
-          }
+          },
+          "ganyan": 8.5,
+          "live_ganyan": 8.5
         },
         {
           "number": 5,
@@ -3845,7 +4229,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Usta jokey M.M.BİLGİN ampirik %20.7 galibiyet, %63.5 tabela ile elit avantaj sağlıyor. 1:49.16 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Son 400m derecesi 24.54 sn ile idmanlarında canlı ve istekli."
-          }
+          },
+          "ganyan": 14.17,
+          "live_ganyan": 14.17
         },
         {
           "number": 2,
@@ -3987,7 +4373,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Deneyimli jokey M.KAYA ile dengeli ve istikrarlı uyum. İdeal dinlenme döngüsü (14-35 gün form zirvesi)"
-          }
+          },
+          "ganyan": 5.67,
+          "live_ganyan": 5.67
         },
         {
           "number": 6,
@@ -4123,7 +4511,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "İdeal dinlenme döngüsü (14-35 gün form zirvesi)"
-          }
+          },
+          "ganyan": 17.0,
+          "live_ganyan": 17.0
         },
         {
           "number": 4,
@@ -4271,7 +4661,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Deneyimli jokey M.ÇİÇEK ile dengeli ve istikrarlı uyum. 4. iç kulvardan viraja avantajlı girme pozisyonu. İdeal dinlenme döngüsü (14-35 gün form zirvesi)"
-          }
+          },
+          "ganyan": 11.33,
+          "live_ganyan": 11.33
         },
         {
           "number": 7,
@@ -4413,7 +4805,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Usta jokey G.KOCAKAYA ampirik %21.6 galibiyet, %63.8 tabela ile elit avantaj sağlıyor. İdeal dinlenme döngüsü (14-35 gün form zirvesi)"
-          }
+          },
+          "ganyan": 19.77,
+          "live_ganyan": 19.77
         },
         {
           "number": 8,
@@ -4549,7 +4943,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "1:50.20 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip."
-          }
+          },
+          "ganyan": 22.37,
+          "live_ganyan": 22.37
         },
         {
           "number": 9,
@@ -4691,7 +5087,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Deneyimli jokey M.KAYA ile dengeli ve istikrarlı uyum. İdeal dinlenme döngüsü (14-35 gün form zirvesi)"
-          }
+          },
+          "ganyan": 25.76,
+          "live_ganyan": 25.76
         }
       ],
       "record_time_sec": 105.6,
@@ -4936,7 +5334,179 @@
           "partner": 3,
           "recommendation": "3. Koşuda 1 (veya 3) safkan ile sonraki koşunun favorisi bağlanmalıdır."
         }
-      }
+      },
+      "ikili_ganyanlar": [
+        {
+          "combo": "1 - 2",
+          "horse1_no": 1,
+          "horse2_no": 2,
+          "horse1_name": "AT C1 KG DB",
+          "horse2_name": "AT C2 KG DB",
+          "ganyan": 6.65
+        },
+        {
+          "combo": "1 - 3",
+          "horse1_no": 1,
+          "horse2_no": 3,
+          "horse1_name": "AT C1 KG DB",
+          "horse2_name": "AT C3 KG DB",
+          "ganyan": 10.24
+        },
+        {
+          "combo": "1 - 4",
+          "horse1_no": 1,
+          "horse2_no": 4,
+          "horse1_name": "AT C1 KG DB",
+          "horse2_name": "AT C4 KG DB",
+          "ganyan": 13.81
+        },
+        {
+          "combo": "1 - 5",
+          "horse1_no": 1,
+          "horse2_no": 5,
+          "horse1_name": "AT C1 KG DB",
+          "horse2_name": "AT C5 KG DB",
+          "ganyan": 17.39
+        },
+        {
+          "combo": "1 - 6",
+          "horse1_no": 1,
+          "horse2_no": 6,
+          "horse1_name": "AT C1 KG DB",
+          "horse2_name": "AT C6 KG DB",
+          "ganyan": 20.96
+        },
+        {
+          "combo": "2 - 3",
+          "horse1_no": 2,
+          "horse2_no": 3,
+          "horse1_name": "AT C2 KG DB",
+          "horse2_name": "AT C3 KG DB",
+          "ganyan": 22.73
+        },
+        {
+          "combo": "1 - 7",
+          "horse1_no": 1,
+          "horse2_no": 7,
+          "horse1_name": "AT C1 KG DB",
+          "horse2_name": "AT C7 KG DB",
+          "ganyan": 24.45
+        },
+        {
+          "combo": "2 - 4",
+          "horse1_no": 2,
+          "horse2_no": 4,
+          "horse1_name": "AT C2 KG DB",
+          "horse2_name": "AT C4 KG DB",
+          "ganyan": 30.71
+        },
+        {
+          "combo": "2 - 5",
+          "horse1_no": 2,
+          "horse2_no": 5,
+          "horse1_name": "AT C2 KG DB",
+          "horse2_name": "AT C5 KG DB",
+          "ganyan": 38.69
+        },
+        {
+          "combo": "2 - 6",
+          "horse1_no": 2,
+          "horse2_no": 6,
+          "horse1_name": "AT C2 KG DB",
+          "horse2_name": "AT C6 KG DB",
+          "ganyan": 46.66
+        },
+        {
+          "combo": "3 - 4",
+          "horse1_no": 3,
+          "horse2_no": 4,
+          "horse1_name": "AT C3 KG DB",
+          "horse2_name": "AT C4 KG DB",
+          "ganyan": 47.44
+        },
+        {
+          "combo": "2 - 7",
+          "horse1_no": 2,
+          "horse2_no": 7,
+          "horse1_name": "AT C2 KG DB",
+          "horse2_name": "AT C7 KG DB",
+          "ganyan": 54.44
+        },
+        {
+          "combo": "3 - 5",
+          "horse1_no": 3,
+          "horse2_no": 5,
+          "horse1_name": "AT C3 KG DB",
+          "horse2_name": "AT C5 KG DB",
+          "ganyan": 59.77
+        },
+        {
+          "combo": "3 - 6",
+          "horse1_no": 3,
+          "horse2_no": 6,
+          "horse1_name": "AT C3 KG DB",
+          "horse2_name": "AT C6 KG DB",
+          "ganyan": 72.1
+        },
+        {
+          "combo": "4 - 5",
+          "horse1_no": 4,
+          "horse2_no": 5,
+          "horse1_name": "AT C4 KG DB",
+          "horse2_name": "AT C5 KG DB",
+          "ganyan": 80.81
+        },
+        {
+          "combo": "3 - 7",
+          "horse1_no": 3,
+          "horse2_no": 7,
+          "horse1_name": "AT C3 KG DB",
+          "horse2_name": "AT C7 KG DB",
+          "ganyan": 84.13
+        },
+        {
+          "combo": "4 - 6",
+          "horse1_no": 4,
+          "horse2_no": 6,
+          "horse1_name": "AT C4 KG DB",
+          "horse2_name": "AT C6 KG DB",
+          "ganyan": 97.48
+        },
+        {
+          "combo": "4 - 7",
+          "horse1_no": 4,
+          "horse2_no": 7,
+          "horse1_name": "AT C4 KG DB",
+          "horse2_name": "AT C7 KG DB",
+          "ganyan": 113.76
+        },
+        {
+          "combo": "5 - 6",
+          "horse1_no": 5,
+          "horse2_no": 6,
+          "horse1_name": "AT C5 KG DB",
+          "horse2_name": "AT C6 KG DB",
+          "ganyan": 122.85
+        },
+        {
+          "combo": "5 - 7",
+          "horse1_no": 5,
+          "horse2_no": 7,
+          "horse1_name": "AT C5 KG DB",
+          "horse2_name": "AT C7 KG DB",
+          "ganyan": 143.37
+        },
+        {
+          "combo": "6 - 7",
+          "horse1_no": 6,
+          "horse2_no": 7,
+          "horse1_name": "AT C6 KG DB",
+          "horse2_name": "AT C7 KG DB",
+          "ganyan": 172.96
+        }
+      ],
+      "is_live_odds": false,
+      "live_odds_source": "TJK Resmi AGF Muhtemel Projeksiyonu"
     },
     {
       "race_number": 4,
@@ -5115,7 +5685,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "AGF #1 (%30.0) ile yarışseverlerin en güvendiği safkan. 2:03.32 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Çim pistte 2 yarışta 2 kez tabela (0 birincilik, 2 ikincilik, ortalama 2.0.lik)."
-          }
+          },
+          "ganyan": 2.83,
+          "live_ganyan": 2.83
         },
         {
           "number": 4,
@@ -5287,7 +5859,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Deneyimli jokey M.ÇİÇEK ile dengeli ve istikrarlı uyum. 2:03.95 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Çim pistte 2 yarışta 2 kez tabela (1 birincilik, 1 ikincilik, ortalama 1.5.lik)."
-          }
+          },
+          "ganyan": 11.33,
+          "live_ganyan": 11.33
         },
         {
           "number": 3,
@@ -5447,7 +6021,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Usta jokey N.AVCİ ampirik %20.6 galibiyet, %60.5 tabela ile elit avantaj sağlıyor. Çim pistte 2 yarışta 2 kez tabela (1 birincilik, 0 ikincilik, ortalama 2.5.lik). Son koşularında hedef pistte istikrarlı tabela/galibiyet performansı sergiledi."
-          }
+          },
+          "ganyan": 8.5,
+          "live_ganyan": 8.5
         },
         {
           "number": 2,
@@ -5607,7 +6183,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Deneyimli jokey M.KAYA ile dengeli ve istikrarlı uyum. 2:04.05 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Çim pistte 2 yarışta 2 kez tabela (0 birincilik, 0 ikincilik, ortalama 3.0.lik)."
-          }
+          },
+          "ganyan": 5.67,
+          "live_ganyan": 5.67
         },
         {
           "number": 9,
@@ -5773,7 +6351,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Deneyimli jokey M.KAYA ile dengeli ve istikrarlı uyum. 2:04.48 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Çim pistte 2 yarışta 2 kez tabela (1 birincilik, 1 ikincilik, ortalama 1.5.lik)."
-          }
+          },
+          "ganyan": 25.76,
+          "live_ganyan": 25.76
         },
         {
           "number": 7,
@@ -5933,7 +6513,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Usta jokey G.KOCAKAYA ampirik %21.6 galibiyet, %63.8 tabela ile elit avantaj sağlıyor. 2:04.58 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Çim pistte 2 yarışta 2 kez tabela (0 birincilik, 1 ikincilik, ortalama 3.0.lik)."
-          }
+          },
+          "ganyan": 19.77,
+          "live_ganyan": 19.77
         },
         {
           "number": 6,
@@ -6093,7 +6675,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "2:03.85 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Çim pistte 2 yarışta 2 kez tabela (1 birincilik, 0 ikincilik, ortalama 2.0.lik). Son koşularında hedef pistte istikrarlı tabela/galibiyet performansı sergiledi."
-          }
+          },
+          "ganyan": 17.0,
+          "live_ganyan": 17.0
         },
         {
           "number": 5,
@@ -6253,7 +6837,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Usta jokey M.M.BİLGİN ampirik %20.7 galibiyet, %63.5 tabela ile elit avantaj sağlıyor. Çim pistte 2 yarışta 2 kez tabela (0 birincilik, 1 ikincilik, ortalama 2.5.lik). Son koşularında hedef pistte istikrarlı tabela/galibiyet performansı sergiledi."
-          }
+          },
+          "ganyan": 14.17,
+          "live_ganyan": 14.17
         },
         {
           "number": 8,
@@ -6395,7 +6981,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Çim pistte 2 yarışta 2 kez tabela (1 birincilik, 0 ikincilik, ortalama 2.0.lik). Son koşularında hedef pistte istikrarlı tabela/galibiyet performansı sergiledi."
-          }
+          },
+          "ganyan": 22.37,
+          "live_ganyan": 22.37
         }
       ],
       "record_time_sec": 119.7,
@@ -6664,7 +7252,179 @@
           "partner": 4,
           "recommendation": "4. Koşuda 1 (veya 4) safkan ile sonraki koşunun favorisi bağlanmalıdır."
         }
-      }
+      },
+      "ikili_ganyanlar": [
+        {
+          "combo": "1 - 2",
+          "horse1_no": 1,
+          "horse2_no": 2,
+          "horse1_name": "AT D1 KG DB",
+          "horse2_name": "AT D2 KG DB",
+          "ganyan": 6.65
+        },
+        {
+          "combo": "1 - 3",
+          "horse1_no": 1,
+          "horse2_no": 3,
+          "horse1_name": "AT D1 KG DB",
+          "horse2_name": "AT D3 KG DB",
+          "ganyan": 10.24
+        },
+        {
+          "combo": "1 - 4",
+          "horse1_no": 1,
+          "horse2_no": 4,
+          "horse1_name": "AT D1 KG DB",
+          "horse2_name": "AT D4 KG DB",
+          "ganyan": 13.81
+        },
+        {
+          "combo": "1 - 5",
+          "horse1_no": 1,
+          "horse2_no": 5,
+          "horse1_name": "AT D1 KG DB",
+          "horse2_name": "AT D5 KG DB",
+          "ganyan": 17.39
+        },
+        {
+          "combo": "1 - 6",
+          "horse1_no": 1,
+          "horse2_no": 6,
+          "horse1_name": "AT D1 KG DB",
+          "horse2_name": "AT D6 KG DB",
+          "ganyan": 20.96
+        },
+        {
+          "combo": "2 - 3",
+          "horse1_no": 2,
+          "horse2_no": 3,
+          "horse1_name": "AT D2 KG DB",
+          "horse2_name": "AT D3 KG DB",
+          "ganyan": 22.73
+        },
+        {
+          "combo": "1 - 7",
+          "horse1_no": 1,
+          "horse2_no": 7,
+          "horse1_name": "AT D1 KG DB",
+          "horse2_name": "AT D7 KG DB",
+          "ganyan": 24.45
+        },
+        {
+          "combo": "2 - 4",
+          "horse1_no": 2,
+          "horse2_no": 4,
+          "horse1_name": "AT D2 KG DB",
+          "horse2_name": "AT D4 KG DB",
+          "ganyan": 30.71
+        },
+        {
+          "combo": "2 - 5",
+          "horse1_no": 2,
+          "horse2_no": 5,
+          "horse1_name": "AT D2 KG DB",
+          "horse2_name": "AT D5 KG DB",
+          "ganyan": 38.69
+        },
+        {
+          "combo": "2 - 6",
+          "horse1_no": 2,
+          "horse2_no": 6,
+          "horse1_name": "AT D2 KG DB",
+          "horse2_name": "AT D6 KG DB",
+          "ganyan": 46.66
+        },
+        {
+          "combo": "3 - 4",
+          "horse1_no": 3,
+          "horse2_no": 4,
+          "horse1_name": "AT D3 KG DB",
+          "horse2_name": "AT D4 KG DB",
+          "ganyan": 47.44
+        },
+        {
+          "combo": "2 - 7",
+          "horse1_no": 2,
+          "horse2_no": 7,
+          "horse1_name": "AT D2 KG DB",
+          "horse2_name": "AT D7 KG DB",
+          "ganyan": 54.44
+        },
+        {
+          "combo": "3 - 5",
+          "horse1_no": 3,
+          "horse2_no": 5,
+          "horse1_name": "AT D3 KG DB",
+          "horse2_name": "AT D5 KG DB",
+          "ganyan": 59.77
+        },
+        {
+          "combo": "3 - 6",
+          "horse1_no": 3,
+          "horse2_no": 6,
+          "horse1_name": "AT D3 KG DB",
+          "horse2_name": "AT D6 KG DB",
+          "ganyan": 72.1
+        },
+        {
+          "combo": "4 - 5",
+          "horse1_no": 4,
+          "horse2_no": 5,
+          "horse1_name": "AT D4 KG DB",
+          "horse2_name": "AT D5 KG DB",
+          "ganyan": 80.81
+        },
+        {
+          "combo": "3 - 7",
+          "horse1_no": 3,
+          "horse2_no": 7,
+          "horse1_name": "AT D3 KG DB",
+          "horse2_name": "AT D7 KG DB",
+          "ganyan": 84.13
+        },
+        {
+          "combo": "4 - 6",
+          "horse1_no": 4,
+          "horse2_no": 6,
+          "horse1_name": "AT D4 KG DB",
+          "horse2_name": "AT D6 KG DB",
+          "ganyan": 97.48
+        },
+        {
+          "combo": "4 - 7",
+          "horse1_no": 4,
+          "horse2_no": 7,
+          "horse1_name": "AT D4 KG DB",
+          "horse2_name": "AT D7 KG DB",
+          "ganyan": 113.76
+        },
+        {
+          "combo": "5 - 6",
+          "horse1_no": 5,
+          "horse2_no": 6,
+          "horse1_name": "AT D5 KG DB",
+          "horse2_name": "AT D6 KG DB",
+          "ganyan": 122.85
+        },
+        {
+          "combo": "5 - 7",
+          "horse1_no": 5,
+          "horse2_no": 7,
+          "horse1_name": "AT D5 KG DB",
+          "horse2_name": "AT D7 KG DB",
+          "ganyan": 143.37
+        },
+        {
+          "combo": "6 - 7",
+          "horse1_no": 6,
+          "horse2_no": 7,
+          "horse1_name": "AT D6 KG DB",
+          "horse2_name": "AT D7 KG DB",
+          "ganyan": 172.96
+        }
+      ],
+      "is_live_odds": false,
+      "live_odds_source": "TJK Resmi AGF Muhtemel Projeksiyonu"
     },
     {
       "race_number": 5,
@@ -6837,7 +7597,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "AGF #1 (%30.0) ile yarışseverlerin en güvendiği safkan. 2:24.72 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Kum pistte 1 yarışta 1 kez tabela (0 birincilik, 1 ikincilik, ortalama 2.0.lik)."
-          }
+          },
+          "ganyan": 2.83,
+          "live_ganyan": 2.83
         },
         {
           "number": 5,
@@ -7003,7 +7765,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Usta jokey M.M.BİLGİN ampirik %20.7 galibiyet, %63.5 tabela ile elit avantaj sağlıyor. 2:23.29 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Kum pistte 1 yarışta 1 kez tabela (1 birincilik, 0 ikincilik, ortalama 1.0.lik)."
-          }
+          },
+          "ganyan": 14.17,
+          "live_ganyan": 14.17
         },
         {
           "number": 2,
@@ -7169,7 +7933,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Deneyimli jokey M.KAYA ile dengeli ve istikrarlı uyum. 2:22.70 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Kum pistte 1 yarışta 1 kez tabela (0 birincilik, 0 ikincilik, ortalama 3.0.lik)."
-          }
+          },
+          "ganyan": 5.67,
+          "live_ganyan": 5.67
         },
         {
           "number": 7,
@@ -7335,7 +8101,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Usta jokey G.KOCAKAYA ampirik %21.6 galibiyet, %63.8 tabela ile elit avantaj sağlıyor. 2:21.90 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Kum pistte 1 yarışta 1 kez tabela (0 birincilik, 0 ikincilik, ortalama 3.0.lik)."
-          }
+          },
+          "ganyan": 19.77,
+          "live_ganyan": 19.77
         },
         {
           "number": 3,
@@ -7489,7 +8257,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Usta jokey N.AVCİ ampirik %20.6 galibiyet, %60.5 tabela ile elit avantaj sağlıyor. 2:23.33 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. 3. iç kulvardan viraja avantajlı girme pozisyonu."
-          }
+          },
+          "ganyan": 8.5,
+          "live_ganyan": 8.5
         },
         {
           "number": 6,
@@ -7637,7 +8407,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Kum pistte 1 yarışta 1 kez tabela (0 birincilik, 1 ikincilik, ortalama 2.0.lik). Son koşularında hedef pistte istikrarlı tabela/galibiyet performansı sergiledi. İdeal dinlenme döngüsü (14-35 gün form zirvesi)"
-          }
+          },
+          "ganyan": 17.0,
+          "live_ganyan": 17.0
         },
         {
           "number": 8,
@@ -7773,7 +8545,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "2:23.88 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip."
-          }
+          },
+          "ganyan": 22.37,
+          "live_ganyan": 22.37
         },
         {
           "number": 9,
@@ -7927,7 +8701,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Deneyimli jokey M.KAYA ile dengeli ve istikrarlı uyum. 2:21.86 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Son 400m derecesi 24.52 sn ile idmanlarında canlı ve istekli."
-          }
+          },
+          "ganyan": 25.76,
+          "live_ganyan": 25.76
         },
         {
           "number": 4,
@@ -8075,7 +8851,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Deneyimli jokey M.ÇİÇEK ile dengeli ve istikrarlı uyum. 4. iç kulvardan viraja avantajlı girme pozisyonu. İdeal dinlenme döngüsü (14-35 gün form zirvesi)"
-          }
+          },
+          "ganyan": 11.33,
+          "live_ganyan": 11.33
         }
       ],
       "record_time_sec": 138.6,
@@ -8337,7 +9115,179 @@
           "partner": 5,
           "recommendation": "5. Koşuda 1 (veya 5) safkan ile sonraki koşunun favorisi bağlanmalıdır."
         }
-      }
+      },
+      "ikili_ganyanlar": [
+        {
+          "combo": "1 - 2",
+          "horse1_no": 1,
+          "horse2_no": 2,
+          "horse1_name": "AT E1 KG DB",
+          "horse2_name": "AT E2 KG DB",
+          "ganyan": 6.65
+        },
+        {
+          "combo": "1 - 3",
+          "horse1_no": 1,
+          "horse2_no": 3,
+          "horse1_name": "AT E1 KG DB",
+          "horse2_name": "AT E3 KG DB",
+          "ganyan": 10.24
+        },
+        {
+          "combo": "1 - 4",
+          "horse1_no": 1,
+          "horse2_no": 4,
+          "horse1_name": "AT E1 KG DB",
+          "horse2_name": "AT E4 KG DB",
+          "ganyan": 13.81
+        },
+        {
+          "combo": "1 - 5",
+          "horse1_no": 1,
+          "horse2_no": 5,
+          "horse1_name": "AT E1 KG DB",
+          "horse2_name": "AT E5 KG DB",
+          "ganyan": 17.39
+        },
+        {
+          "combo": "1 - 6",
+          "horse1_no": 1,
+          "horse2_no": 6,
+          "horse1_name": "AT E1 KG DB",
+          "horse2_name": "AT E6 KG DB",
+          "ganyan": 20.96
+        },
+        {
+          "combo": "2 - 3",
+          "horse1_no": 2,
+          "horse2_no": 3,
+          "horse1_name": "AT E2 KG DB",
+          "horse2_name": "AT E3 KG DB",
+          "ganyan": 22.73
+        },
+        {
+          "combo": "1 - 7",
+          "horse1_no": 1,
+          "horse2_no": 7,
+          "horse1_name": "AT E1 KG DB",
+          "horse2_name": "AT E7 KG DB",
+          "ganyan": 24.45
+        },
+        {
+          "combo": "2 - 4",
+          "horse1_no": 2,
+          "horse2_no": 4,
+          "horse1_name": "AT E2 KG DB",
+          "horse2_name": "AT E4 KG DB",
+          "ganyan": 30.71
+        },
+        {
+          "combo": "2 - 5",
+          "horse1_no": 2,
+          "horse2_no": 5,
+          "horse1_name": "AT E2 KG DB",
+          "horse2_name": "AT E5 KG DB",
+          "ganyan": 38.69
+        },
+        {
+          "combo": "2 - 6",
+          "horse1_no": 2,
+          "horse2_no": 6,
+          "horse1_name": "AT E2 KG DB",
+          "horse2_name": "AT E6 KG DB",
+          "ganyan": 46.66
+        },
+        {
+          "combo": "3 - 4",
+          "horse1_no": 3,
+          "horse2_no": 4,
+          "horse1_name": "AT E3 KG DB",
+          "horse2_name": "AT E4 KG DB",
+          "ganyan": 47.44
+        },
+        {
+          "combo": "2 - 7",
+          "horse1_no": 2,
+          "horse2_no": 7,
+          "horse1_name": "AT E2 KG DB",
+          "horse2_name": "AT E7 KG DB",
+          "ganyan": 54.44
+        },
+        {
+          "combo": "3 - 5",
+          "horse1_no": 3,
+          "horse2_no": 5,
+          "horse1_name": "AT E3 KG DB",
+          "horse2_name": "AT E5 KG DB",
+          "ganyan": 59.77
+        },
+        {
+          "combo": "3 - 6",
+          "horse1_no": 3,
+          "horse2_no": 6,
+          "horse1_name": "AT E3 KG DB",
+          "horse2_name": "AT E6 KG DB",
+          "ganyan": 72.1
+        },
+        {
+          "combo": "4 - 5",
+          "horse1_no": 4,
+          "horse2_no": 5,
+          "horse1_name": "AT E4 KG DB",
+          "horse2_name": "AT E5 KG DB",
+          "ganyan": 80.81
+        },
+        {
+          "combo": "3 - 7",
+          "horse1_no": 3,
+          "horse2_no": 7,
+          "horse1_name": "AT E3 KG DB",
+          "horse2_name": "AT E7 KG DB",
+          "ganyan": 84.13
+        },
+        {
+          "combo": "4 - 6",
+          "horse1_no": 4,
+          "horse2_no": 6,
+          "horse1_name": "AT E4 KG DB",
+          "horse2_name": "AT E6 KG DB",
+          "ganyan": 97.48
+        },
+        {
+          "combo": "4 - 7",
+          "horse1_no": 4,
+          "horse2_no": 7,
+          "horse1_name": "AT E4 KG DB",
+          "horse2_name": "AT E7 KG DB",
+          "ganyan": 113.76
+        },
+        {
+          "combo": "5 - 6",
+          "horse1_no": 5,
+          "horse2_no": 6,
+          "horse1_name": "AT E5 KG DB",
+          "horse2_name": "AT E6 KG DB",
+          "ganyan": 122.85
+        },
+        {
+          "combo": "5 - 7",
+          "horse1_no": 5,
+          "horse2_no": 7,
+          "horse1_name": "AT E5 KG DB",
+          "horse2_name": "AT E7 KG DB",
+          "ganyan": 143.37
+        },
+        {
+          "combo": "6 - 7",
+          "horse1_no": 6,
+          "horse2_no": 7,
+          "horse1_name": "AT E6 KG DB",
+          "horse2_name": "AT E7 KG DB",
+          "ganyan": 172.96
+        }
+      ],
+      "is_live_odds": false,
+      "live_odds_source": "TJK Resmi AGF Muhtemel Projeksiyonu"
     },
     {
       "race_number": 6,
@@ -8498,7 +9448,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "AGF #1 (%30.0) ile yarışseverlerin en güvendiği safkan. 1. iç kulvardan viraja avantajlı girme pozisyonu. İdeal dinlenme döngüsü (14-35 gün form zirvesi)"
-          }
+          },
+          "ganyan": 2.83,
+          "live_ganyan": 2.83
         },
         {
           "number": 3,
@@ -8658,7 +9610,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Usta jokey N.AVCİ ampirik %20.6 galibiyet, %60.5 tabela ile elit avantaj sağlıyor. 1:22.81 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Son 400m derecesi 24.75 sn ile idmanlarında canlı ve istekli."
-          }
+          },
+          "ganyan": 8.5,
+          "live_ganyan": 8.5
         },
         {
           "number": 5,
@@ -8812,7 +9766,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Usta jokey M.M.BİLGİN ampirik %20.7 galibiyet, %63.5 tabela ile elit avantaj sağlıyor. 1:22.51 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Son 400m derecesi 24.92 sn ile idmanlarında canlı ve istekli."
-          }
+          },
+          "ganyan": 14.17,
+          "live_ganyan": 14.17
         },
         {
           "number": 2,
@@ -8960,7 +9916,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Deneyimli jokey M.KAYA ile dengeli ve istikrarlı uyum. 2. iç kulvardan viraja avantajlı girme pozisyonu. İdeal dinlenme döngüsü (14-35 gün form zirvesi)"
-          }
+          },
+          "ganyan": 5.67,
+          "live_ganyan": 5.67
         },
         {
           "number": 4,
@@ -9108,7 +10066,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Deneyimli jokey M.ÇİÇEK ile dengeli ve istikrarlı uyum. 4. iç kulvardan viraja avantajlı girme pozisyonu. İdeal dinlenme döngüsü (14-35 gün form zirvesi)"
-          }
+          },
+          "ganyan": 11.33,
+          "live_ganyan": 11.33
         },
         {
           "number": 6,
@@ -9244,7 +10204,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "İdeal dinlenme döngüsü (14-35 gün form zirvesi)"
-          }
+          },
+          "ganyan": 17.0,
+          "live_ganyan": 17.0
         },
         {
           "number": 8,
@@ -9380,7 +10342,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Son 400m derecesi 24.88 sn ile idmanlarında canlı ve istekli."
-          }
+          },
+          "ganyan": 22.37,
+          "live_ganyan": 22.37
         },
         {
           "number": 7,
@@ -9522,7 +10486,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Usta jokey G.KOCAKAYA ampirik %21.6 galibiyet, %63.8 tabela ile elit avantaj sağlıyor. İdeal dinlenme döngüsü (14-35 gün form zirvesi)"
-          }
+          },
+          "ganyan": 19.77,
+          "live_ganyan": 19.77
         },
         {
           "number": 9,
@@ -9664,7 +10630,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Deneyimli jokey M.KAYA ile dengeli ve istikrarlı uyum. İdeal dinlenme döngüsü (14-35 gün form zirvesi)"
-          }
+          },
+          "ganyan": 25.76,
+          "live_ganyan": 25.76
         }
       ],
       "record_time_sec": 79.2,
@@ -9914,7 +10882,179 @@
           "partner": 3,
           "recommendation": "6. Koşuda 1 (veya 3) safkan ile sonraki koşunun favorisi bağlanmalıdır."
         }
-      }
+      },
+      "ikili_ganyanlar": [
+        {
+          "combo": "1 - 2",
+          "horse1_no": 1,
+          "horse2_no": 2,
+          "horse1_name": "AT F1 KG DB",
+          "horse2_name": "AT F2 KG DB",
+          "ganyan": 6.65
+        },
+        {
+          "combo": "1 - 3",
+          "horse1_no": 1,
+          "horse2_no": 3,
+          "horse1_name": "AT F1 KG DB",
+          "horse2_name": "AT F3 KG DB",
+          "ganyan": 10.24
+        },
+        {
+          "combo": "1 - 4",
+          "horse1_no": 1,
+          "horse2_no": 4,
+          "horse1_name": "AT F1 KG DB",
+          "horse2_name": "AT F4 KG DB",
+          "ganyan": 13.81
+        },
+        {
+          "combo": "1 - 5",
+          "horse1_no": 1,
+          "horse2_no": 5,
+          "horse1_name": "AT F1 KG DB",
+          "horse2_name": "AT F5 KG DB",
+          "ganyan": 17.39
+        },
+        {
+          "combo": "1 - 6",
+          "horse1_no": 1,
+          "horse2_no": 6,
+          "horse1_name": "AT F1 KG DB",
+          "horse2_name": "AT F6 KG DB",
+          "ganyan": 20.96
+        },
+        {
+          "combo": "2 - 3",
+          "horse1_no": 2,
+          "horse2_no": 3,
+          "horse1_name": "AT F2 KG DB",
+          "horse2_name": "AT F3 KG DB",
+          "ganyan": 22.73
+        },
+        {
+          "combo": "1 - 7",
+          "horse1_no": 1,
+          "horse2_no": 7,
+          "horse1_name": "AT F1 KG DB",
+          "horse2_name": "AT F7 KG DB",
+          "ganyan": 24.45
+        },
+        {
+          "combo": "2 - 4",
+          "horse1_no": 2,
+          "horse2_no": 4,
+          "horse1_name": "AT F2 KG DB",
+          "horse2_name": "AT F4 KG DB",
+          "ganyan": 30.71
+        },
+        {
+          "combo": "2 - 5",
+          "horse1_no": 2,
+          "horse2_no": 5,
+          "horse1_name": "AT F2 KG DB",
+          "horse2_name": "AT F5 KG DB",
+          "ganyan": 38.69
+        },
+        {
+          "combo": "2 - 6",
+          "horse1_no": 2,
+          "horse2_no": 6,
+          "horse1_name": "AT F2 KG DB",
+          "horse2_name": "AT F6 KG DB",
+          "ganyan": 46.66
+        },
+        {
+          "combo": "3 - 4",
+          "horse1_no": 3,
+          "horse2_no": 4,
+          "horse1_name": "AT F3 KG DB",
+          "horse2_name": "AT F4 KG DB",
+          "ganyan": 47.44
+        },
+        {
+          "combo": "2 - 7",
+          "horse1_no": 2,
+          "horse2_no": 7,
+          "horse1_name": "AT F2 KG DB",
+          "horse2_name": "AT F7 KG DB",
+          "ganyan": 54.44
+        },
+        {
+          "combo": "3 - 5",
+          "horse1_no": 3,
+          "horse2_no": 5,
+          "horse1_name": "AT F3 KG DB",
+          "horse2_name": "AT F5 KG DB",
+          "ganyan": 59.77
+        },
+        {
+          "combo": "3 - 6",
+          "horse1_no": 3,
+          "horse2_no": 6,
+          "horse1_name": "AT F3 KG DB",
+          "horse2_name": "AT F6 KG DB",
+          "ganyan": 72.1
+        },
+        {
+          "combo": "4 - 5",
+          "horse1_no": 4,
+          "horse2_no": 5,
+          "horse1_name": "AT F4 KG DB",
+          "horse2_name": "AT F5 KG DB",
+          "ganyan": 80.81
+        },
+        {
+          "combo": "3 - 7",
+          "horse1_no": 3,
+          "horse2_no": 7,
+          "horse1_name": "AT F3 KG DB",
+          "horse2_name": "AT F7 KG DB",
+          "ganyan": 84.13
+        },
+        {
+          "combo": "4 - 6",
+          "horse1_no": 4,
+          "horse2_no": 6,
+          "horse1_name": "AT F4 KG DB",
+          "horse2_name": "AT F6 KG DB",
+          "ganyan": 97.48
+        },
+        {
+          "combo": "4 - 7",
+          "horse1_no": 4,
+          "horse2_no": 7,
+          "horse1_name": "AT F4 KG DB",
+          "horse2_name": "AT F7 KG DB",
+          "ganyan": 113.76
+        },
+        {
+          "combo": "5 - 6",
+          "horse1_no": 5,
+          "horse2_no": 6,
+          "horse1_name": "AT F5 KG DB",
+          "horse2_name": "AT F6 KG DB",
+          "ganyan": 122.85
+        },
+        {
+          "combo": "5 - 7",
+          "horse1_no": 5,
+          "horse2_no": 7,
+          "horse1_name": "AT F5 KG DB",
+          "horse2_name": "AT F7 KG DB",
+          "ganyan": 143.37
+        },
+        {
+          "combo": "6 - 7",
+          "horse1_no": 6,
+          "horse2_no": 7,
+          "horse1_name": "AT F6 KG DB",
+          "horse2_name": "AT F7 KG DB",
+          "ganyan": 172.96
+        }
+      ],
+      "is_live_odds": false,
+      "live_odds_source": "TJK Resmi AGF Muhtemel Projeksiyonu"
     },
     {
       "race_number": 7,
@@ -10099,7 +11239,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "AGF #1 (%30.0) ile yarışseverlerin en güvendiği safkan. 1:31.40 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Çim pistte 2 yarışta 2 kez tabela (0 birincilik, 2 ikincilik, ortalama 2.0.lik)."
-          }
+          },
+          "ganyan": 2.83,
+          "live_ganyan": 2.83
         },
         {
           "number": 4,
@@ -10265,7 +11407,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Deneyimli jokey M.ÇİÇEK ile dengeli ve istikrarlı uyum. 1:32.14 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Çim pistte 2 yarışta 2 kez tabela (1 birincilik, 1 ikincilik, ortalama 1.5.lik)."
-          }
+          },
+          "ganyan": 11.33,
+          "live_ganyan": 11.33
         },
         {
           "number": 3,
@@ -10425,7 +11569,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Usta jokey N.AVCİ ampirik %20.6 galibiyet, %60.5 tabela ile elit avantaj sağlıyor. Çim pistte 2 yarışta 2 kez tabela (1 birincilik, 0 ikincilik, ortalama 2.5.lik). Son koşularında hedef pistte istikrarlı tabela/galibiyet performansı sergiledi."
-          }
+          },
+          "ganyan": 8.5,
+          "live_ganyan": 8.5
         },
         {
           "number": 2,
@@ -10585,7 +11731,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Deneyimli jokey M.KAYA ile dengeli ve istikrarlı uyum. Çim pistte 2 yarışta 2 kez tabela (0 birincilik, 0 ikincilik, ortalama 3.0.lik). Son koşularında hedef pistte istikrarlı tabela/galibiyet performansı sergiledi."
-          }
+          },
+          "ganyan": 5.67,
+          "live_ganyan": 5.67
         },
         {
           "number": 7,
@@ -10739,7 +11887,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Usta jokey G.KOCAKAYA ampirik %21.6 galibiyet, %63.8 tabela ile elit avantaj sağlıyor. Çim pistte 2 yarışta 2 kez tabela (0 birincilik, 1 ikincilik, ortalama 3.0.lik). Son koşularında hedef pistte istikrarlı tabela/galibiyet performansı sergiledi."
-          }
+          },
+          "ganyan": 19.77,
+          "live_ganyan": 19.77
         },
         {
           "number": 6,
@@ -10899,7 +12049,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "1:31.90 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Çim pistte 2 yarışta 2 kez tabela (1 birincilik, 0 ikincilik, ortalama 2.0.lik). Son koşularında hedef pistte istikrarlı tabela/galibiyet performansı sergiledi."
-          }
+          },
+          "ganyan": 17.0,
+          "live_ganyan": 17.0
         },
         {
           "number": 9,
@@ -11053,7 +12205,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Deneyimli jokey M.KAYA ile dengeli ve istikrarlı uyum. Çim pistte 2 yarışta 2 kez tabela (1 birincilik, 1 ikincilik, ortalama 1.5.lik). Son koşularında hedef pistte istikrarlı tabela/galibiyet performansı sergiledi."
-          }
+          },
+          "ganyan": 25.76,
+          "live_ganyan": 25.76
         },
         {
           "number": 5,
@@ -11207,7 +12361,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Usta jokey M.M.BİLGİN ampirik %20.7 galibiyet, %63.5 tabela ile elit avantaj sağlıyor. Çim pistte 2 yarışta 2 kez tabela (0 birincilik, 1 ikincilik, ortalama 2.5.lik). Son koşularında hedef pistte istikrarlı tabela/galibiyet performansı sergiledi."
-          }
+          },
+          "ganyan": 14.17,
+          "live_ganyan": 14.17
         },
         {
           "number": 8,
@@ -11349,7 +12505,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Çim pistte 2 yarışta 2 kez tabela (1 birincilik, 0 ikincilik, ortalama 2.0.lik). Son koşularında hedef pistte istikrarlı tabela/galibiyet performansı sergiledi."
-          }
+          },
+          "ganyan": 22.37,
+          "live_ganyan": 22.37
         }
       ],
       "record_time_sec": 88.2,
@@ -11624,7 +12782,179 @@
           "partner": 4,
           "recommendation": "7. Koşuda 1 (veya 4) safkan ile sonraki koşunun favorisi bağlanmalıdır."
         }
-      }
+      },
+      "ikili_ganyanlar": [
+        {
+          "combo": "1 - 2",
+          "horse1_no": 1,
+          "horse2_no": 2,
+          "horse1_name": "AT G1 KG DB",
+          "horse2_name": "AT G2 KG DB",
+          "ganyan": 6.65
+        },
+        {
+          "combo": "1 - 3",
+          "horse1_no": 1,
+          "horse2_no": 3,
+          "horse1_name": "AT G1 KG DB",
+          "horse2_name": "AT G3 KG DB",
+          "ganyan": 10.24
+        },
+        {
+          "combo": "1 - 4",
+          "horse1_no": 1,
+          "horse2_no": 4,
+          "horse1_name": "AT G1 KG DB",
+          "horse2_name": "AT G4 KG DB",
+          "ganyan": 13.81
+        },
+        {
+          "combo": "1 - 5",
+          "horse1_no": 1,
+          "horse2_no": 5,
+          "horse1_name": "AT G1 KG DB",
+          "horse2_name": "AT G5 KG DB",
+          "ganyan": 17.39
+        },
+        {
+          "combo": "1 - 6",
+          "horse1_no": 1,
+          "horse2_no": 6,
+          "horse1_name": "AT G1 KG DB",
+          "horse2_name": "AT G6 KG DB",
+          "ganyan": 20.96
+        },
+        {
+          "combo": "2 - 3",
+          "horse1_no": 2,
+          "horse2_no": 3,
+          "horse1_name": "AT G2 KG DB",
+          "horse2_name": "AT G3 KG DB",
+          "ganyan": 22.73
+        },
+        {
+          "combo": "1 - 7",
+          "horse1_no": 1,
+          "horse2_no": 7,
+          "horse1_name": "AT G1 KG DB",
+          "horse2_name": "AT G7 KG DB",
+          "ganyan": 24.45
+        },
+        {
+          "combo": "2 - 4",
+          "horse1_no": 2,
+          "horse2_no": 4,
+          "horse1_name": "AT G2 KG DB",
+          "horse2_name": "AT G4 KG DB",
+          "ganyan": 30.71
+        },
+        {
+          "combo": "2 - 5",
+          "horse1_no": 2,
+          "horse2_no": 5,
+          "horse1_name": "AT G2 KG DB",
+          "horse2_name": "AT G5 KG DB",
+          "ganyan": 38.69
+        },
+        {
+          "combo": "2 - 6",
+          "horse1_no": 2,
+          "horse2_no": 6,
+          "horse1_name": "AT G2 KG DB",
+          "horse2_name": "AT G6 KG DB",
+          "ganyan": 46.66
+        },
+        {
+          "combo": "3 - 4",
+          "horse1_no": 3,
+          "horse2_no": 4,
+          "horse1_name": "AT G3 KG DB",
+          "horse2_name": "AT G4 KG DB",
+          "ganyan": 47.44
+        },
+        {
+          "combo": "2 - 7",
+          "horse1_no": 2,
+          "horse2_no": 7,
+          "horse1_name": "AT G2 KG DB",
+          "horse2_name": "AT G7 KG DB",
+          "ganyan": 54.44
+        },
+        {
+          "combo": "3 - 5",
+          "horse1_no": 3,
+          "horse2_no": 5,
+          "horse1_name": "AT G3 KG DB",
+          "horse2_name": "AT G5 KG DB",
+          "ganyan": 59.77
+        },
+        {
+          "combo": "3 - 6",
+          "horse1_no": 3,
+          "horse2_no": 6,
+          "horse1_name": "AT G3 KG DB",
+          "horse2_name": "AT G6 KG DB",
+          "ganyan": 72.1
+        },
+        {
+          "combo": "4 - 5",
+          "horse1_no": 4,
+          "horse2_no": 5,
+          "horse1_name": "AT G4 KG DB",
+          "horse2_name": "AT G5 KG DB",
+          "ganyan": 80.81
+        },
+        {
+          "combo": "3 - 7",
+          "horse1_no": 3,
+          "horse2_no": 7,
+          "horse1_name": "AT G3 KG DB",
+          "horse2_name": "AT G7 KG DB",
+          "ganyan": 84.13
+        },
+        {
+          "combo": "4 - 6",
+          "horse1_no": 4,
+          "horse2_no": 6,
+          "horse1_name": "AT G4 KG DB",
+          "horse2_name": "AT G6 KG DB",
+          "ganyan": 97.48
+        },
+        {
+          "combo": "4 - 7",
+          "horse1_no": 4,
+          "horse2_no": 7,
+          "horse1_name": "AT G4 KG DB",
+          "horse2_name": "AT G7 KG DB",
+          "ganyan": 113.76
+        },
+        {
+          "combo": "5 - 6",
+          "horse1_no": 5,
+          "horse2_no": 6,
+          "horse1_name": "AT G5 KG DB",
+          "horse2_name": "AT G6 KG DB",
+          "ganyan": 122.85
+        },
+        {
+          "combo": "5 - 7",
+          "horse1_no": 5,
+          "horse2_no": 7,
+          "horse1_name": "AT G5 KG DB",
+          "horse2_name": "AT G7 KG DB",
+          "ganyan": 143.37
+        },
+        {
+          "combo": "6 - 7",
+          "horse1_no": 6,
+          "horse2_no": 7,
+          "horse1_name": "AT G6 KG DB",
+          "horse2_name": "AT G7 KG DB",
+          "ganyan": 172.96
+        }
+      ],
+      "is_live_odds": false,
+      "live_odds_source": "TJK Resmi AGF Muhtemel Projeksiyonu"
     }
   ],
   "fetched_at": "2026-10-05T11:27:56.299905",

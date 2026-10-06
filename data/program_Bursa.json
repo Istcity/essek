@@ -184,7 +184,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "AGF #1 (%29.5) ile yarışseverlerin en güvendiği safkan. 1:29.61 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Çim pistte 3 yarışta 3 kez tabela (0 birincilik, 3 ikincilik, ortalama 2.0.lik)."
-          }
+          },
+          "ganyan": 2.88,
+          "live_ganyan": 2.88
         },
         {
           "number": 3,
@@ -356,7 +358,9 @@
               }
             ],
             "factor_summary": "Deneyimli jokey M.KAYA ile dengeli ve istikrarlı uyum. Çim pistte 4 yarışta 4 kez tabela (0 birincilik, 2 ikincilik, ortalama 2.8.lik). Son koşularında hedef pistte istikrarlı tabela/galibiyet performansı sergiledi."
-          }
+          },
+          "ganyan": 6.25,
+          "live_ganyan": 6.25
         },
         {
           "number": 6,
@@ -527,7 +531,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "AGF #2 (%25.2) ile yarışseverlerin en güvendiği safkan. Usta jokey N.AVCİ ampirik %20.6 galibiyet, %60.5 tabela ile elit avantaj sağlıyor. 1:29.75 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip."
-          }
+          },
+          "ganyan": 3.37,
+          "live_ganyan": 3.37
         },
         {
           "number": 8,
@@ -692,7 +698,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Çim pistte 4 yarışta 3 kez tabela (0 birincilik, 1 ikincilik, ortalama 3.8.lik). Son koşularında hedef pistte istikrarlı tabela/galibiyet performansı sergiledi. Antrenör M.A.CANPOLATLI: %12.0 kazanma, %48.0 tabela"
-          }
+          },
+          "ganyan": 8.81,
+          "live_ganyan": 8.81
         },
         {
           "number": 7,
@@ -857,7 +865,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "1:29.75 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Çim pistte 1 yarışta 1 kez tabela (0 birincilik, 0 ikincilik, ortalama 3.0.lik). Son koşularında hedef pistte istikrarlı tabela/galibiyet performansı sergiledi."
-          }
+          },
+          "ganyan": 32.44,
+          "live_ganyan": 32.44
         },
         {
           "number": 10,
@@ -1016,7 +1026,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "1:30.73 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. 3. iç kulvardan viraja avantajlı girme pozisyonu. Olumlu ekipman: K (+1.5), KG (+0.5)"
-          }
+          },
+          "ganyan": 25.53,
+          "live_ganyan": 25.53
         },
         {
           "number": 1,
@@ -1163,7 +1175,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Olumlu ekipman: K (+1.5), DB (+1.2), SK (+1.0), KG (+0.5) Yakın koşu periyodu (form koruma evresi)"
-          }
+          },
+          "ganyan": 15.15,
+          "live_ganyan": 15.15
         },
         {
           "number": 12,
@@ -1316,7 +1330,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "1:29.75 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Olumlu ekipman: K (+1.5), KG (+0.5) İdeal dinlenme döngüsü (14-35 gün form zirvesi)"
-          }
+          },
+          "ganyan": 28.15,
+          "live_ganyan": 28.15
         },
         {
           "number": 5,
@@ -1475,7 +1491,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "1:29.75 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. 2. iç kulvardan viraja avantajlı girme pozisyonu. Olumlu ekipman: K (+1.5), DB (+1.2), KG (+0.5)"
-          }
+          },
+          "ganyan": 22.85,
+          "live_ganyan": 22.85
         },
         {
           "number": 4,
@@ -1634,7 +1652,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Usta jokey M.M.BİLGİN ampirik %20.7 galibiyet, %63.5 tabela ile elit avantaj sağlıyor. 1:31.43 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Olumlu ekipman: K (+1.5), DB (+1.2), KG (+0.5)"
-          }
+          },
+          "ganyan": 39.53,
+          "live_ganyan": 39.53
         },
         {
           "number": 13,
@@ -1787,7 +1807,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "1:29.75 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Olumlu ekipman: K (+1.5), DB (+1.2), SK (+1.0), KG (+0.5) İdeal dinlenme döngüsü (14-35 gün form zirvesi)"
-          }
+          },
+          "ganyan": 125.0,
+          "live_ganyan": 125.0
         },
         {
           "number": 11,
@@ -1947,7 +1969,9 @@
               }
             ],
             "factor_summary": "Olumlu ekipman: K (+1.5), DB (+1.2), SK (+1.0), KG (+0.5) Yakın koşu periyodu (form koruma evresi)"
-          }
+          },
+          "ganyan": 75.89,
+          "live_ganyan": 75.89
         },
         {
           "number": 9,
@@ -2028,7 +2052,9 @@
               }
             ],
             "factor_summary": "Koşmaz bildirilmiştir."
-          }
+          },
+          "ganyan": 125.0,
+          "live_ganyan": 125.0
         }
       ],
       "record_time_sec": 89.33,
@@ -2469,7 +2495,179 @@
         "badges": [
           "🏁 Koşu Tamamlandı"
         ]
-      }
+      },
+      "ikili_ganyanlar": [
+        {
+          "combo": "2 - 6",
+          "horse1_no": 2,
+          "horse2_no": 6,
+          "horse1_name": "GÜLNARLI",
+          "horse2_name": "BALKIZIM",
+          "ganyan": 3.8
+        },
+        {
+          "combo": "2 - 3",
+          "horse1_no": 2,
+          "horse2_no": 3,
+          "horse1_name": "GÜLNARLI",
+          "horse2_name": "İZOTOP",
+          "ganyan": 7.55
+        },
+        {
+          "combo": "6 - 3",
+          "horse1_no": 6,
+          "horse2_no": 3,
+          "horse1_name": "BALKIZIM",
+          "horse2_name": "İZOTOP",
+          "ganyan": 9.11
+        },
+        {
+          "combo": "2 - 8",
+          "horse1_no": 2,
+          "horse2_no": 8,
+          "horse1_name": "GÜLNARLI",
+          "horse2_name": "GÜZEL ELAM",
+          "ganyan": 10.85
+        },
+        {
+          "combo": "6 - 8",
+          "horse1_no": 6,
+          "horse2_no": 8,
+          "horse1_name": "BALKIZIM",
+          "horse2_name": "GÜZEL ELAM",
+          "ganyan": 13.11
+        },
+        {
+          "combo": "2 - 1",
+          "horse1_no": 2,
+          "horse2_no": 1,
+          "horse1_name": "GÜLNARLI",
+          "horse2_name": "ÇİLDUTAY",
+          "ganyan": 19.02
+        },
+        {
+          "combo": "6 - 1",
+          "horse1_no": 6,
+          "horse2_no": 1,
+          "horse1_name": "BALKIZIM",
+          "horse2_name": "ÇİLDUTAY",
+          "ganyan": 22.99
+        },
+        {
+          "combo": "3 - 8",
+          "horse1_no": 3,
+          "horse2_no": 8,
+          "horse1_name": "İZOTOP",
+          "horse2_name": "GÜZEL ELAM",
+          "ganyan": 26.25
+        },
+        {
+          "combo": "2 - 5",
+          "horse1_no": 2,
+          "horse2_no": 5,
+          "horse1_name": "GÜLNARLI",
+          "horse2_name": "ATAK KIZ",
+          "ganyan": 28.93
+        },
+        {
+          "combo": "2 - 10",
+          "horse1_no": 2,
+          "horse2_no": 10,
+          "horse1_name": "GÜLNARLI",
+          "horse2_name": "NARENKA",
+          "ganyan": 32.37
+        },
+        {
+          "combo": "6 - 5",
+          "horse1_no": 6,
+          "horse2_no": 5,
+          "horse1_name": "BALKIZIM",
+          "horse2_name": "ATAK KIZ",
+          "ganyan": 34.98
+        },
+        {
+          "combo": "6 - 10",
+          "horse1_no": 6,
+          "horse2_no": 10,
+          "horse1_name": "BALKIZIM",
+          "horse2_name": "NARENKA",
+          "ganyan": 39.14
+        },
+        {
+          "combo": "3 - 1",
+          "horse1_no": 3,
+          "horse2_no": 1,
+          "horse1_name": "İZOTOP",
+          "horse2_name": "ÇİLDUTAY",
+          "ganyan": 46.12
+        },
+        {
+          "combo": "8 - 1",
+          "horse1_no": 8,
+          "horse2_no": 1,
+          "horse1_name": "GÜZEL ELAM",
+          "horse2_name": "ÇİLDUTAY",
+          "ganyan": 66.51
+        },
+        {
+          "combo": "3 - 5",
+          "horse1_no": 3,
+          "horse2_no": 5,
+          "horse1_name": "İZOTOP",
+          "horse2_name": "ATAK KIZ",
+          "ganyan": 70.21
+        },
+        {
+          "combo": "3 - 10",
+          "horse1_no": 3,
+          "horse2_no": 10,
+          "horse1_name": "İZOTOP",
+          "horse2_name": "NARENKA",
+          "ganyan": 78.58
+        },
+        {
+          "combo": "8 - 5",
+          "horse1_no": 8,
+          "horse2_no": 5,
+          "horse1_name": "GÜZEL ELAM",
+          "horse2_name": "ATAK KIZ",
+          "ganyan": 101.28
+        },
+        {
+          "combo": "8 - 10",
+          "horse1_no": 8,
+          "horse2_no": 10,
+          "horse1_name": "GÜZEL ELAM",
+          "horse2_name": "NARENKA",
+          "ganyan": 113.36
+        },
+        {
+          "combo": "1 - 5",
+          "horse1_no": 1,
+          "horse2_no": 5,
+          "horse1_name": "ÇİLDUTAY",
+          "horse2_name": "ATAK KIZ",
+          "ganyan": 178.14
+        },
+        {
+          "combo": "1 - 10",
+          "horse1_no": 1,
+          "horse2_no": 10,
+          "horse1_name": "ÇİLDUTAY",
+          "horse2_name": "NARENKA",
+          "ganyan": 195.0
+        },
+        {
+          "combo": "5 - 10",
+          "horse1_no": 5,
+          "horse2_no": 10,
+          "horse1_name": "ATAK KIZ",
+          "horse2_name": "NARENKA",
+          "ganyan": 195.0
+        }
+      ],
+      "is_live_odds": false,
+      "live_odds_source": "TJK Resmi AGF Muhtemel Projeksiyonu"
     },
     {
       "race_number": 2,
@@ -2652,7 +2850,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "AGF #1 (%39.9) ile yarışseverlerin en güvendiği safkan. 1:31.04 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Çim pistte 1 yarışta 1 kez tabela (0 birincilik, 1 ikincilik, ortalama 2.0.lik)."
-          }
+          },
+          "ganyan": 2.13,
+          "live_ganyan": 2.13
         },
         {
           "number": 1,
@@ -2830,7 +3030,9 @@
               }
             ],
             "factor_summary": "AGF #2 (%30.1) ile yarışseverlerin en güvendiği safkan. 1:31.41 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Çim pistte 1 yarışta 1 kez tabela (1 birincilik, 0 ikincilik, ortalama 1.0.lik)."
-          }
+          },
+          "ganyan": 2.83,
+          "live_ganyan": 2.83
         },
         {
           "number": 2,
@@ -3001,7 +3203,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Deneyimli jokey M.ÇİÇEK ile dengeli ve istikrarlı uyum. Çim pistte 2 yarışta 2 kez tabela (1 birincilik, 0 ikincilik, ortalama 2.5.lik). Son koşularında hedef pistte istikrarlı tabela/galibiyet performansı sergiledi."
-          }
+          },
+          "ganyan": 9.18,
+          "live_ganyan": 9.18
         },
         {
           "number": 5,
@@ -3160,7 +3364,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Usta jokey M.M.BİLGİN ampirik %20.7 galibiyet, %63.5 tabela ile elit avantaj sağlıyor. 1:31.29 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Olumlu ekipman: K (+1.5), DB (+1.2), SK (+1.0), KG (+0.5)"
-          }
+          },
+          "ganyan": 5.43,
+          "live_ganyan": 5.43
         },
         {
           "number": 6,
@@ -3313,7 +3519,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "1:31.36 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Olumlu ekipman: K (+1.5), DB (+1.2), KG (+0.5) İdeal dinlenme döngüsü (14-35 gün form zirvesi)"
-          }
+          },
+          "ganyan": 29.11,
+          "live_ganyan": 29.11
         },
         {
           "number": 3,
@@ -3472,7 +3680,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "1:30.63 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. 4. iç kulvardan viraja avantajlı girme pozisyonu. Olumlu ekipman: K (+1.5), KG (+0.5)"
-          }
+          },
+          "ganyan": 37.44,
+          "live_ganyan": 37.44
         }
       ],
       "record_time_sec": 87.03,
@@ -3824,7 +4034,131 @@
         "badges": [
           "🏁 Koşu Tamamlandı"
         ]
-      }
+      },
+      "ikili_ganyanlar": [
+        {
+          "combo": "4 - 1",
+          "horse1_no": 4,
+          "horse2_no": 1,
+          "horse1_name": "PERLA PURA",
+          "horse2_name": "ME AND THE DEVIL",
+          "ganyan": 2.11
+        },
+        {
+          "combo": "4 - 5",
+          "horse1_no": 4,
+          "horse2_no": 5,
+          "horse1_name": "PERLA PURA",
+          "horse2_name": "QUEEN ERİNÖZ",
+          "ganyan": 4.39
+        },
+        {
+          "combo": "1 - 5",
+          "horse1_no": 1,
+          "horse2_no": 5,
+          "horse1_name": "ME AND THE DEVIL",
+          "horse2_name": "QUEEN ERİNÖZ",
+          "ganyan": 6.34
+        },
+        {
+          "combo": "4 - 2",
+          "horse1_no": 4,
+          "horse2_no": 2,
+          "horse1_name": "PERLA PURA",
+          "horse2_name": "REBEL HOOF",
+          "ganyan": 7.65
+        },
+        {
+          "combo": "1 - 2",
+          "horse1_no": 1,
+          "horse2_no": 2,
+          "horse1_name": "ME AND THE DEVIL",
+          "horse2_name": "REBEL HOOF",
+          "ganyan": 11.07
+        },
+        {
+          "combo": "5 - 2",
+          "horse1_no": 5,
+          "horse2_no": 2,
+          "horse1_name": "QUEEN ERİNÖZ",
+          "horse2_name": "REBEL HOOF",
+          "ganyan": 23.53
+        },
+        {
+          "combo": "4 - 6",
+          "horse1_no": 4,
+          "horse2_no": 6,
+          "horse1_name": "PERLA PURA",
+          "horse2_name": "MOON ASH",
+          "ganyan": 24.9
+        },
+        {
+          "combo": "4 - 3",
+          "horse1_no": 4,
+          "horse2_no": 3,
+          "horse1_name": "PERLA PURA",
+          "horse2_name": "MY BRAVE GIRL",
+          "ganyan": 32.11
+        },
+        {
+          "combo": "1 - 6",
+          "horse1_no": 1,
+          "horse2_no": 6,
+          "horse1_name": "ME AND THE DEVIL",
+          "horse2_name": "MOON ASH",
+          "ganyan": 36.14
+        },
+        {
+          "combo": "1 - 3",
+          "horse1_no": 1,
+          "horse2_no": 3,
+          "horse1_name": "ME AND THE DEVIL",
+          "horse2_name": "MY BRAVE GIRL",
+          "ganyan": 46.62
+        },
+        {
+          "combo": "5 - 6",
+          "horse1_no": 5,
+          "horse2_no": 6,
+          "horse1_name": "QUEEN ERİNÖZ",
+          "horse2_name": "MOON ASH",
+          "ganyan": 77.04
+        },
+        {
+          "combo": "5 - 3",
+          "horse1_no": 5,
+          "horse2_no": 3,
+          "horse1_name": "QUEEN ERİNÖZ",
+          "horse2_name": "MY BRAVE GIRL",
+          "ganyan": 99.4
+        },
+        {
+          "combo": "2 - 6",
+          "horse1_no": 2,
+          "horse2_no": 6,
+          "horse1_name": "REBEL HOOF",
+          "horse2_name": "MOON ASH",
+          "ganyan": 135.3
+        },
+        {
+          "combo": "2 - 3",
+          "horse1_no": 2,
+          "horse2_no": 3,
+          "horse1_name": "REBEL HOOF",
+          "horse2_name": "MY BRAVE GIRL",
+          "ganyan": 174.6
+        },
+        {
+          "combo": "6 - 3",
+          "horse1_no": 6,
+          "horse2_no": 3,
+          "horse1_name": "MOON ASH",
+          "horse2_name": "MY BRAVE GIRL",
+          "ganyan": 195.0
+        }
+      ],
+      "is_live_odds": false,
+      "live_odds_source": "TJK Resmi AGF Muhtemel Projeksiyonu"
     },
     {
       "race_number": 3,
@@ -4013,7 +4347,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "AGF #2 (%11.3) ile yarışseverlerin en güvendiği safkan. 1:54.22 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Çim pistte 5 yarışta 3 kez tabela (1 birincilik, 0 ikincilik, ortalama 3.6.lik)."
-          }
+          },
+          "ganyan": 7.53,
+          "live_ganyan": 7.53
         },
         {
           "number": 7,
@@ -4190,7 +4526,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "AGF #5 (%10.7) ile yarışseverlerin en güvendiği safkan. 1:53.82 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Çim pistte 2 yarışta 2 kez tabela (1 birincilik, 0 ikincilik, ortalama 2.5.lik)."
-          }
+          },
+          "ganyan": 7.93,
+          "live_ganyan": 7.93
         },
         {
           "number": 10,
@@ -4367,7 +4705,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "AGF #4 (%11.2) ile yarışseverlerin en güvendiği safkan. 1:54.24 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Çim pistte 5 yarışta 3 kez tabela (0 birincilik, 2 ikincilik, ortalama 3.6.lik)."
-          }
+          },
+          "ganyan": 7.6,
+          "live_ganyan": 7.6
         },
         {
           "number": 8,
@@ -4550,7 +4890,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "AGF #3 (%11.6) ile yarışseverlerin en güvendiği safkan. 1:54.96 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Çim pistte 6 yarışta 3 kez tabela (2 birincilik, 0 ikincilik, ortalama 4.2.lik)."
-          }
+          },
+          "ganyan": 7.35,
+          "live_ganyan": 7.35
         },
         {
           "number": 11,
@@ -4715,7 +5057,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "AGF #1 (%16.2) ile yarışseverlerin en güvendiği safkan. 1:54.15 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. 4. iç kulvardan viraja avantajlı girme pozisyonu."
-          }
+          },
+          "ganyan": 5.26,
+          "live_ganyan": 5.26
         },
         {
           "number": 12,
@@ -4868,7 +5212,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "1:53.82 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Olumlu ekipman: K (+1.5), DB (+1.2), KG (+0.5) Yakın koşu periyodu (form koruma evresi)"
-          }
+          },
+          "ganyan": 8.48,
+          "live_ganyan": 8.48
         },
         {
           "number": 5,
@@ -5021,7 +5367,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "1:53.59 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Olumlu ekipman: K (+1.5), DB (+1.2), KG (+0.5) İdeal dinlenme döngüsü (14-35 gün form zirvesi)"
-          }
+          },
+          "ganyan": 13.67,
+          "live_ganyan": 13.67
         },
         {
           "number": 4,
@@ -5181,7 +5529,9 @@
               }
             ],
             "factor_summary": "1:54.58 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Olumlu ekipman: K (+1.5), DB (+1.2), SK (+1.0), KG (+0.5) Yakın koşu periyodu (form koruma evresi)"
-          }
+          },
+          "ganyan": 11.13,
+          "live_ganyan": 11.13
         },
         {
           "number": 3,
@@ -5341,7 +5691,9 @@
               }
             ],
             "factor_summary": "Son 400m derecesi 24.78 sn ile idmanlarında canlı ve istekli. Olumlu ekipman: K (+1.5), DB (+1.2), SK (+1.0), KG (+0.5) İdeal dinlenme döngüsü (14-35 gün form zirvesi)"
-          }
+          },
+          "ganyan": 24.15,
+          "live_ganyan": 24.15
         },
         {
           "number": 9,
@@ -5488,7 +5840,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Olumlu ekipman: K (+1.5), SK (+1.0), KG (+0.5) İdeal dinlenme döngüsü (14-35 gün form zirvesi)"
-          }
+          },
+          "ganyan": 15.12,
+          "live_ganyan": 15.12
         },
         {
           "number": 1,
@@ -5654,7 +6008,9 @@
               }
             ],
             "factor_summary": "1:54.25 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Antrenör M.DEMİRTAŞ: %18.2 kazanma, %50.0 tabela Son 400m derecesi 24.86 sn ile idmanlarında canlı ve istekli."
-          }
+          },
+          "ganyan": 23.68,
+          "live_ganyan": 23.68
         },
         {
           "number": 6,
@@ -5807,7 +6163,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "1:53.26 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Olumlu ekipman: K (+1.5), KG (+0.5) İdeal dinlenme döngüsü (14-35 gün form zirvesi)"
-          }
+          },
+          "ganyan": 34.55,
+          "live_ganyan": 34.55
         }
       ],
       "record_time_sec": 110.47,
@@ -6243,7 +6601,179 @@
         "badges": [
           "🏁 Koşu Tamamlandı"
         ]
-      }
+      },
+      "ikili_ganyanlar": [
+        {
+          "combo": "11 - 8",
+          "horse1_no": 11,
+          "horse2_no": 8,
+          "horse1_name": "DİLHUN",
+          "horse2_name": "MÜRDÜN KIZ",
+          "ganyan": 17.96
+        },
+        {
+          "combo": "11 - 2",
+          "horse1_no": 11,
+          "horse2_no": 2,
+          "horse1_name": "DİLHUN",
+          "horse2_name": "DİSTİLE",
+          "ganyan": 18.42
+        },
+        {
+          "combo": "11 - 10",
+          "horse1_no": 11,
+          "horse2_no": 10,
+          "horse1_name": "DİLHUN",
+          "horse2_name": "PELİTSIRTI",
+          "ganyan": 18.59
+        },
+        {
+          "combo": "11 - 7",
+          "horse1_no": 11,
+          "horse2_no": 7,
+          "horse1_name": "DİLHUN",
+          "horse2_name": "SÜTLİMAN",
+          "ganyan": 19.45
+        },
+        {
+          "combo": "11 - 12",
+          "horse1_no": 11,
+          "horse2_no": 12,
+          "horse1_name": "DİLHUN",
+          "horse2_name": "EĞRİCAN",
+          "ganyan": 20.89
+        },
+        {
+          "combo": "8 - 2",
+          "horse1_no": 8,
+          "horse2_no": 2,
+          "horse1_name": "MÜRDÜN KIZ",
+          "horse2_name": "DİSTİLE",
+          "ganyan": 26.47
+        },
+        {
+          "combo": "8 - 10",
+          "horse1_no": 8,
+          "horse2_no": 10,
+          "horse1_name": "MÜRDÜN KIZ",
+          "horse2_name": "PELİTSIRTI",
+          "ganyan": 26.72
+        },
+        {
+          "combo": "2 - 10",
+          "horse1_no": 2,
+          "horse2_no": 10,
+          "horse1_name": "DİSTİLE",
+          "horse2_name": "PELİTSIRTI",
+          "ganyan": 27.4
+        },
+        {
+          "combo": "11 - 4",
+          "horse1_no": 11,
+          "horse2_no": 4,
+          "horse1_name": "DİLHUN",
+          "horse2_name": "KOPUK UÇURTMA",
+          "ganyan": 27.75
+        },
+        {
+          "combo": "8 - 7",
+          "horse1_no": 8,
+          "horse2_no": 7,
+          "horse1_name": "MÜRDÜN KIZ",
+          "horse2_name": "SÜTLİMAN",
+          "ganyan": 27.96
+        },
+        {
+          "combo": "2 - 7",
+          "horse1_no": 2,
+          "horse2_no": 7,
+          "horse1_name": "DİSTİLE",
+          "horse2_name": "SÜTLİMAN",
+          "ganyan": 28.68
+        },
+        {
+          "combo": "10 - 7",
+          "horse1_no": 10,
+          "horse2_no": 7,
+          "horse1_name": "PELİTSIRTI",
+          "horse2_name": "SÜTLİMAN",
+          "ganyan": 28.95
+        },
+        {
+          "combo": "8 - 12",
+          "horse1_no": 8,
+          "horse2_no": 12,
+          "horse1_name": "MÜRDÜN KIZ",
+          "horse2_name": "EĞRİCAN",
+          "ganyan": 30.03
+        },
+        {
+          "combo": "2 - 12",
+          "horse1_no": 2,
+          "horse2_no": 12,
+          "horse1_name": "DİSTİLE",
+          "horse2_name": "EĞRİCAN",
+          "ganyan": 30.8
+        },
+        {
+          "combo": "10 - 12",
+          "horse1_no": 10,
+          "horse2_no": 12,
+          "horse1_name": "PELİTSIRTI",
+          "horse2_name": "EĞRİCAN",
+          "ganyan": 31.09
+        },
+        {
+          "combo": "7 - 12",
+          "horse1_no": 7,
+          "horse2_no": 12,
+          "horse1_name": "SÜTLİMAN",
+          "horse2_name": "EĞRİCAN",
+          "ganyan": 32.54
+        },
+        {
+          "combo": "8 - 4",
+          "horse1_no": 8,
+          "horse2_no": 4,
+          "horse1_name": "MÜRDÜN KIZ",
+          "horse2_name": "KOPUK UÇURTMA",
+          "ganyan": 39.9
+        },
+        {
+          "combo": "2 - 4",
+          "horse1_no": 2,
+          "horse2_no": 4,
+          "horse1_name": "DİSTİLE",
+          "horse2_name": "KOPUK UÇURTMA",
+          "ganyan": 40.92
+        },
+        {
+          "combo": "10 - 4",
+          "horse1_no": 10,
+          "horse2_no": 4,
+          "horse1_name": "PELİTSIRTI",
+          "horse2_name": "KOPUK UÇURTMA",
+          "ganyan": 41.31
+        },
+        {
+          "combo": "7 - 4",
+          "horse1_no": 7,
+          "horse2_no": 4,
+          "horse1_name": "SÜTLİMAN",
+          "horse2_name": "KOPUK UÇURTMA",
+          "ganyan": 43.23
+        },
+        {
+          "combo": "12 - 4",
+          "horse1_no": 12,
+          "horse2_no": 4,
+          "horse1_name": "EĞRİCAN",
+          "horse2_name": "KOPUK UÇURTMA",
+          "ganyan": 46.44
+        }
+      ],
+      "is_live_odds": false,
+      "live_odds_source": "TJK Resmi AGF Muhtemel Projeksiyonu"
     },
     {
       "race_number": 4,
@@ -6433,7 +6963,9 @@
               }
             ],
             "factor_summary": "AGF #1 (%20.8) ile yarışseverlerin en güvendiği safkan. 1:45.16 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Çim pistte 3 yarışta 2 kez tabela (1 birincilik, 0 ikincilik, ortalama 3.7.lik)."
-          }
+          },
+          "ganyan": 4.09,
+          "live_ganyan": 4.09
         },
         {
           "number": 6,
@@ -6604,7 +7136,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "AGF #2 (%13.7) ile yarışseverlerin en güvendiği safkan. Usta jokey M.M.BİLGİN ampirik %20.7 galibiyet, %63.5 tabela ile elit avantaj sağlıyor. 1:44.28 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip."
-          }
+          },
+          "ganyan": 6.2,
+          "live_ganyan": 6.2
         },
         {
           "number": 3,
@@ -6763,7 +7297,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "1:45.75 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Çim pistte 5 yarışta 2 kez tabela (1 birincilik, 1 ikincilik, ortalama 3.8.lik). Olumlu ekipman: K (+1.5), DB (+1.2), SK (+1.0), KG (+0.5)"
-          }
+          },
+          "ganyan": 8.13,
+          "live_ganyan": 8.13
         },
         {
           "number": 5,
@@ -6928,7 +7464,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Deneyimli jokey M.KAYA ile dengeli ve istikrarlı uyum. 1:45.76 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Antrenör K.T.YURDABAK: %13.3 kazanma, %46.7 tabela"
-          }
+          },
+          "ganyan": 7.33,
+          "live_ganyan": 7.33
         },
         {
           "number": 9,
@@ -7093,7 +7631,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "1:43.87 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Çim pistte 5 yarışta 3 kez tabela (1 birincilik, 0 ikincilik, ortalama 4.4.lik). Son koşularında hedef pistte istikrarlı tabela/galibiyet performansı sergiledi."
-          }
+          },
+          "ganyan": 7.12,
+          "live_ganyan": 7.12
         },
         {
           "number": 7,
@@ -7264,7 +7804,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "1:43.56 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Çim pistte 5 yarışta 3 kez tabela (1 birincilik, 0 ikincilik, ortalama 4.0.lik). Antrenör K.KAYALIK: %14.0 kazanma, %55.8 tabela"
-          }
+          },
+          "ganyan": 14.48,
+          "live_ganyan": 14.48
         },
         {
           "number": 1,
@@ -7417,7 +7959,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "1:45.75 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Olumlu ekipman: K (+1.5), DB (+1.2) İdeal dinlenme döngüsü (14-35 gün form zirvesi)"
-          }
+          },
+          "ganyan": 13.75,
+          "live_ganyan": 13.75
         },
         {
           "number": 8,
@@ -7576,7 +8120,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Usta jokey N.AVCİ ampirik %20.6 galibiyet, %60.5 tabela ile elit avantaj sağlıyor. 1:45.50 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Olumlu ekipman: K (+1.5), DB (+1.2), SK (+1.0)"
-          }
+          },
+          "ganyan": 12.65,
+          "live_ganyan": 12.65
         },
         {
           "number": 14,
@@ -7748,7 +8294,9 @@
               }
             ],
             "factor_summary": "1:45.15 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. 4. iç kulvardan viraja avantajlı girme pozisyonu. Olumlu ekipman: K (+1.5), DB (+1.2), SK (+1.0), KG (+0.5)"
-          }
+          },
+          "ganyan": 19.23,
+          "live_ganyan": 19.23
         },
         {
           "number": 2,
@@ -7908,7 +8456,9 @@
               }
             ],
             "factor_summary": "1:45.26 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Olumlu ekipman: K (+1.5), DB (+1.2), SK (+1.0), KG (+0.5) İdeal dinlenme döngüsü (14-35 gün form zirvesi)"
-          }
+          },
+          "ganyan": 19.23,
+          "live_ganyan": 19.23
         },
         {
           "number": 11,
@@ -8055,7 +8605,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Olumlu ekipman: K (+1.5), SK (+1.0) İdeal dinlenme döngüsü (14-35 gün form zirvesi)"
-          }
+          },
+          "ganyan": 68.0,
+          "live_ganyan": 68.0
         },
         {
           "number": 12,
@@ -8208,7 +8760,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "1:45.68 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Olumlu ekipman: K (+1.5), DB (+1.2), SK (+1.0) İdeal dinlenme döngüsü (14-35 gün form zirvesi)"
-          }
+          },
+          "ganyan": 55.19,
+          "live_ganyan": 55.19
         },
         {
           "number": 13,
@@ -8355,7 +8909,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Olumlu ekipman: K (+1.5), DB (+1.2), SK (+1.0), KG (+0.5) İdeal dinlenme döngüsü (14-35 gün form zirvesi)"
-          }
+          },
+          "ganyan": 125.0,
+          "live_ganyan": 125.0
         },
         {
           "number": 10,
@@ -8508,7 +9064,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "1:44.52 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Olumlu ekipman: K (+1.5) İdeal dinlenme döngüsü (14-35 gün form zirvesi)"
-          }
+          },
+          "ganyan": 125.0,
+          "live_ganyan": 125.0
         }
       ],
       "record_time_sec": 100.8,
@@ -8977,7 +9535,179 @@
         "badges": [
           "🏁 Koşu Tamamlandı"
         ]
-      }
+      },
+      "ikili_ganyanlar": [
+        {
+          "combo": "4 - 6",
+          "horse1_no": 4,
+          "horse2_no": 6,
+          "horse1_name": "DIVINE SON",
+          "horse2_name": "BOREAL",
+          "ganyan": 11.31
+        },
+        {
+          "combo": "4 - 9",
+          "horse1_no": 4,
+          "horse2_no": 9,
+          "horse1_name": "DIVINE SON",
+          "horse2_name": "TIZ TEMPEST",
+          "ganyan": 13.13
+        },
+        {
+          "combo": "4 - 5",
+          "horse1_no": 4,
+          "horse2_no": 5,
+          "horse1_name": "DIVINE SON",
+          "horse2_name": "ESTOCADE",
+          "ganyan": 13.53
+        },
+        {
+          "combo": "4 - 3",
+          "horse1_no": 4,
+          "horse2_no": 3,
+          "horse1_name": "DIVINE SON",
+          "horse2_name": "MY LIFE FIRE",
+          "ganyan": 15.11
+        },
+        {
+          "combo": "6 - 9",
+          "horse1_no": 6,
+          "horse2_no": 9,
+          "horse1_name": "BOREAL",
+          "horse2_name": "TIZ TEMPEST",
+          "ganyan": 20.79
+        },
+        {
+          "combo": "6 - 5",
+          "horse1_no": 6,
+          "horse2_no": 5,
+          "horse1_name": "BOREAL",
+          "horse2_name": "ESTOCADE",
+          "ganyan": 21.42
+        },
+        {
+          "combo": "6 - 3",
+          "horse1_no": 6,
+          "horse2_no": 3,
+          "horse1_name": "BOREAL",
+          "horse2_name": "MY LIFE FIRE",
+          "ganyan": 23.92
+        },
+        {
+          "combo": "4 - 8",
+          "horse1_no": 4,
+          "horse2_no": 8,
+          "horse1_name": "DIVINE SON",
+          "horse2_name": "APOLLO MAXIMUS",
+          "ganyan": 23.94
+        },
+        {
+          "combo": "9 - 5",
+          "horse1_no": 9,
+          "horse2_no": 5,
+          "horse1_name": "TIZ TEMPEST",
+          "horse2_name": "ESTOCADE",
+          "ganyan": 24.87
+        },
+        {
+          "combo": "4 - 1",
+          "horse1_no": 4,
+          "horse2_no": 1,
+          "horse1_name": "DIVINE SON",
+          "horse2_name": "FILIUS VENTUS",
+          "ganyan": 26.1
+        },
+        {
+          "combo": "9 - 3",
+          "horse1_no": 9,
+          "horse2_no": 3,
+          "horse1_name": "TIZ TEMPEST",
+          "horse2_name": "MY LIFE FIRE",
+          "ganyan": 27.78
+        },
+        {
+          "combo": "5 - 3",
+          "horse1_no": 5,
+          "horse2_no": 3,
+          "horse1_name": "ESTOCADE",
+          "horse2_name": "MY LIFE FIRE",
+          "ganyan": 28.62
+        },
+        {
+          "combo": "6 - 8",
+          "horse1_no": 6,
+          "horse2_no": 8,
+          "horse1_name": "BOREAL",
+          "horse2_name": "APOLLO MAXIMUS",
+          "ganyan": 37.95
+        },
+        {
+          "combo": "6 - 1",
+          "horse1_no": 6,
+          "horse2_no": 1,
+          "horse1_name": "BOREAL",
+          "horse2_name": "FILIUS VENTUS",
+          "ganyan": 41.38
+        },
+        {
+          "combo": "9 - 8",
+          "horse1_no": 9,
+          "horse2_no": 8,
+          "horse1_name": "TIZ TEMPEST",
+          "horse2_name": "APOLLO MAXIMUS",
+          "ganyan": 44.07
+        },
+        {
+          "combo": "5 - 8",
+          "horse1_no": 5,
+          "horse2_no": 8,
+          "horse1_name": "ESTOCADE",
+          "horse2_name": "APOLLO MAXIMUS",
+          "ganyan": 45.42
+        },
+        {
+          "combo": "9 - 1",
+          "horse1_no": 9,
+          "horse2_no": 1,
+          "horse1_name": "TIZ TEMPEST",
+          "horse2_name": "FILIUS VENTUS",
+          "ganyan": 48.06
+        },
+        {
+          "combo": "5 - 1",
+          "horse1_no": 5,
+          "horse2_no": 1,
+          "horse1_name": "ESTOCADE",
+          "horse2_name": "FILIUS VENTUS",
+          "ganyan": 49.52
+        },
+        {
+          "combo": "3 - 8",
+          "horse1_no": 3,
+          "horse2_no": 8,
+          "horse1_name": "MY LIFE FIRE",
+          "horse2_name": "APOLLO MAXIMUS",
+          "ganyan": 50.75
+        },
+        {
+          "combo": "3 - 1",
+          "horse1_no": 3,
+          "horse2_no": 1,
+          "horse1_name": "MY LIFE FIRE",
+          "horse2_name": "FILIUS VENTUS",
+          "ganyan": 55.34
+        },
+        {
+          "combo": "8 - 1",
+          "horse1_no": 8,
+          "horse2_no": 1,
+          "horse1_name": "APOLLO MAXIMUS",
+          "horse2_name": "FILIUS VENTUS",
+          "ganyan": 87.85
+        }
+      ],
+      "is_live_odds": false,
+      "live_odds_source": "TJK Resmi AGF Muhtemel Projeksiyonu"
     },
     {
       "race_number": 5,
@@ -9155,7 +9885,9 @@
               }
             ],
             "factor_summary": "AGF #1 (%53.8) ile yarışseverlerin en güvendiği safkan. 1:29.75 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Olumlu ekipman: K (+1.5), DB (+1.2), SK (+1.0), KG (+0.5)"
-          }
+          },
+          "ganyan": 1.58,
+          "live_ganyan": 1.58
         },
         {
           "number": 7,
@@ -9320,7 +10052,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Usta jokey M.M.BİLGİN ampirik %20.7 galibiyet, %63.5 tabela ile elit avantaj sağlıyor. 1:32.13 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. 1. iç kulvardan viraja avantajlı girme pozisyonu."
-          }
+          },
+          "ganyan": 8.57,
+          "live_ganyan": 8.57
         },
         {
           "number": 12,
@@ -9473,7 +10207,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "1:29.75 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Olumlu ekipman: K (+1.5), SK (+1.0), KG (+0.5) İdeal dinlenme döngüsü (14-35 gün form zirvesi)"
-          }
+          },
+          "ganyan": 34.27,
+          "live_ganyan": 34.27
         },
         {
           "number": 8,
@@ -9638,7 +10374,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Deneyimli jokey M.KAYA ile dengeli ve istikrarlı uyum. 1:29.75 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. 4. iç kulvardan viraja avantajlı girme pozisyonu."
-          }
+          },
+          "ganyan": 10.37,
+          "live_ganyan": 10.37
         },
         {
           "number": 5,
@@ -9791,7 +10529,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "1:29.75 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Olumlu ekipman: K (+1.5), SK (+1.0), KG (+0.5) İdeal dinlenme döngüsü (14-35 gün form zirvesi)"
-          }
+          },
+          "ganyan": 61.15,
+          "live_ganyan": 61.15
         },
         {
           "number": 10,
@@ -9944,7 +10684,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "1:29.75 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Olumlu ekipman: K (+1.5), KG (+0.5) İdeal dinlenme döngüsü (14-35 gün form zirvesi)"
-          }
+          },
+          "ganyan": 6.74,
+          "live_ganyan": 6.74
         },
         {
           "number": 9,
@@ -10104,7 +10846,9 @@
               }
             ],
             "factor_summary": "1:32.13 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Olumlu ekipman: K (+1.5), DB (+1.2), SK (+1.0), KG (+0.5) İdeal dinlenme döngüsü (14-35 gün form zirvesi)"
-          }
+          },
+          "ganyan": 40.48,
+          "live_ganyan": 40.48
         },
         {
           "number": 11,
@@ -10257,7 +11001,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "1:29.75 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Olumlu ekipman: K (+1.5), KG (+0.5) İdeal dinlenme döngüsü (14-35 gün form zirvesi)"
-          }
+          },
+          "ganyan": 75.89,
+          "live_ganyan": 75.89
         },
         {
           "number": 2,
@@ -10410,7 +11156,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "1:32.13 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Olumlu ekipman: K (+1.5), DB (+1.2), SK (+1.0) İdeal dinlenme döngüsü (14-35 gün form zirvesi)"
-          }
+          },
+          "ganyan": 20.78,
+          "live_ganyan": 20.78
         },
         {
           "number": 1,
@@ -10570,7 +11318,9 @@
               }
             ],
             "factor_summary": "1:32.13 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. 3. iç kulvardan viraja avantajlı girme pozisyonu. Olumlu ekipman: K (+1.5), SK (+1.0), KG (+0.5)"
-          }
+          },
+          "ganyan": 83.33,
+          "live_ganyan": 83.33
         },
         {
           "number": 4,
@@ -10729,7 +11479,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "1:29.75 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. 2. iç kulvardan viraja avantajlı girme pozisyonu. Olumlu ekipman: K (+1.5), KG (+0.5)"
-          }
+          },
+          "ganyan": 34.98,
+          "live_ganyan": 34.98
         },
         {
           "number": 6,
@@ -10883,7 +11635,9 @@
               }
             ],
             "factor_summary": "Olumlu ekipman: K (+1.5), DB (+1.2), SK (+1.0), KG (+0.5) İdeal dinlenme döngüsü (14-35 gün form zirvesi)"
-          }
+          },
+          "ganyan": 125.0,
+          "live_ganyan": 125.0
         },
         {
           "number": 13,
@@ -11030,7 +11784,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "1:32.13 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. İdeal dinlenme döngüsü (14-35 gün form zirvesi)"
-          }
+          },
+          "ganyan": 125.0,
+          "live_ganyan": 125.0
         }
       ],
       "record_time_sec": 89.33,
@@ -11474,7 +12230,179 @@
         "badges": [
           "🏁 Koşu Tamamlandı"
         ]
-      }
+      },
+      "ikili_ganyanlar": [
+        {
+          "combo": "3 - 10",
+          "horse1_no": 3,
+          "horse2_no": 10,
+          "horse1_name": "AYGEZEN",
+          "horse2_name": "ONBİR",
+          "ganyan": 3.47
+        },
+        {
+          "combo": "3 - 7",
+          "horse1_no": 3,
+          "horse2_no": 7,
+          "horse1_name": "AYGEZEN",
+          "horse2_name": "LADY SEVGİ",
+          "ganyan": 4.46
+        },
+        {
+          "combo": "3 - 8",
+          "horse1_no": 3,
+          "horse2_no": 8,
+          "horse1_name": "AYGEZEN",
+          "horse2_name": "NİLPERİ",
+          "ganyan": 5.43
+        },
+        {
+          "combo": "3 - 2",
+          "horse1_no": 3,
+          "horse2_no": 2,
+          "horse1_name": "AYGEZEN",
+          "horse2_name": "AYDONAT",
+          "ganyan": 11.04
+        },
+        {
+          "combo": "3 - 12",
+          "horse1_no": 3,
+          "horse2_no": 12,
+          "horse1_name": "AYGEZEN",
+          "horse2_name": "TURNA ŞAH",
+          "ganyan": 18.31
+        },
+        {
+          "combo": "3 - 4",
+          "horse1_no": 3,
+          "horse2_no": 4,
+          "horse1_name": "AYGEZEN",
+          "horse2_name": "BALKAN SULTAN",
+          "ganyan": 18.69
+        },
+        {
+          "combo": "10 - 7",
+          "horse1_no": 10,
+          "horse2_no": 7,
+          "horse1_name": "ONBİR",
+          "horse2_name": "LADY SEVGİ",
+          "ganyan": 27.64
+        },
+        {
+          "combo": "10 - 8",
+          "horse1_no": 10,
+          "horse2_no": 8,
+          "horse1_name": "ONBİR",
+          "horse2_name": "NİLPERİ",
+          "ganyan": 33.74
+        },
+        {
+          "combo": "7 - 8",
+          "horse1_no": 7,
+          "horse2_no": 8,
+          "horse1_name": "LADY SEVGİ",
+          "horse2_name": "NİLPERİ",
+          "ganyan": 43.6
+        },
+        {
+          "combo": "10 - 2",
+          "horse1_no": 10,
+          "horse2_no": 2,
+          "horse1_name": "ONBİR",
+          "horse2_name": "AYDONAT",
+          "ganyan": 69.1
+        },
+        {
+          "combo": "7 - 2",
+          "horse1_no": 7,
+          "horse2_no": 2,
+          "horse1_name": "LADY SEVGİ",
+          "horse2_name": "AYDONAT",
+          "ganyan": 89.3
+        },
+        {
+          "combo": "8 - 2",
+          "horse1_no": 8,
+          "horse2_no": 2,
+          "horse1_name": "NİLPERİ",
+          "horse2_name": "AYDONAT",
+          "ganyan": 109.09
+        },
+        {
+          "combo": "10 - 12",
+          "horse1_no": 10,
+          "horse2_no": 12,
+          "horse1_name": "ONBİR",
+          "horse2_name": "TURNA ŞAH",
+          "ganyan": 114.86
+        },
+        {
+          "combo": "10 - 4",
+          "horse1_no": 10,
+          "horse2_no": 4,
+          "horse1_name": "ONBİR",
+          "horse2_name": "BALKAN SULTAN",
+          "ganyan": 117.25
+        },
+        {
+          "combo": "7 - 12",
+          "horse1_no": 7,
+          "horse2_no": 12,
+          "horse1_name": "LADY SEVGİ",
+          "horse2_name": "TURNA ŞAH",
+          "ganyan": 148.46
+        },
+        {
+          "combo": "7 - 4",
+          "horse1_no": 7,
+          "horse2_no": 4,
+          "horse1_name": "LADY SEVGİ",
+          "horse2_name": "BALKAN SULTAN",
+          "ganyan": 151.56
+        },
+        {
+          "combo": "8 - 12",
+          "horse1_no": 8,
+          "horse2_no": 12,
+          "horse1_name": "NİLPERİ",
+          "horse2_name": "TURNA ŞAH",
+          "ganyan": 181.37
+        },
+        {
+          "combo": "8 - 4",
+          "horse1_no": 8,
+          "horse2_no": 4,
+          "horse1_name": "NİLPERİ",
+          "horse2_name": "BALKAN SULTAN",
+          "ganyan": 185.15
+        },
+        {
+          "combo": "2 - 12",
+          "horse1_no": 2,
+          "horse2_no": 12,
+          "horse1_name": "AYDONAT",
+          "horse2_name": "TURNA ŞAH",
+          "ganyan": 195.0
+        },
+        {
+          "combo": "2 - 4",
+          "horse1_no": 2,
+          "horse2_no": 4,
+          "horse1_name": "AYDONAT",
+          "horse2_name": "BALKAN SULTAN",
+          "ganyan": 195.0
+        },
+        {
+          "combo": "12 - 4",
+          "horse1_no": 12,
+          "horse2_no": 4,
+          "horse1_name": "TURNA ŞAH",
+          "horse2_name": "BALKAN SULTAN",
+          "ganyan": 195.0
+        }
+      ],
+      "is_live_odds": false,
+      "live_odds_source": "TJK Resmi AGF Muhtemel Projeksiyonu"
     },
     {
       "race_number": 6,
@@ -11663,7 +12591,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "AGF #1 (%25.0) ile yarışseverlerin en güvendiği safkan. Deneyimli jokey M.ÇİÇEK ile dengeli ve istikrarlı uyum. 2:03.11 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip."
-          }
+          },
+          "ganyan": 3.4,
+          "live_ganyan": 3.4
         },
         {
           "number": 9,
@@ -11828,7 +12758,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "2:05.39 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Çim pistte 6 yarışta 5 kez tabela (1 birincilik, 3 ikincilik, ortalama 2.8.lik). Antrenör M.ANAT: %14.3 kazanma, %60.7 tabela"
-          }
+          },
+          "ganyan": 7.56,
+          "live_ganyan": 7.56
         },
         {
           "number": 1,
@@ -11987,7 +12919,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "2:02.06 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Son 400m derecesi 24.47 sn ile idmanlarında canlı ve istekli. Olumlu ekipman: ÖG (+2.5), K (+1.5), KG (+0.5)"
-          }
+          },
+          "ganyan": 8.63,
+          "live_ganyan": 8.63
         },
         {
           "number": 4,
@@ -12159,7 +13093,9 @@
               }
             ],
             "factor_summary": "Usta jokey M.M.BİLGİN ampirik %20.7 galibiyet, %63.5 tabela ile elit avantaj sağlıyor. 2:03.73 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Son 400m derecesi 24.12 sn ile idmanlarında canlı ve istekli."
-          }
+          },
+          "ganyan": 5.89,
+          "live_ganyan": 5.89
         },
         {
           "number": 2,
@@ -12324,7 +13260,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "2:05.74 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Çim pistte 6 yarışta 4 kez tabela (1 birincilik, 0 ikincilik, ortalama 4.2.lik). Antrenör A.MANTAŞ: %13.7 kazanma, %45.3 tabela"
-          }
+          },
+          "ganyan": 16.38,
+          "live_ganyan": 16.38
         },
         {
           "number": 3,
@@ -12489,7 +13427,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Deneyimli jokey M.KAYA ile dengeli ve istikrarlı uyum. 2:05.60 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Antrenör K.T.YURDABAK: %13.3 kazanma, %46.7 tabela"
-          }
+          },
+          "ganyan": 5.6,
+          "live_ganyan": 5.6
         },
         {
           "number": 12,
@@ -12654,7 +13594,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "2:04.83 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Antrenör Y.AKBULUT: %17.4 kazanma, %45.2 tabela Son 400m derecesi 24.96 sn ile idmanlarında canlı ve istekli."
-          }
+          },
+          "ganyan": 16.57,
+          "live_ganyan": 16.57
         },
         {
           "number": 8,
@@ -12813,7 +13755,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "2:04.40 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. 4. iç kulvardan viraja avantajlı girme pozisyonu. Olumlu ekipman: K (+1.5), DB (+1.2), KG (+0.5)"
-          }
+          },
+          "ganyan": 20.48,
+          "live_ganyan": 20.48
         },
         {
           "number": 10,
@@ -12966,7 +13910,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "2:04.21 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Olumlu ekipman: K (+1.5), DB (+1.2), KG (+0.5) Yakın koşu periyodu (form koruma evresi)"
-          }
+          },
+          "ganyan": 21.3,
+          "live_ganyan": 21.3
         },
         {
           "number": 6,
@@ -13119,7 +14065,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Son 400m derecesi 25.04 sn ile idmanlarında canlı ve istekli. Olumlu ekipman: K (+1.5), DB (+1.2), SK (+1.0) İdeal dinlenme döngüsü (14-35 gün form zirvesi)"
-          }
+          },
+          "ganyan": 33.2,
+          "live_ganyan": 33.2
         },
         {
           "number": 13,
@@ -13278,7 +14226,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "2:03.57 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. 3. iç kulvardan viraja avantajlı girme pozisyonu. Olumlu ekipman: K (+1.5), DB (+1.2)"
-          }
+          },
+          "ganyan": 35.56,
+          "live_ganyan": 35.56
         },
         {
           "number": 11,
@@ -13425,7 +14375,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "2:03.82 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Yakın koşu periyodu (form koruma evresi)"
-          }
+          },
+          "ganyan": 125.0,
+          "live_ganyan": 125.0
         },
         {
           "number": 7,
@@ -13572,7 +14524,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Olumlu ekipman: K (+1.5), DB (+1.2), SK (+1.0), KG (+0.5) Yakın koşu periyodu (form koruma evresi)"
-          }
+          },
+          "ganyan": 125.0,
+          "live_ganyan": 125.0
         }
       ],
       "record_time_sec": 120.29,
@@ -13862,7 +14816,179 @@
         "standings": [],
         "dividends": {}
       },
-      "accuracy_report": {}
+      "accuracy_report": {},
+      "ikili_ganyanlar": [
+        {
+          "combo": "5 - 3",
+          "horse1_no": 5,
+          "horse2_no": 3,
+          "horse1_name": "LA BOMBONERA",
+          "horse2_name": "CALEDONIE",
+          "ganyan": 8.19
+        },
+        {
+          "combo": "5 - 4",
+          "horse1_no": 5,
+          "horse2_no": 4,
+          "horse1_name": "LA BOMBONERA",
+          "horse2_name": "CHUMLEE",
+          "ganyan": 8.64
+        },
+        {
+          "combo": "5 - 9",
+          "horse1_no": 5,
+          "horse2_no": 9,
+          "horse1_name": "LA BOMBONERA",
+          "horse2_name": "SHAERA",
+          "ganyan": 11.28
+        },
+        {
+          "combo": "5 - 1",
+          "horse1_no": 5,
+          "horse2_no": 1,
+          "horse1_name": "LA BOMBONERA",
+          "horse2_name": "MAMBA FOREVER",
+          "ganyan": 12.98
+        },
+        {
+          "combo": "3 - 4",
+          "horse1_no": 3,
+          "horse2_no": 4,
+          "horse1_name": "CALEDONIE",
+          "horse2_name": "CHUMLEE",
+          "ganyan": 15.16
+        },
+        {
+          "combo": "3 - 9",
+          "horse1_no": 3,
+          "horse2_no": 9,
+          "horse1_name": "CALEDONIE",
+          "horse2_name": "SHAERA",
+          "ganyan": 19.81
+        },
+        {
+          "combo": "4 - 9",
+          "horse1_no": 4,
+          "horse2_no": 9,
+          "horse1_name": "CHUMLEE",
+          "horse2_name": "SHAERA",
+          "ganyan": 20.92
+        },
+        {
+          "combo": "3 - 1",
+          "horse1_no": 3,
+          "horse2_no": 1,
+          "horse1_name": "CALEDONIE",
+          "horse2_name": "MAMBA FOREVER",
+          "ganyan": 22.8
+        },
+        {
+          "combo": "4 - 1",
+          "horse1_no": 4,
+          "horse2_no": 1,
+          "horse1_name": "CHUMLEE",
+          "horse2_name": "MAMBA FOREVER",
+          "ganyan": 24.07
+        },
+        {
+          "combo": "5 - 2",
+          "horse1_no": 5,
+          "horse2_no": 2,
+          "horse1_name": "LA BOMBONERA",
+          "horse2_name": "BEBEĞİM OLDUN",
+          "ganyan": 25.2
+        },
+        {
+          "combo": "5 - 12",
+          "horse1_no": 5,
+          "horse2_no": 12,
+          "horse1_name": "LA BOMBONERA",
+          "horse2_name": "JESKO",
+          "ganyan": 25.5
+        },
+        {
+          "combo": "9 - 1",
+          "horse1_no": 9,
+          "horse2_no": 1,
+          "horse1_name": "SHAERA",
+          "horse2_name": "MAMBA FOREVER",
+          "ganyan": 31.48
+        },
+        {
+          "combo": "3 - 2",
+          "horse1_no": 3,
+          "horse2_no": 2,
+          "horse1_name": "CALEDONIE",
+          "horse2_name": "BEBEĞİM OLDUN",
+          "ganyan": 44.32
+        },
+        {
+          "combo": "3 - 12",
+          "horse1_no": 3,
+          "horse2_no": 12,
+          "horse1_name": "CALEDONIE",
+          "horse2_name": "JESKO",
+          "ganyan": 44.85
+        },
+        {
+          "combo": "4 - 2",
+          "horse1_no": 4,
+          "horse2_no": 2,
+          "horse1_name": "CHUMLEE",
+          "horse2_name": "BEBEĞİM OLDUN",
+          "ganyan": 46.81
+        },
+        {
+          "combo": "4 - 12",
+          "horse1_no": 4,
+          "horse2_no": 12,
+          "horse1_name": "CHUMLEE",
+          "horse2_name": "JESKO",
+          "ganyan": 47.37
+        },
+        {
+          "combo": "9 - 2",
+          "horse1_no": 9,
+          "horse2_no": 2,
+          "horse1_name": "SHAERA",
+          "horse2_name": "BEBEĞİM OLDUN",
+          "ganyan": 61.24
+        },
+        {
+          "combo": "9 - 12",
+          "horse1_no": 9,
+          "horse2_no": 12,
+          "horse1_name": "SHAERA",
+          "horse2_name": "JESKO",
+          "ganyan": 61.97
+        },
+        {
+          "combo": "1 - 2",
+          "horse1_no": 1,
+          "horse2_no": 2,
+          "horse1_name": "MAMBA FOREVER",
+          "horse2_name": "BEBEĞİM OLDUN",
+          "ganyan": 70.51
+        },
+        {
+          "combo": "1 - 12",
+          "horse1_no": 1,
+          "horse2_no": 12,
+          "horse1_name": "MAMBA FOREVER",
+          "horse2_name": "JESKO",
+          "ganyan": 71.35
+        },
+        {
+          "combo": "2 - 12",
+          "horse1_no": 2,
+          "horse2_no": 12,
+          "horse1_name": "BEBEĞİM OLDUN",
+          "horse2_name": "JESKO",
+          "ganyan": 138.92
+        }
+      ],
+      "is_live_odds": false,
+      "live_odds_source": "TJK Resmi AGF Muhtemel Projeksiyonu"
     },
     {
       "race_number": 7,
@@ -14070,7 +15196,9 @@
               }
             ],
             "factor_summary": "AGF #1 (%51.9) ile yarışseverlerin en güvendiği safkan. Deneyimli jokey M.ÇİÇEK ile dengeli ve istikrarlı uyum. 1:29.75 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip."
-          }
+          },
+          "ganyan": 1.64,
+          "live_ganyan": 1.64
         },
         {
           "number": 9,
@@ -14229,7 +15357,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "1:30.45 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. 1. iç kulvardan viraja avantajlı girme pozisyonu. Olumlu ekipman: K (+1.5), SK (+1.0), KG (+0.5)"
-          }
+          },
+          "ganyan": 4.68,
+          "live_ganyan": 4.68
         },
         {
           "number": 2,
@@ -14394,7 +15524,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "1:30.03 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Çim pistte 5 yarışta 4 kez tabela (0 birincilik, 3 ikincilik, ortalama 4.0.lik). Son koşularında hedef pistte istikrarlı tabela/galibiyet performansı sergiledi."
-          }
+          },
+          "ganyan": 8.66,
+          "live_ganyan": 8.66
         },
         {
           "number": 3,
@@ -14572,7 +15704,9 @@
               }
             ],
             "factor_summary": "Usta jokey M.M.BİLGİN ampirik %20.7 galibiyet, %63.5 tabela ile elit avantaj sağlıyor. 1:34.16 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Antrenör SER.GÖKÇE: %20.8 kazanma, %66.7 tabela"
-          }
+          },
+          "ganyan": 14.53,
+          "live_ganyan": 14.53
         },
         {
           "number": 12,
@@ -14731,7 +15865,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Usta jokey N.AVCİ ampirik %20.6 galibiyet, %60.5 tabela ile elit avantaj sağlıyor. 1:30.87 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Olumlu ekipman: K (+1.5), DB (+1.2), KG (+0.5)"
-          }
+          },
+          "ganyan": 12.43,
+          "live_ganyan": 12.43
         },
         {
           "number": 11,
@@ -14884,7 +16020,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "1:29.75 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Olumlu ekipman: K (+1.5), KG (+0.5) İdeal dinlenme döngüsü (14-35 gün form zirvesi)"
-          }
+          },
+          "ganyan": 39.72,
+          "live_ganyan": 39.72
         },
         {
           "number": 5,
@@ -15037,7 +16175,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "1:31.57 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Olumlu ekipman: K (+1.5), DB (+1.2) İdeal dinlenme döngüsü (14-35 gün form zirvesi)"
-          }
+          },
+          "ganyan": 45.45,
+          "live_ganyan": 45.45
         },
         {
           "number": 8,
@@ -15197,7 +16337,9 @@
               }
             ],
             "factor_summary": "1:31.43 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Olumlu ekipman: K (+1.5), SK (+1.0), KG (+0.5) İdeal dinlenme döngüsü (14-35 gün form zirvesi)"
-          }
+          },
+          "ganyan": 55.56,
+          "live_ganyan": 55.56
         },
         {
           "number": 4,
@@ -15351,7 +16493,9 @@
               }
             ],
             "factor_summary": "1:29.75 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Olumlu ekipman: K (+1.5), DB (+1.2), SK (+1.0), KG (+0.5)"
-          }
+          },
+          "ganyan": 125.0,
+          "live_ganyan": 125.0
         },
         {
           "number": 7,
@@ -15504,7 +16648,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "Antrenör M.TÜRKOĞLU: %21.2 kazanma, %55.8 tabela Olumlu ekipman: K (+1.5), DB (+1.2), KG (+0.5) İdeal dinlenme döngüsü (14-35 gün form zirvesi)"
-          }
+          },
+          "ganyan": 123.19,
+          "live_ganyan": 123.19
         },
         {
           "number": 6,
@@ -15664,7 +16810,9 @@
               }
             ],
             "factor_summary": "1:32.13 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Olumlu ekipman: K (+1.5), DB (+1.2), SK (+1.0), KG (+0.5) Yakın koşu periyodu (form koruma evresi)"
-          }
+          },
+          "ganyan": 125.0,
+          "live_ganyan": 125.0
         },
         {
           "number": 10,
@@ -15823,7 +16971,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "1:29.75 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. 4. iç kulvardan viraja avantajlı girme pozisyonu. Olumlu ekipman: K (+1.5), DB (+1.2), SK (+1.0), KG (+0.5)"
-          }
+          },
+          "ganyan": 125.0,
+          "live_ganyan": 125.0
         },
         {
           "number": 13,
@@ -15976,7 +17126,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "1:29.75 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. 3. iç kulvardan viraja avantajlı girme pozisyonu. Olumlu ekipman: DB (+1.2)"
-          }
+          },
+          "ganyan": 125.0,
+          "live_ganyan": 125.0
         }
       ],
       "record_time_sec": 89.33,
@@ -16272,7 +17424,179 @@
           "partner": 9,
           "recommendation": "7. Koşuda 1 (veya 9) safkan ile sonraki koşunun favorisi bağlanmalıdır."
         }
-      }
+      },
+      "ikili_ganyanlar": [
+        {
+          "combo": "1 - 9",
+          "horse1_no": 1,
+          "horse2_no": 9,
+          "horse1_name": "UÇAN DULO",
+          "horse2_name": "NİLÜFER",
+          "ganyan": 2.51
+        },
+        {
+          "combo": "1 - 2",
+          "horse1_no": 1,
+          "horse2_no": 2,
+          "horse1_name": "UÇAN DULO",
+          "horse2_name": "İCLAL HANIM",
+          "ganyan": 4.81
+        },
+        {
+          "combo": "1 - 12",
+          "horse1_no": 1,
+          "horse2_no": 12,
+          "horse1_name": "UÇAN DULO",
+          "horse2_name": "ŞADİNİN GÜLÜ",
+          "ganyan": 6.98
+        },
+        {
+          "combo": "1 - 3",
+          "horse1_no": 1,
+          "horse2_no": 3,
+          "horse1_name": "UÇAN DULO",
+          "horse2_name": "BANGU",
+          "ganyan": 8.19
+        },
+        {
+          "combo": "9 - 2",
+          "horse1_no": 9,
+          "horse2_no": 2,
+          "horse1_name": "NİLÜFER",
+          "horse2_name": "İCLAL HANIM",
+          "ganyan": 18.78
+        },
+        {
+          "combo": "1 - 11",
+          "horse1_no": 1,
+          "horse2_no": 11,
+          "horse1_name": "UÇAN DULO",
+          "horse2_name": "ROSA Dİ HÜMA",
+          "ganyan": 22.69
+        },
+        {
+          "combo": "1 - 5",
+          "horse1_no": 1,
+          "horse2_no": 5,
+          "horse1_name": "UÇAN DULO",
+          "horse2_name": "DAĞARDI",
+          "ganyan": 24.29
+        },
+        {
+          "combo": "9 - 12",
+          "horse1_no": 9,
+          "horse2_no": 12,
+          "horse1_name": "NİLÜFER",
+          "horse2_name": "ŞADİNİN GÜLÜ",
+          "ganyan": 27.37
+        },
+        {
+          "combo": "9 - 3",
+          "horse1_no": 9,
+          "horse2_no": 3,
+          "horse1_name": "NİLÜFER",
+          "horse2_name": "BANGU",
+          "ganyan": 32.17
+        },
+        {
+          "combo": "2 - 12",
+          "horse1_no": 2,
+          "horse2_no": 12,
+          "horse1_name": "İCLAL HANIM",
+          "horse2_name": "ŞADİNİN GÜLÜ",
+          "ganyan": 53.21
+        },
+        {
+          "combo": "2 - 3",
+          "horse1_no": 2,
+          "horse2_no": 3,
+          "horse1_name": "İCLAL HANIM",
+          "horse2_name": "BANGU",
+          "ganyan": 62.54
+        },
+        {
+          "combo": "9 - 11",
+          "horse1_no": 9,
+          "horse2_no": 11,
+          "horse1_name": "NİLÜFER",
+          "horse2_name": "ROSA Dİ HÜMA",
+          "ganyan": 89.51
+        },
+        {
+          "combo": "12 - 3",
+          "horse1_no": 12,
+          "horse2_no": 3,
+          "horse1_name": "ŞADİNİN GÜLÜ",
+          "horse2_name": "BANGU",
+          "ganyan": 91.28
+        },
+        {
+          "combo": "9 - 5",
+          "horse1_no": 9,
+          "horse2_no": 5,
+          "horse1_name": "NİLÜFER",
+          "horse2_name": "DAĞARDI",
+          "ganyan": 95.83
+        },
+        {
+          "combo": "2 - 11",
+          "horse1_no": 2,
+          "horse2_no": 11,
+          "horse1_name": "İCLAL HANIM",
+          "horse2_name": "ROSA Dİ HÜMA",
+          "ganyan": 174.19
+        },
+        {
+          "combo": "2 - 5",
+          "horse1_no": 2,
+          "horse2_no": 5,
+          "horse1_name": "İCLAL HANIM",
+          "horse2_name": "DAĞARDI",
+          "ganyan": 186.52
+        },
+        {
+          "combo": "12 - 11",
+          "horse1_no": 12,
+          "horse2_no": 11,
+          "horse1_name": "ŞADİNİN GÜLÜ",
+          "horse2_name": "ROSA Dİ HÜMA",
+          "ganyan": 195.0
+        },
+        {
+          "combo": "12 - 5",
+          "horse1_no": 12,
+          "horse2_no": 5,
+          "horse1_name": "ŞADİNİN GÜLÜ",
+          "horse2_name": "DAĞARDI",
+          "ganyan": 195.0
+        },
+        {
+          "combo": "3 - 11",
+          "horse1_no": 3,
+          "horse2_no": 11,
+          "horse1_name": "BANGU",
+          "horse2_name": "ROSA Dİ HÜMA",
+          "ganyan": 195.0
+        },
+        {
+          "combo": "3 - 5",
+          "horse1_no": 3,
+          "horse2_no": 5,
+          "horse1_name": "BANGU",
+          "horse2_name": "DAĞARDI",
+          "ganyan": 195.0
+        },
+        {
+          "combo": "11 - 5",
+          "horse1_no": 11,
+          "horse2_no": 5,
+          "horse1_name": "ROSA Dİ HÜMA",
+          "horse2_name": "DAĞARDI",
+          "ganyan": 195.0
+        }
+      ],
+      "is_live_odds": false,
+      "live_odds_source": "TJK Resmi AGF Muhtemel Projeksiyonu"
     },
     {
       "race_number": 8,
@@ -16461,7 +17785,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "AGF #1 (%40.8) ile yarışseverlerin en güvendiği safkan. Usta jokey M.M.BİLGİN ampirik %20.7 galibiyet, %63.5 tabela ile elit avantaj sağlıyor. 1:31.29 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip."
-          }
+          },
+          "ganyan": 2.08,
+          "live_ganyan": 2.08
         },
         {
           "number": 1,
@@ -16627,7 +17953,9 @@
               }
             ],
             "factor_summary": "1:30.41 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Son 400m derecesi 24.29 sn ile idmanlarında canlı ve istekli. Olumlu ekipman: K (+1.5), DB (+1.2), KG (+0.5)"
-          }
+          },
+          "ganyan": 5.0,
+          "live_ganyan": 5.0
         },
         {
           "number": 8,
@@ -16799,7 +18127,9 @@
               }
             ],
             "factor_summary": "1:30.40 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Antrenör F.KIRAN: %12.5 kazanma, %42.9 tabela Son 400m derecesi 24.83 sn ile idmanlarında canlı ve istekli."
-          }
+          },
+          "ganyan": 7.66,
+          "live_ganyan": 7.66
         },
         {
           "number": 9,
@@ -16971,7 +18301,9 @@
               }
             ],
             "factor_summary": "1:30.57 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Antrenör F.KIRAN: %12.5 kazanma, %42.9 tabela Son 400m derecesi 24.96 sn ile idmanlarında canlı ve istekli."
-          }
+          },
+          "ganyan": 15.45,
+          "live_ganyan": 15.45
         },
         {
           "number": 4,
@@ -17131,7 +18463,9 @@
               }
             ],
             "factor_summary": "Son 400m derecesi 24.93 sn ile idmanlarında canlı ve istekli. Olumlu ekipman: K (+1.5), DB (+1.2), SK (+1.0), KG (+0.5) İdeal dinlenme döngüsü (14-35 gün form zirvesi)"
-          }
+          },
+          "ganyan": 12.3,
+          "live_ganyan": 12.3
         },
         {
           "number": 10,
@@ -17297,7 +18631,9 @@
               }
             ],
             "factor_summary": "Usta jokey N.AVCİ ampirik %20.6 galibiyet, %60.5 tabela ile elit avantaj sağlıyor. 1:31.49 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Olumlu ekipman: K (+1.5), DB (+1.2), SK (+1.0), KG (+0.5)"
-          }
+          },
+          "ganyan": 26.9,
+          "live_ganyan": 26.9
         },
         {
           "number": 7,
@@ -17457,7 +18793,9 @@
               }
             ],
             "factor_summary": "Antrenör M.DEMİRTAŞ: %18.2 kazanma, %50.0 tabela Olumlu ekipman: K (+1.5), DB (+1.2), SK (+1.0), KG (+0.5) Yakın koşu periyodu (form koruma evresi)"
-          }
+          },
+          "ganyan": 63.43,
+          "live_ganyan": 63.43
         },
         {
           "number": 18,
@@ -17622,7 +18960,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "1:30.75 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Son 400m derecesi 24.89 sn ile idmanlarında canlı ve istekli. 1. iç kulvardan viraja avantajlı girme pozisyonu."
-          }
+          },
+          "ganyan": 12.45,
+          "live_ganyan": 12.45
         },
         {
           "number": 13,
@@ -17776,7 +19116,9 @@
               }
             ],
             "factor_summary": "Olumlu ekipman: K (+1.5), DB (+1.2), SK (+1.0), KG (+0.5) İdeal dinlenme döngüsü (14-35 gün form zirvesi)"
-          }
+          },
+          "ganyan": 44.27,
+          "live_ganyan": 44.27
         },
         {
           "number": 15,
@@ -17935,7 +19277,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "1:33.10 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. 2. iç kulvardan viraja avantajlı girme pozisyonu. Olumlu ekipman: K (+1.5), DB (+1.2), KG (+0.5)"
-          }
+          },
+          "ganyan": 48.57,
+          "live_ganyan": 48.57
         },
         {
           "number": 14,
@@ -18089,7 +19433,9 @@
               }
             ],
             "factor_summary": "Antrenör F.TOSUN: %12.2 kazanma, %46.3 tabela Olumlu ekipman: K (+1.5), DB (+1.2), SK (+1.0), KG (+0.5)"
-          }
+          },
+          "ganyan": 125.0,
+          "live_ganyan": 125.0
         },
         {
           "number": 16,
@@ -18248,7 +19594,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "1:32.40 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Antrenör M.A.TURAN: %15.9 kazanma, %43.2 tabela Olumlu ekipman: K (+1.5), KG (+0.5)"
-          }
+          },
+          "ganyan": 125.0,
+          "live_ganyan": 125.0
         },
         {
           "number": 19,
@@ -18408,7 +19756,9 @@
               }
             ],
             "factor_summary": "Son 400m derecesi 24.92 sn ile idmanlarında canlı ve istekli. 4. iç kulvardan viraja avantajlı girme pozisyonu. Olumlu ekipman: K (+1.5), KG (+0.5)"
-          }
+          },
+          "ganyan": 125.0,
+          "live_ganyan": 125.0
         },
         {
           "number": 12,
@@ -18567,7 +19917,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "1:32.93 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Son 400m derecesi 24.95 sn ile idmanlarında canlı ve istekli. Olumlu ekipman: K (+1.5), SK (+1.0), KG (+0.5)"
-          }
+          },
+          "ganyan": 108.97,
+          "live_ganyan": 108.97
         },
         {
           "number": 11,
@@ -18720,7 +20072,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "1:32.79 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Olumlu ekipman: K (+1.5), DB (+1.2), SK (+1.0), KG (+0.5) Yakın koşu periyodu (form koruma evresi)"
-          }
+          },
+          "ganyan": 125.0,
+          "live_ganyan": 125.0
         },
         {
           "number": 5,
@@ -18885,7 +20239,9 @@
             ],
             "risk_factors": [],
             "factor_summary": "1:33.38 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Son 400m derecesi 24.68 sn ile idmanlarında canlı ve istekli. 3. iç kulvardan viraja avantajlı girme pozisyonu."
-          }
+          },
+          "ganyan": 125.0,
+          "live_ganyan": 125.0
         },
         {
           "number": 17,
@@ -19051,7 +20407,9 @@
               }
             ],
             "factor_summary": "1:32.33 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Olumlu ekipman: K (+1.5), DB (+1.2), KG (+0.5) İdeal dinlenme döngüsü (14-35 gün form zirvesi)"
-          }
+          },
+          "ganyan": 104.94,
+          "live_ganyan": 104.94
         },
         {
           "number": 3,
@@ -19211,7 +20569,9 @@
               }
             ],
             "factor_summary": "1:32.88 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Olumlu ekipman: K (+1.5), DB (+1.2), KG (+0.5)"
-          }
+          },
+          "ganyan": 125.0,
+          "live_ganyan": 125.0
         },
         {
           "number": 6,
@@ -19371,7 +20731,9 @@
               }
             ],
             "factor_summary": "1:33.19 düzeltilmiş derece projeksiyonu ile grubun en yüksek hız endeksine sahip. Olumlu ekipman: K (+1.5), DB (+1.2), SK (+1.0), KG (+0.5)"
-          }
+          },
+          "ganyan": 125.0,
+          "live_ganyan": 125.0
         }
       ],
       "record_time_sec": 89.33,
@@ -19655,7 +21017,179 @@
           "partner": 1,
           "recommendation": "8. Koşuda 2 (veya 1) safkan ile sonraki koşunun favorisi bağlanmalıdır."
         }
-      }
+      },
+      "ikili_ganyanlar": [
+        {
+          "combo": "2 - 1",
+          "horse1_no": 2,
+          "horse2_no": 1,
+          "horse1_name": "KAŞIKÇIBEYİ",
+          "horse2_name": "EMİRENES",
+          "ganyan": 3.89
+        },
+        {
+          "combo": "2 - 8",
+          "horse1_no": 2,
+          "horse2_no": 8,
+          "horse1_name": "KAŞIKÇIBEYİ",
+          "horse2_name": "HAVZALI",
+          "ganyan": 6.13
+        },
+        {
+          "combo": "2 - 4",
+          "horse1_no": 2,
+          "horse2_no": 4,
+          "horse1_name": "KAŞIKÇIBEYİ",
+          "horse2_name": "SANCAKALAN",
+          "ganyan": 10.02
+        },
+        {
+          "combo": "2 - 18",
+          "horse1_no": 2,
+          "horse2_no": 18,
+          "horse1_name": "KAŞIKÇIBEYİ",
+          "horse2_name": "VİZİGOT",
+          "ganyan": 10.14
+        },
+        {
+          "combo": "2 - 9",
+          "horse1_no": 2,
+          "horse2_no": 9,
+          "horse1_name": "KAŞIKÇIBEYİ",
+          "horse2_name": "PRENSES DI",
+          "ganyan": 12.66
+        },
+        {
+          "combo": "1 - 8",
+          "horse1_no": 1,
+          "horse2_no": 8,
+          "horse1_name": "EMİRENES",
+          "horse2_name": "HAVZALI",
+          "ganyan": 17.76
+        },
+        {
+          "combo": "2 - 10",
+          "horse1_no": 2,
+          "horse2_no": 10,
+          "horse1_name": "KAŞIKÇIBEYİ",
+          "horse2_name": "MOĞOLOĞLU",
+          "ganyan": 22.24
+        },
+        {
+          "combo": "1 - 4",
+          "horse1_no": 1,
+          "horse2_no": 4,
+          "horse1_name": "EMİRENES",
+          "horse2_name": "SANCAKALAN",
+          "ganyan": 29.13
+        },
+        {
+          "combo": "1 - 18",
+          "horse1_no": 1,
+          "horse2_no": 18,
+          "horse1_name": "EMİRENES",
+          "horse2_name": "VİZİGOT",
+          "ganyan": 29.49
+        },
+        {
+          "combo": "1 - 9",
+          "horse1_no": 1,
+          "horse2_no": 9,
+          "horse1_name": "EMİRENES",
+          "horse2_name": "PRENSES DI",
+          "ganyan": 36.86
+        },
+        {
+          "combo": "8 - 4",
+          "horse1_no": 8,
+          "horse2_no": 4,
+          "horse1_name": "HAVZALI",
+          "horse2_name": "SANCAKALAN",
+          "ganyan": 46.29
+        },
+        {
+          "combo": "8 - 18",
+          "horse1_no": 8,
+          "horse2_no": 18,
+          "horse1_name": "HAVZALI",
+          "horse2_name": "VİZİGOT",
+          "ganyan": 46.85
+        },
+        {
+          "combo": "8 - 9",
+          "horse1_no": 8,
+          "horse2_no": 9,
+          "horse1_name": "HAVZALI",
+          "horse2_name": "PRENSES DI",
+          "ganyan": 58.58
+        },
+        {
+          "combo": "1 - 10",
+          "horse1_no": 1,
+          "horse2_no": 10,
+          "horse1_name": "EMİRENES",
+          "horse2_name": "MOĞOLOĞLU",
+          "ganyan": 64.89
+        },
+        {
+          "combo": "4 - 18",
+          "horse1_no": 4,
+          "horse2_no": 18,
+          "horse1_name": "SANCAKALAN",
+          "horse2_name": "VİZİGOT",
+          "ganyan": 76.96
+        },
+        {
+          "combo": "4 - 9",
+          "horse1_no": 4,
+          "horse2_no": 9,
+          "horse1_name": "SANCAKALAN",
+          "horse2_name": "PRENSES DI",
+          "ganyan": 96.25
+        },
+        {
+          "combo": "18 - 9",
+          "horse1_no": 18,
+          "horse2_no": 9,
+          "horse1_name": "VİZİGOT",
+          "horse2_name": "PRENSES DI",
+          "ganyan": 97.41
+        },
+        {
+          "combo": "8 - 10",
+          "horse1_no": 8,
+          "horse2_no": 10,
+          "horse1_name": "HAVZALI",
+          "horse2_name": "MOĞOLOĞLU",
+          "ganyan": 103.17
+        },
+        {
+          "combo": "4 - 10",
+          "horse1_no": 4,
+          "horse2_no": 10,
+          "horse1_name": "SANCAKALAN",
+          "horse2_name": "MOĞOLOĞLU",
+          "ganyan": 169.55
+        },
+        {
+          "combo": "18 - 10",
+          "horse1_no": 18,
+          "horse2_no": 10,
+          "horse1_name": "VİZİGOT",
+          "horse2_name": "MOĞOLOĞLU",
+          "ganyan": 171.61
+        },
+        {
+          "combo": "9 - 10",
+          "horse1_no": 9,
+          "horse2_no": 10,
+          "horse1_name": "PRENSES DI",
+          "horse2_name": "MOĞOLOĞLU",
+          "ganyan": 195.0
+        }
+      ],
+      "is_live_odds": false,
+      "live_odds_source": "TJK Resmi AGF Muhtemel Projeksiyonu"
     }
   ],
   "fetched_at": "2026-10-05T17:14:03.395048",

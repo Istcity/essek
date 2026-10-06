@@ -273,6 +273,26 @@ class TJKApp {
   applyProgram(program, statusText) {
     this.currentProgram = program;
     this.activeRaceIndex = 0;
+
+    // Sanitize and guarantee that 100% of runners have valid numeric Ganyan and live_ganyan
+    (program.races || []).forEach(race => {
+      (race.runners || []).forEach(r => {
+        const agf = Number(r.agf || 0);
+        const winProb = Number(r.win_probability || 10.0);
+        const calcG = agf > 0 ? (0.85 / (agf / 100)) : (0.80 / (winProb / 100));
+        const finalG = parseFloat(Math.max(1.10, Math.min(125.0, calcG)).toFixed(2));
+        if (!r.ganyan || Number(r.ganyan) <= 0) {
+          r.ganyan = finalG;
+        }
+        if (!r.live_ganyan || Number(r.live_ganyan) <= 0) {
+          r.live_ganyan = r.ganyan;
+        }
+      });
+      if (!race.ikili_ganyanlar || race.ikili_ganyanlar.length === 0) {
+        race.ikili_ganyanlar = this.getRaceIkiliOdds(race);
+      }
+    });
+
     if (this.statusText) {
       this.statusText.textContent = `${statusText} (${program.races.length} Koşu)`;
     }
@@ -488,6 +508,9 @@ class TJKApp {
             <div class="meta-chip" style="border-color:var(--border-gold); background:rgba(245,158,11,0.08); color:var(--gold-400);">
               ⭐ <strong>Favori Adayı:</strong> #${winner.number} ${winner.name} (%${winner.win_probability || 0})
             </div>
+            <button class="btn-lux btn-crimson btn-sm" onclick="window.app.toggleTjkTv(true)" style="margin-left:auto; display:inline-flex; align-items:center; gap:0.4rem; padding:0.35rem 0.85rem; font-size:0.8rem; box-shadow:0 0 14px rgba(200,16,46,0.5);" title="Canlı Yarış Yayınını Aç">
+              <span class="live-badge-glow" style="width:7px; height:7px; background:#fff;"></span> 📺 TJK TV Canlı Yayın
+            </button>
           </div>
         </div>
 
@@ -579,6 +602,8 @@ class TJKApp {
       this.renderCouponView(container);
     } else if (this.activeView === "results") {
       this.renderResultsView(race, container);
+    } else if (this.activeView === "liveTv") {
+      this.renderLiveTvView(race, container);
     }
   }
 
@@ -643,6 +668,8 @@ class TJKApp {
       const syn = r.synergy_analysis || {};
       const mat = r.maturity_analysis || {};
       const rankClass = `rank-${r.rank}`;
+      const gVal = r.live_ganyan || (r.ganyan && Number(r.ganyan) > 0 ? r.ganyan : (r.agf > 0 ? (0.84 / (r.agf / 100)) : 3.50));
+      const ganyanVal = Number(gVal).toFixed(2);
 
       html += `
         <div class="runner-card ${rankClass}">
@@ -656,6 +683,7 @@ class TJKApp {
               <div class="runner-title-group">
                 <div class="runner-name-row" style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
                   <h3 class="runner-name">${r.name}</h3>
+                  <span class="runner-name-ganyan" title="TJK O Anki Canlı Ganyan Oranı">💰 ${ganyanVal} ₺</span>
                   ${r.equipment ? `<span class="equipment-badge" style="background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.22); border-radius:4px; padding:1px 6px; font-size:0.75rem; color:#f8fafc; font-weight:700;" title="Resmi Teçhizat / Aksesuar">${r.equipment}</span>` : ''}
                   ${r.is_scratched ? `<span style="background:rgba(239,68,68,0.25); border:1px solid #ef4444; border-radius:4px; padding:1px 6px; font-size:0.75rem; color:#ef4444; font-weight:800;">🚫 KOŞMAZ</span>` : ''}
                   <span class="horse-equipment">${r.age || '3y'} • ${r.sire || 'Baba'} / ${r.dam || 'Anne'}</span>
@@ -685,7 +713,7 @@ class TJKApp {
                 <!-- O Anki Canlı Ganyan Badge -->
                 <div class="live-ganyan-pill" title="TJK e-Bayi O Anki Resmi Ganyan Oranı">
                   <span>💰 Ganyan:</span>
-                  <span class="live-ganyan-val">${r.live_ganyan ? Number(r.live_ganyan).toFixed(2) : (r.ganyan && Number(r.ganyan) > 0 ? Number(r.ganyan).toFixed(2) : (r.agf > 0 ? (0.84 / (r.agf / 100)).toFixed(2) : '3.50'))} ₺</span>
+                  <span class="live-ganyan-val">${ganyanVal} ₺</span>
                 </div>
 
                 <div class="prob-score-pill" style="${r.is_scratched ? 'opacity:0.4;' : ''}">
@@ -724,8 +752,16 @@ class TJKApp {
             </div>
           </div>
 
-          <!-- 5 Key Metrics Grid -->
-          <div class="runner-metrics-grid">
+          <!-- Key Metrics Grid with Live Ganyan -->
+          <div class="runner-metrics-grid" style="grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));">
+            <div class="metric-item highlight-metric-ganyan">
+              <span class="metric-label" style="color:var(--gold-400); font-weight:800;">💰 O Anki Ganyan</span>
+              <span class="metric-value ganyan-val-highlight">
+                ${ganyanVal} ₺
+              </span>
+              <span class="metric-sub" style="color:var(--emerald-400); font-weight:700;">${r.live_ganyan ? '🟢 TJK Canlı Oran' : '⚡ TJK Muhtemel Oran'}</span>
+            </div>
+
             <div class="metric-item">
               <span class="metric-label">Düzeltilmiş Derece</span>
               <span class="metric-value" style="color:var(--emerald-400);">
@@ -866,6 +902,7 @@ class TJKApp {
             <tr>
               <th>Sıra</th>
               <th>At İsmi</th>
+              <th>💰 O Anki Ganyan</th>
               <th>Resmi En İyi</th>
               <th>Hesaplanan Düzeltilmiş Derece</th>
               <th>100m Temposu</th>
@@ -879,6 +916,7 @@ class TJKApp {
               const ta = r.time_analysis || {};
               const diffSec = ((ta.adjusted_time_sec || bestTimeSec) - bestTimeSec).toFixed(2);
               const barPercent = Math.max(15, 100 - (((ta.adjusted_time_sec || bestTimeSec) - bestTimeSec) / Math.max(1, worstTimeSec - bestTimeSec)) * 85);
+              const ganyan = Number(r.live_ganyan || r.ganyan || (r.agf > 0 ? (0.84/(r.agf/100)) : 3.50)).toFixed(2);
 
               return `
                 <tr>
@@ -886,6 +924,9 @@ class TJKApp {
                   <td>
                     <strong>#${r.number} ${r.name}</strong>
                     <div style="font-size:0.74rem; color:var(--text-secondary);">${r.jockey} (${r.weight}kg)</div>
+                  </td>
+                  <td style="font-weight:800; color:var(--gold-400); font-size:0.95rem;">
+                    💰 ${ganyan} ₺
                   </td>
                   <td>${r.best_time || '<span style="color:var(--text-muted);">-</span>'}</td>
                   <td>
@@ -1070,47 +1111,162 @@ class TJKApp {
   }
 
   /* ----------------------------------------------------------------------
-     VIEW 6: ALL BET TYPES & ANALYSIS (2li, 3lü, Tabela, vs.)
+     VIEW 6: ALL BET TYPES & ANALYSIS (2li, 3lü, Tabela, 5li, vs.)
      ---------------------------------------------------------------------- */
   renderAllBetsView(race, container) {
-    if (!race.all_bets) {
-      container.innerHTML = `
-        <div style="padding: 2rem; text-align: center; color: var(--text-secondary);">
-          <h3>📊 Bu koşu için detaylı bahis analizleri (ikili, tabela vb.) hesaplanıyor...</h3>
-        </div>
-      `;
-      return;
-    }
-    
-    let html = `
-      <div class="all-bets-container" style="display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
-        <div style="grid-column: 1 / -1;">
-          <h3 style="font-family:var(--font-heading); font-size:1.3rem; font-weight:700; color:var(--emerald-400);">🎯 ${race.name} TJK Bahis Türleri Analizi</h3>
-          <p style="color:var(--text-secondary); font-size:0.9rem;">Yapay zeka modelimizin İkili, 3'lü, Tabela ve 5'li bahis kombinasyonları için ürettiği potansiyel sonuçlar.</p>
-        </div>
-    `;
+    const ikiliOdds = this.getRaceIkiliOdds(race);
+    const recs = race.bet_recommendations || {};
+    const allBets = race.all_bets || {};
 
-    Object.entries(race.all_bets).forEach(([betType, analysis]) => {
-      html += `
-        <div class="bet-card" style="background: var(--bg-surface-elevated); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-subtle);">
-          <div style="display:flex; justify-content:space-between; align-items:center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.75rem; margin-bottom: 0.75rem;">
-            <h4 style="font-size:1.1rem; color:var(--gold-400); margin:0; text-transform:uppercase;">${betType.replace(/_/g, ' ')}</h4>
-            <span class="badge" style="background:rgba(245,158,11,0.2); color:var(--gold-400); padding: 0.2rem 0.5rem; border-radius:4px; font-size:0.75rem; font-weight:bold;">Güven: %${analysis.confidence || 75}</span>
+    let html = `
+      <div class="all-bets-container" style="display: flex; flex-direction: column; gap: 1.5rem;">
+        <div>
+          <h3 style="font-family:var(--font-heading); font-size:1.35rem; font-weight:700; color:var(--emerald-400);">🎯 ${race.name} TJK Bahis Türleri & Canlı Oran Analizi</h3>
+          <p style="color:var(--text-secondary); font-size:0.88rem;">Yapay zeka modelimizin İkili, 3'lü, Tabela ve 5'li bahis kombinasyonları için ürettiği matematiksel strateji ve canlı oran havuzu.</p>
+        </div>
+
+        <!-- 1. O Anki 2'li Ganyan (İkili Bahis) Oranları Box -->
+        <div class="ikili-ganyan-box" style="margin-bottom:0;">
+          <div class="ikili-header">
+            <div class="ikili-title-wrap">
+              <div class="ikili-icon-glow">🎲</div>
+              <div>
+                <h3 class="ikili-title">O Anki 2'li Ganyan (İkili Bahis) Oranları</h3>
+                <p class="ikili-subtitle">TJK e-Bayi canlı havuz oranları ve en çok tercih edilen ikili kombinasyonları</p>
+              </div>
+            </div>
+            <div class="ikili-actions">
+              <span class="live-status-chip ${race.is_live_odds ? 'is-live' : 'is-projected'}">
+                ${race.is_live_odds ? '🟢 TJK Canlı Oranlar' : '⚡ TJK Anlık Muhtemel Oranları'}
+              </span>
+              <button class="btn-glass btn-sm" onclick="window.app.refreshLiveOdds(${race.race_number})" title="TJK e-Bayi Canlı Ganyanlarını ve İkili Oranlarını Çek">
+                🔄 Canlı Oranları Yenile
+              </button>
+            </div>
           </div>
-          <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;">${analysis.description || 'Yapay zeka değerlendirmesi'}</p>
-          <div style="display:flex; flex-direction:column; gap:0.5rem;">
-            ${(analysis.combinations || []).map((combo, idx) => `
-              <div style="display:flex; justify-content:space-between; align-items:center; background:rgba(0,0,0,0.2); padding: 0.5rem; border-radius: 4px;">
-                <span style="font-weight:bold; font-size: 0.95rem; letter-spacing: 1px; color:var(--text-main);">${combo.combo}</span>
-                <span style="font-size:0.75rem; color: ${idx === 0 ? 'var(--emerald-400)' : 'var(--text-muted)'};">${idx === 0 ? 'Öncelikli' : 'Alternatif'}</span>
+
+          <div class="ikili-grid">
+            ${ikiliOdds.slice(0, 15).map(ik => `
+              <div class="ikili-card">
+                <div class="ikili-card-top">
+                  <span class="ikili-combo-badge">${ik.combo}</span>
+                  <span class="ikili-odd-badge">${ik.ganyan ? Number(ik.ganyan).toFixed(2) : '-'} ₺</span>
+                </div>
+                <div class="ikili-names">
+                  <strong>${ik.horse1_name}</strong>
+                  <span class="ikili-divider">&</span>
+                  <strong>${ik.horse2_name}</strong>
+                </div>
+                <button class="btn-ikili-add" onclick="window.couponApp.addIkiliToCoupon(${race.race_number}, ${ik.horse1_no}, ${ik.horse2_no})" title="Bu ikiliyi kupona ekle">
+                  ➕ Kupona İkili Ekle
+                </button>
               </div>
             `).join('')}
           </div>
         </div>
-      `;
-    });
 
-    html += `</div>`;
+        <!-- 2. Bet Recommendations Grid -->
+        <div style="display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));">
+          
+          <!-- GANYAN & PLASE -->
+          <div class="bet-card" style="background: var(--bg-surface-elevated); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid rgba(245,158,11,0.35);">
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.65rem; margin-bottom: 0.75rem;">
+              <h4 style="font-size:1.05rem; color:var(--gold-400); margin:0;">💰 GANYAN & PLASE</h4>
+              <span class="badge" style="background:rgba(245,158,11,0.2); color:var(--gold-400); padding: 0.2rem 0.5rem; border-radius:4px; font-size:0.75rem; font-weight:bold;">Güven: %85</span>
+            </div>
+            <p style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:0.75rem;">
+              <strong>Tek Banko:</strong> #${recs.ganyan?.horse_number || 1} ${recs.ganyan?.horse_name || ''} (%${recs.ganyan?.win_probability || 45})
+            </p>
+            ${recs.ganyan?.value_alternative ? `
+              <div style="background:rgba(0,0,0,0.3); padding:0.6rem; border-radius:6px; font-size:0.82rem; color:var(--gold-300);">
+                💡 <strong>Değer / Bomba Sürprizi:</strong> #${recs.ganyan.value_alternative.horse_number} ${recs.ganyan.value_alternative.horse_name} (AGF: %${recs.ganyan.value_alternative.agf})
+              </div>
+            ` : ''}
+          </div>
+
+          <!-- SIRALI İKİLİ & İKİLİ BAHİS -->
+          <div class="bet-card" style="background: var(--bg-surface-elevated); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid rgba(16,185,129,0.35);">
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.65rem; margin-bottom: 0.75rem;">
+              <h4 style="font-size:1.05rem; color:var(--emerald-400); margin:0;">🎯 SIRALI İKİLİ & İKİLİ</h4>
+              <span class="badge" style="background:rgba(16,185,129,0.2); color:var(--emerald-400); padding: 0.2rem 0.5rem; border-radius:4px; font-size:0.75rem; font-weight:bold;">Önerilen</span>
+            </div>
+            <div style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:0.6rem;">
+              <strong>Öncelikli Sıralı:</strong> <span style="color:#fff; font-weight:800; font-size:0.95rem;">${recs.sirali_ikili?.primary || '1 / 2'}</span>
+              <span style="margin-left:0.5rem; color:var(--text-muted);">(Ters Koruma: ${recs.sirali_ikili?.cover || '2 / 1'})</span>
+            </div>
+            <p style="font-size:0.8rem; color:var(--text-secondary); line-height:1.4;">
+              ${recs.sirali_ikili?.tactic || 'Favori safkan liderliğinde arkasına plaselerin bağlanması tavsiye edilir.'}
+            </p>
+          </div>
+
+          <!-- ÜÇLÜ BAHİS -->
+          <div class="bet-card" style="background: var(--bg-surface-elevated); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid rgba(59,130,246,0.35);">
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.65rem; margin-bottom: 0.75rem;">
+              <h4 style="font-size:1.05rem; color:var(--blue-400); margin:0;">🏇 3'LÜ BAHİS (TRIO)</h4>
+              <span class="badge" style="background:rgba(59,130,246,0.2); color:var(--blue-400); padding: 0.2rem 0.5rem; border-radius:4px; font-size:0.75rem; font-weight:bold;">Trio Box</span>
+            </div>
+            <div style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:0.5rem;">
+              <strong>Sıralı İdeal:</strong> <span style="color:#fff; font-weight:800;">${recs.uclu_bahis?.sirali || '1 / 2 / 3'}</span>
+            </div>
+            <div style="font-size:0.82rem; color:var(--text-secondary); margin-bottom:0.5rem;">
+              <strong>Virgüllü Şablon:</strong> <code style="color:var(--gold-400); background:rgba(0,0,0,0.3); padding:2px 6px; border-radius:4px;">${recs.uclu_bahis?.virgullu_template || '1 // 2, 3 // 2, 3, 4'}</code>
+            </div>
+            <div style="font-size:0.8rem; color:var(--text-muted);">
+              Kutu (Box) Atlar: <strong>${(recs.uclu_bahis?.trio_box || [1,2,3]).join(', ')}</strong> (${recs.uclu_bahis?.combination_count || 6} Kombinasyon)
+            </div>
+          </div>
+
+          <!-- TABELA BAHİS (4'LÜ BAHİS) -->
+          <div class="bet-card" style="background: var(--bg-surface-elevated); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid rgba(139,92,246,0.35);">
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.65rem; margin-bottom: 0.75rem;">
+              <h4 style="font-size:1.05rem; color:var(--purple-400); margin:0;">📋 TABELA BAHİS (4'LÜ)</h4>
+              <span class="badge" style="background:rgba(139,92,246,0.2); color:var(--purple-400); padding: 0.2rem 0.5rem; border-radius:4px; font-size:0.75rem; font-weight:bold;">Sıralı / Virgüllü</span>
+            </div>
+            <div style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:0.5rem;">
+              <strong>İdeal Sıralı:</strong> <span style="color:#fff; font-weight:800;">${recs.tabela_bahis?.sirali || '1 / 2 / 3 / 4'}</span>
+            </div>
+            <div style="font-size:0.82rem; color:var(--text-secondary); margin-bottom:0.5rem;">
+              <strong>Virgüllü Şablon:</strong> <code style="color:var(--emerald-400); background:rgba(0,0,0,0.3); padding:2px 6px; border-radius:4px;">${recs.tabela_bahis?.virgullu_template || '1 // 2,3 // 2,3,4 // 2,3,4,5'}</code>
+            </div>
+            <div style="font-size:0.8rem; color:var(--text-secondary); line-height:1.4;">
+              ${recs.tabela_bahis?.analysis || 'İlk ayakta banko korumalı tabela kurgusu tavsiye edilir.'}
+            </div>
+          </div>
+
+          <!-- SIRALI 5'Lİ BAHİS (JACKPOT) -->
+          <div class="bet-card" style="background: var(--bg-surface-elevated); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid rgba(244,63,94,0.35);">
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.65rem; margin-bottom: 0.75rem;">
+              <h4 style="font-size:1.05rem; color:var(--rose-400); margin:0;">🏆 SIRALI 5'Lİ BAHİS (JACKPOT)</h4>
+              <span class="badge" style="background:rgba(244,63,94,0.2); color:var(--rose-400); padding: 0.2rem 0.5rem; border-radius:4px; font-size:0.75rem; font-weight:bold;">Büyük İkramiye</span>
+            </div>
+            <div style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:0.5rem;">
+              <strong>İdeal Sıralama:</strong> <span style="color:#fff; font-weight:800;">${recs.sirali_besli?.sirali_ideal || '1 / 2 / 3 / 4 / 5'}</span>
+            </div>
+            <div style="font-size:0.82rem; color:var(--text-secondary); margin-bottom:0.5rem;">
+              <strong>Virgüllü Kurgu:</strong> <code style="color:var(--gold-400); background:rgba(0,0,0,0.3); padding:2px 6px; border-radius:4px;">${recs.sirali_besli?.template_str || '1 // 2,3 // 2,3,4 // 3,4,5 // 4,5,6'}</code>
+            </div>
+            <div style="font-size:0.8rem; color:var(--emerald-400); font-weight:700;">
+              ✨ ${recs.sirali_besli?.jackpot_potential || 'Günün en yüksek ikramiye potansiyeline sahip bahis oyunu.'}
+            </div>
+          </div>
+
+          <!-- ÇİFTE BAHİS -->
+          <div class="bet-card" style="background: var(--bg-surface-elevated); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid rgba(20,184,166,0.35);">
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.65rem; margin-bottom: 0.75rem;">
+              <h4 style="font-size:1.05rem; color:var(--teal-400); margin:0;">🔀 ÇİFTE BAHİS STRATEJİSİ</h4>
+              <span class="badge" style="background:rgba(20,184,166,0.2); color:var(--teal-400); padding: 0.2rem 0.5rem; border-radius:4px; font-size:0.75rem; font-weight:bold;">2 Koşu Bağı</span>
+            </div>
+            <div style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:0.5rem;">
+              <strong>1. Ayak Safkanı:</strong> <span style="color:#fff; font-weight:800;">#${recs.cifte?.leg1 || 1} ${recs.cifte?.leg1_name || ''}</span>
+            </div>
+            <p style="font-size:0.8rem; color:var(--text-secondary); line-height:1.4;">
+              ${recs.cifte?.recommendation || 'Bu koşudaki banko safkan ile sonraki koşunun favorisi bağlanarak çifte kuponu oluşturulmalıdır.'}
+            </p>
+          </div>
+
+        </div>
+      </div>
+    `;
     container.innerHTML = html;
   }
 
@@ -1266,27 +1422,161 @@ class TJKApp {
   }
 
   /* ----------------------------------------------------------------------
-     TJK TV PIP CONTROLS
+     VIEW 8: LIVE TJK TV BROADCAST STUDIO
      ---------------------------------------------------------------------- */
-  toggleTjkTv(forceState = null) {
-    const pip = document.getElementById("tjkTvPip");
-    if (!pip) return;
-    
-    const isHidden = pip.classList.contains("hidden");
-    const willShow = forceState !== null ? forceState : isHidden;
-    
-    if (willShow) {
-      pip.classList.remove("hidden");
-      pip.classList.remove("minimized");
-    } else {
-      pip.classList.add("hidden");
+  renderLiveTvView(race, container) {
+    container.innerHTML = `
+      <div class="live-tv-studio">
+        <div class="studio-header">
+          <div style="display:flex; align-items:center; gap:0.75rem;">
+            <span class="live-badge-glow" style="font-size:0.82rem; padding:0.25rem 0.65rem;">● CANLI YAYIN</span>
+            <div>
+              <h2 style="font-family:var(--font-heading); font-size:1.35rem; color:#fff; margin:0;">
+                📺 TJK TV Canlı Yayın Stüdyosu
+              </h2>
+              <p style="font-size:0.82rem; color:var(--text-secondary); margin:2px 0 0 0;">
+                TAY TV & e-Bayi kesintisiz HD canlı yarış yayını, yarış spikeri, padok ve start heyecanı
+              </p>
+            </div>
+          </div>
+          <div class="studio-quick-links">
+            <button class="tv-fallback-link-btn" onclick="window.app.openTayTvOfficial()">🏇 TJK Resmi Web Canlı</button>
+            <button class="tv-fallback-link-btn" onclick="window.app.openEbayiOfficial()">🐎 e-Bayi Canlı Sayfası</button>
+          </div>
+        </div>
+
+        <div class="studio-player-wrap">
+          <div class="studio-stream-selector">
+            <button class="stream-tab-btn ${this.currentTvSourceIdx === 0 ? 'active' : ''}" onclick="window.app.selectStreamSource(0); window.app.renderActiveView(window.app.getCurrentRace());">
+              🏇 TAY TV (TJK Resmi HLS)
+            </button>
+            <button class="stream-tab-btn ${this.currentTvSourceIdx === 1 ? 'active' : ''}" onclick="window.app.selectStreamSource(1); window.app.renderActiveView(window.app.getCurrentRace());">
+              🐎 e-Bayi Canlı (HLS)
+            </button>
+            <button class="stream-tab-btn ${this.currentTvSourceIdx === 2 ? 'active' : ''}" onclick="window.app.selectStreamSource(2); window.app.renderActiveView(window.app.getCurrentRace());">
+              🔴 YouTube HD Canlı (Embed)
+            </button>
+          </div>
+
+          <div class="studio-video-container">
+            ${this.currentTvSourceIdx === 2 ? `
+              <iframe class="studio-iframe" 
+                      src="${this.tvSources[2].url}" 
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                      allowfullscreen>
+              </iframe>
+            ` : `
+              <video id="studioVideo" class="studio-video-el" controls autoplay playsinline muted></video>
+              <div id="studioVideoOverlay" class="video-play-overlay ${this._studioPlaying ? 'hidden' : ''}" onclick="window.app.startStudioVideo()">
+                <button class="btn-play-stream">▶ Canlı Yayını Başlat</button>
+              </div>
+            `}
+          </div>
+
+          <div class="studio-bottom-controls">
+            <div style="display:flex; align-items:center; gap:0.6rem; flex-wrap:wrap;">
+              <button class="btn-glass btn-sm" onclick="window.app.toggleStudioMute()">🔊 Sesi Aç / Kapat</button>
+              <button class="btn-glass btn-sm" onclick="window.app.requestStudioFullscreen()">⛶ Tam Ekran</button>
+              <button class="btn-glass btn-sm" onclick="window.app.toggleTjkTv(true)">⧉ Küçük Pencere (PiP)</button>
+              <button class="btn-glass btn-sm" onclick="window.app.selectStreamSource(2); window.app.renderActiveView(window.app.getCurrentRace());" title="Yayın açılmazsa YouTube yayınına geç">🔴 YouTube'a Geç</button>
+            </div>
+            <div style="font-size:0.8rem; color:var(--text-secondary);">
+              Aktif Koşu: <strong style="color:var(--gold-400);">${race.name} (${race.time})</strong> • ${this.currentCity}
+            </div>
+          </div>
+        </div>
+
+        <div class="studio-schedule">
+          <h4 style="font-family:var(--font-heading); color:var(--gold-400); margin-bottom:0.75rem;">
+            🏁 ${this.currentCity} Hipodromu Günün Koşu Akışı
+          </h4>
+          <div class="studio-race-grid">
+            ${(this.currentProgram?.races || []).map((r, i) => `
+              <div class="studio-race-chip ${i === this.activeRaceIndex ? 'active' : ''}" onclick="window.app.selectRace(${i}); window.app.switchView('predictions');">
+                <span class="studio-race-num">${r.race_number}. Koşu</span>
+                <span class="studio-race-time">${r.time}</span>
+                <span class="studio-race-fav">Favori: #${r.runners?.[0]?.number || 1} (Ganyan: ${Number(r.runners?.[0]?.live_ganyan || r.runners?.[0]?.ganyan || 2.5).toFixed(2)} ₺)</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      </div>
+    `;
+
+    if (this.currentTvSourceIdx !== 2) {
+      setTimeout(() => this.initStudioHls(), 80);
     }
   }
 
-  toggleTjkTvMinimize() {
-    const pip = document.getElementById("tjkTvPip");
-    if (pip) {
-      pip.classList.toggle("minimized");
+  initStudioHls() {
+    const video = document.getElementById("studioVideo");
+    if (!video) return;
+    const src = this.tvSources[this.currentTvSourceIdx];
+    if (window.Hls && window.Hls.isSupported()) {
+      if (this.studioHlsInstance) {
+        this.studioHlsInstance.destroy();
+      }
+      this.studioHlsInstance = new window.Hls({
+        enableWorker: true,
+        lowLatencyMode: true
+      });
+      this.studioHlsInstance.attachMedia(video);
+      this.studioHlsInstance.on(window.Hls.Events.MEDIA_ATTACHED, () => {
+        this.studioHlsInstance.loadSource(src.url);
+      });
+      this.studioHlsInstance.on(window.Hls.Events.MANIFEST_PARSED, () => {
+        video.muted = true;
+        video.play().then(() => {
+          this._studioPlaying = true;
+          const overlay = document.getElementById("studioVideoOverlay");
+          if (overlay) overlay.classList.add("hidden");
+        }).catch(() => {
+          const overlay = document.getElementById("studioVideoOverlay");
+          if (overlay) overlay.classList.remove("hidden");
+        });
+      });
+      this.studioHlsInstance.on(window.Hls.Events.ERROR, (event, data) => {
+        if (data && data.fatal) {
+          console.warn("Studio HLS error, switching to YouTube stream...");
+          this.selectStreamSource(2);
+          this.renderActiveView(this.getCurrentRace());
+        }
+      });
+    } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+      video.src = src.url;
+      video.muted = true;
+      video.play().catch(() => {});
+    } else {
+      this.selectStreamSource(2);
+      this.renderActiveView(this.getCurrentRace());
+    }
+  }
+
+  startStudioVideo() {
+    const video = document.getElementById("studioVideo");
+    const overlay = document.getElementById("studioVideoOverlay");
+    if (video) {
+      video.muted = false;
+      video.play().then(() => {
+        this._studioPlaying = true;
+        if (overlay) overlay.classList.add("hidden");
+      }).catch(() => {
+        video.muted = true;
+        video.play();
+        if (overlay) overlay.classList.add("hidden");
+      });
+    }
+  }
+
+  toggleStudioMute() {
+    const video = document.getElementById("studioVideo");
+    if (video) video.muted = !video.muted;
+  }
+
+  requestStudioFullscreen() {
+    const video = document.getElementById("studioVideo");
+    if (video && video.requestFullscreen) {
+      video.requestFullscreen();
     }
   }
 
@@ -1388,7 +1678,7 @@ class TJKApp {
       {
         name: "YouTube Canlı Aktif Yayın",
         type: "iframe",
-        url: "https://www.youtube.com/embed/hnZK5wXzQDk?autoplay=1&mute=0"
+        url: "https://www.youtube.com/embed/a5eBdWz50Mc?autoplay=1&mute=0"
       }
     ];
 
@@ -1404,6 +1694,23 @@ class TJKApp {
         toggleBtn.innerHTML = `<span class="live-badge-glow" style="background:#10b981; box-shadow:0 0 10px #10b981;">YAYINDA</span> 📺 TJK TV Açık`;
         toggleBtn.style.borderColor = "var(--emerald-500)";
       }
+    }
+  }
+
+  startVideoManual() {
+    const video = this.tayTvVideo || document.getElementById("tayTvVideo");
+    const overlay = document.getElementById("videoPlayOverlay");
+    if (video) {
+      video.muted = false;
+      video.play().then(() => {
+        if (overlay) overlay.classList.add("hidden");
+        const muteBtn = document.getElementById("btnPipMute");
+        if (muteBtn) muteBtn.textContent = "🔊";
+      }).catch(e => {
+        video.muted = true;
+        video.play();
+        if (overlay) overlay.classList.add("hidden");
+      });
     }
   }
 
@@ -1459,14 +1766,29 @@ class TJKApp {
         video.play().then(() => {
           const muteBtn = document.getElementById("btnPipMute");
           if (muteBtn) muteBtn.textContent = "🔇";
-        }).catch(() => {});
+          const overlay = document.getElementById("videoPlayOverlay");
+          if (overlay) overlay.classList.add("hidden");
+        }).catch((err) => {
+          console.warn("Autoplay blocked, showing manual play button:", err);
+          const overlay = document.getElementById("videoPlayOverlay");
+          if (overlay) overlay.classList.remove("hidden");
+        });
       });
+      this._hlsNetFails = 0;
       this.hlsInstance.on(window.Hls.Events.ERROR, (event, data) => {
         if (data && data.fatal) {
           console.warn("HLS fatal error:", data.type, data.details);
           switch (data.type) {
             case window.Hls.ErrorTypes.NETWORK_ERROR:
-              try { this.hlsInstance.startLoad(); } catch (e) {}
+              this._hlsNetFails = (this._hlsNetFails || 0) + 1;
+              if (this._hlsNetFails >= 2) {
+                console.warn("HLS network unreachable, switching to fallback YouTube stream...");
+                try { this.hlsInstance.destroy(); } catch (e) {}
+                this.hlsInstance = null;
+                this.selectStreamSource(2);
+              } else {
+                try { this.hlsInstance.startLoad(); } catch (e) {}
+              }
               break;
             case window.Hls.ErrorTypes.MEDIA_ERROR:
               try { this.hlsInstance.recoverMediaError(); } catch (e) {}
@@ -1476,7 +1798,7 @@ class TJKApp {
               this.hlsInstance = null;
               if (this.currentTvSourceIdx === 0) {
                 this.selectStreamSource(1);
-              } else if (this.currentTvSourceIdx === 1) {
+              } else {
                 this.selectStreamSource(2);
               }
               break;

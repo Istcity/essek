@@ -71,6 +71,29 @@ class TJKAppHandler(SimpleHTTPRequestHandler):
                 city = query.get("city", ["Bursa"])[0]
                 date_str = query.get("date", [None])[0]
                 data = fetch_and_predict_city_program(city, date_str)
+
+                # Automatically enrich with live TJK e-bayi odds & 2'li ganyanlar
+                try:
+                    from backend.live_odds_service import get_live_odds_for_race
+                    for race in (data.get("races") or []):
+                        r_num = race.get("race_number", 1)
+                        runners = race.get("runners") or []
+                        odds = get_live_odds_for_race(city, r_num, runners)
+                        if odds and odds.get("success"):
+                            race["is_live_odds"] = odds.get("is_live", False)
+                            race["live_odds_source"] = odds.get("source", "TJK")
+                            race["ikili_ganyanlar"] = odds.get("ikili_ganyanlar", [])
+                            race["sirali_ikili_ganyanlar"] = odds.get("sirali_ikili", [])
+
+                            g_map = {g["number"]: g["ganyan"] for g in odds.get("ganyanlar", []) if "number" in g and "ganyan" in g}
+                            for runner in runners:
+                                r_no = runner.get("number")
+                                if r_no in g_map:
+                                    runner["live_ganyan"] = g_map[r_no]
+                                    runner["ganyan"] = g_map[r_no]
+                except Exception as e:
+                    pass
+
                 self.send_json_response({"success": True, "data": data})
 
             elif path == "/api/gallops":
@@ -88,13 +111,16 @@ class TJKAppHandler(SimpleHTTPRequestHandler):
                 })
 
             elif path == "/api/tjktv":
-                vid = "hnZK5wXzQDk"
+                vid = "a5eBdWz50Mc"
                 try:
                     import urllib.request, re
-                    h = {'User-Agent': 'Mozilla/5.0'}
+                    h = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'}
                     r = urllib.request.Request('https://www.youtube.com/@TJKTVCANLIYAYIN/live', headers=h)
                     with urllib.request.urlopen(r, timeout=4) as resp:
-                        m = re.search(r'"liveStreamabilityRenderer":\{"videoId":"([a-zA-Z0-9_-]{11})"', resp.read().decode('utf-8', 'ignore'))
+                        html_txt = resp.read().decode('utf-8', 'ignore')
+                        m = re.search(r'<meta property="og:video:url" content="https://www.youtube.com/embed/([a-zA-Z0-9_-]{11})"', html_txt)
+                        if not m:
+                            m = re.search(r'"videoId":"([a-zA-Z0-9_-]{11})"', html_txt)
                         if m:
                             vid = m.group(1)
                 except Exception:
