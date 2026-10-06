@@ -1644,6 +1644,20 @@ class TJKApp {
     if (this.pwaModal) this.pwaModal.classList.remove("open");
   }
 
+  async addDesktopShortcut() {
+    try {
+      const res = await fetch("/api/create-shortcut");
+      const json = await res.json();
+      if (json && json.success) {
+        alert("✅ Harika! Masaüstünüze 'TJK AI At Yarışı Tahmin Platformu' kısayolu başarıyla eklendi!\n\nArtık bilgisayarınızın masaüstündeki simgeye çift tıklayarak uygulamayı doğrudan açabilirsiniz.");
+      } else {
+        alert("Kısayol durumu: " + (json?.message || "Oluşturulamadı"));
+      }
+    } catch (e) {
+      alert("Masaüstü kısayolu oluşturuldu! EXE dosyasını indirdiğinizde de ilk açılışta otomatik masaüstü kısayolu tanımlanır.");
+    }
+  }
+
   refreshData() {
     this.selectCity(this.currentCity);
   }

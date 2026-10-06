@@ -45,15 +45,44 @@ class TJKAppHandler(SimpleHTTPRequestHandler):
         # CORS Headers for all responses
         if path.startswith("/api/"):
             self.handle_api(path, query)
-        elif path.endswith(".zip") and os.path.exists(os.path.join(BASE_DIR, os.path.basename(path))):
-            zip_path = os.path.join(BASE_DIR, os.path.basename(path))
-            self.send_response(200)
-            self.send_header("Content-Type", "application/zip")
-            self.send_header("Content-Length", str(os.path.getsize(zip_path)))
-            self.send_header("Content-Disposition", f'attachment; filename="{os.path.basename(zip_path)}"')
-            self.end_headers()
-            with open(zip_path, "rb") as f:
-                self.copyfile(f, self.wfile)
+
+        elif path.endswith(".exe") or path == "/download/exe":
+            exe_candidates = [
+                os.path.join(BASE_DIR, "dist", "TJK_RACING_AI_PRO_v2.exe"),
+                os.path.join(FRONTEND_DIR, "dist", "TJK_RACING_AI_PRO_v2.exe"),
+                os.path.join(BASE_DIR, "TJK_RACING_AI_PRO_v2.exe"),
+                os.path.join(FRONTEND_DIR, "TJK_RACING_AI_PRO_v2.exe"),
+            ]
+            for exe_path in exe_candidates:
+                if os.path.exists(exe_path):
+                    self.send_response(200)
+                    self.send_header("Content-Type", "application/octet-stream")
+                    self.send_header("Content-Length", str(os.path.getsize(exe_path)))
+                    self.send_header("Content-Disposition", 'attachment; filename="TJK_RACING_AI_PRO_v2.exe"')
+                    self.send_header("Access-Control-Allow-Origin", "*")
+                    self.end_headers()
+                    with open(exe_path, "rb") as f:
+                        self.copyfile(f, self.wfile)
+                    return
+            self.send_error(404, "EXE File Not Found")
+
+        elif path.endswith(".zip") or path == "/download/zip":
+            zip_candidates = [
+                os.path.join(BASE_DIR, "TJK_RACING_AI_PRO_v2.zip"),
+                os.path.join(FRONTEND_DIR, "TJK_RACING_AI_PRO_v2.zip"),
+            ]
+            for zip_path in zip_candidates:
+                if os.path.exists(zip_path):
+                    self.send_response(200)
+                    self.send_header("Content-Type", "application/zip")
+                    self.send_header("Content-Length", str(os.path.getsize(zip_path)))
+                    self.send_header("Content-Disposition", 'attachment; filename="TJK_RACING_AI_PRO_v2.zip"')
+                    self.send_header("Access-Control-Allow-Origin", "*")
+                    self.end_headers()
+                    with open(zip_path, "rb") as f:
+                        self.copyfile(f, self.wfile)
+                    return
+            self.send_error(404, "ZIP File Not Found")
         else:
             # Serve frontend files
             if path == "/" or path == "":

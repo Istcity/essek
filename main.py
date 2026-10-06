@@ -10,6 +10,7 @@ import socket
 import webbrowser
 import threading
 import time
+import subprocess
 import urllib.parse
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from socketserver import ThreadingMixIn
@@ -38,6 +39,44 @@ from backend.tjk_scraper import get_available_cities, fetch_and_predict_city_pro
 from backend.gallop_engine import analyze_gallops
 from backend.live_odds_service import get_live_odds_for_race
 
+def create_desktop_shortcut():
+    """Create Windows Desktop shortcut (.lnk) automatically on user's desktop."""
+    if sys.platform != "win32":
+        return None
+    try:
+        desktop_dir = os.path.join(os.path.expanduser("~"), "Desktop")
+        if not os.path.exists(desktop_dir):
+            desktop_dir = os.path.join(os.environ.get("USERPROFILE", ""), "Desktop")
+        if not os.path.exists(desktop_dir):
+            return None
+
+        shortcut_path = os.path.join(desktop_dir, "TJK AI At Yarışı Tahmin Platformu.lnk")
+
+        if getattr(sys, 'frozen', False):
+            target_exe = sys.executable
+        else:
+            cand = os.path.join(BASE_DIR, "dist", "TJK_RACING_AI_PRO_v2.exe")
+            target_exe = cand if os.path.exists(cand) else sys.executable
+
+        work_dir = os.path.dirname(target_exe)
+
+        ps_commands = [
+            '$WshShell = New-Object -ComObject WScript.Shell',
+            f"$Shortcut = $WshShell.CreateShortcut('{shortcut_path}')",
+            f"$Shortcut.TargetPath = '{target_exe}'",
+            f"$Shortcut.WorkingDirectory = '{work_dir}'",
+            "$Shortcut.Description = 'TJK AI At Yarışı Tahmin ve Analiz Platformu PRO v2.0'",
+            f"$Shortcut.IconLocation = '{target_exe},0'",
+            '$Shortcut.Save()'
+        ]
+        full_ps = "; ".join(ps_commands)
+        subprocess.run(["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-Command", full_ps], capture_output=True, timeout=5)
+        if os.path.exists(shortcut_path):
+            return shortcut_path
+    except Exception:
+        pass
+    return None
+
 class ThreadedHTTPServer(ThreadingMixIn, HTTPServer):
     daemon_threads = True
     allow_reuse_address = True
@@ -53,15 +92,47 @@ class TJKAppHandler(SimpleHTTPRequestHandler):
 
         if path.startswith("/api/"):
             self.handle_api(path, query)
-        elif path.endswith(".zip") and os.path.exists(os.path.join(BASE_DIR, os.path.basename(path))):
-            zip_path = os.path.join(BASE_DIR, os.path.basename(path))
-            self.send_response(200)
-            self.send_header("Content-Type", "application/zip")
-            self.send_header("Content-Length", str(os.path.getsize(zip_path)))
-            self.send_header("Content-Disposition", f'attachment; filename="{os.path.basename(zip_path)}"')
-            self.end_headers()
-            with open(zip_path, "rb") as f:
-                self.copyfile(f, self.wfile)
+
+        # Handle direct EXE download
+        elif path.endswith(".exe") or path == "/download/exe":
+            exe_candidates = [
+                os.path.join(BASE_DIR, "dist", "TJK_RACING_AI_PRO_v2.exe"),
+                os.path.join(FRONTEND_DIR, "dist", "TJK_RACING_AI_PRO_v2.exe"),
+                os.path.join(BASE_DIR, "TJK_RACING_AI_PRO_v2.exe"),
+                os.path.join(FRONTEND_DIR, "TJK_RACING_AI_PRO_v2.exe"),
+            ]
+            for exe_path in exe_candidates:
+                if os.path.exists(exe_path):
+                    self.send_response(200)
+                    self.send_header("Content-Type", "application/octet-stream")
+                    self.send_header("Content-Length", str(os.path.getsize(exe_path)))
+                    self.send_header("Content-Disposition", 'attachment; filename="TJK_RACING_AI_PRO_v2.exe"')
+                    self.send_header("Access-Control-Allow-Origin", "*")
+                    self.end_headers()
+                    with open(exe_path, "rb") as f:
+                        self.copyfile(f, self.wfile)
+                    return
+            self.send_error(404, "EXE File Not Found")
+
+        # Handle direct ZIP download
+        elif path.endswith(".zip") or path == "/download/zip":
+            zip_candidates = [
+                os.path.join(BASE_DIR, "TJK_RACING_AI_PRO_v2.zip"),
+                os.path.join(FRONTEND_DIR, "TJK_RACING_AI_PRO_v2.zip"),
+            ]
+            for zip_path in zip_candidates:
+                if os.path.exists(zip_path):
+                    self.send_response(200)
+                    self.send_header("Content-Type", "application/zip")
+                    self.send_header("Content-Length", str(os.path.getsize(zip_path)))
+                    self.send_header("Content-Disposition", 'attachment; filename="TJK_RACING_AI_PRO_v2.zip"')
+                    self.send_header("Access-Control-Allow-Origin", "*")
+                    self.end_headers()
+                    with open(zip_path, "rb") as f:
+                        self.copyfile(f, self.wfile)
+                    return
+            self.send_error(404, "ZIP File Not Found")
+
         else:
             if path == "/" or path == "":
                 self.path = "/index.html"
@@ -128,6 +199,20 @@ class TJKAppHandler(SimpleHTTPRequestHandler):
                 odds = get_live_odds_for_race(city, race_num, runners)
                 self.send_json_response(odds)
 
+            elif path == "/api/create-shortcut":
+                s_path = create_desktop_shortcut()
+                if s_path:
+                    self.send_json_response({
+                        "success": True, 
+                        "message": "Masaüstünüze 'TJK AI At Yarışı Tahmin Platformu' kısayolu başarıyla eklendi!",
+                        "path": s_path
+                    })
+                else:
+                    self.send_json_response({
+                        "success": False, 
+                        "message": "Kısayol oluşturulamadı."
+                    }, status=500)
+
             elif path == "/api/status":
                 self.send_json_response({
                     "status": "online",
@@ -159,7 +244,7 @@ class TJKAppHandler(SimpleHTTPRequestHandler):
                     "tjk_web_url": "https://www.tjk.org/TR/YarisSever/CanliYayin/TjkTv"
                 })
             else:
-                self.send_error(404, "Endpoint bulunamadı")
+                self.send_error(404, "Endpoint Not Found")
         except Exception as e:
             self.send_json_response({"success": False, "error": str(e)}, status=500)
 
@@ -194,18 +279,50 @@ def find_available_port(start_port=8080, max_attempts=20):
 
 def open_browser_delayed(url, delay=1.0):
     time.sleep(delay)
+    if sys.platform == "win32":
+        # 1. Try launching Edge in dedicated App Mode (native desktop window!)
+        edge_candidates = [
+            os.path.expandvars(r"%ProgramFiles(x86)%\Microsoft\Edge\Application\msedge.exe"),
+            os.path.expandvars(r"%ProgramFiles%\Microsoft\Edge\Application\msedge.exe"),
+            "msedge"
+        ]
+        for ep in edge_candidates:
+            try:
+                if os.path.exists(ep) or ep == "msedge":
+                    subprocess.Popen([ep, f"--app={url}"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+                    return
+            except Exception:
+                pass
+
+        # 2. Try Chrome in dedicated App Mode
+        chrome_candidates = [
+            os.path.expandvars(r"%ProgramFiles%\Google\Chrome\Application\chrome.exe"),
+            os.path.expandvars(r"%ProgramFiles(x86)%\Google\Chrome\Application\chrome.exe"),
+            os.path.expandvars(r"%LocalAppData%\Google\Chrome\Application\chrome.exe"),
+            "chrome"
+        ]
+        for cp in chrome_candidates:
+            try:
+                if os.path.exists(cp) or cp == "chrome":
+                    subprocess.Popen([cp, f"--app={url}"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+                    return
+            except Exception:
+                pass
+
+    # 3. Fallback to default browser
     try:
-        if sys.platform == "win32":
-            os.startfile(url)
-        else:
-            webbrowser.open(url)
+        webbrowser.open(url, new=2, autoraise=True)
     except Exception:
         try:
-            webbrowser.open(url)
+            if sys.platform == "win32":
+                os.system(f'start "" "{url}"')
         except Exception:
             pass
 
 def main():
+    # 1. Automatically create Desktop Shortcut for the user
+    s_path = create_desktop_shortcut()
+
     port = find_available_port(8080)
     server_address = ("127.0.0.1", port)
     app_url = f"http://localhost:{port}"
@@ -213,13 +330,14 @@ def main():
     print("=" * 68)
     print("  🏇 TJK AT YARIŞI YAPAY ZEKA TAHMİN & ANALİZ PLATFORMU v2.0-PRO")
     print("=" * 68)
-    print(f"[*] Sunucu adresi: {app_url}")
-    print("[*] İnternet tarayıcınız (Chrome/Edge) otomatik açılıyor...")
-    print("[*] Tarayıcı açılmazsa yukarıdaki adresi tarayıcınıza yapıştırabilirsiniz.")
+    if s_path:
+        print(f"[*] ✅ Masaüstü Kısayolu Eklendi: {s_path}")
+    print(f"[*] Uygulama adresi: {app_url}")
+    print("[*] Masaüstü penceresi ve tarayıcı otomatik açılıyor...")
     print("[*] Uygulamayı kapatmak istediğinizde bu pencereyi kapatmanız yeterlidir.")
     print("=" * 68)
 
-    # Launch browser automatically
+    # Launch application window automatically
     browser_thread = threading.Thread(target=open_browser_delayed, args=(app_url,), daemon=True)
     browser_thread.start()
 
