@@ -235,6 +235,23 @@ class CouponBuilder {
     window.app.renderCurrentRace();
   }
 
+  addIkiliToCoupon(raceNumber, horse1Number, horse2Number) {
+    const rNum = parseInt(raceNumber);
+    if (!this.selectedHorses[rNum]) this.selectedHorses[rNum] = [];
+    const list = this.selectedHorses[rNum];
+    const h1 = parseInt(horse1Number);
+    const h2 = parseInt(horse2Number);
+    if (!list.includes(h1)) list.push(h1);
+    if (!list.includes(h2)) list.push(h2);
+    list.sort((a, b) => a - b);
+    if (this.bankos[rNum]) delete this.bankos[rNum];
+    this.render();
+    this.updateFloatingBar();
+    if (window.app) {
+      window.app.renderCurrentRace();
+    }
+  }
+
   setBanko(raceNumber, horseNumber) {
     this.selectedHorses[raceNumber] = [horseNumber];
     this.bankos[raceNumber] = horseNumber;

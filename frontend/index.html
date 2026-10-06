@@ -28,6 +28,16 @@
 </head>
 <body>
 
+  <!-- Premium Splash Screen -->
+  <div id="premiumSplash" aria-hidden="true">
+    <div class="splash-inner">
+      <canvas id="splashHorse"></canvas>
+      <div class="splash-title">TJK RACING AI</div>
+      <div class="splash-sub">Yapay Zeka Tahmin Motoru</div>
+      <div class="splash-track"><span></span></div>
+    </div>
+  </div>
+
   <!-- Sticky Luxury App Header -->
   <header class="app-header">
     <div class="header-container">
@@ -87,6 +97,12 @@
       </div>
     </div>
   </nav>
+
+  <!-- Running Horses Hero Strip -->
+  <div class="gallop-hero" aria-hidden="true">
+    <div class="gallop-hero-caption">◆ Canlı Analiz • AI Tahmin • TJK ◆</div>
+    <canvas id="gallopStrip"></canvas>
+  </div>
 
   <!-- Main Application Wrapper -->
   <main class="main-content">
@@ -151,7 +167,7 @@
         <strong id="barTotalCost">0.00 TL</strong>
       </div>
       <div class="slip-bar-actions">
-        <button class="btn-primary" onclick="window.app.switchView('coupon')" style="background:linear-gradient(135deg, var(--gold-500), var(--gold-600)); color:#000; font-weight:800; padding:0.45rem 1rem;">
+        <button class="btn-primary btn-gold" onclick="window.app.switchView('coupon')" style="padding:0.45rem 1rem;">
           Kuponu Aç / Düzenle ➔
         </button>
         <button class="btn-glass" onclick="window.couponApp.clearAll()" title="Kuponu Temizle" style="color:var(--rose-500);">
@@ -330,6 +346,16 @@
   <script src="./js/coupon-builder.js"></script>
   <script src="./js/h2h-compare.js"></script>
   <script src="./js/app.js"></script>
+
+  <!-- Premium interactions: initial tab indicator -->
+  <script>
+    window.addEventListener('load', () => {
+      const place = () => window.app && window.app.moveTabIndicator && window.app.moveTabIndicator();
+      setTimeout(place, 300);
+      setTimeout(place, 1500);
+      if (document.fonts) document.fonts.ready.then(place);
+    });
+  </script>
 
   <!-- PWA Service Worker Registration -->
   <script>

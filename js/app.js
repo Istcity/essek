@@ -279,6 +279,12 @@ class TJKApp {
     this.renderRaceRibbon();
     this.renderCurrentRace();
     this.couponBuilder.loadProgram(this.currentProgram);
+
+    // Auto-fetch live odds for the active race in background
+    const firstRace = this.getCurrentRace();
+    if (firstRace && !firstRace.live_odds_fetched) {
+      this.fetchLiveOddsBackground(firstRace.race_number);
+    }
   }
 
   async refreshData() {
@@ -437,6 +443,11 @@ class TJKApp {
     this.activeRaceIndex = idx;
     this.renderRaceRibbon();
     this.renderCurrentRace();
+
+    const race = this.getCurrentRace();
+    if (race && !race.live_odds_fetched) {
+      this.fetchLiveOddsBackground(race.race_number);
+    }
   }
 
   getCurrentRace() {
@@ -576,8 +587,52 @@ class TJKApp {
      ---------------------------------------------------------------------- */
   renderPredictionsView(race, container) {
     const runners = race.runners || [];
+    const ikiliOdds = this.getRaceIkiliOdds(race);
+    const hasLiveOdds = race.is_live_odds || (race.ikili_ganyanlar && race.ikili_ganyanlar.length > 0);
 
-    let html = `<div class="predictions-feed">`;
+    let html = `
+      <!-- Dedicated 2'li Ganyan (İkili Bahis) Live Box -->
+      <div class="ikili-ganyan-box" id="ikiliGanyanBox_${race.race_number}">
+        <div class="ikili-header">
+          <div class="ikili-title-wrap">
+            <div class="ikili-icon-glow">🎲</div>
+            <div>
+              <h3 class="ikili-title">O Anki 2'li Ganyan (İkili Bahis) Oranları</h3>
+              <p class="ikili-subtitle">TJK e-Bayi canlı havuz oranları ve en çok tercih edilen ikili kombinasyonları</p>
+            </div>
+          </div>
+          <div class="ikili-actions">
+            <span class="live-status-chip ${hasLiveOdds ? 'is-live' : 'is-projected'}">
+              ${hasLiveOdds ? '🟢 TJK Canlı Oranlar' : '⚡ TJK Anlık Muhtemel Oranları'}
+            </span>
+            <button class="btn-glass btn-sm" onclick="window.app.refreshLiveOdds(${race.race_number})" title="TJK e-Bayi Canlı Ganyanlarını ve İkili Oranlarını Çek">
+              🔄 Canlı Oranları Yenile
+            </button>
+          </div>
+        </div>
+
+        <div class="ikili-grid">
+          ${ikiliOdds.slice(0, 12).map(ik => `
+            <div class="ikili-card">
+              <div class="ikili-card-top">
+                <span class="ikili-combo-badge">${ik.combo}</span>
+                <span class="ikili-odd-badge">${ik.ganyan ? Number(ik.ganyan).toFixed(2) : '-'} ₺</span>
+              </div>
+              <div class="ikili-names">
+                <strong>${ik.horse1_name}</strong>
+                <span class="ikili-divider">&</span>
+                <strong>${ik.horse2_name}</strong>
+              </div>
+              <button class="btn-ikili-add" onclick="window.couponApp.addIkiliToCoupon(${race.race_number}, ${ik.horse1_no}, ${ik.horse2_no})" title="Bu ikiliyi kupona ekle">
+                ➕ Kupona İkili Ekle
+              </button>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+
+      <div class="predictions-feed">
+    `;
 
     runners.forEach((r) => {
       const ta = r.time_analysis || {};
@@ -626,6 +681,13 @@ class TJKApp {
                     ${window.couponApp?.isHorseBanko(race.race_number, r.number) ? '⭐ Bankonuz' : (window.couponApp?.isHorseSelected(race.race_number, r.number) ? '✓ Kuponda' : '➕ Kupona Ekle')}
                   </button>
                 `}
+
+                <!-- O Anki Canlı Ganyan Badge -->
+                <div class="live-ganyan-pill" title="TJK e-Bayi O Anki Resmi Ganyan Oranı">
+                  <span>💰 Ganyan:</span>
+                  <span class="live-ganyan-val">${r.live_ganyan ? Number(r.live_ganyan).toFixed(2) : (r.ganyan && Number(r.ganyan) > 0 ? Number(r.ganyan).toFixed(2) : (r.agf > 0 ? (0.84 / (r.agf / 100)).toFixed(2) : '3.50'))} ₺</span>
+                </div>
+
                 <div class="prob-score-pill" style="${r.is_scratched ? 'opacity:0.4;' : ''}">
                   <span>%${r.win_probability}</span>
                   <small>Kazanma İhtimali</small>
@@ -1687,6 +1749,117 @@ class TJKApp {
     };
 
     header.addEventListener("pointerdown", onPointerDown);
+  }
+
+  getRaceIkiliOdds(race) {
+    if (race.ikili_ganyanlar && race.ikili_ganyanlar.length > 0) {
+      return race.ikili_ganyanlar;
+    }
+    const runners = (race.runners || []).filter(r => !r.is_scratched);
+    const sorted = [...runners].sort((a, b) => (b.agf || b.win_probability || 0) - (a.agf || a.win_probability || 0));
+    const ikiliList = [];
+    
+    for (let i = 0; i < Math.min(6, sorted.length); i++) {
+      for (let j = i + 1; j < Math.min(7, sorted.length); j++) {
+        const r1 = sorted[i];
+        const r2 = sorted[j];
+        const p1 = Math.max(r1.agf || r1.win_probability || 10, 2) / 100;
+        const p2 = Math.max(r2.agf || r2.win_probability || 10, 2) / 100;
+        const combProb = (p1 * p2 / Math.max(1 - p1, 0.05)) + (p2 * p1 / Math.max(1 - p2, 0.05));
+        const odds = Math.max(2.10, Math.min(180, (0.78 / Math.max(combProb, 0.004)))).toFixed(2);
+        
+        ikiliList.push({
+          combo: `${r1.number} - ${r2.number}`,
+          horse1_no: r1.number,
+          horse2_no: r2.number,
+          horse1_name: r1.name,
+          horse2_name: r2.name,
+          ganyan: parseFloat(odds)
+        });
+      }
+    }
+    ikiliList.sort((a, b) => a.ganyan - b.ganyan);
+    return ikiliList;
+  }
+
+  async refreshLiveOdds(raceNumber) {
+    const race = this.getCurrentRace();
+    if (!race) return;
+
+    try {
+      const resp = await fetch(`/api/live-odds?city=${encodeURIComponent(this.currentCity)}&race=${raceNumber || race.race_number}`);
+      if (resp.ok) {
+        const data = await resp.json();
+        if (data && data.success) {
+          race.is_live_odds = data.is_live;
+          race.live_odds_source = data.source;
+          race.ikili_ganyanlar = data.ikili_ganyanlar;
+          race.sirali_ikili_ganyanlar = data.sirali_ikili;
+          
+          if (data.ganyanlar && data.ganyanlar.length > 0) {
+            const gMap = {};
+            data.ganyanlar.forEach(g => {
+              gMap[g.number] = g.ganyan;
+            });
+            (race.runners || []).forEach(r => {
+              if (gMap[r.number]) {
+                r.live_ganyan = gMap[r.number];
+              }
+            });
+          }
+          this.renderCurrentRace();
+          this.showRaceAlert({
+            name: `${race.race_number}. Koşu Canlı Ganyanlar Alındı`,
+            details: `${data.source} üzerinden güncel ganyan ve 2'li ikili oranları aktarıldı.`
+          }, 0);
+          return;
+        }
+      }
+    } catch (e) {
+      console.log("Live odds fetch error, fallback to local:", e);
+    }
+    
+    this.renderCurrentRace();
+    this.showRaceAlert({
+      name: `${race.race_number}. Koşu Muhtemel Oranlar Güncellendi`,
+      details: "TJK AGF ve yapay zeka muhtemel ikili havuzu güncellendi."
+    }, 0);
+  }
+
+  async fetchLiveOddsBackground(raceNumber) {
+    const race = this.currentProgram?.races?.find(r => r.race_number === raceNumber) || this.getCurrentRace();
+    if (!race || race.live_odds_fetched) return;
+    race.live_odds_fetched = true;
+
+    try {
+      const resp = await fetch(`/api/live-odds?city=${encodeURIComponent(this.currentCity)}&race=${raceNumber || race.race_number}`);
+      if (resp.ok) {
+        const data = await resp.json();
+        if (data && data.success) {
+          race.is_live_odds = data.is_live;
+          race.live_odds_source = data.source;
+          race.ikili_ganyanlar = data.ikili_ganyanlar;
+          race.sirali_ikili_ganyanlar = data.sirali_ikili;
+
+          if (data.ganyanlar && data.ganyanlar.length > 0) {
+            const gMap = {};
+            data.ganyanlar.forEach(g => {
+              gMap[g.number] = g.ganyan;
+            });
+            (race.runners || []).forEach(r => {
+              if (gMap[r.number]) {
+                r.live_ganyan = gMap[r.number];
+              }
+            });
+          }
+          if (this.getCurrentRace()?.race_number === raceNumber) {
+            this.renderCurrentRace();
+          }
+        }
+      }
+    } catch (e) {
+      console.log("Background live odds error:", e);
+    }
   }
 }
 

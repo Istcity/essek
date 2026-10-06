@@ -45,6 +45,15 @@ class TJKAppHandler(SimpleHTTPRequestHandler):
         # CORS Headers for all responses
         if path.startswith("/api/"):
             self.handle_api(path, query)
+        elif path.endswith(".zip") and os.path.exists(os.path.join(BASE_DIR, os.path.basename(path))):
+            zip_path = os.path.join(BASE_DIR, os.path.basename(path))
+            self.send_response(200)
+            self.send_header("Content-Type", "application/zip")
+            self.send_header("Content-Length", str(os.path.getsize(zip_path)))
+            self.send_header("Content-Disposition", f'attachment; filename="{os.path.basename(zip_path)}"')
+            self.end_headers()
+            with open(zip_path, "rb") as f:
+                self.copyfile(f, self.wfile)
         else:
             # Serve frontend files
             if path == "/" or path == "":
@@ -98,6 +107,21 @@ class TJKAppHandler(SimpleHTTPRequestHandler):
                     "live_url": "https://www.youtube.com/@TJKTVCANLIYAYIN/live",
                     "tjk_web_url": "https://www.tjk.org/TR/YarisSever/CanliYayin/TjkTv"
                 })
+
+            elif path == "/api/live-odds":
+                city = query.get("city", ["Bursa"])[0]
+                race_num = int(query.get("race", [1])[0])
+                runners = None
+                try:
+                    prog = fetch_and_predict_city_program(city)
+                    if prog and "races" in prog and len(prog["races"]) >= race_num:
+                        runners = prog["races"][race_num - 1].get("runners", [])
+                except Exception:
+                    pass
+
+                from backend.live_odds_service import get_live_odds_for_race
+                odds = get_live_odds_for_race(city, race_num, runners)
+                self.send_json_response(odds)
 
             else:
                 self.send_error(404, "API endpoint not found")

@@ -1,11 +1,17 @@
-# -*- mode: python ; coding: utf-8 -*-
+import os
 
+frontend_datas = []
+for root, dirs, files in os.walk('frontend'):
+    for f in files:
+        if not f.endswith('.zip') and not f.endswith('.exe'):
+            rel_dir = os.path.relpath(root, '.')
+            frontend_datas.append((os.path.join(root, f), rel_dir))
 
 a = Analysis(
     ['main.py'],
     pathex=[],
     binaries=[],
-    datas=[('frontend', 'frontend'), ('backend', 'backend'), ('data', 'data')],
+    datas=frontend_datas + [('backend', 'backend'), ('data', 'data')],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
