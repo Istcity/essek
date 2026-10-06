@@ -1,0 +1,2966 @@
+{
+  "trainers": {
+    "G.KÖSE": {
+      "starts": 22,
+      "win_rate": 4.5,
+      "top4_rate": 22.7,
+      "rating": 70.9
+    },
+    "H.KARATAŞ": {
+      "starts": 20,
+      "win_rate": 5.0,
+      "top4_rate": 15.0,
+      "rating": 69.0
+    },
+    "F.KİP": {
+      "starts": 19,
+      "win_rate": 5.3,
+      "top4_rate": 73.7,
+      "rating": 86.9
+    },
+    "V.YILDIRIM": {
+      "starts": 99,
+      "win_rate": 15.2,
+      "top4_rate": 65.7,
+      "rating": 94.3
+    },
+    "V.TEKİN": {
+      "starts": 42,
+      "win_rate": 2.4,
+      "top4_rate": 16.7,
+      "rating": 66.9
+    },
+    "M.ATAL": {
+      "starts": 57,
+      "win_rate": 3.5,
+      "top4_rate": 38.6,
+      "rating": 74.6
+    },
+    "E.ACER": {
+      "starts": 95,
+      "win_rate": 5.3,
+      "top4_rate": 36.8,
+      "rating": 75.8
+    },
+    "Y.TUNCAY": {
+      "starts": 192,
+      "win_rate": 2.6,
+      "top4_rate": 25.5,
+      "rating": 69.8
+    },
+    "H.SUNKAR": {
+      "starts": 177,
+      "win_rate": 5.6,
+      "top4_rate": 39.0,
+      "rating": 76.8
+    },
+    "M.DAŞ": {
+      "starts": 75,
+      "win_rate": 4.0,
+      "top4_rate": 45.3,
+      "rating": 77.1
+    },
+    "C.B.SERİNER": {
+      "starts": 29,
+      "win_rate": 13.8,
+      "top4_rate": 51.7,
+      "rating": 88.8
+    },
+    "M.ÖZYİĞİT": {
+      "starts": 75,
+      "win_rate": 8.0,
+      "top4_rate": 49.3,
+      "rating": 82.3
+    },
+    "M.AKYAVUZ": {
+      "starts": 17,
+      "win_rate": 11.8,
+      "top4_rate": 76.5,
+      "rating": 94.2
+    },
+    "E.ALTIN": {
+      "starts": 15,
+      "win_rate": 20.0,
+      "top4_rate": 46.7,
+      "rating": 93.5
+    },
+    "K.ARDA": {
+      "starts": 16,
+      "win_rate": 12.5,
+      "top4_rate": 50.0,
+      "rating": 87.0
+    },
+    "A.ÇIKMAN": {
+      "starts": 60,
+      "win_rate": 10.0,
+      "top4_rate": 38.3,
+      "rating": 81.0
+    },
+    "B.GÖRMEZ": {
+      "starts": 18,
+      "win_rate": 11.1,
+      "top4_rate": 27.8,
+      "rating": 78.9
+    },
+    "T.TÜRKMEN": {
+      "starts": 18,
+      "win_rate": 5.6,
+      "top4_rate": 33.3,
+      "rating": 75.1
+    },
+    "Y.ÇAĞLAR": {
+      "starts": 68,
+      "win_rate": 10.3,
+      "top4_rate": 25.0,
+      "rating": 77.3
+    },
+    "K.TEKİNALP": {
+      "starts": 18,
+      "win_rate": 5.6,
+      "top4_rate": 38.9,
+      "rating": 76.7
+    },
+    "K.KORKMAZ": {
+      "starts": 31,
+      "win_rate": 22.6,
+      "top4_rate": 48.4,
+      "rating": 96.6
+    },
+    "M.A.CANPOLATLI": {
+      "starts": 100,
+      "win_rate": 12.0,
+      "top4_rate": 48.0,
+      "rating": 85.9
+    },
+    "At Sahibi": {
+      "starts": 95,
+      "win_rate": 3.2,
+      "top4_rate": 30.5,
+      "rating": 71.8
+    },
+    "A.DİNÇ": {
+      "starts": 46,
+      "win_rate": 0.0,
+      "top4_rate": 10.9,
+      "rating": 62.8
+    },
+    "T.O.KARA": {
+      "starts": 45,
+      "win_rate": 4.4,
+      "top4_rate": 26.7,
+      "rating": 71.9
+    },
+    "A.ÇİFTÇİ": {
+      "starts": 29,
+      "win_rate": 10.3,
+      "top4_rate": 31.0,
+      "rating": 79.2
+    },
+    "R.TAŞDELEN": {
+      "starts": 77,
+      "win_rate": 10.4,
+      "top4_rate": 50.6,
+      "rating": 85.1
+    },
+    "SER.CEYLAN": {
+      "starts": 17,
+      "win_rate": 5.9,
+      "top4_rate": 23.5,
+      "rating": 72.4
+    },
+    "T.N.YILDIZ": {
+      "starts": 38,
+      "win_rate": 7.9,
+      "top4_rate": 39.5,
+      "rating": 79.2
+    },
+    "K.ŞENGEL": {
+      "starts": 258,
+      "win_rate": 7.0,
+      "top4_rate": 29.8,
+      "rating": 75.4
+    },
+    "E.ÇİLEK": {
+      "starts": 68,
+      "win_rate": 8.8,
+      "top4_rate": 39.7,
+      "rating": 80.2
+    },
+    "RAM. KAYA": {
+      "starts": 246,
+      "win_rate": 5.7,
+      "top4_rate": 32.9,
+      "rating": 75.1
+    },
+    "E.USLU": {
+      "starts": 38,
+      "win_rate": 5.3,
+      "top4_rate": 52.6,
+      "rating": 80.6
+    },
+    "MAH.BAYKARA": {
+      "starts": 36,
+      "win_rate": 0.0,
+      "top4_rate": 22.2,
+      "rating": 66.2
+    },
+    "A.ÖCAL": {
+      "starts": 83,
+      "win_rate": 9.6,
+      "top4_rate": 41.0,
+      "rating": 81.4
+    },
+    "Y.AKBULUT": {
+      "starts": 115,
+      "win_rate": 17.4,
+      "top4_rate": 45.2,
+      "rating": 90.5
+    },
+    "S.ÇELİKMAN": {
+      "starts": 17,
+      "win_rate": 11.8,
+      "top4_rate": 41.2,
+      "rating": 83.6
+    },
+    "ENG.ALTIN": {
+      "starts": 17,
+      "win_rate": 5.9,
+      "top4_rate": 29.4,
+      "rating": 74.2
+    },
+    "O.DEMİR": {
+      "starts": 52,
+      "win_rate": 17.3,
+      "top4_rate": 53.8,
+      "rating": 93.0
+    },
+    "SEY.GÖKÇE": {
+      "starts": 28,
+      "win_rate": 10.7,
+      "top4_rate": 46.4,
+      "rating": 84.1
+    },
+    "R.AKDUMAN": {
+      "starts": 28,
+      "win_rate": 0.0,
+      "top4_rate": 10.7,
+      "rating": 62.7
+    },
+    "M.DEMİRTAŞ": {
+      "starts": 44,
+      "win_rate": 18.2,
+      "top4_rate": 50.0,
+      "rating": 92.7
+    },
+    "K.KINAY": {
+      "starts": 32,
+      "win_rate": 3.1,
+      "top4_rate": 18.8,
+      "rating": 68.2
+    },
+    "S.BAYDAN": {
+      "starts": 91,
+      "win_rate": 6.6,
+      "top4_rate": 24.2,
+      "rating": 73.3
+    },
+    "S.ÖNDER": {
+      "starts": 53,
+      "win_rate": 1.9,
+      "top4_rate": 15.1,
+      "rating": 65.9
+    },
+    "O.ÖZPUYLAT": {
+      "starts": 16,
+      "win_rate": 0.0,
+      "top4_rate": 25.0,
+      "rating": 67.0
+    },
+    "K.T.YURDABAK": {
+      "starts": 15,
+      "win_rate": 13.3,
+      "top4_rate": 46.7,
+      "rating": 86.8
+    },
+    "MEH.DEMİR": {
+      "starts": 37,
+      "win_rate": 2.7,
+      "top4_rate": 29.7,
+      "rating": 71.1
+    },
+    "K.KAYALIK": {
+      "starts": 43,
+      "win_rate": 14.0,
+      "top4_rate": 55.8,
+      "rating": 90.2
+    },
+    "N.GÖNÜLTAŞ": {
+      "starts": 15,
+      "win_rate": 13.3,
+      "top4_rate": 26.7,
+      "rating": 80.8
+    },
+    "T.BİRİCİK": {
+      "starts": 32,
+      "win_rate": 3.1,
+      "top4_rate": 28.1,
+      "rating": 71.1
+    },
+    "E.TURAN": {
+      "starts": 62,
+      "win_rate": 8.1,
+      "top4_rate": 35.5,
+      "rating": 78.2
+    },
+    "TU.TURAN": {
+      "starts": 28,
+      "win_rate": 7.1,
+      "top4_rate": 42.9,
+      "rating": 79.5
+    },
+    "SEN.GÖKÇE": {
+      "starts": 31,
+      "win_rate": 9.7,
+      "top4_rate": 22.6,
+      "rating": 76.0
+    },
+    "N.KAYA": {
+      "starts": 89,
+      "win_rate": 9.0,
+      "top4_rate": 33.7,
+      "rating": 78.6
+    },
+    "T.ATEŞ": {
+      "starts": 183,
+      "win_rate": 4.9,
+      "top4_rate": 30.1,
+      "rating": 73.4
+    },
+    "R.KILIÇ": {
+      "starts": 76,
+      "win_rate": 3.9,
+      "top4_rate": 35.5,
+      "rating": 74.1
+    },
+    "A.MANTAŞ": {
+      "starts": 117,
+      "win_rate": 13.7,
+      "top4_rate": 45.3,
+      "rating": 86.8
+    },
+    "EM.KAYA": {
+      "starts": 52,
+      "win_rate": 9.6,
+      "top4_rate": 25.0,
+      "rating": 76.6
+    },
+    "M.U.TURAN": {
+      "starts": 38,
+      "win_rate": 5.3,
+      "top4_rate": 23.7,
+      "rating": 71.9
+    },
+    "M.ANAT": {
+      "starts": 28,
+      "win_rate": 14.3,
+      "top4_rate": 60.7,
+      "rating": 92.0
+    },
+    "İ.TURAN": {
+      "starts": 42,
+      "win_rate": 0.0,
+      "top4_rate": 28.6,
+      "rating": 68.1
+    },
+    "Y.GÜNDOĞDİ": {
+      "starts": 46,
+      "win_rate": 6.5,
+      "top4_rate": 28.3,
+      "rating": 74.5
+    },
+    "M.TÜRKOĞLU": {
+      "starts": 52,
+      "win_rate": 21.2,
+      "top4_rate": 55.8,
+      "rating": 97.4
+    },
+    "SER.GÖKÇE": {
+      "starts": 24,
+      "win_rate": 20.8,
+      "top4_rate": 66.7,
+      "rating": 100.3
+    },
+    "K.TURAN": {
+      "starts": 40,
+      "win_rate": 5.0,
+      "top4_rate": 35.0,
+      "rating": 75.0
+    },
+    "R.COŞKUN": {
+      "starts": 98,
+      "win_rate": 3.1,
+      "top4_rate": 17.3,
+      "rating": 67.8
+    },
+    "F.KIRAN": {
+      "starts": 56,
+      "win_rate": 12.5,
+      "top4_rate": 42.9,
+      "rating": 84.9
+    },
+    "A.TEMİZER": {
+      "starts": 82,
+      "win_rate": 6.1,
+      "top4_rate": 31.7,
+      "rating": 75.1
+    },
+    "MUR.ALTIN": {
+      "starts": 40,
+      "win_rate": 5.0,
+      "top4_rate": 35.0,
+      "rating": 75.0
+    },
+    "F.TOSUN": {
+      "starts": 41,
+      "win_rate": 12.2,
+      "top4_rate": 46.3,
+      "rating": 85.6
+    },
+    "M.A.TURAN": {
+      "starts": 44,
+      "win_rate": 15.9,
+      "top4_rate": 43.2,
+      "rating": 88.4
+    },
+    "M.ÖZGÜL": {
+      "starts": 183,
+      "win_rate": 9.3,
+      "top4_rate": 37.2,
+      "rating": 79.9
+    },
+    "U.GÖKÇE": {
+      "starts": 72,
+      "win_rate": 11.1,
+      "top4_rate": 37.5,
+      "rating": 81.9
+    },
+    "A.ÖZDENİZ": {
+      "starts": 44,
+      "win_rate": 0.0,
+      "top4_rate": 20.5,
+      "rating": 65.6
+    },
+    "T.ATAÇ": {
+      "starts": 17,
+      "win_rate": 0.0,
+      "top4_rate": 41.2,
+      "rating": 71.9
+    },
+    "Y.ÖZTAŞ": {
+      "starts": 28,
+      "win_rate": 17.9,
+      "top4_rate": 50.0,
+      "rating": 92.4
+    },
+    "E.AVCI": {
+      "starts": 24,
+      "win_rate": 12.5,
+      "top4_rate": 45.8,
+      "rating": 85.8
+    },
+    "R.A.TEKELİ": {
+      "starts": 37,
+      "win_rate": 8.1,
+      "top4_rate": 40.5,
+      "rating": 79.8
+    },
+    "M.ESMER": {
+      "starts": 37,
+      "win_rate": 16.2,
+      "top4_rate": 43.2,
+      "rating": 88.7
+    },
+    "Y.UÇAR": {
+      "starts": 136,
+      "win_rate": 7.4,
+      "top4_rate": 41.2,
+      "rating": 79.2
+    },
+    "A.E.BAŞ": {
+      "starts": 40,
+      "win_rate": 2.5,
+      "top4_rate": 27.5,
+      "rating": 70.2
+    },
+    "Ü.ARSLAN": {
+      "starts": 75,
+      "win_rate": 17.3,
+      "top4_rate": 60.0,
+      "rating": 94.8
+    },
+    "M.Ş.KILINÇ": {
+      "starts": 56,
+      "win_rate": 10.7,
+      "top4_rate": 37.5,
+      "rating": 81.5
+    },
+    "C.KARATAŞ": {
+      "starts": 43,
+      "win_rate": 14.0,
+      "top4_rate": 51.2,
+      "rating": 88.8
+    },
+    "İ.KÖROĞLU": {
+      "starts": 86,
+      "win_rate": 14.0,
+      "top4_rate": 38.4,
+      "rating": 85.0
+    },
+    "M.TEKİNALP": {
+      "starts": 26,
+      "win_rate": 7.7,
+      "top4_rate": 38.5,
+      "rating": 78.7
+    },
+    "O.BULUT": {
+      "starts": 53,
+      "win_rate": 15.1,
+      "top4_rate": 49.1,
+      "rating": 89.3
+    },
+    "KAD.BALTACI": {
+      "starts": 45,
+      "win_rate": 11.1,
+      "top4_rate": 51.1,
+      "rating": 85.9
+    },
+    "C.DEMİR": {
+      "starts": 84,
+      "win_rate": 16.7,
+      "top4_rate": 44.0,
+      "rating": 89.4
+    },
+    "U.KULAK": {
+      "starts": 70,
+      "win_rate": 22.9,
+      "top4_rate": 65.7,
+      "rating": 102.1
+    },
+    "S.GÜRKAN": {
+      "starts": 73,
+      "win_rate": 13.7,
+      "top4_rate": 54.8,
+      "rating": 89.6
+    },
+    "E.KARATAŞ": {
+      "starts": 25,
+      "win_rate": 16.0,
+      "top4_rate": 48.0,
+      "rating": 89.9
+    },
+    "KE.YILMAZ": {
+      "starts": 75,
+      "win_rate": 16.0,
+      "top4_rate": 44.0,
+      "rating": 88.7
+    },
+    "T.BARDAKCI": {
+      "starts": 15,
+      "win_rate": 20.0,
+      "top4_rate": 46.7,
+      "rating": 93.5
+    },
+    "E.AKYAVUZ": {
+      "starts": 31,
+      "win_rate": 9.7,
+      "top4_rate": 51.6,
+      "rating": 84.7
+    },
+    "H.KABUKCI": {
+      "starts": 24,
+      "win_rate": 12.5,
+      "top4_rate": 41.7,
+      "rating": 84.5
+    },
+    "C.KATI": {
+      "starts": 150,
+      "win_rate": 10.7,
+      "top4_rate": 48.7,
+      "rating": 84.8
+    },
+    "İB.B.OĞULLARI": {
+      "starts": 122,
+      "win_rate": 19.7,
+      "top4_rate": 68.9,
+      "rating": 99.8
+    },
+    "HAS.YILDIRIM": {
+      "starts": 55,
+      "win_rate": 18.2,
+      "top4_rate": 52.7,
+      "rating": 93.5
+    },
+    "M.DOLAK": {
+      "starts": 215,
+      "win_rate": 9.8,
+      "top4_rate": 49.8,
+      "rating": 84.2
+    },
+    "İ.ÇEÇAN": {
+      "starts": 78,
+      "win_rate": 9.0,
+      "top4_rate": 35.9,
+      "rating": 79.2
+    },
+    "HÜS.TEKİNALP": {
+      "starts": 91,
+      "win_rate": 16.5,
+      "top4_rate": 47.3,
+      "rating": 90.2
+    },
+    "İ.TEMEL": {
+      "starts": 19,
+      "win_rate": 26.3,
+      "top4_rate": 68.4,
+      "rating": 106.3
+    },
+    "R.ATLI": {
+      "starts": 30,
+      "win_rate": 6.7,
+      "top4_rate": 46.7,
+      "rating": 80.2
+    },
+    "A.POLAT": {
+      "starts": 21,
+      "win_rate": 14.3,
+      "top4_rate": 42.9,
+      "rating": 86.6
+    },
+    "M.E.AVCI": {
+      "starts": 15,
+      "win_rate": 13.3,
+      "top4_rate": 46.7,
+      "rating": 86.8
+    },
+    "ADN.POLAT": {
+      "starts": 54,
+      "win_rate": 3.7,
+      "top4_rate": 33.3,
+      "rating": 73.2
+    },
+    "Ş.AYDEMİR": {
+      "starts": 80,
+      "win_rate": 8.8,
+      "top4_rate": 33.8,
+      "rating": 78.4
+    },
+    "MER.KORKMAZ": {
+      "starts": 42,
+      "win_rate": 7.1,
+      "top4_rate": 52.4,
+      "rating": 82.4
+    },
+    "B.TURGUL": {
+      "starts": 15,
+      "win_rate": 26.7,
+      "top4_rate": 46.7,
+      "rating": 100.2
+    },
+    "Y.TEKİNALP": {
+      "starts": 26,
+      "win_rate": 11.5,
+      "top4_rate": 26.9,
+      "rating": 79.1
+    },
+    "M.DEMİROL": {
+      "starts": 131,
+      "win_rate": 6.1,
+      "top4_rate": 36.6,
+      "rating": 76.6
+    },
+    "H.TURAN": {
+      "starts": 45,
+      "win_rate": 13.3,
+      "top4_rate": 51.1,
+      "rating": 88.2
+    },
+    "Y.C. KARATOPRAK": {
+      "starts": 66,
+      "win_rate": 1.5,
+      "top4_rate": 25.8,
+      "rating": 68.7
+    },
+    "Ş.Ş.DEMİR": {
+      "starts": 87,
+      "win_rate": 2.3,
+      "top4_rate": 17.2,
+      "rating": 67.0
+    },
+    "S.SÜSLÜ": {
+      "starts": 75,
+      "win_rate": 16.0,
+      "top4_rate": 62.7,
+      "rating": 94.3
+    },
+    "GÜV.GÖKÇE": {
+      "starts": 16,
+      "win_rate": 12.5,
+      "top4_rate": 50.0,
+      "rating": 87.0
+    },
+    "O.ALTUNTAŞ": {
+      "starts": 19,
+      "win_rate": 10.5,
+      "top4_rate": 47.4,
+      "rating": 84.2
+    },
+    "GAL.KILIÇ": {
+      "starts": 58,
+      "win_rate": 8.6,
+      "top4_rate": 36.2,
+      "rating": 79.0
+    },
+    "EM.KESKİN": {
+      "starts": 23,
+      "win_rate": 0.0,
+      "top4_rate": 17.4,
+      "rating": 64.7
+    },
+    "H.DEMİRBAŞ": {
+      "starts": 29,
+      "win_rate": 6.9,
+      "top4_rate": 27.6,
+      "rating": 74.7
+    },
+    "HÜS.KAYA": {
+      "starts": 79,
+      "win_rate": 11.4,
+      "top4_rate": 50.6,
+      "rating": 86.1
+    },
+    "HAY.YILDIRIM": {
+      "starts": 17,
+      "win_rate": 11.8,
+      "top4_rate": 35.3,
+      "rating": 81.9
+    },
+    "SEN.ŞEN": {
+      "starts": 64,
+      "win_rate": 6.2,
+      "top4_rate": 23.4,
+      "rating": 72.8
+    },
+    "S.BEKTAŞ": {
+      "starts": 20,
+      "win_rate": 10.0,
+      "top4_rate": 35.0,
+      "rating": 80.0
+    },
+    "G.TAŞDELEN": {
+      "starts": 94,
+      "win_rate": 5.3,
+      "top4_rate": 23.4,
+      "rating": 71.8
+    },
+    "E.ÇETİNKURT": {
+      "starts": 81,
+      "win_rate": 11.1,
+      "top4_rate": 48.1,
+      "rating": 85.1
+    },
+    "S.YANMAZ": {
+      "starts": 24,
+      "win_rate": 25.0,
+      "top4_rate": 75.0,
+      "rating": 107.0
+    },
+    "B.AKBULUT": {
+      "starts": 17,
+      "win_rate": 5.9,
+      "top4_rate": 52.9,
+      "rating": 81.3
+    },
+    "C.TURAN": {
+      "starts": 48,
+      "win_rate": 6.2,
+      "top4_rate": 47.9,
+      "rating": 80.1
+    },
+    "D.SAV": {
+      "starts": 45,
+      "win_rate": 8.9,
+      "top4_rate": 48.9,
+      "rating": 83.1
+    },
+    "T.ÇEKİCİ": {
+      "starts": 105,
+      "win_rate": 9.5,
+      "top4_rate": 33.3,
+      "rating": 79.0
+    },
+    "F.GARZAN": {
+      "starts": 40,
+      "win_rate": 2.5,
+      "top4_rate": 22.5,
+      "rating": 68.8
+    },
+    "N.YILDIRIM": {
+      "starts": 38,
+      "win_rate": 15.8,
+      "top4_rate": 42.1,
+      "rating": 87.9
+    },
+    "AT.GÖKÇE": {
+      "starts": 18,
+      "win_rate": 16.7,
+      "top4_rate": 33.3,
+      "rating": 86.2
+    },
+    "T.SÜSLÜ": {
+      "starts": 17,
+      "win_rate": 29.4,
+      "top4_rate": 64.7,
+      "rating": 108.3
+    },
+    "MİR.İPEK": {
+      "starts": 24,
+      "win_rate": 8.3,
+      "top4_rate": 41.7,
+      "rating": 80.3
+    },
+    "Y.TAŞKIN": {
+      "starts": 34,
+      "win_rate": 8.8,
+      "top4_rate": 35.3,
+      "rating": 78.9
+    },
+    "SEV.BEKTAŞ": {
+      "starts": 23,
+      "win_rate": 13.0,
+      "top4_rate": 21.7,
+      "rating": 79.1
+    },
+    "A.GÜVEN": {
+      "starts": 35,
+      "win_rate": 11.4,
+      "top4_rate": 48.6,
+      "rating": 85.5
+    },
+    "M.ALTIN": {
+      "starts": 25,
+      "win_rate": 0.0,
+      "top4_rate": 12.0,
+      "rating": 63.1
+    },
+    "EN.KARATAŞ": {
+      "starts": 23,
+      "win_rate": 30.4,
+      "top4_rate": 73.9,
+      "rating": 112.1
+    },
+    "Y.YILDIZ": {
+      "starts": 24,
+      "win_rate": 33.3,
+      "top4_rate": 79.2,
+      "rating": 116.6
+    },
+    "S.KAN": {
+      "starts": 57,
+      "win_rate": 12.3,
+      "top4_rate": 50.9,
+      "rating": 87.0
+    },
+    "N.DÜNDAR": {
+      "starts": 28,
+      "win_rate": 7.1,
+      "top4_rate": 42.9,
+      "rating": 79.5
+    },
+    "Y.DEMİR": {
+      "starts": 18,
+      "win_rate": 11.1,
+      "top4_rate": 44.4,
+      "rating": 83.9
+    },
+    "O.GİRİŞKİN": {
+      "starts": 26,
+      "win_rate": 19.2,
+      "top4_rate": 53.8,
+      "rating": 94.9
+    },
+    "M.ARSLAN": {
+      "starts": 22,
+      "win_rate": 4.5,
+      "top4_rate": 18.2,
+      "rating": 69.5
+    },
+    "M.KORKMAZ": {
+      "starts": 28,
+      "win_rate": 7.1,
+      "top4_rate": 46.4,
+      "rating": 80.6
+    },
+    "F.TURAN": {
+      "starts": 19,
+      "win_rate": 5.3,
+      "top4_rate": 42.1,
+      "rating": 77.4
+    },
+    "M.ALAÇAM": {
+      "starts": 29,
+      "win_rate": 27.6,
+      "top4_rate": 55.2,
+      "rating": 103.6
+    },
+    "M.GÜNEŞ": {
+      "starts": 20,
+      "win_rate": 0.0,
+      "top4_rate": 40.0,
+      "rating": 71.5
+    },
+    "S.KARAKEÇİLİ": {
+      "starts": 18,
+      "win_rate": 5.6,
+      "top4_rate": 38.9,
+      "rating": 76.7
+    },
+    "M.TEK": {
+      "starts": 18,
+      "win_rate": 22.2,
+      "top4_rate": 33.3,
+      "rating": 91.7
+    },
+    "B.İLVAN": {
+      "starts": 15,
+      "win_rate": 13.3,
+      "top4_rate": 46.7,
+      "rating": 86.8
+    },
+    "YUS.KAYA": {
+      "starts": 83,
+      "win_rate": 7.2,
+      "top4_rate": 20.5,
+      "rating": 72.9
+    },
+    "Y.BAYSAL": {
+      "starts": 49,
+      "win_rate": 6.1,
+      "top4_rate": 34.7,
+      "rating": 76.0
+    },
+    "Z.YILMAZ": {
+      "starts": 16,
+      "win_rate": 6.2,
+      "top4_rate": 25.0,
+      "rating": 73.2
+    },
+    "AR.KILIÇ": {
+      "starts": 79,
+      "win_rate": 5.1,
+      "top4_rate": 41.8,
+      "rating": 77.1
+    },
+    "A.KARAKUŞ": {
+      "starts": 36,
+      "win_rate": 2.8,
+      "top4_rate": 16.7,
+      "rating": 67.3
+    },
+    "Y.MİSDİK": {
+      "starts": 30,
+      "win_rate": 16.7,
+      "top4_rate": 43.3,
+      "rating": 89.2
+    },
+    "S.ALTUNBAŞ": {
+      "starts": 15,
+      "win_rate": 6.7,
+      "top4_rate": 26.7,
+      "rating": 74.2
+    },
+    "F.SERİNTÜRK": {
+      "starts": 15,
+      "win_rate": 26.7,
+      "top4_rate": 60.0,
+      "rating": 104.2
+    },
+    "S.POLAT": {
+      "starts": 92,
+      "win_rate": 7.6,
+      "top4_rate": 29.3,
+      "rating": 75.9
+    },
+    "İ.AKKILIÇ": {
+      "starts": 40,
+      "win_rate": 27.5,
+      "top4_rate": 67.5,
+      "rating": 107.2
+    },
+    "Y.PETEK": {
+      "starts": 15,
+      "win_rate": 6.7,
+      "top4_rate": 46.7,
+      "rating": 80.2
+    },
+    "M.ÖRTÜNÇ": {
+      "starts": 19,
+      "win_rate": 21.1,
+      "top4_rate": 52.6,
+      "rating": 96.3
+    },
+    "H.ATAŞ": {
+      "starts": 35,
+      "win_rate": 11.4,
+      "top4_rate": 51.4,
+      "rating": 86.4
+    },
+    "C.AKGÜL": {
+      "starts": 22,
+      "win_rate": 31.8,
+      "top4_rate": 63.6,
+      "rating": 110.4
+    },
+    "İS.TEKİNALP": {
+      "starts": 39,
+      "win_rate": 12.8,
+      "top4_rate": 61.5,
+      "rating": 90.8
+    },
+    "Y.ŞİMŞEK": {
+      "starts": 26,
+      "win_rate": 19.2,
+      "top4_rate": 61.5,
+      "rating": 97.2
+    },
+    "H.YÜZBAŞI": {
+      "starts": 35,
+      "win_rate": 25.7,
+      "top4_rate": 65.7,
+      "rating": 104.9
+    },
+    "S.C.GÖZÜNGÜ": {
+      "starts": 28,
+      "win_rate": 10.7,
+      "top4_rate": 35.7,
+      "rating": 80.9
+    },
+    "C.ŞİMŞEK": {
+      "starts": 22,
+      "win_rate": 9.1,
+      "top4_rate": 36.4,
+      "rating": 79.5
+    },
+    "M.ÖCAL": {
+      "starts": 20,
+      "win_rate": 15.0,
+      "top4_rate": 30.0,
+      "rating": 83.5
+    },
+    "B.KOCAKAYA": {
+      "starts": 16,
+      "win_rate": 12.5,
+      "top4_rate": 43.8,
+      "rating": 85.1
+    },
+    "İ.CANPOLAT": {
+      "starts": 19,
+      "win_rate": 0.0,
+      "top4_rate": 15.8,
+      "rating": 64.2
+    },
+    "A.R.YILDIZ": {
+      "starts": 23,
+      "win_rate": 13.0,
+      "top4_rate": 30.4,
+      "rating": 81.7
+    },
+    "S.ŞAHYAZICI": {
+      "starts": 16,
+      "win_rate": 18.8,
+      "top4_rate": 31.2,
+      "rating": 87.6
+    },
+    "Ş.AKDUMAN": {
+      "starts": 26,
+      "win_rate": 3.8,
+      "top4_rate": 23.1,
+      "rating": 70.3
+    },
+    "A.TEKDEMİR": {
+      "starts": 17,
+      "win_rate": 5.9,
+      "top4_rate": 41.2,
+      "rating": 77.7
+    },
+    "A.R.AYDIN": {
+      "starts": 40,
+      "win_rate": 10.0,
+      "top4_rate": 35.0,
+      "rating": 80.0
+    },
+    "GÖK.GÖKÇE": {
+      "starts": 24,
+      "win_rate": 16.7,
+      "top4_rate": 37.5,
+      "rating": 87.4
+    },
+    "Ö.F.TAN": {
+      "starts": 20,
+      "win_rate": 0.0,
+      "top4_rate": 40.0,
+      "rating": 71.5
+    },
+    "Y.AKKILIÇ": {
+      "starts": 19,
+      "win_rate": 10.5,
+      "top4_rate": 52.6,
+      "rating": 85.8
+    },
+    "SER.DOĞAN": {
+      "starts": 42,
+      "win_rate": 21.4,
+      "top4_rate": 52.4,
+      "rating": 96.6
+    },
+    "MEH.ÇELİK": {
+      "starts": 21,
+      "win_rate": 23.8,
+      "top4_rate": 57.1,
+      "rating": 100.5
+    },
+    "MEH.AKKUŞ": {
+      "starts": 34,
+      "win_rate": 8.8,
+      "top4_rate": 47.1,
+      "rating": 82.4
+    },
+    "HAS.KAYA": {
+      "starts": 29,
+      "win_rate": 10.3,
+      "top4_rate": 34.5,
+      "rating": 80.2
+    },
+    "H.DOLMAZ": {
+      "starts": 73,
+      "win_rate": 11.0,
+      "top4_rate": 45.2,
+      "rating": 84.0
+    },
+    "AL.ÇİZİK": {
+      "starts": 42,
+      "win_rate": 7.1,
+      "top4_rate": 31.0,
+      "rating": 75.9
+    },
+    "F.SEZER": {
+      "starts": 28,
+      "win_rate": 3.6,
+      "top4_rate": 25.0,
+      "rating": 70.6
+    },
+    "İ.ÇAK": {
+      "starts": 20,
+      "win_rate": 15.0,
+      "top4_rate": 50.0,
+      "rating": 89.5
+    },
+    "G.SUBAŞI": {
+      "starts": 23,
+      "win_rate": 8.7,
+      "top4_rate": 39.1,
+      "rating": 79.9
+    },
+    "HAS.ALTUNBAŞ": {
+      "starts": 15,
+      "win_rate": 0.0,
+      "top4_rate": 20.0,
+      "rating": 65.5
+    },
+    "Ö.F.TAŞDELEN": {
+      "starts": 42,
+      "win_rate": 11.9,
+      "top4_rate": 47.6,
+      "rating": 85.7
+    },
+    "E.KARACA": {
+      "starts": 32,
+      "win_rate": 9.4,
+      "top4_rate": 34.4,
+      "rating": 79.2
+    },
+    "Y.ÇANKAYA": {
+      "starts": 15,
+      "win_rate": 0.0,
+      "top4_rate": 46.7,
+      "rating": 73.5
+    },
+    "MUR.AKKILIÇ": {
+      "starts": 20,
+      "win_rate": 30.0,
+      "top4_rate": 60.0,
+      "rating": 107.5
+    },
+    "T.ÖZTÜRK TİMUR": {
+      "starts": 15,
+      "win_rate": 13.3,
+      "top4_rate": 46.7,
+      "rating": 86.8
+    },
+    "İ.KIZILDAĞ": {
+      "starts": 34,
+      "win_rate": 0.0,
+      "top4_rate": 50.0,
+      "rating": 74.5
+    },
+    "B.TANRIKULU": {
+      "starts": 23,
+      "win_rate": 4.3,
+      "top4_rate": 26.1,
+      "rating": 71.7
+    },
+    "FER.ALTIN": {
+      "starts": 60,
+      "win_rate": 16.7,
+      "top4_rate": 50.0,
+      "rating": 91.2
+    },
+    "R.SUNA": {
+      "starts": 49,
+      "win_rate": 12.2,
+      "top4_rate": 34.7,
+      "rating": 82.2
+    },
+    "Z.KAYA": {
+      "starts": 18,
+      "win_rate": 5.6,
+      "top4_rate": 38.9,
+      "rating": 76.7
+    },
+    "Ö.F.ERTUĞRUL": {
+      "starts": 17,
+      "win_rate": 5.9,
+      "top4_rate": 23.5,
+      "rating": 72.4
+    },
+    "G.SÜTCÜ": {
+      "starts": 16,
+      "win_rate": 31.2,
+      "top4_rate": 75.0,
+      "rating": 113.2
+    },
+    "MÜC.KAYA": {
+      "starts": 27,
+      "win_rate": 11.1,
+      "top4_rate": 59.3,
+      "rating": 88.4
+    },
+    "HÜS.KARABULUT": {
+      "starts": 175,
+      "win_rate": 6.9,
+      "top4_rate": 31.4,
+      "rating": 75.8
+    },
+    "Ö.GÜNELİ": {
+      "starts": 30,
+      "win_rate": 3.3,
+      "top4_rate": 26.7,
+      "rating": 70.8
+    },
+    "T.SAYILKAN": {
+      "starts": 18,
+      "win_rate": 0.0,
+      "top4_rate": 5.6,
+      "rating": 61.2
+    },
+    "A.E.AVCI": {
+      "starts": 20,
+      "win_rate": 0.0,
+      "top4_rate": 30.0,
+      "rating": 68.5
+    },
+    "D.TEKELİ": {
+      "starts": 17,
+      "win_rate": 23.5,
+      "top4_rate": 52.9,
+      "rating": 98.9
+    },
+    "N.GÜNDÜZ": {
+      "starts": 18,
+      "win_rate": 11.1,
+      "top4_rate": 33.3,
+      "rating": 80.6
+    },
+    "Ş.GÖKÇE": {
+      "starts": 16,
+      "win_rate": 12.5,
+      "top4_rate": 25.0,
+      "rating": 79.5
+    },
+    "S.ÇİFTÇİ": {
+      "starts": 25,
+      "win_rate": 12.0,
+      "top4_rate": 48.0,
+      "rating": 85.9
+    },
+    "S.YARDIMCI": {
+      "starts": 16,
+      "win_rate": 12.5,
+      "top4_rate": 31.2,
+      "rating": 81.4
+    },
+    "A.AKBULUT": {
+      "starts": 45,
+      "win_rate": 28.9,
+      "top4_rate": 62.2,
+      "rating": 107.1
+    },
+    "S.AKYAVUZ": {
+      "starts": 49,
+      "win_rate": 6.1,
+      "top4_rate": 36.7,
+      "rating": 76.6
+    },
+    "Y.ARHIM": {
+      "starts": 17,
+      "win_rate": 17.6,
+      "top4_rate": 58.8,
+      "rating": 94.8
+    },
+    "M.A.PAKEL": {
+      "starts": 17,
+      "win_rate": 5.9,
+      "top4_rate": 23.5,
+      "rating": 72.4
+    },
+    "S.GÜNAYDIN": {
+      "starts": 20,
+      "win_rate": 10.0,
+      "top4_rate": 25.0,
+      "rating": 77.0
+    },
+    "M.KARACA": {
+      "starts": 15,
+      "win_rate": 0.0,
+      "top4_rate": 40.0,
+      "rating": 71.5
+    },
+    "M.A.KAYA": {
+      "starts": 97,
+      "win_rate": 5.2,
+      "top4_rate": 29.9,
+      "rating": 73.6
+    },
+    "S.AKCI": {
+      "starts": 26,
+      "win_rate": 7.7,
+      "top4_rate": 11.5,
+      "rating": 70.7
+    },
+    "D.KAYA": {
+      "starts": 39,
+      "win_rate": 25.6,
+      "top4_rate": 61.5,
+      "rating": 103.6
+    },
+    "BEK.YILDIRIM": {
+      "starts": 15,
+      "win_rate": 6.7,
+      "top4_rate": 40.0,
+      "rating": 78.2
+    },
+    "Ş.OLĞAÇ": {
+      "starts": 23,
+      "win_rate": 0.0,
+      "top4_rate": 30.4,
+      "rating": 68.6
+    }
+  },
+  "jockeys": {
+    "ER.CANKILIÇ AP": {
+      "starts": 132,
+      "win_rate": 17.4,
+      "top4_rate": 47.7,
+      "rating": 91.2
+    },
+    "İSM.YILDIRIM AP": {
+      "starts": 135,
+      "win_rate": 7.4,
+      "top4_rate": 40.7,
+      "rating": 79.1
+    },
+    "E.ÇANKAYA": {
+      "starts": 252,
+      "win_rate": 9.1,
+      "top4_rate": 46.8,
+      "rating": 82.7
+    },
+    "M.A.SOLMAZ": {
+      "starts": 176,
+      "win_rate": 8.0,
+      "top4_rate": 44.9,
+      "rating": 80.9
+    },
+    "SAL.ÇELİK": {
+      "starts": 332,
+      "win_rate": 11.7,
+      "top4_rate": 43.7,
+      "rating": 84.3
+    },
+    "F.R.BEBEK": {
+      "starts": 74,
+      "win_rate": 4.1,
+      "top4_rate": 21.6,
+      "rating": 70.0
+    },
+    "E.ATLAMAZ AP": {
+      "starts": 163,
+      "win_rate": 4.3,
+      "top4_rate": 27.6,
+      "rating": 72.1
+    },
+    "V.DEMİR": {
+      "starts": 64,
+      "win_rate": 10.9,
+      "top4_rate": 31.2,
+      "rating": 79.8
+    },
+    "SERH.ÇELİK AP": {
+      "starts": 135,
+      "win_rate": 10.4,
+      "top4_rate": 31.9,
+      "rating": 79.4
+    },
+    "M.A.AKGÖBEK": {
+      "starts": 180,
+      "win_rate": 3.3,
+      "top4_rate": 25.0,
+      "rating": 70.3
+    },
+    "M.UYAR AP": {
+      "starts": 99,
+      "win_rate": 6.1,
+      "top4_rate": 28.3,
+      "rating": 74.0
+    },
+    "M.KIYAK AP": {
+      "starts": 68,
+      "win_rate": 8.8,
+      "top4_rate": 35.3,
+      "rating": 78.9
+    },
+    "N.DEMİR": {
+      "starts": 244,
+      "win_rate": 7.0,
+      "top4_rate": 32.0,
+      "rating": 76.1
+    },
+    "F.ÇETİNBAŞ": {
+      "starts": 119,
+      "win_rate": 7.6,
+      "top4_rate": 48.7,
+      "rating": 81.7
+    },
+    "E.ATLAMAZ": {
+      "starts": 19,
+      "win_rate": 31.6,
+      "top4_rate": 78.9,
+      "rating": 114.8
+    },
+    "M.UYAR": {
+      "starts": 16,
+      "win_rate": 18.8,
+      "top4_rate": 43.8,
+      "rating": 91.4
+    },
+    "M.AKDAĞ AP": {
+      "starts": 31,
+      "win_rate": 0.0,
+      "top4_rate": 12.9,
+      "rating": 63.4
+    },
+    "F.S.M.SANSAR": {
+      "starts": 191,
+      "win_rate": 6.8,
+      "top4_rate": 33.5,
+      "rating": 76.4
+    },
+    "T.BALİ AP": {
+      "starts": 26,
+      "win_rate": 0.0,
+      "top4_rate": 7.7,
+      "rating": 61.8
+    },
+    "Y.CENGİZ": {
+      "starts": 21,
+      "win_rate": 4.8,
+      "top4_rate": 14.3,
+      "rating": 68.5
+    },
+    "MER.ÇELİK": {
+      "starts": 42,
+      "win_rate": 2.4,
+      "top4_rate": 38.1,
+      "rating": 73.3
+    },
+    "U.TEMUR": {
+      "starts": 54,
+      "win_rate": 7.4,
+      "top4_rate": 31.5,
+      "rating": 76.4
+    },
+    "M.KAYA": {
+      "starts": 132,
+      "win_rate": 15.9,
+      "top4_rate": 56.8,
+      "rating": 92.5
+    },
+    "O.YILDIZ": {
+      "starts": 187,
+      "win_rate": 10.7,
+      "top4_rate": 47.6,
+      "rating": 84.5
+    },
+    "M.M.BİLGİN": {
+      "starts": 334,
+      "win_rate": 20.7,
+      "top4_rate": 63.5,
+      "rating": 99.2
+    },
+    "N.AVCİ": {
+      "starts": 291,
+      "win_rate": 20.6,
+      "top4_rate": 60.5,
+      "rating": 98.3
+    },
+    "İ.KATI": {
+      "starts": 42,
+      "win_rate": 2.4,
+      "top4_rate": 23.8,
+      "rating": 69.0
+    },
+    "MAH.TURAN": {
+      "starts": 227,
+      "win_rate": 7.9,
+      "top4_rate": 33.9,
+      "rating": 77.6
+    },
+    "E.KADİRLER AP": {
+      "starts": 76,
+      "win_rate": 6.6,
+      "top4_rate": 28.9,
+      "rating": 74.8
+    },
+    "A.MEH.ALTIN": {
+      "starts": 43,
+      "win_rate": 4.7,
+      "top4_rate": 27.9,
+      "rating": 72.5
+    },
+    "M.KEÇECİ": {
+      "starts": 48,
+      "win_rate": 2.1,
+      "top4_rate": 14.6,
+      "rating": 66.0
+    },
+    "T.ALICI": {
+      "starts": 94,
+      "win_rate": 5.3,
+      "top4_rate": 28.7,
+      "rating": 73.4
+    },
+    "R.KETME AP": {
+      "starts": 248,
+      "win_rate": 5.6,
+      "top4_rate": 30.2,
+      "rating": 74.2
+    },
+    "M.ÇİÇEK": {
+      "starts": 174,
+      "win_rate": 13.8,
+      "top4_rate": 50.0,
+      "rating": 88.3
+    },
+    "HA.GÖKÇE": {
+      "starts": 16,
+      "win_rate": 0.0,
+      "top4_rate": 25.0,
+      "rating": 67.0
+    },
+    "E.AKPINAR": {
+      "starts": 19,
+      "win_rate": 10.5,
+      "top4_rate": 52.6,
+      "rating": 85.8
+    },
+    "O.EREN": {
+      "starts": 67,
+      "win_rate": 7.5,
+      "top4_rate": 26.9,
+      "rating": 75.0
+    },
+    "Ö.F.ÖZEN AP": {
+      "starts": 150,
+      "win_rate": 8.0,
+      "top4_rate": 37.3,
+      "rating": 78.7
+    },
+    "E.AKPINAR AP": {
+      "starts": 154,
+      "win_rate": 13.0,
+      "top4_rate": 37.0,
+      "rating": 83.6
+    },
+    "Y.GÖKÇE AP": {
+      "starts": 216,
+      "win_rate": 6.0,
+      "top4_rate": 30.6,
+      "rating": 74.7
+    },
+    "D.BUDAK AP": {
+      "starts": 32,
+      "win_rate": 0.0,
+      "top4_rate": 12.5,
+      "rating": 63.2
+    },
+    "B.BÜLBÜL AP": {
+      "starts": 48,
+      "win_rate": 8.3,
+      "top4_rate": 29.2,
+      "rating": 76.6
+    },
+    "C.ALTUN": {
+      "starts": 163,
+      "win_rate": 8.6,
+      "top4_rate": 27.0,
+      "rating": 76.2
+    },
+    "Y.E.YÜKSEL AP": {
+      "starts": 38,
+      "win_rate": 2.6,
+      "top4_rate": 18.4,
+      "rating": 67.7
+    },
+    "İ.DİNAR": {
+      "starts": 17,
+      "win_rate": 0.0,
+      "top4_rate": 0.0,
+      "rating": 59.5
+    },
+    "İ.GÜN AP": {
+      "starts": 21,
+      "win_rate": 0.0,
+      "top4_rate": 4.8,
+      "rating": 60.9
+    },
+    "O.ATMACA": {
+      "starts": 210,
+      "win_rate": 4.8,
+      "top4_rate": 29.5,
+      "rating": 73.1
+    },
+    "A.İNCİ": {
+      "starts": 131,
+      "win_rate": 8.4,
+      "top4_rate": 42.0,
+      "rating": 80.5
+    },
+    "K.TOKAÇOĞLU": {
+      "starts": 137,
+      "win_rate": 10.2,
+      "top4_rate": 43.1,
+      "rating": 82.6
+    },
+    "N.ŞEN": {
+      "starts": 108,
+      "win_rate": 3.7,
+      "top4_rate": 34.3,
+      "rating": 73.5
+    },
+    "MAHS.TURAN": {
+      "starts": 92,
+      "win_rate": 13.0,
+      "top4_rate": 42.4,
+      "rating": 85.3
+    },
+    "A.YILDIZ": {
+      "starts": 197,
+      "win_rate": 11.2,
+      "top4_rate": 48.7,
+      "rating": 85.3
+    },
+    "E.AKKAYA AP": {
+      "starts": 34,
+      "win_rate": 5.9,
+      "top4_rate": 26.5,
+      "rating": 73.3
+    },
+    "S.TIRPAN": {
+      "starts": 91,
+      "win_rate": 7.7,
+      "top4_rate": 30.8,
+      "rating": 76.4
+    },
+    "HA.GÖKÇE AP": {
+      "starts": 108,
+      "win_rate": 2.8,
+      "top4_rate": 12.0,
+      "rating": 65.9
+    },
+    "B.M.MIRIK": {
+      "starts": 94,
+      "win_rate": 10.6,
+      "top4_rate": 36.2,
+      "rating": 81.0
+    },
+    "İ.GÜREKE AP": {
+      "starts": 59,
+      "win_rate": 6.8,
+      "top4_rate": 25.4,
+      "rating": 73.9
+    },
+    "G.ÖZÇELİK": {
+      "starts": 235,
+      "win_rate": 11.1,
+      "top4_rate": 44.3,
+      "rating": 83.8
+    },
+    "O.GÖKÇE": {
+      "starts": 80,
+      "win_rate": 8.8,
+      "top4_rate": 33.8,
+      "rating": 78.4
+    },
+    "V.ABİŞ": {
+      "starts": 250,
+      "win_rate": 22.8,
+      "top4_rate": 72.8,
+      "rating": 104.1
+    },
+    "M.S.ÇELİK": {
+      "starts": 248,
+      "win_rate": 18.5,
+      "top4_rate": 59.7,
+      "rating": 96.0
+    },
+    "E.AKTUĞ": {
+      "starts": 108,
+      "win_rate": 12.0,
+      "top4_rate": 29.6,
+      "rating": 80.4
+    },
+    "A.KURŞUN": {
+      "starts": 230,
+      "win_rate": 20.0,
+      "top4_rate": 54.3,
+      "rating": 95.8
+    },
+    "M.AKYAVUZ": {
+      "starts": 245,
+      "win_rate": 9.8,
+      "top4_rate": 51.0,
+      "rating": 84.6
+    },
+    "Ö.YILDIRIM": {
+      "starts": 102,
+      "win_rate": 9.8,
+      "top4_rate": 56.9,
+      "rating": 86.4
+    },
+    "G.KOCAKAYA": {
+      "starts": 185,
+      "win_rate": 21.6,
+      "top4_rate": 63.8,
+      "rating": 100.3
+    },
+    "M.N.SUNKAR": {
+      "starts": 114,
+      "win_rate": 4.4,
+      "top4_rate": 24.6,
+      "rating": 71.3
+    },
+    "M.BAYIR": {
+      "starts": 89,
+      "win_rate": 12.4,
+      "top4_rate": 48.3,
+      "rating": 86.4
+    },
+    "M.KESKİN": {
+      "starts": 126,
+      "win_rate": 6.3,
+      "top4_rate": 26.2,
+      "rating": 73.7
+    },
+    "M.G.ARSLAN": {
+      "starts": 132,
+      "win_rate": 6.8,
+      "top4_rate": 35.6,
+      "rating": 77.0
+    },
+    "S.YAZICIOĞLU AP": {
+      "starts": 44,
+      "win_rate": 0.0,
+      "top4_rate": 4.5,
+      "rating": 60.9
+    },
+    "B.AKÇAY": {
+      "starts": 52,
+      "win_rate": 5.8,
+      "top4_rate": 34.6,
+      "rating": 75.7
+    },
+    "U.LEVENT AP": {
+      "starts": 48,
+      "win_rate": 6.2,
+      "top4_rate": 20.8,
+      "rating": 72.0
+    },
+    "BERK.GÖKÇE AP": {
+      "starts": 111,
+      "win_rate": 8.1,
+      "top4_rate": 31.5,
+      "rating": 77.1
+    },
+    "C.PASO": {
+      "starts": 145,
+      "win_rate": 5.5,
+      "top4_rate": 19.3,
+      "rating": 70.8
+    },
+    "Z.KARABULUT AP": {
+      "starts": 41,
+      "win_rate": 9.8,
+      "top4_rate": 34.1,
+      "rating": 79.5
+    },
+    "S.ÖZEN": {
+      "starts": 88,
+      "win_rate": 10.2,
+      "top4_rate": 37.5,
+      "rating": 81.0
+    },
+    "S.KAYA": {
+      "starts": 43,
+      "win_rate": 25.6,
+      "top4_rate": 62.8,
+      "rating": 103.9
+    },
+    "E.BOZDAĞ": {
+      "starts": 48,
+      "win_rate": 10.4,
+      "top4_rate": 33.3,
+      "rating": 79.9
+    },
+    "A.ASLAN": {
+      "starts": 74,
+      "win_rate": 10.8,
+      "top4_rate": 43.2,
+      "rating": 83.3
+    },
+    "H.ÇİZİK": {
+      "starts": 199,
+      "win_rate": 12.6,
+      "top4_rate": 55.8,
+      "rating": 88.8
+    },
+    "H.KARATAŞ": {
+      "starts": 56,
+      "win_rate": 21.4,
+      "top4_rate": 60.7,
+      "rating": 99.1
+    },
+    "M.T.COŞKUN AP": {
+      "starts": 192,
+      "win_rate": 6.8,
+      "top4_rate": 34.9,
+      "rating": 76.7
+    },
+    "M.ÇELİK AP": {
+      "starts": 79,
+      "win_rate": 5.1,
+      "top4_rate": 25.3,
+      "rating": 72.2
+    },
+    "İ.AKYAVUZ": {
+      "starts": 16,
+      "win_rate": 31.2,
+      "top4_rate": 68.8,
+      "rating": 111.4
+    },
+    "İ.KATAR": {
+      "starts": 15,
+      "win_rate": 0.0,
+      "top4_rate": 33.3,
+      "rating": 69.5
+    },
+    "M.T.COŞKUN": {
+      "starts": 18,
+      "win_rate": 11.1,
+      "top4_rate": 55.6,
+      "rating": 87.3
+    },
+    "R.KURT AP": {
+      "starts": 67,
+      "win_rate": 6.0,
+      "top4_rate": 19.4,
+      "rating": 71.3
+    },
+    "E.ÇİZİK": {
+      "starts": 199,
+      "win_rate": 11.6,
+      "top4_rate": 46.2,
+      "rating": 84.9
+    },
+    "MÜS.ÇELİK": {
+      "starts": 259,
+      "win_rate": 13.1,
+      "top4_rate": 53.3,
+      "rating": 88.6
+    },
+    "A.SÖZEN": {
+      "starts": 85,
+      "win_rate": 10.6,
+      "top4_rate": 62.4,
+      "rating": 88.8
+    },
+    "R.YILDIZ AP": {
+      "starts": 61,
+      "win_rate": 1.6,
+      "top4_rate": 11.5,
+      "rating": 64.6
+    },
+    "B.KILINÇ": {
+      "starts": 46,
+      "win_rate": 6.5,
+      "top4_rate": 41.3,
+      "rating": 78.4
+    },
+    "H.TURAN AP": {
+      "starts": 45,
+      "win_rate": 2.2,
+      "top4_rate": 4.4,
+      "rating": 63.1
+    },
+    "A.E.ELMAS AP": {
+      "starts": 33,
+      "win_rate": 3.0,
+      "top4_rate": 24.2,
+      "rating": 69.8
+    },
+    "K.YILMAZ AP": {
+      "starts": 49,
+      "win_rate": 6.1,
+      "top4_rate": 28.6,
+      "rating": 74.2
+    },
+    "C.TEPE": {
+      "starts": 24,
+      "win_rate": 0.0,
+      "top4_rate": 8.3,
+      "rating": 62.0
+    },
+    "D.KONUK AP": {
+      "starts": 43,
+      "win_rate": 0.0,
+      "top4_rate": 9.3,
+      "rating": 62.3
+    },
+    "M.TEKPETEK AP": {
+      "starts": 16,
+      "win_rate": 0.0,
+      "top4_rate": 25.0,
+      "rating": 67.0
+    },
+    "T.YILDIZ": {
+      "starts": 96,
+      "win_rate": 6.2,
+      "top4_rate": 37.5,
+      "rating": 77.0
+    },
+    "Y.Ş.GÜMÜŞ AP": {
+      "starts": 24,
+      "win_rate": 4.2,
+      "top4_rate": 29.2,
+      "rating": 72.4
+    },
+    "Y.T.AKKAYA AP": {
+      "starts": 38,
+      "win_rate": 0.0,
+      "top4_rate": 10.5,
+      "rating": 62.7
+    },
+    "A.ÇELİK": {
+      "starts": 121,
+      "win_rate": 14.9,
+      "top4_rate": 60.3,
+      "rating": 92.5
+    },
+    "A.CEYLAN AP": {
+      "starts": 31,
+      "win_rate": 0.0,
+      "top4_rate": 6.5,
+      "rating": 61.4
+    },
+    "GÖK.BEKTAŞ": {
+      "starts": 27,
+      "win_rate": 0.0,
+      "top4_rate": 18.5,
+      "rating": 65.1
+    },
+    "A.KAÇMAZ": {
+      "starts": 23,
+      "win_rate": 13.0,
+      "top4_rate": 52.2,
+      "rating": 88.2
+    },
+    "Ç.TAŞCI AP": {
+      "starts": 29,
+      "win_rate": 0.0,
+      "top4_rate": 27.6,
+      "rating": 67.8
+    },
+    "M.BAĞ AP": {
+      "starts": 37,
+      "win_rate": 0.0,
+      "top4_rate": 21.6,
+      "rating": 66.0
+    },
+    "S.ALTAY AP": {
+      "starts": 29,
+      "win_rate": 6.9,
+      "top4_rate": 24.1,
+      "rating": 73.6
+    },
+    "H.ŞİMŞEK": {
+      "starts": 16,
+      "win_rate": 12.5,
+      "top4_rate": 31.2,
+      "rating": 81.4
+    },
+    "B.ÇETİN AP": {
+      "starts": 31,
+      "win_rate": 6.5,
+      "top4_rate": 22.6,
+      "rating": 72.7
+    },
+    "A.MEH.ALTIN AP": {
+      "starts": 44,
+      "win_rate": 11.4,
+      "top4_rate": 50.0,
+      "rating": 85.9
+    },
+    "M.KEÇECİ AP": {
+      "starts": 50,
+      "win_rate": 14.0,
+      "top4_rate": 38.0,
+      "rating": 84.9
+    },
+    "M.A.AKGÖBEK AP": {
+      "starts": 17,
+      "win_rate": 11.8,
+      "top4_rate": 41.2,
+      "rating": 83.6
+    }
+  },
+  "sires": {
+    "AGRESIVO (USA)": {
+      "starts": 163,
+      "win_rate": 12.3,
+      "top4_rate": 51.5
+    },
+    "FEARLESS KING (GB)": {
+      "starts": 39,
+      "win_rate": 23.1,
+      "top4_rate": 53.8
+    },
+    "KLIMT (USA)": {
+      "starts": 190,
+      "win_rate": 13.2,
+      "top4_rate": 48.4
+    },
+    "GENERAL QUARTERS (USA)": {
+      "starts": 107,
+      "win_rate": 11.2,
+      "top4_rate": 47.7
+    },
+    "CEMALCAN": {
+      "starts": 15,
+      "win_rate": 0.0,
+      "top4_rate": 26.7
+    },
+    "MYBOYCHARLIE (IRE)": {
+      "starts": 199,
+      "win_rate": 8.0,
+      "top4_rate": 39.7
+    },
+    "WAR CORRESPONDENT (USA)": {
+      "starts": 22,
+      "win_rate": 4.5,
+      "top4_rate": 50.0
+    },
+    "MENDIP (USA)": {
+      "starts": 208,
+      "win_rate": 8.7,
+      "top4_rate": 37.5
+    },
+    "TOCCET (USA)": {
+      "starts": 35,
+      "win_rate": 11.4,
+      "top4_rate": 31.4
+    },
+    "KANEKO": {
+      "starts": 230,
+      "win_rate": 14.3,
+      "top4_rate": 48.3
+    },
+    "TRAPPE SHOT (USA)": {
+      "starts": 135,
+      "win_rate": 8.9,
+      "top4_rate": 39.3
+    },
+    "NATIVE KHAN (FR)": {
+      "starts": 147,
+      "win_rate": 10.9,
+      "top4_rate": 47.6
+    },
+    "PAPA CLEM (USA)": {
+      "starts": 147,
+      "win_rate": 11.6,
+      "top4_rate": 46.3
+    },
+    "SADLER'S JOY (USA)": {
+      "starts": 81,
+      "win_rate": 16.0,
+      "top4_rate": 49.4
+    },
+    "TIZWAY (USA)": {
+      "starts": 139,
+      "win_rate": 7.9,
+      "top4_rate": 36.0
+    },
+    "RHYTHM DIVINE": {
+      "starts": 30,
+      "win_rate": 6.7,
+      "top4_rate": 30.0
+    },
+    "SATONO ARES (JPN)": {
+      "starts": 50,
+      "win_rate": 30.0,
+      "top4_rate": 62.0
+    },
+    "BUSHRANGER (IRE)": {
+      "starts": 23,
+      "win_rate": 4.3,
+      "top4_rate": 43.5
+    },
+    "TIGER MOTH (IRE)": {
+      "starts": 28,
+      "win_rate": 3.6,
+      "top4_rate": 46.4
+    },
+    "CATAPULT (USA)": {
+      "starts": 48,
+      "win_rate": 12.5,
+      "top4_rate": 39.6
+    },
+    "AUTHORIZED (IRE)": {
+      "starts": 92,
+      "win_rate": 10.9,
+      "top4_rate": 35.9
+    },
+    "EUPRHATES (USA)": {
+      "starts": 17,
+      "win_rate": 11.8,
+      "top4_rate": 11.8
+    },
+    "BODEMEISTER (USA)": {
+      "starts": 159,
+      "win_rate": 10.7,
+      "top4_rate": 43.4
+    },
+    "HAKEEM (USA)": {
+      "starts": 150,
+      "win_rate": 10.7,
+      "top4_rate": 43.3
+    },
+    "TOROK (IRE)": {
+      "starts": 214,
+      "win_rate": 8.9,
+      "top4_rate": 49.1
+    },
+    "INVINCIBLE SON (IRE)": {
+      "starts": 43,
+      "win_rate": 4.7,
+      "top4_rate": 23.3
+    },
+    "CALL TO VICTORY": {
+      "starts": 25,
+      "win_rate": 0.0,
+      "top4_rate": 12.0
+    },
+    "AFRİKAANDER": {
+      "starts": 109,
+      "win_rate": 22.0,
+      "top4_rate": 60.6
+    },
+    "BAKİBEY": {
+      "starts": 17,
+      "win_rate": 17.6,
+      "top4_rate": 58.8
+    },
+    "GÜMBÜRGÜMBÜR": {
+      "starts": 288,
+      "win_rate": 7.3,
+      "top4_rate": 33.7
+    },
+    "ANKA": {
+      "starts": 80,
+      "win_rate": 3.8,
+      "top4_rate": 26.2
+    },
+    "SERHANTAY": {
+      "starts": 141,
+      "win_rate": 9.2,
+      "top4_rate": 40.4
+    },
+    "GELİBOLU": {
+      "starts": 232,
+      "win_rate": 11.2,
+      "top4_rate": 38.8
+    },
+    "ÖZGÜNHAN": {
+      "starts": 164,
+      "win_rate": 6.1,
+      "top4_rate": 40.9
+    },
+    "DİLİRAN": {
+      "starts": 124,
+      "win_rate": 8.1,
+      "top4_rate": 36.3
+    },
+    "FİRİKYA": {
+      "starts": 60,
+      "win_rate": 11.7,
+      "top4_rate": 40.0
+    },
+    "SEMEND": {
+      "starts": 48,
+      "win_rate": 4.2,
+      "top4_rate": 20.8
+    },
+    "TURBO": {
+      "starts": 220,
+      "win_rate": 7.3,
+      "top4_rate": 32.3
+    },
+    "KAYAYÜREKLİ": {
+      "starts": 114,
+      "win_rate": 10.5,
+      "top4_rate": 33.3
+    },
+    "AYABAKAN": {
+      "starts": 184,
+      "win_rate": 12.0,
+      "top4_rate": 35.9
+    },
+    "SUPER SAVER (USA)": {
+      "starts": 138,
+      "win_rate": 13.8,
+      "top4_rate": 52.9
+    },
+    "KULOĞLU": {
+      "starts": 53,
+      "win_rate": 7.5,
+      "top4_rate": 41.5
+    },
+    "SHARPA": {
+      "starts": 26,
+      "win_rate": 15.4,
+      "top4_rate": 57.7
+    },
+    "ULAN BATOR": {
+      "starts": 73,
+      "win_rate": 5.5,
+      "top4_rate": 37.0
+    },
+    "GÜNGÖR BABA": {
+      "starts": 27,
+      "win_rate": 0.0,
+      "top4_rate": 14.8
+    },
+    "TILSIT (USA)": {
+      "starts": 68,
+      "win_rate": 11.8,
+      "top4_rate": 54.4
+    },
+    "LION HEART (USA)": {
+      "starts": 83,
+      "win_rate": 13.3,
+      "top4_rate": 44.6
+    },
+    "BODYGUARD HERO (USA)": {
+      "starts": 46,
+      "win_rate": 13.0,
+      "top4_rate": 45.7
+    },
+    "VICTORY GALLOP (CAN)": {
+      "starts": 53,
+      "win_rate": 24.5,
+      "top4_rate": 60.4
+    },
+    "KLUGER (JPN)": {
+      "starts": 47,
+      "win_rate": 17.0,
+      "top4_rate": 53.2
+    },
+    "SİLAH": {
+      "starts": 31,
+      "win_rate": 9.7,
+      "top4_rate": 54.8
+    },
+    "BALALAYKA": {
+      "starts": 36,
+      "win_rate": 11.1,
+      "top4_rate": 41.7
+    },
+    "UÇANBEY": {
+      "starts": 74,
+      "win_rate": 6.8,
+      "top4_rate": 31.1
+    },
+    "ORHUNKAAN": {
+      "starts": 40,
+      "win_rate": 15.0,
+      "top4_rate": 40.0
+    },
+    "BATMANASLANI": {
+      "starts": 22,
+      "win_rate": 9.1,
+      "top4_rate": 36.4
+    },
+    "DEMİRDÖVEN": {
+      "starts": 28,
+      "win_rate": 7.1,
+      "top4_rate": 10.7
+    },
+    "VICTOIRE PISA (JPN)": {
+      "starts": 124,
+      "win_rate": 8.1,
+      "top4_rate": 30.6
+    },
+    "ELARQAM (GB)": {
+      "starts": 26,
+      "win_rate": 19.2,
+      "top4_rate": 46.2
+    },
+    "MARCAVELLY (USA)": {
+      "starts": 58,
+      "win_rate": 10.3,
+      "top4_rate": 53.4
+    },
+    "SERDÜMEN": {
+      "starts": 151,
+      "win_rate": 7.9,
+      "top4_rate": 35.1
+    },
+    "SONALP": {
+      "starts": 150,
+      "win_rate": 14.7,
+      "top4_rate": 41.3
+    },
+    "ÖZDURAN": {
+      "starts": 77,
+      "win_rate": 9.1,
+      "top4_rate": 45.5
+    },
+    "ALTINCI HİS": {
+      "starts": 31,
+      "win_rate": 9.7,
+      "top4_rate": 32.3
+    },
+    "TU BRUTUS (CHI)": {
+      "starts": 20,
+      "win_rate": 15.0,
+      "top4_rate": 45.0
+    },
+    "TOUCH THE WOLF": {
+      "starts": 86,
+      "win_rate": 12.8,
+      "top4_rate": 53.5
+    },
+    "JUNGLE MAN": {
+      "starts": 26,
+      "win_rate": 11.5,
+      "top4_rate": 23.1
+    },
+    "BATTLEGROUND (USA)": {
+      "starts": 99,
+      "win_rate": 7.1,
+      "top4_rate": 43.4
+    },
+    "LUXOR": {
+      "starts": 84,
+      "win_rate": 4.8,
+      "top4_rate": 23.8
+    },
+    "MADRABAZ": {
+      "starts": 77,
+      "win_rate": 6.5,
+      "top4_rate": 23.4
+    },
+    "ATEŞTOPU": {
+      "starts": 46,
+      "win_rate": 6.5,
+      "top4_rate": 21.7
+    },
+    "ARHANBEY": {
+      "starts": 35,
+      "win_rate": 2.9,
+      "top4_rate": 31.4
+    },
+    "TAYKUT": {
+      "starts": 55,
+      "win_rate": 7.3,
+      "top4_rate": 32.7
+    },
+    "BERKSOY": {
+      "starts": 128,
+      "win_rate": 8.6,
+      "top4_rate": 43.8
+    },
+    "OĞUZBOYLU": {
+      "starts": 23,
+      "win_rate": 0.0,
+      "top4_rate": 56.5
+    },
+    "BALTACI": {
+      "starts": 19,
+      "win_rate": 0.0,
+      "top4_rate": 15.8
+    },
+    "CANBERKTAY": {
+      "starts": 53,
+      "win_rate": 15.1,
+      "top4_rate": 49.1
+    },
+    "POWERSCOURT (GB)": {
+      "starts": 21,
+      "win_rate": 0.0,
+      "top4_rate": 28.6
+    },
+    "FINESSE": {
+      "starts": 54,
+      "win_rate": 7.4,
+      "top4_rate": 37.0
+    },
+    "BUMBAİ": {
+      "starts": 18,
+      "win_rate": 11.1,
+      "top4_rate": 33.3
+    },
+    "ÖZHABER": {
+      "starts": 138,
+      "win_rate": 6.5,
+      "top4_rate": 37.7
+    },
+    "YAŞARCIK": {
+      "starts": 17,
+      "win_rate": 0.0,
+      "top4_rate": 23.5
+    },
+    "GÜRSU": {
+      "starts": 103,
+      "win_rate": 19.4,
+      "top4_rate": 37.9
+    },
+    "KAFKAS ŞAHI": {
+      "starts": 37,
+      "win_rate": 5.4,
+      "top4_rate": 24.3
+    },
+    "ENDEREFE": {
+      "starts": 56,
+      "win_rate": 7.1,
+      "top4_rate": 50.0
+    },
+    "SAADIN GÜCÜ": {
+      "starts": 109,
+      "win_rate": 9.2,
+      "top4_rate": 33.0
+    },
+    "ODİNHAN": {
+      "starts": 38,
+      "win_rate": 5.3,
+      "top4_rate": 28.9
+    },
+    "KAIZBERT (RU)": {
+      "starts": 82,
+      "win_rate": 12.2,
+      "top4_rate": 45.1
+    },
+    "HABERKAN": {
+      "starts": 32,
+      "win_rate": 6.2,
+      "top4_rate": 28.1
+    },
+    "FATİH AĞA": {
+      "starts": 168,
+      "win_rate": 7.7,
+      "top4_rate": 36.9
+    },
+    "GÜNTAY": {
+      "starts": 61,
+      "win_rate": 6.6,
+      "top4_rate": 29.5
+    },
+    "UÇANOĞLU": {
+      "starts": 57,
+      "win_rate": 8.8,
+      "top4_rate": 26.3
+    },
+    "CANKARDEŞLER": {
+      "starts": 23,
+      "win_rate": 0.0,
+      "top4_rate": 30.4
+    },
+    "KAPANKAYA": {
+      "starts": 15,
+      "win_rate": 20.0,
+      "top4_rate": 40.0
+    },
+    "KARAÜZÜM": {
+      "starts": 96,
+      "win_rate": 9.4,
+      "top4_rate": 31.2
+    },
+    "YILMABAŞAR": {
+      "starts": 143,
+      "win_rate": 12.6,
+      "top4_rate": 39.9
+    },
+    "DENİZİM": {
+      "starts": 59,
+      "win_rate": 6.8,
+      "top4_rate": 32.2
+    },
+    "APPROVE (IRE)": {
+      "starts": 69,
+      "win_rate": 8.7,
+      "top4_rate": 44.9
+    },
+    "EPAULETTE (AUS)": {
+      "starts": 107,
+      "win_rate": 14.0,
+      "top4_rate": 43.0
+    },
+    "HASAFET": {
+      "starts": 53,
+      "win_rate": 9.4,
+      "top4_rate": 41.5
+    },
+    "SABRİNİN ATI": {
+      "starts": 40,
+      "win_rate": 7.5,
+      "top4_rate": 55.0
+    },
+    "KING DAVID (USA)": {
+      "starts": 66,
+      "win_rate": 12.1,
+      "top4_rate": 56.1
+    },
+    "AMERİKALI": {
+      "starts": 72,
+      "win_rate": 16.7,
+      "top4_rate": 52.8
+    },
+    "NOBEL PRIZE (IRE)": {
+      "starts": 59,
+      "win_rate": 1.7,
+      "top4_rate": 42.4
+    },
+    "BAŞ HÜKÜMDAR": {
+      "starts": 50,
+      "win_rate": 10.0,
+      "top4_rate": 28.0
+    },
+    "TALİPHAN": {
+      "starts": 40,
+      "win_rate": 12.5,
+      "top4_rate": 35.0
+    },
+    "GRAYSTORM": {
+      "starts": 131,
+      "win_rate": 7.6,
+      "top4_rate": 42.0
+    },
+    "FLY BY ME": {
+      "starts": 34,
+      "win_rate": 8.8,
+      "top4_rate": 32.4
+    },
+    "BLUEGRASS CAT (USA)": {
+      "starts": 142,
+      "win_rate": 11.3,
+      "top4_rate": 46.5
+    },
+    "DEDE SEYDO": {
+      "starts": 16,
+      "win_rate": 31.2,
+      "top4_rate": 81.2
+    },
+    "BESLENEY": {
+      "starts": 49,
+      "win_rate": 16.3,
+      "top4_rate": 40.8
+    },
+    "OĞLUM BURAK": {
+      "starts": 24,
+      "win_rate": 4.2,
+      "top4_rate": 37.5
+    },
+    "YAKUPBEY": {
+      "starts": 69,
+      "win_rate": 2.9,
+      "top4_rate": 31.9
+    },
+    "BALIKHAN": {
+      "starts": 17,
+      "win_rate": 5.9,
+      "top4_rate": 5.9
+    },
+    "SMART ROBIN (JPN)": {
+      "starts": 51,
+      "win_rate": 15.7,
+      "top4_rate": 51.0
+    },
+    "KURUŞAĞA": {
+      "starts": 22,
+      "win_rate": 22.7,
+      "top4_rate": 68.2
+    },
+    "KURTÇABEY": {
+      "starts": 36,
+      "win_rate": 0.0,
+      "top4_rate": 13.9
+    },
+    "GOOD CURRY": {
+      "starts": 69,
+      "win_rate": 14.5,
+      "top4_rate": 43.5
+    },
+    "BABA MEVLÜT": {
+      "starts": 121,
+      "win_rate": 9.9,
+      "top4_rate": 33.1
+    },
+    "GÜNCANHAN": {
+      "starts": 15,
+      "win_rate": 0.0,
+      "top4_rate": 20.0
+    },
+    "BİLDENHAN": {
+      "starts": 22,
+      "win_rate": 9.1,
+      "top4_rate": 31.8
+    },
+    "ARASLI": {
+      "starts": 57,
+      "win_rate": 10.5,
+      "top4_rate": 40.4
+    },
+    "AVERY ISLAND (USA)": {
+      "starts": 37,
+      "win_rate": 13.5,
+      "top4_rate": 37.8
+    },
+    "COOGER": {
+      "starts": 56,
+      "win_rate": 16.1,
+      "top4_rate": 57.1
+    },
+    "TÜMÖZ BEY": {
+      "starts": 67,
+      "win_rate": 6.0,
+      "top4_rate": 25.4
+    },
+    "TAMERİNOĞLU": {
+      "starts": 179,
+      "win_rate": 5.0,
+      "top4_rate": 36.9
+    },
+    "EMBİR HAN": {
+      "starts": 37,
+      "win_rate": 18.9,
+      "top4_rate": 32.4
+    },
+    "BARBAROSBEY": {
+      "starts": 17,
+      "win_rate": 5.9,
+      "top4_rate": 17.6
+    },
+    "ŞİMŞEĞİNOĞLU": {
+      "starts": 22,
+      "win_rate": 0.0,
+      "top4_rate": 22.7
+    },
+    "DAREDEVIL (USA)": {
+      "starts": 25,
+      "win_rate": 0.0,
+      "top4_rate": 28.0
+    },
+    "BİÇER": {
+      "starts": 34,
+      "win_rate": 5.9,
+      "top4_rate": 23.5
+    },
+    "KURTEL": {
+      "starts": 19,
+      "win_rate": 0.0,
+      "top4_rate": 0.0
+    },
+    "ALTAHA": {
+      "starts": 31,
+      "win_rate": 0.0,
+      "top4_rate": 19.4
+    },
+    "AIR VICE MARSHAL (USA)": {
+      "starts": 64,
+      "win_rate": 20.3,
+      "top4_rate": 51.6
+    },
+    "PIANO SONATA": {
+      "starts": 23,
+      "win_rate": 13.0,
+      "top4_rate": 43.5
+    },
+    "PACO BOY (IRE)": {
+      "starts": 17,
+      "win_rate": 5.9,
+      "top4_rate": 35.3
+    },
+    "VOODOO SONG (USA)": {
+      "starts": 25,
+      "win_rate": 4.0,
+      "top4_rate": 16.0
+    },
+    "SAKARBAŞI": {
+      "starts": 70,
+      "win_rate": 7.1,
+      "top4_rate": 25.7
+    },
+    "ORÇUN": {
+      "starts": 40,
+      "win_rate": 5.0,
+      "top4_rate": 30.0
+    },
+    "UFUKBİR": {
+      "starts": 42,
+      "win_rate": 14.3,
+      "top4_rate": 38.1
+    },
+    "KINOWA": {
+      "starts": 30,
+      "win_rate": 3.3,
+      "top4_rate": 16.7
+    },
+    "RUN AWAY AND HIDE (USA)": {
+      "starts": 59,
+      "win_rate": 8.5,
+      "top4_rate": 40.7
+    },
+    "ARTOS": {
+      "starts": 15,
+      "win_rate": 13.3,
+      "top4_rate": 26.7
+    },
+    "ONURKAAN": {
+      "starts": 34,
+      "win_rate": 5.9,
+      "top4_rate": 47.1
+    },
+    "HIZLITAY": {
+      "starts": 22,
+      "win_rate": 18.2,
+      "top4_rate": 45.5
+    },
+    "GAZIBORA KHAN (GB)": {
+      "starts": 18,
+      "win_rate": 22.2,
+      "top4_rate": 38.9
+    },
+    "HERE TO FLY": {
+      "starts": 21,
+      "win_rate": 14.3,
+      "top4_rate": 38.1
+    },
+    "ABBAS YOLCU": {
+      "starts": 43,
+      "win_rate": 2.3,
+      "top4_rate": 16.3
+    },
+    "SIDNEY'S CANDY (USA)": {
+      "starts": 29,
+      "win_rate": 6.9,
+      "top4_rate": 44.8
+    },
+    "SPEEDY WOLF": {
+      "starts": 17,
+      "win_rate": 11.8,
+      "top4_rate": 52.9
+    },
+    "THREE VALLEYS (USA)": {
+      "starts": 18,
+      "win_rate": 5.6,
+      "top4_rate": 50.0
+    },
+    "TEK YÜREK": {
+      "starts": 19,
+      "win_rate": 5.3,
+      "top4_rate": 57.9
+    },
+    "BLAZE TO WIN": {
+      "starts": 22,
+      "win_rate": 9.1,
+      "top4_rate": 36.4
+    },
+    "SCARFACE": {
+      "starts": 16,
+      "win_rate": 31.2,
+      "top4_rate": 81.2
+    },
+    "SULTAN DE FAUST (FR)": {
+      "starts": 21,
+      "win_rate": 0.0,
+      "top4_rate": 19.0
+    },
+    "ANGEL OF DEATH": {
+      "starts": 16,
+      "win_rate": 18.8,
+      "top4_rate": 68.8
+    },
+    "MER DE GLACE (JPN)": {
+      "starts": 38,
+      "win_rate": 2.6,
+      "top4_rate": 34.2
+    },
+    "ALİ RUHİ": {
+      "starts": 17,
+      "win_rate": 11.8,
+      "top4_rate": 29.4
+    },
+    "DEMİRTURBO": {
+      "starts": 20,
+      "win_rate": 15.0,
+      "top4_rate": 35.0
+    },
+    "CRIMEAN TATAR": {
+      "starts": 19,
+      "win_rate": 5.3,
+      "top4_rate": 36.8
+    },
+    "COŞARTAY": {
+      "starts": 23,
+      "win_rate": 0.0,
+      "top4_rate": 43.5
+    }
+  },
+  "weights": {
+    "50": {
+      "starts": 49,
+      "win_pct": 2.0
+    },
+    "51": {
+      "starts": 94,
+      "win_pct": 3.2
+    },
+    "52": {
+      "starts": 353,
+      "win_pct": 4.2
+    },
+    "53": {
+      "starts": 542,
+      "win_pct": 5.7
+    },
+    "54": {
+      "starts": 1312,
+      "win_pct": 5.9
+    },
+    "55": {
+      "starts": 1002,
+      "win_pct": 9.5
+    },
+    "56": {
+      "starts": 1924,
+      "win_pct": 10.2
+    },
+    "57": {
+      "starts": 2943,
+      "win_pct": 10.8
+    },
+    "58": {
+      "starts": 1883,
+      "win_pct": 10.7
+    },
+    "59": {
+      "starts": 531,
+      "win_pct": 14.7
+    },
+    "60": {
+      "starts": 1137,
+      "win_pct": 12.0
+    },
+    "61": {
+      "starts": 302,
+      "win_pct": 11.3
+    },
+    "62": {
+      "starts": 172,
+      "win_pct": 7.0
+    },
+    "63": {
+      "starts": 62,
+      "win_pct": 9.7
+    }
+  },
+  "gear": {
+    "DB": {
+      "starts": 6926,
+      "win_pct": 9.5,
+      "top4_pct": 38.0
+    },
+    "SKG": {
+      "starts": 1399,
+      "win_pct": 7.6,
+      "top4_pct": 36.4
+    },
+    "SK": {
+      "starts": 7230,
+      "win_pct": 9.6,
+      "top4_pct": 39.0
+    },
+    "KG": {
+      "starts": 7322,
+      "win_pct": 9.4,
+      "top4_pct": 37.6
+    },
+    "K": {
+      "starts": 3810,
+      "win_pct": 11.0,
+      "top4_pct": 41.3
+    },
+    "GKR": {
+      "starts": 428,
+      "win_pct": 7.2,
+      "top4_pct": 30.1
+    },
+    "ÖG": {
+      "starts": 109,
+      "win_pct": 11.9,
+      "top4_pct": 42.2
+    },
+    "YP": {
+      "starts": 51,
+      "win_pct": 2.0,
+      "top4_pct": 31.4
+    }
+  }
+}

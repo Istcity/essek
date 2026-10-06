@@ -1,0 +1,18 @@
+{
+  "total_races_tested": 1207,
+  "metrics": {
+    "top1_win_strike_rate": 37.78,
+    "top2_contains_winner": 58.99,
+    "top3_contains_winner": 71.5,
+    "top4_contains_winner": 81.11,
+    "exact_quinella_ikili_rate": 21.71,
+    "exacta_sirali_ikili_rate": 12.26,
+    "top1_flat_roi_pct": 86.5
+  },
+  "value_bets": {
+    "total_value_bets": 392,
+    "win_strike_rate": 21.68,
+    "top4_strike_rate": 70.41,
+    "value_roi_pct": 138.47
+  }
+}

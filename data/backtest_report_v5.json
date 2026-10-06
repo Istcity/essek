@@ -1,0 +1,13 @@
+{
+  "engine_version": "v5.0_deep_empirical_18_factors",
+  "total_races": 1207,
+  "metrics": {
+    "top1_win_strike_rate": 34.8,
+    "top2_contains_winner": 54.6,
+    "top3_contains_winner": 67.52,
+    "top4_contains_winner": 77.55,
+    "exact_quinella_rate": 18.97,
+    "exacta_straight_rate": 11.27,
+    "top1_flat_roi_pct": 75.6
+  }
+}

@@ -2622,3 +2622,102 @@ body {
   opacity: 1;
 }
 
+/* ==========================================================================
+   WINNING FACTORS & 18-FACTOR EXPLAINABLE AI BOX
+   ========================================================================== */
+.winning-factors-box {
+  margin: 0.85rem 0;
+  padding: 0.85rem 1.1rem;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.08), rgba(245, 158, 11, 0.05));
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.winning-factors-box::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(to bottom, var(--emerald-400), var(--gold-400));
+}
+
+.winning-factors-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.65rem;
+}
+
+.winning-factors-title {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-heading);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--emerald-400);
+}
+
+.factor-chips-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 0.6rem;
+}
+
+.factor-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.65rem;
+  border-radius: 8px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: #34d399;
+  cursor: help;
+  transition: all 0.2s ease;
+}
+
+.factor-chip:hover {
+  transform: translateY(-1px);
+  background: rgba(16, 185, 129, 0.22);
+  border-color: rgba(16, 185, 129, 0.5);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+}
+
+.factor-chip-impact {
+  font-weight: 800;
+  font-size: 0.72rem;
+  color: var(--gold-400);
+  background: rgba(0, 0, 0, 0.25);
+  padding: 1px 4px;
+  border-radius: 4px;
+}
+
+.factor-chip-risk {
+  background: rgba(239, 68, 68, 0.12);
+  border-color: rgba(239, 68, 68, 0.35);
+  color: #f87171;
+}
+
+.factor-chip-risk:hover {
+  background: rgba(239, 68, 68, 0.22);
+  border-color: rgba(239, 68, 68, 0.5);
+}
+
+.factor-summary-text {
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: var(--text-secondary);
+  border-top: 1px dashed rgba(255, 255, 255, 0.08);
+  padding-top: 0.5rem;
+  margin-top: 0.4rem;
+}
+
+

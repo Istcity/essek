@@ -645,14 +645,20 @@ class TJKApp {
             <div class="meta-chip" style="font-size:0.75rem; background:rgba(212,175,55,0.1); border-color:var(--border-gold); color:var(--gold-400);">
               🧬 <strong>Orijin (${r.sire || 'Baba'}):</strong> ${pa.surface_match || 'Dengeli'} (%${pa.score || 75})
             </div>
+            <div class="meta-chip" style="font-size:0.75rem; background:rgba(245,158,11,0.1); border-color:rgba(245,158,11,0.3); color:var(--gold-400);">
+              🏢 <strong>Antrenör (${r.trainer || '-'}):</strong> %${r.trainer_score || 74} Ahır Gücü
+            </div>
             <div class="meta-chip" style="font-size:0.75rem; background:rgba(6,182,212,0.1); border-color:rgba(6,182,212,0.3); color:var(--cyan-400);">
               🌧️ <strong>Pist/Zemin:</strong> ${ca.condition || 'Normal Zemin'}
             </div>
             <div class="meta-chip" style="font-size:0.75rem; background:rgba(139,92,246,0.1); border-color:rgba(139,92,246,0.3); color:var(--purple-400);">
-              🏆 <strong>Kariyer Eğrisi:</strong> ${mat.stage || 'Form Zirvesi'}
+              🏆 <strong>Kariyer:</strong> ${mat.stage || 'Form Zirvesi'}
             </div>
             <div class="meta-chip" style="font-size:0.75rem; background:rgba(16,185,129,0.1); border-color:rgba(16,185,129,0.3); color:var(--emerald-400);">
               ⭐ <strong>Jokey Sinerjisi:</strong> ${syn.is_master ? 'Usta Jokey' : 'Dengeli Biniş'} (%${syn.jockey_score || 80})
+            </div>
+            <div class="meta-chip" style="font-size:0.75rem; background:rgba(59,130,246,0.1); border-color:rgba(59,130,246,0.3); color:var(--blue-400);">
+              🔋 <strong>Dinlenme (${r.kgs || 20} gün):</strong> ${r.kgs_bonus >= 0 ? 'İdeal Form Döngüsü' : 'Riskli Periyot'}
             </div>
           </div>
 
@@ -700,6 +706,41 @@ class TJKApp {
               <span class="metric-sub">${r.jockey_score >= 90 ? '⭐ Usta Jokey' : 'Dengeli Biniş'}</span>
             </div>
           </div>
+
+          <!-- 18-Factor Transparent Winning Drivers & Risks Box -->
+          ${(r.winning_factors && ((r.winning_factors.dominant_factors && r.winning_factors.dominant_factors.length > 0) || (r.winning_factors.risk_factors && r.winning_factors.risk_factors.length > 0))) ? `
+            <div class="winning-factors-box">
+              <div class="winning-factors-header">
+                <div class="winning-factors-title">
+                  <span>🏆 Neden Kazanır? / Kazandıran Faktörler (18 Kriter Analizi)</span>
+                </div>
+                <span style="font-size:0.7rem; color:var(--gold-400); font-weight:700;">1.207 Koşu Empirik Modeli</span>
+              </div>
+              
+              <div class="factor-chips-container">
+                ${(r.winning_factors.dominant_factors || []).map(df => `
+                  <div class="factor-chip" title="${df.desc}">
+                    <span>${df.icon || '⭐'}</span>
+                    <span>${df.factor}</span>
+                    <span class="factor-chip-impact">${df.impact}</span>
+                  </div>
+                `).join('')}
+                ${(r.winning_factors.risk_factors || []).map(rf => `
+                  <div class="factor-chip factor-chip-risk" title="${rf.desc}">
+                    <span>${rf.icon || '⚠️'}</span>
+                    <span>${rf.factor}</span>
+                    <span class="factor-chip-impact" style="color:#f87171;">${rf.impact}</span>
+                  </div>
+                `).join('')}
+              </div>
+
+              ${r.winning_factors.factor_summary ? `
+                <div class="factor-summary-text">
+                  <strong style="color:var(--text-main);">📌 Analiz Özeti:</strong> ${r.winning_factors.factor_summary}
+                </div>
+              ` : ''}
+            </div>
+          ` : ''}
 
           <!-- Explainable AI Rationale Box -->
           <div class="rationale-box">
