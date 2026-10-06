@@ -1,5 +1,5 @@
 {
-  "city": "Philadelphia ABD",
+  "city": "Lyon Parilly Fransa",
   "date": "06.10.2026",
   "total_races": 7,
   "races": [
@@ -13,7 +13,7 @@
       "distance": 1200,
       "surface": "Çim",
       "record_time": "1:15.60",
-      "city": "Philadelphia ABD",
+      "city": "Lyon Parilly Fransa",
       "date": "06.10.2026",
       "runners": [
         {
@@ -1873,7 +1873,7 @@
       "distance": 1400,
       "surface": "Kum",
       "record_time": "1:32.40",
-      "city": "Philadelphia ABD",
+      "city": "Lyon Parilly Fransa",
       "date": "06.10.2026",
       "runners": [
         {
@@ -3672,7 +3672,7 @@
       "distance": 1600,
       "surface": "Sentetik",
       "record_time": "1:45.60",
-      "city": "Philadelphia ABD",
+      "city": "Lyon Parilly Fransa",
       "date": "06.10.2026",
       "runners": [
         {
@@ -5383,7 +5383,7 @@
       "distance": 1900,
       "surface": "Çim",
       "record_time": "1:59.70",
-      "city": "Philadelphia ABD",
+      "city": "Lyon Parilly Fransa",
       "date": "06.10.2026",
       "runners": [
         {
@@ -7256,7 +7256,7 @@
       "distance": 2100,
       "surface": "Kum",
       "record_time": "2:18.60",
-      "city": "Philadelphia ABD",
+      "city": "Lyon Parilly Fransa",
       "date": "06.10.2026",
       "runners": [
         {
@@ -9074,7 +9074,7 @@
       "distance": 1200,
       "surface": "Sentetik",
       "record_time": "1:19.20",
-      "city": "Philadelphia ABD",
+      "city": "Lyon Parilly Fransa",
       "date": "06.10.2026",
       "runners": [
         {
@@ -10796,7 +10796,7 @@
       "distance": 1400,
       "surface": "Çim",
       "record_time": "1:28.20",
-      "city": "Philadelphia ABD",
+      "city": "Lyon Parilly Fransa",
       "date": "06.10.2026",
       "runners": [
         {
@@ -12642,5 +12642,5 @@
       "sirali_ikili_ganyanlar": []
     }
   ],
-  "fetched_at": "2026-10-06T10:27:34.218533"
+  "fetched_at": "2026-10-06T10:27:31.103729"
 }

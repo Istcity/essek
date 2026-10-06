@@ -193,6 +193,40 @@
   window.HorseArt = { drawHorse, shade };
 
   document.addEventListener('DOMContentLoaded', () => {
+    // Splash screen horse runner & auto-dismiss
+    const splash = document.getElementById('premiumSplash');
+    const splashCanvas = document.getElementById('splashHorse');
+    if (splashCanvas) {
+      splashCanvas.width = 260;
+      splashCanvas.height = 110;
+      const sCtx = splashCanvas.getContext('2d');
+      let sPhase = 0;
+      let sActive = true;
+      function animSplash() {
+        if (!sActive || !splash || splash.classList.contains('done')) return;
+        sCtx.clearRect(0, 0, splashCanvas.width, splashCanvas.height);
+        drawHorse(sCtx, 130, 65, 1.35, sPhase, {
+          coat: '#2a1d16',
+          silk: '#10b981',
+          cap: '#f59e0b',
+          number: 1
+        });
+        sPhase += 0.18;
+        requestAnimationFrame(animSplash);
+      }
+      requestAnimationFrame(animSplash);
+
+      setTimeout(() => {
+        sActive = false;
+        if (splash) {
+          splash.classList.add('done');
+          setTimeout(() => {
+            if (splash.parentNode) splash.parentNode.removeChild(splash);
+          }, 600);
+        }
+      }, 700);
+    }
+
     // Global luxury ripple effect on click
     document.addEventListener('pointerdown', (e) => {
       const btn = e.target.closest('.btn-primary, .btn-glass, .btn-lux, .view-tab, .race-pill, .track-tab');

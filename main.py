@@ -85,6 +85,9 @@ class TJKAppHandler(SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=FRONTEND_DIR, **kwargs)
 
+    def do_HEAD(self):
+        self.do_GET()
+
     def do_GET(self):
         parsed = urllib.parse.urlparse(self.path)
         path = parsed.path
@@ -109,8 +112,11 @@ class TJKAppHandler(SimpleHTTPRequestHandler):
                     self.send_header("Content-Disposition", 'attachment; filename="TJK_RACING_AI_PRO_v2.exe"')
                     self.send_header("Access-Control-Allow-Origin", "*")
                     self.end_headers()
-                    with open(exe_path, "rb") as f:
-                        self.copyfile(f, self.wfile)
+                    try:
+                        with open(exe_path, "rb") as f:
+                            self.copyfile(f, self.wfile)
+                    except (ConnectionResetError, ConnectionAbortedError, BrokenPipeError, OSError):
+                        pass
                     return
             self.send_error(404, "EXE File Not Found")
 
@@ -128,8 +134,11 @@ class TJKAppHandler(SimpleHTTPRequestHandler):
                     self.send_header("Content-Disposition", 'attachment; filename="TJK_RACING_AI_PRO_v2.zip"')
                     self.send_header("Access-Control-Allow-Origin", "*")
                     self.end_headers()
-                    with open(zip_path, "rb") as f:
-                        self.copyfile(f, self.wfile)
+                    try:
+                        with open(zip_path, "rb") as f:
+                            self.copyfile(f, self.wfile)
+                    except (ConnectionResetError, ConnectionAbortedError, BrokenPipeError, OSError):
+                        pass
                     return
             self.send_error(404, "ZIP File Not Found")
 

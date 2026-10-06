@@ -386,9 +386,22 @@ body::before {
     radial-gradient(60% 50% at 50% 40%, rgba(16, 185, 129, 0.18), transparent 70%),
     radial-gradient(40% 40% at 50% 70%, rgba(245, 158, 11, 0.12), transparent 70%),
     #05080f;
-  transition: opacity 0.8s var(--ease-premium), transform 0.9s var(--ease-premium), visibility 0.8s;
+  transition: opacity 0.5s var(--ease-premium), transform 0.5s var(--ease-premium), visibility 0.5s;
+  animation: autoDismissSplash 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards 1.0s;
+  pointer-events: none;
 }
-#premiumSplash.done { opacity: 0; transform: scale(1.06); visibility: hidden; pointer-events: none; }
+@keyframes autoDismissSplash {
+  0% { opacity: 1; transform: scale(1); visibility: visible; }
+  85% { opacity: 0.1; transform: scale(1.04); visibility: visible; }
+  100% { opacity: 0; transform: scale(1.06); visibility: hidden; display: none !important; pointer-events: none !important; }
+}
+#premiumSplash.done {
+  opacity: 0 !important;
+  transform: scale(1.06) !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  display: none !important;
+}
 .splash-inner { text-align: center; }
 .splash-inner canvas { width: 260px; height: 110px; display: block; margin: 0 auto; }
 .splash-title {

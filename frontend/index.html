@@ -19,12 +19,12 @@
   <link rel="manifest" href="./manifest.json">
 
   <!-- Stylesheets with Cache Buster -->
-  <link rel="stylesheet" href="./css/style.css?v=20261006_1250">
-  <link rel="stylesheet" href="./css/mobile.css?v=20261006_1250">
-  <link rel="stylesheet" href="./css/premium.css?v=20261006_1250">
+  <link rel="stylesheet" href="./css/style.css?v=20261006_1410">
+  <link rel="stylesheet" href="./css/mobile.css?v=20261006_1410">
+  <link rel="stylesheet" href="./css/premium.css?v=20261006_1410">
 
   <!-- HLS.js for TAY TV Official Stream -->
-  <script src="./js/hls.min.js?v=20261006_1250"></script>
+  <script src="./js/hls.min.js?v=20261006_1410"></script>
 </head>
 <body>
 
@@ -37,6 +37,30 @@
       <div class="splash-track"><span></span></div>
     </div>
   </div>
+  <script>
+    (function() {
+      function dismissSplash() {
+        var sp = document.getElementById('premiumSplash');
+        if (sp && !sp.classList.contains('done')) {
+          sp.classList.add('done');
+          setTimeout(function() {
+            if (sp && sp.parentNode) {
+              sp.parentNode.removeChild(sp);
+            }
+          }, 600);
+        }
+      }
+      // Guarantee dismissal
+      window.addEventListener('load', function() { setTimeout(dismissSplash, 400); });
+      setTimeout(dismissSplash, 800);
+      setTimeout(dismissSplash, 1500);
+      document.addEventListener('click', function(e) {
+        if (e.target && (e.target.id === 'premiumSplash' || e.target.closest('#premiumSplash'))) {
+          dismissSplash();
+        }
+      });
+    })();
+  </script>
 
   <!-- Sticky Luxury App Header -->
   <header class="app-header">
@@ -352,12 +376,12 @@
   </div>
 
   <!-- Scripts with Cache Buster -->
-  <script src="./js/hls.min.js?v=20261006_1250"></script>
-  <script src="./js/horse-art.js?v=20261006_1250"></script>
-  <script src="./js/race-simulator.js?v=20261006_1250"></script>
-  <script src="./js/coupon-builder.js?v=20261006_1250"></script>
-  <script src="./js/h2h-compare.js?v=20261006_1250"></script>
-  <script src="./js/app.js?v=20261006_1250"></script>
+  <script src="./js/hls.min.js?v=20261006_1410"></script>
+  <script src="./js/horse-art.js?v=20261006_1410"></script>
+  <script src="./js/race-simulator.js?v=20261006_1410"></script>
+  <script src="./js/coupon-builder.js?v=20261006_1410"></script>
+  <script src="./js/h2h-compare.js?v=20261006_1410"></script>
+  <script src="./js/app.js?v=20261006_1410"></script>
 
   <!-- Premium interactions: initial tab indicator -->
   <script>
